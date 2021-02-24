@@ -87,9 +87,9 @@
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `IIH(v  1 e 1 0 ]
 "50 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
-"60
+"61
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
-"74
+"75
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 "59 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/memory.c
 [v _FLASH_ReadByte FLASH_ReadByte `(uc  1 e 1 0 ]
@@ -99,6 +99,8 @@
 [v _FLASH_EraseBlock FLASH_EraseBlock `(v  1 e 1 0 ]
 "55 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"60 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
 "52 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
 [v _RX2PPS RX2PPS `VEuc  1 e 1 @3725 ]
 "1287
@@ -111,7 +113,7 @@
 [v _SP2BRGH SP2BRGH `VEuc  1 e 1 @3740 ]
 "1446
 [v _RC2STA RC2STA `VEuc  1 e 1 @3741 ]
-[s S518 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S523 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -121,19 +123,19 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "1479
-[s S527 . 1 `uc 1 . 1 0 :6:0 
+[s S532 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_92 1 0 :1:6 
 ]
-[s S530 . 1 `uc 1 . 1 0 :6:0 
+[s S535 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC92 1 0 :1:6 
 ]
-[s S533 . 1 `uc 1 RCD82 1 0 :1:0 
+[s S538 . 1 `uc 1 RCD82 1 0 :1:0 
 ]
-[u S535 . 1 `S518 1 . 1 0 `S527 1 . 1 0 `S530 1 . 1 0 `S533 1 . 1 0 ]
-[v _RC2STAbits RC2STAbits `VES535  1 e 1 @3741 ]
+[u S540 . 1 `S523 1 . 1 0 `S532 1 . 1 0 `S535 1 . 1 0 `S538 1 . 1 0 ]
+[v _RC2STAbits RC2STAbits `VES540  1 e 1 @3741 ]
 "1620
 [v _TX2STA TX2STA `VEuc  1 e 1 @3742 ]
-[s S484 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S489 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -143,18 +145,20 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "1649
-[s S493 . 1 `uc 1 . 1 0 :6:0 
+[s S498 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_92 1 0 :1:6 
 ]
-[s S496 . 1 `uc 1 TXD82 1 0 :1:0 
+[s S501 . 1 `uc 1 TXD82 1 0 :1:0 
 ]
-[u S498 . 1 `S484 1 . 1 0 `S493 1 . 1 0 `S496 1 . 1 0 ]
-[v _TX2STAbits TX2STAbits `VES498  1 e 1 @3742 ]
+[u S503 . 1 `S489 1 . 1 0 `S498 1 . 1 0 `S501 1 . 1 0 ]
+[v _TX2STAbits TX2STAbits `VES503  1 e 1 @3742 ]
 "1776
 [v _BAUD2CON BAUD2CON `VEuc  1 e 1 @3743 ]
+"2339
+[v _T0CKIPPS T0CKIPPS `VEuc  1 e 1 @3748 ]
 "3599
 [v _RX1PPS RX1PPS `VEuc  1 e 1 @3765 ]
-[s S138 . 1 `uc 1 SSP1IE 1 0 :1:0 
+[s S143 . 1 `uc 1 SSP1IE 1 0 :1:0 
 `uc 1 BCL1IE 1 0 :1:1 
 `uc 1 SSP2IE 1 0 :1:2 
 `uc 1 BCL2IE 1 0 :1:3 
@@ -164,20 +168,30 @@
 `uc 1 RC2IE 1 0 :1:7 
 ]
 "4556
-[s S147 . 1 `uc 1 RXB0IE 1 0 :1:0 
+[s S152 . 1 `uc 1 RXB0IE 1 0 :1:0 
 `uc 1 RXB1IE 1 0 :1:1 
 `uc 1 TXB0IE 1 0 :1:2 
 `uc 1 TXB1IE 1 0 :1:3 
 `uc 1 TXB2IE 1 0 :1:4 
 ]
-[s S153 . 1 `uc 1 . 1 0 :1:0 
+[s S158 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIE 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBNIE 1 0 :1:4 
 ]
-[u S158 . 1 `S138 1 . 1 0 `S147 1 . 1 0 `S153 1 . 1 0 ]
-[v _PIE3bits PIE3bits `VES158  1 e 1 @3781 ]
-[s S183 . 1 `uc 1 SSP1IF 1 0 :1:0 
+[u S163 . 1 `S143 1 . 1 0 `S152 1 . 1 0 `S158 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES163  1 e 1 @3781 ]
+[s S967 . 1 `uc 1 INT0IF 1 0 :1:0 
+`uc 1 INT1IF 1 0 :1:1 
+`uc 1 INT2IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 IOCIF 1 0 :1:4 
+`uc 1 TMR0IF 1 0 :1:5 
+]
+"4806
+[u S974 . 1 `S967 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES974  1 e 1 @3786 ]
+[s S188 . 1 `uc 1 SSP1IF 1 0 :1:0 
 `uc 1 BCL1IF 1 0 :1:1 
 `uc 1 SSP2IF 1 0 :1:2 
 `uc 1 BCL2IF 1 0 :1:3 
@@ -187,24 +201,24 @@
 `uc 1 RC2IF 1 0 :1:7 
 ]
 "4955
-[s S192 . 1 `uc 1 . 1 0 :1:0 
+[s S197 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIF 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBNIF 1 0 :1:4 
 ]
-[u S197 . 1 `S183 1 . 1 0 `S192 1 . 1 0 ]
-[v _PIR3bits PIR3bits `VES197  1 e 1 @3789 ]
-[s S331 . 1 `uc 1 CWGIF 1 0 :1:0 
+[u S202 . 1 `S188 1 . 1 0 `S197 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES202  1 e 1 @3789 ]
+[s S336 . 1 `uc 1 CWGIF 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 NVMIF 1 0 :1:5 
 `uc 1 CRCIF 1 0 :1:6 
 `uc 1 SCANIF 1 0 :1:7 
 ]
 "5135
-[s S337 . 1 `uc 1 CWG1IF 1 0 :1:0 
+[s S342 . 1 `uc 1 CWG1IF 1 0 :1:0 
 ]
-[u S339 . 1 `S331 1 . 1 0 `S337 1 . 1 0 ]
-[v _PIR7bits PIR7bits `VES339  1 e 1 @3793 ]
+[u S344 . 1 `S336 1 . 1 0 `S342 1 . 1 0 ]
+[v _PIR7bits PIR7bits `VES344  1 e 1 @3793 ]
 "5743
 [v _OSCCON1 OSCCON1 `VEuc  1 e 1 @3800 ]
 "5883
@@ -287,7 +301,7 @@
 [v _NVMADRH NVMADRH `VEuc  1 e 1 @3967 ]
 "16231
 [v _NVMDAT NVMDAT `VEuc  1 e 1 @3968 ]
-[s S259 . 1 `uc 1 RD 1 0 :1:0 
+[s S264 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -296,12 +310,12 @@
 `uc 1 NVMREG 1 0 :2:6 
 ]
 "16322
-[s S267 . 1 `uc 1 . 1 0 :6:0 
+[s S272 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 NVMREG0 1 0 :1:6 
 `uc 1 NVMREG1 1 0 :1:7 
 ]
-[u S271 . 1 `S259 1 . 1 0 `S267 1 . 1 0 ]
-[v _NVMCON1bits NVMCON1bits `VES271  1 e 1 @3969 ]
+[u S276 . 1 `S264 1 . 1 0 `S272 1 . 1 0 ]
+[v _NVMCON1bits NVMCON1bits `VES276  1 e 1 @3969 ]
 "16367
 [v _NVMCON2 NVMCON2 `VEuc  1 e 1 @3970 ]
 "16387
@@ -335,55 +349,77 @@
 "19273
 [v _RC1STA RC1STA `VEuc  1 e 1 @3997 ]
 "19314
-[s S837 . 1 `uc 1 . 1 0 :6:0 
+[s S842 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S840 . 1 `uc 1 . 1 0 :6:0 
+[s S845 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S843 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S848 . 1 `uc 1 RCD8 1 0 :1:0 
 ]
-[s S845 . 1 `uc 1 . 1 0 :5:0 
+[s S850 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[u S848 . 1 `S518 1 . 1 0 `S837 1 . 1 0 `S840 1 . 1 0 `S843 1 . 1 0 `S845 1 . 1 0 ]
-[v _RC1STAbits RC1STAbits `VES848  1 e 1 @3997 ]
+[u S853 . 1 `S523 1 . 1 0 `S842 1 . 1 0 `S845 1 . 1 0 `S848 1 . 1 0 `S850 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES853  1 e 1 @3997 ]
 "19558
 [v _TX1STA TX1STA `VEuc  1 e 1 @3998 ]
 "19622
-[s S749 . 1 `uc 1 . 1 0 :6:0 
+[s S754 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[s S752 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S757 . 1 `uc 1 TXD8 1 0 :1:0 
 ]
-[s S754 . 1 `uc 1 . 1 0 :2:0 
+[s S759 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 BRGH1 1 0 :1:2 
 ]
-[s S757 . 1 `uc 1 . 1 0 :7:0 
+[s S762 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 CSRC1 1 0 :1:7 
 ]
-[s S760 . 1 `uc 1 . 1 0 :3:0 
+[s S765 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 SENDB1 1 0 :1:3 
 ]
-[s S763 . 1 `uc 1 . 1 0 :4:0 
+[s S768 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 SYNC1 1 0 :1:4 
 ]
-[s S766 . 1 `uc 1 . 1 0 :1:0 
+[s S771 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 TRMT1 1 0 :1:1 
 ]
-[s S769 . 1 `uc 1 . 1 0 :6:0 
+[s S774 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX91 1 0 :1:6 
 ]
-[s S772 . 1 `uc 1 TX9D1 1 0 :1:0 
+[s S777 . 1 `uc 1 TX9D1 1 0 :1:0 
 ]
-[s S774 . 1 `uc 1 . 1 0 :5:0 
+[s S779 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 TXEN1 1 0 :1:5 
 ]
-[u S777 . 1 `S484 1 . 1 0 `S749 1 . 1 0 `S752 1 . 1 0 `S754 1 . 1 0 `S757 1 . 1 0 `S760 1 . 1 0 `S763 1 . 1 0 `S766 1 . 1 0 `S769 1 . 1 0 `S772 1 . 1 0 `S774 1 . 1 0 ]
-[v _TX1STAbits TX1STAbits `VES777  1 e 1 @3998 ]
+[u S782 . 1 `S489 1 . 1 0 `S754 1 . 1 0 `S757 1 . 1 0 `S759 1 . 1 0 `S762 1 . 1 0 `S765 1 . 1 0 `S768 1 . 1 0 `S771 1 . 1 0 `S774 1 . 1 0 `S777 1 . 1 0 `S779 1 . 1 0 ]
+[v _TX1STAbits TX1STAbits `VES782  1 e 1 @3998 ]
 "20002
 [v _BAUD1CON BAUD1CON `VEuc  1 e 1 @3999 ]
-[s S101 . 1 `uc 1 INT0EDG 1 0 :1:0 
+"26474
+[v _TMR0L TMR0L `VEuc  1 e 1 @4051 ]
+"26612
+[v _TMR0H TMR0H `VEuc  1 e 1 @4052 ]
+"26866
+[v _T0CON0 T0CON0 `VEuc  1 e 1 @4053 ]
+[s S985 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+`uc 1 T016BIT 1 0 :1:4 
+`uc 1 T0OUT 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 T0EN 1 0 :1:7 
+]
+"26886
+[s S991 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+`uc 1 T0OUTPS1 1 0 :1:1 
+`uc 1 T0OUTPS2 1 0 :1:2 
+`uc 1 T0OUTPS3 1 0 :1:3 
+]
+[u S996 . 1 `S985 1 . 1 0 `S991 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES996  1 e 1 @4053 ]
+"26931
+[v _T0CON1 T0CON1 `VEuc  1 e 1 @4054 ]
+[s S106 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -392,16 +428,16 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "27784
-[s S109 . 1 `uc 1 . 1 0 :6:0 
+[s S114 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S113 . 1 `uc 1 . 1 0 :6:0 
+[s S118 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S117 . 1 `S101 1 . 1 0 `S109 1 . 1 0 `S113 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES117  1 e 1 @4082 ]
+[u S122 . 1 `S106 1 . 1 0 `S114 1 . 1 0 `S118 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES122  1 e 1 @4082 ]
 "27886
 [v _TABLAT TABLAT `VEuc  1 e 1 @4085 ]
 "27915
@@ -424,18 +460,18 @@
 [v _eusart1RxTail eusart1RxTail `VEuc  1 e 1 0 ]
 "69
 [v _eusart1RxBuffer eusart1RxBuffer `VE[8]uc  1 e 8 0 ]
-[s S391 . 1 `uc 1 perr 1 0 :1:0 
+[s S396 . 1 `uc 1 perr 1 0 :1:0 
 `uc 1 ferr 1 0 :1:1 
 `uc 1 oerr 1 0 :1:2 
 `uc 1 reserved 1 0 :5:3 
 ]
 "70
-[u S396 . 1 `S391 1 . 1 0 `uc 1 status 1 0 ]
-[v _eusart1RxStatusBuffer eusart1RxStatusBuffer `VE[8]S396  1 e 8 0 ]
+[u S401 . 1 `S396 1 . 1 0 `uc 1 status 1 0 ]
+[v _eusart1RxStatusBuffer eusart1RxStatusBuffer `VE[8]S401  1 e 8 0 ]
 "71
 [v _eusart1RxCount eusart1RxCount `VEuc  1 e 1 0 ]
 "72
-[v _eusart1RxLastError eusart1RxLastError `VES396  1 e 1 0 ]
+[v _eusart1RxLastError eusart1RxLastError `VES401  1 e 1 0 ]
 "77
 [v _EUSART1_TxDefaultInterruptHandler EUSART1_TxDefaultInterruptHandler `*.37(v  1 e 2 0 ]
 "78
@@ -461,11 +497,11 @@
 "69
 [v _eusart2RxBuffer eusart2RxBuffer `VE[8]uc  1 e 8 0 ]
 "70
-[v _eusart2RxStatusBuffer eusart2RxStatusBuffer `VE[8]S396  1 e 8 0 ]
+[v _eusart2RxStatusBuffer eusart2RxStatusBuffer `VE[8]S401  1 e 8 0 ]
 "71
 [v _eusart2RxCount eusart2RxCount `VEuc  1 e 1 0 ]
 "72
-[v _eusart2RxLastError eusart2RxLastError `VES396  1 e 1 0 ]
+[v _eusart2RxLastError eusart2RxLastError `VES401  1 e 1 0 ]
 "77
 [v _EUSART2_TxDefaultInterruptHandler EUSART2_TxDefaultInterruptHandler `*.37(v  1 e 2 0 ]
 "78
@@ -484,22 +520,27 @@
 "50 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
-"58
+"59
 } 0
-"74
+"60 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+{
+"78
+} 0
+"75 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/mcc.c
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 {
-"88
+"89
 } 0
 "55 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
-"131
+"132
 } 0
-"60 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/mcc.c
+"61 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
-"72
+"73
 } 0
 "52 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
