@@ -1651,11 +1651,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/eusart1.c: 104:     TX1STA = 0x24;
 [e = _TX1STA -> -> 36 `i `uc ]
 "107
-[; ;mcc_generated_files/eusart1.c: 107:     SP1BRGL = 0xA0;
-[e = _SP1BRGL -> -> 160 `i `uc ]
+[; ;mcc_generated_files/eusart1.c: 107:     SP1BRGL = 0x40;
+[e = _SP1BRGL -> -> 64 `i `uc ]
 "110
-[; ;mcc_generated_files/eusart1.c: 110:     SP1BRGH = 0x01;
-[e = _SP1BRGH -> -> 1 `i `uc ]
+[; ;mcc_generated_files/eusart1.c: 110:     SP1BRGH = 0x03;
+[e = _SP1BRGH -> -> 3 `i `uc ]
 "113
 [; ;mcc_generated_files/eusart1.c: 113:     EUSART1_SetFramingErrorHandler(EUSART1_DefaultFramingErrorHandler);
 [e ( _EUSART1_SetFramingErrorHandler (1 &U _EUSART1_DefaultFramingErrorHandler ]

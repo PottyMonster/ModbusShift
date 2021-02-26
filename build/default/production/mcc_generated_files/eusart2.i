@@ -17156,10 +17156,10 @@ void EUSART2_Initialize(void)
     TX2STA = 0x24;
 
 
-    SP2BRGL = 0xA0;
+    SP2BRGL = 0x40;
 
 
-    SP2BRGH = 0x01;
+    SP2BRGH = 0x03;
 
 
     EUSART2_SetFramingErrorHandler(EUSART2_DefaultFramingErrorHandler);

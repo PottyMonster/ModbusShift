@@ -8,8 +8,6 @@
 # 2 "<built-in>" 2
 # 1 "main.c" 2
 # 44 "main.c"
-# 1 "./mcc_generated_files/mcc.h" 1
-# 49 "./mcc_generated_files/mcc.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -16828,15 +16826,17 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 49 "./mcc_generated_files/mcc.h" 2
+# 44 "main.c" 2
 
+# 1 "./mcc_generated_files/mcc.h" 1
+# 50 "./mcc_generated_files/mcc.h"
 # 1 "./mcc_generated_files/device_config.h" 1
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 158 "./mcc_generated_files/pin_manager.h"
+# 246 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 170 "./mcc_generated_files/pin_manager.h"
+# 258 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -16985,21 +16985,59 @@ uint8_t DATAEE_ReadByte(uint16_t bAdd);
 void MEMORY_Tasks(void);
 # 56 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/tmr0.h" 1
-# 100 "./mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "./mcc_generated_files/tmr0.h"
-void TMR0_StartTimer(void);
-# 161 "./mcc_generated_files/tmr0.h"
-void TMR0_StopTimer(void);
-# 196 "./mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 235 "./mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 272 "./mcc_generated_files/tmr0.h"
-void TMR0_Reload(uint8_t periodVal);
-# 308 "./mcc_generated_files/tmr0.h"
-_Bool TMR0_HasOverflowOccured(void);
+# 1 "./mcc_generated_files/eusart1.h" 1
+# 75 "./mcc_generated_files/eusart1.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}eusart1_status_t;
+
+
+
+
+extern volatile uint8_t eusart1TxBufferRemaining;
+extern volatile uint8_t eusart1RxCount;
+
+
+
+
+extern void (*EUSART1_TxDefaultInterruptHandler)(void);
+extern void (*EUSART1_RxDefaultInterruptHandler)(void);
+# 117 "./mcc_generated_files/eusart1.h"
+void EUSART1_Initialize(void);
+# 165 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_tx_ready(void);
+# 213 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_rx_ready(void);
+# 260 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_tx_done(void);
+# 308 "./mcc_generated_files/eusart1.h"
+eusart1_status_t EUSART1_get_last_status(void);
+# 328 "./mcc_generated_files/eusart1.h"
+uint8_t EUSART1_Read(void);
+# 348 "./mcc_generated_files/eusart1.h"
+void EUSART1_Write(uint8_t txData);
+# 369 "./mcc_generated_files/eusart1.h"
+void EUSART1_Transmit_ISR(void);
+# 390 "./mcc_generated_files/eusart1.h"
+void EUSART1_Receive_ISR(void);
+# 411 "./mcc_generated_files/eusart1.h"
+void EUSART1_RxDataHandler(void);
+# 429 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 447 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 465 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
+# 485 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
+# 505 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 57 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/eusart2.h" 1
@@ -17196,71 +17234,115 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "./mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/eusart1.h" 1
-# 75 "./mcc_generated_files/eusart1.h"
-typedef union {
-    struct {
-        unsigned perr : 1;
-        unsigned ferr : 1;
-        unsigned oerr : 1;
-        unsigned reserved : 5;
-    };
-    uint8_t status;
-}eusart1_status_t;
-
-
-
-
-extern volatile uint8_t eusart1TxBufferRemaining;
-extern volatile uint8_t eusart1RxCount;
-
-
-
-
-extern void (*EUSART1_TxDefaultInterruptHandler)(void);
-extern void (*EUSART1_RxDefaultInterruptHandler)(void);
-# 117 "./mcc_generated_files/eusart1.h"
-void EUSART1_Initialize(void);
-# 165 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_tx_ready(void);
-# 213 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_rx_ready(void);
-# 260 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_tx_done(void);
-# 308 "./mcc_generated_files/eusart1.h"
-eusart1_status_t EUSART1_get_last_status(void);
-# 328 "./mcc_generated_files/eusart1.h"
-uint8_t EUSART1_Read(void);
-# 348 "./mcc_generated_files/eusart1.h"
-void EUSART1_Write(uint8_t txData);
-# 369 "./mcc_generated_files/eusart1.h"
-void EUSART1_Transmit_ISR(void);
-# 390 "./mcc_generated_files/eusart1.h"
-void EUSART1_Receive_ISR(void);
-# 411 "./mcc_generated_files/eusart1.h"
-void EUSART1_RxDataHandler(void);
-# 429 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 59 "./mcc_generated_files/mcc.h" 2
-# 74 "./mcc_generated_files/mcc.h"
+# 73 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 87 "./mcc_generated_files/mcc.h"
+# 86 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 100 "./mcc_generated_files/mcc.h"
+# 99 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 44 "main.c" 2
+# 45 "main.c" 2
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 1 3
+# 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 3
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 411 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct __locale_struct * locale_t;
+# 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 2 3
+
+
+void *memcpy (void *restrict, const void *restrict, size_t);
+void *memmove (void *, const void *, size_t);
+void *memset (void *, int, size_t);
+int memcmp (const void *, const void *, size_t);
+void *memchr (const void *, int, size_t);
+
+char *strcpy (char *restrict, const char *restrict);
+char *strncpy (char *restrict, const char *restrict, size_t);
+
+char *strcat (char *restrict, const char *restrict);
+char *strncat (char *restrict, const char *restrict, size_t);
+
+int strcmp (const char *, const char *);
+int strncmp (const char *, const char *, size_t);
+
+int strcoll (const char *, const char *);
+size_t strxfrm (char *restrict, const char *restrict, size_t);
+
+char *strchr (const char *, int);
+char *strrchr (const char *, int);
+
+size_t strcspn (const char *, const char *);
+size_t strspn (const char *, const char *);
+char *strpbrk (const char *, const char *);
+char *strstr (const char *, const char *);
+char *strtok (char *restrict, const char *restrict);
+
+size_t strlen (const char *);
+
+char *strerror (int);
+# 65 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 3
+char *strtok_r (char *restrict, const char *restrict, char **restrict);
+int strerror_r (int, char *, size_t);
+char *stpcpy(char *restrict, const char *restrict);
+char *stpncpy(char *restrict, const char *restrict, size_t);
+size_t strnlen (const char *, size_t);
+char *strdup (const char *);
+char *strndup (const char *, size_t);
+char *strsignal(int);
+char *strerror_l (int, locale_t);
+int strcoll_l (const char *, const char *, locale_t);
+size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 
+
+void *memccpy (void *restrict, const void *restrict, int, size_t);
+# 46 "main.c" 2
+
+
+
+
+
+
+
+char temp[2] = {'Z','\0'};
+_Bool Debug = 0;
+int i=0;
+
+volatile uint8_t rxData;
+volatile eusart1_status_t rxStatus;
+
+
+unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
+
+
+
+void UART1_Write_string(unsigned char * data, int data_len)
+{
+    for (int i = 0; i < data_len; i++) {
+        EUSART1_Write(data[i]);
+    }
+}
+
+
+void TXMode(){
+    do { LATDbits.LATD0 = 1; } while(0);
+    do { LATAbits.LATA3 = 1; } while(0);
+
+    do { LATAbits.LATA7 = 1; } while(0);
+    do { LATAbits.LATA6 = 0; } while(0);
+    printf("TXMode\r\n\n");
+}
+
+
+void RXMode(){
+    do { LATDbits.LATD0 = 0; } while(0);
+    do { LATAbits.LATA3 = 0; } while(0);
+
+    do { LATAbits.LATA7 = 0; } while(0);
+    do { LATAbits.LATA6 = 1; } while(0);
+
+}
 
 
 void main(void)
@@ -17280,12 +17362,43 @@ void main(void)
 
 
     (INTCONbits.PEIE = 1);
+# 119 "main.c"
+    do { LATAbits.LATA4 = 0; } while(0);
+    do { LATAbits.LATA5 = 0; } while(0);
+    do { LATAbits.LATA6 = 0; } while(0);
+    do { LATAbits.LATA7 = 0; } while(0);
+
+
+    volatile uint8_t rxData;
+
+    rxData = 0x31;
 
 
 
+    printf("Initalised\r\n\n");
 
-    while (1)
+    while(1)
     {
+        RXMode();
 
+
+        if(EUSART1_is_rx_ready())
+        {
+            printf("EUSART1 received data and is ready to be read.\r\n\n");
+            do { LATAbits.LATA4 = 1; } while(0);
+            rxData = EUSART1_Read();
+            printf("Read data rxData: %c \r\n\n", rxData);
+            if(EUSART1_is_tx_ready())
+            {
+                printf("EUSART1 TX is Ready\r\n\n");
+                TXMode();
+
+                EUSART1_Write(rxData);
+                printf("EUSART1 Write Sent: %c \r\n\n", rxData);
+                do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+            }
+        }
+# 169 "main.c"
     }
+# 255 "main.c"
 }
