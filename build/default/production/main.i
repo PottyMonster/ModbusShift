@@ -7,7 +7,6 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 44 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -16826,7 +16825,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 44 "main.c" 2
+# 1 "main.c" 2
 
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
@@ -17240,7 +17239,7 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 99 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 45 "main.c" 2
+# 2 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 1 3
 # 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 3
@@ -17297,16 +17296,8 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 46 "main.c" 2
-
-
-
-
-
-
-
-
-char temp[2] = {'Z','\0'};
+# 3 "main.c" 2
+# 12 "main.c"
 _Bool Debug = 0;
 
 int loop;
@@ -17314,7 +17305,7 @@ int loop;
 volatile eusart1_status_t rxStatus;
 int ByteNum = 0;
 
-unsigned char rxData[] = {0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc};
+unsigned char rxData[100] = { 0 };
 
 
 unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
@@ -17344,7 +17335,7 @@ void RXMode(){
 void ClearRxBuff(){
 
     int i = 0;
-    for(i=0; i<50; i++ ){
+    for(i=0; i<ByteNum; i++ ){
         rxData[i] = 0xFF;
     }
 
@@ -17354,7 +17345,7 @@ void PrintRXBuff(){
 
     int i=0;
 
-    for(i=0; i<50; i++ ){
+    for(i=0; i< ByteNum ; i++ ){
         printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
     }
 
@@ -17397,6 +17388,8 @@ void main(void)
     ClearRxBuff();
     PrintRXBuff();
 
+    _Bool RXStat = 0;
+
     while(1)
     {
         if(EUSART1_is_rx_ready()){
@@ -17404,19 +17397,29 @@ void main(void)
 
 
 
-            ByteNum = 0;
             while(EUSART1_is_rx_ready()){
 
                 rxData[ByteNum] = EUSART1_Read();
-                _delay((unsigned long)((5)*(32000000/4000.0)));
+                _delay((unsigned long)((2)*(32000000/4000.0)));
                 ByteNum++;
             }
-            printf("EUSART Read Complete.\r\n\n");
 
+            RXStat = 1;
+        }
+
+        if(RXStat ==1){
+
+            ByteNum--;
             PrintRXBuff();
             ClearRxBuff();
-# 220 "main.c"
+            RXStat = 0;
+            ByteNum = 0;
+            do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+        }else
+        {
+
         }
+
 
     }
 }

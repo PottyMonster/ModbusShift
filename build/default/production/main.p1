@@ -1461,57 +1461,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28207
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 28207: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"54 main.c
-[; ;main.c: 54: char temp[2] = {'Z','\0'};
-[v _temp `uc ~T0 @X0 -> 2 `i e ]
-[i _temp
-:U ..
--> -> 90 `ui `uc
--> -> 0 `ui `uc
-..
-]
-"55
-[; ;main.c: 55: _Bool Debug = 0;
+"12 main.c
+[; ;main.c: 12: _Bool Debug = 0;
 [v _Debug `a ~T0 @X0 1 e ]
 [i _Debug
 -> -> 0 `i `a
 ]
-"57
-[; ;main.c: 57: int loop;
+"14
+[; ;main.c: 14: int loop;
 [v _loop `i ~T0 @X0 1 e ]
-"59
-[; ;main.c: 59: volatile eusart1_status_t rxStatus;
+"16
+[; ;main.c: 16: volatile eusart1_status_t rxStatus;
 [v _rxStatus `VS1490 ~T0 @X0 1 e ]
-"60
-[; ;main.c: 60: int ByteNum = 0;
+"17
+[; ;main.c: 17: int ByteNum = 0;
 [v _ByteNum `i ~T0 @X0 1 e ]
 [i _ByteNum
 -> 0 `i
 ]
-"62
-[; ;main.c: 62: unsigned char rxData[] = {0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc};
-[v _rxData `uc ~T0 @X0 -> 15 `i e ]
+"19
+[; ;main.c: 19: unsigned char rxData[100] = { 0 };
+[v _rxData `uc ~T0 @X0 -> 100 `i e ]
 [i _rxData
 :U ..
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
--> -> 204 `i `uc
+-> -> 0 `i `uc
 ..
 ]
-"65
-[; ;main.c: 65: unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
+"22
+[; ;main.c: 22: unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
 [v _data1 `uc ~T0 @X0 -> 11 `i e ]
 [i _data1
 :U ..
@@ -1528,272 +1505,304 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 173 `i `uc
 ..
 ]
-"69
-[; ;main.c: 69: void UART1_Write_string(unsigned char * data, int data_len)
+"26
+[; ;main.c: 26: void UART1_Write_string(unsigned char * data, int data_len)
 [v _UART1_Write_string `(v ~T0 @X0 1 ef2`*uc`i ]
-"70
-[; ;main.c: 70: {
+"27
+[; ;main.c: 27: {
 {
 [e :U _UART1_Write_string ]
-"69
-[; ;main.c: 69: void UART1_Write_string(unsigned char * data, int data_len)
+"26
+[; ;main.c: 26: void UART1_Write_string(unsigned char * data, int data_len)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _data_len `i ~T0 @X0 1 r2 ]
-"70
-[; ;main.c: 70: {
+"27
+[; ;main.c: 27: {
 [f ]
-"71
-[; ;main.c: 71:     for (int i = 0; i < data_len; i++) {
+"28
+[; ;main.c: 28:     for (int i = 0; i < data_len; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 1501  ]
 [e :U 1498 ]
 {
-"72
-[; ;main.c: 72:         EUSART1_Write(data[i]);
+"29
+[; ;main.c: 29:         EUSART1_Write(data[i]);
 [e ( _EUSART1_Write (1 *U + _data * -> _i `x -> -> # *U _data `i `x ]
-"73
-[; ;main.c: 73:     }
+"30
+[; ;main.c: 30:     }
 }
 [e ++ _i -> 1 `i ]
 [e :U 1501 ]
 [e $ < _i _data_len 1498  ]
 [e :U 1499 ]
 }
-"74
-[; ;main.c: 74: }
+"31
+[; ;main.c: 31: }
 [e :UE 1497 ]
 }
-"77
-[; ;main.c: 77: void TXMode(){
+"34
+[; ;main.c: 34: void TXMode(){
 [v _TXMode `(v ~T0 @X0 1 ef ]
 {
 [e :U _TXMode ]
 [f ]
-"78
-[; ;main.c: 78:     do { LATDbits.LATD0 = 1; } while(0);
+"35
+[; ;main.c: 35:     do { LATDbits.LATD0 = 1; } while(0);
 [e :U 1505 ]
 {
 [e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 }
 [e :U 1504 ]
-"79
-[; ;main.c: 79:     do { LATAbits.LATA3 = 1; } while(0);
+"36
+[; ;main.c: 36:     do { LATAbits.LATA3 = 1; } while(0);
 [e :U 1508 ]
 {
 [e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
 }
 [e :U 1507 ]
-"80
-[; ;main.c: 80: }
+"37
+[; ;main.c: 37: }
 [e :UE 1502 ]
 }
-"83
-[; ;main.c: 83: void RXMode(){
+"40
+[; ;main.c: 40: void RXMode(){
 [v _RXMode `(v ~T0 @X0 1 ef ]
 {
 [e :U _RXMode ]
 [f ]
-"84
-[; ;main.c: 84:     do { LATDbits.LATD0 = 0; } while(0);
+"41
+[; ;main.c: 41:     do { LATDbits.LATD0 = 0; } while(0);
 [e :U 1512 ]
 {
 [e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 }
 [e :U 1511 ]
-"85
-[; ;main.c: 85:     do { LATAbits.LATA3 = 0; } while(0);
+"42
+[; ;main.c: 42:     do { LATAbits.LATA3 = 0; } while(0);
 [e :U 1515 ]
 {
 [e = . . _LATAbits 0 3 -> -> 0 `i `uc ]
 }
 [e :U 1514 ]
-"86
-[; ;main.c: 86: }
+"43
+[; ;main.c: 43: }
 [e :UE 1509 ]
 }
-"89
-[; ;main.c: 89: void ClearRxBuff(){
+"46
+[; ;main.c: 46: void ClearRxBuff(){
 [v _ClearRxBuff `(v ~T0 @X0 1 ef ]
 {
 [e :U _ClearRxBuff ]
 [f ]
-"91
-[; ;main.c: 91:     int i = 0;
+"48
+[; ;main.c: 48:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"92
-[; ;main.c: 92:     for(i=0; i<50; i++ ){
+"49
+[; ;main.c: 49:     for(i=0; i<ByteNum; i++ ){
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 50 `i 1517  ]
-[e $U 1518  ]
+[e $U 1520  ]
 [e :U 1517 ]
 {
-"93
-[; ;main.c: 93:         rxData[i] = 0xFF;
+"50
+[; ;main.c: 50:         rxData[i] = 0xFF;
 [e = *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux -> -> 255 `i `uc ]
-"94
-[; ;main.c: 94:     }
+"51
+[; ;main.c: 51:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 50 `i 1517  ]
+[e :U 1520 ]
+[e $ < _i _ByteNum 1517  ]
 [e :U 1518 ]
 }
-"96
-[; ;main.c: 96: }
+"53
+[; ;main.c: 53: }
 [e :UE 1516 ]
 }
-"98
-[; ;main.c: 98: void PrintRXBuff(){
+"55
+[; ;main.c: 55: void PrintRXBuff(){
 [v _PrintRXBuff `(v ~T0 @X0 1 ef ]
 {
 [e :U _PrintRXBuff ]
 [f ]
-"100
-[; ;main.c: 100:     int i=0;
+"57
+[; ;main.c: 57:     int i=0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"102
-[; ;main.c: 102:     for(i=0; i<50; i++ ){
+"59
+[; ;main.c: 59:     for(i=0; i< ByteNum ; i++ ){
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 50 `i 1521  ]
-[e $U 1522  ]
-[e :U 1521 ]
+[e $U 1525  ]
+[e :U 1522 ]
 {
-"103
-[; ;main.c: 103:         printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
+"60
+[; ;main.c: 60:         printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
 [e ( _printf , , (. :s 1C _i -> *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux `i ]
-"104
-[; ;main.c: 104:     }
+"61
+[; ;main.c: 61:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 50 `i 1521  ]
-[e :U 1522 ]
+[e :U 1525 ]
+[e $ < _i _ByteNum 1522  ]
+[e :U 1523 ]
 }
-"106
-[; ;main.c: 106: }
-[e :UE 1520 ]
+"63
+[; ;main.c: 63: }
+[e :UE 1521 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"108
-[; ;main.c: 108: void main(void)
+"65
+[; ;main.c: 65: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"109
-[; ;main.c: 109: {
+"66
+[; ;main.c: 66: {
 {
 [e :U _main ]
 [f ]
-"111
-[; ;main.c: 111:     SYSTEM_Initialize();
+"68
+[; ;main.c: 68:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"118
-[; ;main.c: 118:     (INTCONbits.GIE = 1);
+"75
+[; ;main.c: 75:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"124
-[; ;main.c: 124:     (INTCONbits.PEIE = 1);
+"81
+[; ;main.c: 81:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"131
-[; ;main.c: 131:     do { LATAbits.LATA4 = 0; } while(0);
-[e :U 1527 ]
+"88
+[; ;main.c: 88:     do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1529 ]
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 1526 ]
-"132
-[; ;main.c: 132:     do { LATAbits.LATA5 = 0; } while(0);
-[e :U 1530 ]
+[e :U 1528 ]
+"89
+[; ;main.c: 89:     do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1532 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 1529 ]
-"133
-[; ;main.c: 133:     do { LATAbits.LATA6 = 0; } while(0);
-[e :U 1533 ]
+[e :U 1531 ]
+"90
+[; ;main.c: 90:     do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1535 ]
 {
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
-[e :U 1532 ]
-"134
-[; ;main.c: 134:     do { LATAbits.LATA7 = 0; } while(0);
-[e :U 1536 ]
+[e :U 1534 ]
+"91
+[; ;main.c: 91:     do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1538 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
-[e :U 1535 ]
-"139
-[; ;main.c: 139:     printf("Initalised\r\n\n");
-[e ( _printf :s 2C ]
-"141
-[; ;main.c: 141:     RXMode();
-[e ( _RXMode ..  ]
-"142
-[; ;main.c: 142:     ClearRxBuff();
-[e ( _ClearRxBuff ..  ]
-"143
-[; ;main.c: 143:     PrintRXBuff();
-[e ( _PrintRXBuff ..  ]
-"145
-[; ;main.c: 145:     while(1)
-[e :U 1538 ]
-"146
-[; ;main.c: 146:     {
-{
-"147
-[; ;main.c: 147:         if(EUSART1_is_rx_ready()){
-[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1540  ]
-{
-"152
-[; ;main.c: 152:             ByteNum = 0;
-[e = _ByteNum -> 0 `i ]
-"153
-[; ;main.c: 153:             while(EUSART1_is_rx_ready()){
-[e $U 1541  ]
-[e :U 1542 ]
-{
-"155
-[; ;main.c: 155:                 rxData[ByteNum] = EUSART1_Read();
-[e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
-"156
-[; ;main.c: 156:                 _delay((unsigned long)((5)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"157
-[; ;main.c: 157:                 ByteNum++;
-[e ++ _ByteNum -> 1 `i ]
-"158
-[; ;main.c: 158:             }
-}
-[e :U 1541 ]
-"153
-[; ;main.c: 153:             while(EUSART1_is_rx_ready()){
-[e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1542  ]
-[e :U 1543 ]
-"159
-[; ;main.c: 159:             printf("EUSART Read Complete.\r\n\n");
-[e ( _printf :s 3C ]
-"161
-[; ;main.c: 161:             PrintRXBuff();
-[e ( _PrintRXBuff ..  ]
-"162
-[; ;main.c: 162:             ClearRxBuff();
-[e ( _ClearRxBuff ..  ]
-"220
-[; ;main.c: 220:         }
-}
-[e :U 1540 ]
-"222
-[; ;main.c: 222:     }
-}
 [e :U 1537 ]
-[e $U 1538  ]
+"96
+[; ;main.c: 96:     printf("Initalised\r\n\n");
+[e ( _printf :s 2C ]
+"98
+[; ;main.c: 98:     RXMode();
+[e ( _RXMode ..  ]
+"99
+[; ;main.c: 99:     ClearRxBuff();
+[e ( _ClearRxBuff ..  ]
+"100
+[; ;main.c: 100:     PrintRXBuff();
+[e ( _PrintRXBuff ..  ]
+"102
+[; ;main.c: 102:     _Bool RXStat = 0;
+[v _RXStat `a ~T0 @X0 1 a ]
+[e = _RXStat -> -> 0 `i `a ]
+"104
+[; ;main.c: 104:     while(1)
+[e :U 1540 ]
+"105
+[; ;main.c: 105:     {
+{
+"106
+[; ;main.c: 106:         if(EUSART1_is_rx_ready()){
+[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1542  ]
+{
+"111
+[; ;main.c: 111:             while(EUSART1_is_rx_ready()){
+[e $U 1543  ]
+[e :U 1544 ]
+{
+"113
+[; ;main.c: 113:                 rxData[ByteNum] = EUSART1_Read();
+[e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
+"114
+[; ;main.c: 114:                 _delay((unsigned long)((2)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+"115
+[; ;main.c: 115:                 ByteNum++;
+[e ++ _ByteNum -> 1 `i ]
+"116
+[; ;main.c: 116:             }
+}
+[e :U 1543 ]
+"111
+[; ;main.c: 111:             while(EUSART1_is_rx_ready()){
+[e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1544  ]
+[e :U 1545 ]
+"118
+[; ;main.c: 118:             RXStat = 1;
+[e = _RXStat -> -> 1 `i `a ]
+"119
+[; ;main.c: 119:         }
+}
+[e :U 1542 ]
+"121
+[; ;main.c: 121:         if(RXStat ==1){
+[e $ ! == -> _RXStat `i -> 1 `i 1546  ]
+{
+"123
+[; ;main.c: 123:             ByteNum--;
+[e -- _ByteNum -> 1 `i ]
+"124
+[; ;main.c: 124:             PrintRXBuff();
+[e ( _PrintRXBuff ..  ]
+"125
+[; ;main.c: 125:             ClearRxBuff();
+[e ( _ClearRxBuff ..  ]
+"126
+[; ;main.c: 126:             RXStat = 0;
+[e = _RXStat -> -> 0 `i `a ]
+"127
+[; ;main.c: 127:             ByteNum = 0;
+[e = _ByteNum -> 0 `i ]
+"128
+[; ;main.c: 128:             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+[e :U 1549 ]
+{
+[e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
+}
+[e :U 1548 ]
+"129
+[; ;main.c: 129:         }else
+}
+[e $U 1550  ]
+[e :U 1546 ]
+"130
+[; ;main.c: 130:         {
+{
+"132
+[; ;main.c: 132:         }
+}
+[e :U 1550 ]
+"135
+[; ;main.c: 135:     }
+}
 [e :U 1539 ]
-"223
-[; ;main.c: 223: }
-[e :UE 1524 ]
+[e $U 1540  ]
+[e :U 1541 ]
+"136
+[; ;main.c: 136: }
+[e :UE 1526 ]
 }
 [p f _printf 12615812 ]
 [a 1C 66 121 116 101 32 37 105 46 32 86 97 108 58 32 48 120 37 48 50 120 32 13 10 0 ]
 [a 2C 73 110 105 116 97 108 105 115 101 100 13 10 10 0 ]
-[a 3C 69 85 83 65 82 84 32 82 101 97 100 32 67 111 109 112 108 101 116 101 46 13 10 10 0 ]

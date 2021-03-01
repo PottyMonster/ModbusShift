@@ -67,13 +67,13 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"83 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"40 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _RXMode RXMode `(v  1 e 1 0 ]
-"89
+"46
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
-"98
+"55
 [v _PrintRXBuff PrintRXBuff `(v  1 e 1 0 ]
-"108
+"65
 [v _main main `(v  1 e 1 0 ]
 "88 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _EUSART1_Initialize EUSART1_Initialize `(v  1 e 1 0 ]
@@ -519,13 +519,13 @@
 `uc 1 oerr 1 0 :1:2 
 `uc 1 reserved 1 0 :5:3 
 ]
-"59 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"16 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [u S396 . 1 `S391 1 . 1 0 `uc 1 status 1 0 ]
 [v _rxStatus rxStatus `VES396  1 e 1 0 ]
-"60
+"17
 [v _ByteNum ByteNum `i  1 e 2 0 ]
-"62
-[v _rxData rxData `[15]uc  1 e 15 0 ]
+"19
+[v _rxData rxData `[100]uc  1 e 100 0 ]
 "62 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _eusart1TxHead eusart1TxHead `VEuc  1 e 1 0 ]
 "63
@@ -586,10 +586,12 @@
 [v _EUSART2_OverrunErrorHandler EUSART2_OverrunErrorHandler `*.37(v  1 e 2 0 ]
 "82
 [v _EUSART2_ErrorHandler EUSART2_ErrorHandler `*.37(v  1 e 2 0 ]
-"108 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"65 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"223
+"102
+[v main@RXStat RXStat `a  1 a 1 39 ]
+"136
 } 0
 "50 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -686,17 +688,17 @@
 [v EUSART1_SetErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 4 ]
 "274
 } 0
-"83 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"40 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _RXMode RXMode `(v  1 e 1 0 ]
 {
-"86
+"43
 } 0
-"98
+"55
 [v _PrintRXBuff PrintRXBuff `(v  1 e 1 0 ]
 {
-"100
+"57
 [v PrintRXBuff@i i `i  1 a 2 37 ]
-"106
+"63
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -712,9 +714,9 @@
 {
 "1371
 [v vfprintf@cfmt cfmt `*.32uc  1 a 2 82 ]
-[s S1137 _IO_FILE 0 ]
+[s S1136 _IO_FILE 0 ]
 "1368
-[v vfprintf@fp fp `*.2S1137  1 p 2 21 ]
+[v vfprintf@fp fp `*.2S1136  1 p 2 21 ]
 [v vfprintf@fmt fmt `*.32Cuc  1 p 2 23 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 25 ]
 "1382
@@ -730,9 +732,9 @@
 [v vfpfcnvrt@done done `i  1 a 2 16 ]
 "672
 [v vfpfcnvrt@c c `uc  1 a 1 20 ]
-[s S1137 _IO_FILE 0 ]
+[s S1136 _IO_FILE 0 ]
 "670
-[v vfpfcnvrt@fp fp `*.2S1137  1 p 2 72 ]
+[v vfpfcnvrt@fp fp `*.2S1136  1 p 2 72 ]
 [v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 74 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 76 ]
 "1365
@@ -747,9 +749,9 @@
 [v xtoa@i i `i  1 a 2 68 ]
 [v xtoa@w w `i  1 a 2 58 ]
 [v xtoa@p p `i  1 a 2 56 ]
-[s S1137 _IO_FILE 0 ]
+[s S1136 _IO_FILE 0 ]
 "623
-[v xtoa@fp fp `*.2S1137  1 p 2 33 ]
+[v xtoa@fp fp `*.2S1136  1 p 2 33 ]
 [v xtoa@d d `uo  1 p 8 35 ]
 [v xtoa@x x `uc  1 p 1 43 ]
 "665
@@ -788,9 +790,9 @@
 [v dtoa@s s `i  1 a 2 57 ]
 [v dtoa@w w `i  1 a 2 55 ]
 [v dtoa@p p `i  1 a 2 53 ]
-[s S1137 _IO_FILE 0 ]
+[s S1136 _IO_FILE 0 ]
 "274
-[v dtoa@fp fp `*.2S1137  1 p 2 33 ]
+[v dtoa@fp fp `*.2S1136  1 p 2 33 ]
 [v dtoa@d d `o  1 p 8 35 ]
 "315
 } 0
@@ -800,9 +802,9 @@
 "74
 [v pad@w w `i  1 a 2 31 ]
 [v pad@i i `i  1 a 2 29 ]
-[s S1137 _IO_FILE 0 ]
+[s S1136 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.2S1137  1 p 2 22 ]
+[v pad@fp fp `*.2S1136  1 p 2 22 ]
 [v pad@buf buf `*.39uc  1 p 2 24 ]
 [v pad@p p `i  1 p 2 26 ]
 "95
@@ -825,16 +827,16 @@
 [v fputs@c c `uc  1 a 1 19 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 15 ]
-[s S1733 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.2S1733  1 p 2 17 ]
+[s S1732 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.2S1732  1 p 2 17 ]
 "19
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 6 ]
-[s S1733 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.2S1733  1 p 2 8 ]
+[s S1732 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.2S1732  1 p 2 8 ]
 "21
 } 0
 "201 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart2.c
@@ -928,12 +930,12 @@
 [v EUSART1_Read@readValue readValue `uc  1 a 1 4 ]
 "171
 } 0
-"89 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"46 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
 {
-"91
-[v ClearRxBuff@i i `i  1 a 2 4 ]
-"96
+"48
+[v ClearRxBuff@i i `i  1 a 2 5 ]
+"53
 } 0
 "58 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `IIH(v  1 e 1 0 ]

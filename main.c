@@ -16,7 +16,7 @@ int loop;
 volatile eusart1_status_t rxStatus;
 int ByteNum = 0;
 
-unsigned char rxData[] = {0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc};
+unsigned char rxData[100] = { 0 };
 
 //11 03 06 AE41 5652 4340 49AD
 unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
@@ -46,7 +46,7 @@ void RXMode(){
 void ClearRxBuff(){
    
     int i = 0;    
-    for(i=0; i<50; i++ ){
+    for(i=0; i<ByteNum; i++ ){
         rxData[i] = 0xFF;
     }
     
@@ -56,7 +56,7 @@ void PrintRXBuff(){
 
     int i=0;
 
-    for(i=0; i<50; i++ ){
+    for(i=0; i< ByteNum ; i++ ){
         printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
     }
     
@@ -99,27 +99,39 @@ void main(void)
     ClearRxBuff();
     PrintRXBuff();
     
+    bool RXStat = 0;
+    
     while(1)
     {
         if(EUSART1_is_rx_ready()){
             // printf("eusart1RxCount: %08x \r\n", eusart1RxCount);
             // Counter++;           
             // printf("Triggered: %i \r\n\n", Counter);
-         
-            ByteNum = 0;
+            
             while(EUSART1_is_rx_ready()){
                 // While there's something to read out
                 rxData[ByteNum] = EUSART1_Read();
-                __delay_ms(5);
+                __delay_ms(2);
                 ByteNum++;
             }
-            printf("EUSART Read Complete.\r\n\n");
-            
-            PrintRXBuff();
-            ClearRxBuff();
-           
+            // printf("EUSART Read Complete.\r\n\n");
+            RXStat = 1;
         }
 
+        if(RXStat ==1){
+            // Received a bunch of data.
+            ByteNum--;
+            PrintRXBuff();
+            ClearRxBuff();
+            RXStat = 0;
+            ByteNum = 0;
+            D2LED_Toggle();
+        }else
+        {
+            //
+        }
+
+        
     }
 }
 /**
