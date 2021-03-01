@@ -120,7 +120,6 @@ void main(void)
 
         if(RXStat ==1){
             // Received a bunch of data.
-            ByteNum--;
             PrintRXBuff();
             ClearRxBuff();
             RXStat = 0;

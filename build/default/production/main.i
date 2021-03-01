@@ -17409,7 +17409,6 @@ void main(void)
 
         if(RXStat ==1){
 
-            ByteNum--;
             PrintRXBuff();
             ClearRxBuff();
             RXStat = 0;
