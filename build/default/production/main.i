@@ -17305,12 +17305,16 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 
 
 
+
 char temp[2] = {'Z','\0'};
 _Bool Debug = 0;
-int i=0;
 
-volatile uint8_t rxData;
+int loop;
+
 volatile eusart1_status_t rxStatus;
+int ByteNum = 0;
+
+unsigned char rxData[] = {0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc};
 
 
 unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
@@ -17328,22 +17332,33 @@ void UART1_Write_string(unsigned char * data, int data_len)
 void TXMode(){
     do { LATDbits.LATD0 = 1; } while(0);
     do { LATAbits.LATA3 = 1; } while(0);
-
-    do { LATAbits.LATA7 = 1; } while(0);
-    do { LATAbits.LATA6 = 0; } while(0);
-    printf("TXMode\r\n\n");
 }
 
 
 void RXMode(){
     do { LATDbits.LATD0 = 0; } while(0);
     do { LATAbits.LATA3 = 0; } while(0);
+}
 
-    do { LATAbits.LATA7 = 0; } while(0);
-    do { LATAbits.LATA6 = 1; } while(0);
+
+void ClearRxBuff(){
+
+    int i = 0;
+    for(i=0; i<50; i++ ){
+        rxData[i] = 0xFF;
+    }
 
 }
 
+void PrintRXBuff(){
+
+    int i=0;
+
+    for(i=0; i<50; i++ ){
+        printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
+    }
+
+}
 
 void main(void)
 {
@@ -17362,43 +17377,46 @@ void main(void)
 
 
     (INTCONbits.PEIE = 1);
-# 119 "main.c"
+
+
+
+
+
+
     do { LATAbits.LATA4 = 0; } while(0);
     do { LATAbits.LATA5 = 0; } while(0);
     do { LATAbits.LATA6 = 0; } while(0);
     do { LATAbits.LATA7 = 0; } while(0);
 
 
-    volatile uint8_t rxData;
-
-    rxData = 0x31;
-
 
 
     printf("Initalised\r\n\n");
 
+    RXMode();
+    ClearRxBuff();
+    PrintRXBuff();
+
     while(1)
     {
-        RXMode();
+        if(EUSART1_is_rx_ready()){
 
 
-        if(EUSART1_is_rx_ready())
-        {
-            printf("EUSART1 received data and is ready to be read.\r\n\n");
-            do { LATAbits.LATA4 = 1; } while(0);
-            rxData = EUSART1_Read();
-            printf("Read data rxData: %c \r\n\n", rxData);
-            if(EUSART1_is_tx_ready())
-            {
-                printf("EUSART1 TX is Ready\r\n\n");
-                TXMode();
 
-                EUSART1_Write(rxData);
-                printf("EUSART1 Write Sent: %c \r\n\n", rxData);
-                do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+
+            ByteNum = 0;
+            while(EUSART1_is_rx_ready()){
+
+                rxData[ByteNum] = EUSART1_Read();
+                _delay((unsigned long)((5)*(32000000/4000.0)));
+                ByteNum++;
             }
+            printf("EUSART Read Complete.\r\n\n");
+
+            PrintRXBuff();
+            ClearRxBuff();
+# 220 "main.c"
         }
-# 169 "main.c"
+
     }
-# 255 "main.c"
 }

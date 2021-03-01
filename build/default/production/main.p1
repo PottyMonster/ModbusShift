@@ -71,9 +71,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "328
 [; ;./mcc_generated_files/eusart1.h: 328: uint8_t EUSART1_Read(void);
 [v _EUSART1_Read `(uc ~T0 @X0 0 ef ]
-"165
-[; ;./mcc_generated_files/eusart1.h: 165: _Bool EUSART1_is_tx_ready(void);
-[v _EUSART1_is_tx_ready `(a ~T0 @X0 0 ef ]
+[v F10007 `(v ~T0 @X0 1 tf1`ul ]
+"187 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18.h
+[v __delay `JF10007 ~T0 @X0 0 e ]
+[p i __delay ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 54: __asm("RX2PPS equ 0E8Dh");
 [; <" RX2PPS equ 0E8Dh ;# ">
@@ -1460,8 +1461,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28207
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 28207: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"53 main.c
-[; ;main.c: 53: char temp[2] = {'Z','\0'};
+"54 main.c
+[; ;main.c: 54: char temp[2] = {'Z','\0'};
 [v _temp `uc ~T0 @X0 -> 2 `i e ]
 [i _temp
 :U ..
@@ -1469,26 +1470,48 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `ui `uc
 ..
 ]
-"54
-[; ;main.c: 54: _Bool Debug = 0;
+"55
+[; ;main.c: 55: _Bool Debug = 0;
 [v _Debug `a ~T0 @X0 1 e ]
 [i _Debug
 -> -> 0 `i `a
 ]
-"55
-[; ;main.c: 55: int i=0;
-[v _i `i ~T0 @X0 1 e ]
-[i _i
+"57
+[; ;main.c: 57: int loop;
+[v _loop `i ~T0 @X0 1 e ]
+"59
+[; ;main.c: 59: volatile eusart1_status_t rxStatus;
+[v _rxStatus `VS1490 ~T0 @X0 1 e ]
+"60
+[; ;main.c: 60: int ByteNum = 0;
+[v _ByteNum `i ~T0 @X0 1 e ]
+[i _ByteNum
 -> 0 `i
 ]
-"57
-[; ;main.c: 57: volatile uint8_t rxData;
-[v _rxData `Vuc ~T0 @X0 1 e ]
-"58
-[; ;main.c: 58: volatile eusart1_status_t rxStatus;
-[v _rxStatus `VS1490 ~T0 @X0 1 e ]
-"61
-[; ;main.c: 61: unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
+"62
+[; ;main.c: 62: unsigned char rxData[] = {0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc};
+[v _rxData `uc ~T0 @X0 -> 15 `i e ]
+[i _rxData
+:U ..
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+-> -> 204 `i `uc
+..
+]
+"65
+[; ;main.c: 65: unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
 [v _data1 `uc ~T0 @X0 -> 11 `i e ]
 [i _data1
 :U ..
@@ -1505,80 +1528,63 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 173 `i `uc
 ..
 ]
-"65
-[; ;main.c: 65: void UART1_Write_string(unsigned char * data, int data_len)
+"69
+[; ;main.c: 69: void UART1_Write_string(unsigned char * data, int data_len)
 [v _UART1_Write_string `(v ~T0 @X0 1 ef2`*uc`i ]
-"66
-[; ;main.c: 66: {
+"70
+[; ;main.c: 70: {
 {
 [e :U _UART1_Write_string ]
-"65
-[; ;main.c: 65: void UART1_Write_string(unsigned char * data, int data_len)
+"69
+[; ;main.c: 69: void UART1_Write_string(unsigned char * data, int data_len)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _data_len `i ~T0 @X0 1 r2 ]
-"66
-[; ;main.c: 66: {
+"70
+[; ;main.c: 70: {
 [f ]
-"67
-[; ;main.c: 67:     for (int i = 0; i < data_len; i++) {
+"71
+[; ;main.c: 71:     for (int i = 0; i < data_len; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 1501  ]
 [e :U 1498 ]
 {
-"68
-[; ;main.c: 68:         EUSART1_Write(data[i]);
+"72
+[; ;main.c: 72:         EUSART1_Write(data[i]);
 [e ( _EUSART1_Write (1 *U + _data * -> _i `x -> -> # *U _data `i `x ]
-"69
-[; ;main.c: 69:     }
+"73
+[; ;main.c: 73:     }
 }
 [e ++ _i -> 1 `i ]
 [e :U 1501 ]
 [e $ < _i _data_len 1498  ]
 [e :U 1499 ]
 }
-"70
-[; ;main.c: 70: }
+"74
+[; ;main.c: 74: }
 [e :UE 1497 ]
 }
-"73
-[; ;main.c: 73: void TXMode(){
+"77
+[; ;main.c: 77: void TXMode(){
 [v _TXMode `(v ~T0 @X0 1 ef ]
 {
 [e :U _TXMode ]
 [f ]
-"74
-[; ;main.c: 74:     do { LATDbits.LATD0 = 1; } while(0);
+"78
+[; ;main.c: 78:     do { LATDbits.LATD0 = 1; } while(0);
 [e :U 1505 ]
 {
 [e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 }
 [e :U 1504 ]
-"75
-[; ;main.c: 75:     do { LATAbits.LATA3 = 1; } while(0);
+"79
+[; ;main.c: 79:     do { LATAbits.LATA3 = 1; } while(0);
 [e :U 1508 ]
 {
 [e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
 }
 [e :U 1507 ]
-"77
-[; ;main.c: 77:     do { LATAbits.LATA7 = 1; } while(0);
-[e :U 1511 ]
-{
-[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
-}
-[e :U 1510 ]
-"78
-[; ;main.c: 78:     do { LATAbits.LATA6 = 0; } while(0);
-[e :U 1514 ]
-{
-[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
-}
-[e :U 1513 ]
-"79
-[; ;main.c: 79:     printf("TXMode\r\n\n");
-[e ( _printf :s 1C ]
 "80
 [; ;main.c: 80: }
 [e :UE 1502 ]
@@ -1591,169 +1597,203 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "84
 [; ;main.c: 84:     do { LATDbits.LATD0 = 0; } while(0);
-[e :U 1518 ]
+[e :U 1512 ]
 {
 [e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 1517 ]
+[e :U 1511 ]
 "85
 [; ;main.c: 85:     do { LATAbits.LATA3 = 0; } while(0);
-[e :U 1521 ]
+[e :U 1515 ]
 {
 [e = . . _LATAbits 0 3 -> -> 0 `i `uc ]
 }
-[e :U 1520 ]
-"87
-[; ;main.c: 87:     do { LATAbits.LATA7 = 0; } while(0);
-[e :U 1524 ]
-{
-[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+[e :U 1514 ]
+"86
+[; ;main.c: 86: }
+[e :UE 1509 ]
 }
-[e :U 1523 ]
-"88
-[; ;main.c: 88:     do { LATAbits.LATA6 = 1; } while(0);
-[e :U 1527 ]
+"89
+[; ;main.c: 89: void ClearRxBuff(){
+[v _ClearRxBuff `(v ~T0 @X0 1 ef ]
 {
-[e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
+[e :U _ClearRxBuff ]
+[f ]
+"91
+[; ;main.c: 91:     int i = 0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"92
+[; ;main.c: 92:     for(i=0; i<50; i++ ){
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 50 `i 1517  ]
+[e $U 1518  ]
+[e :U 1517 ]
+{
+"93
+[; ;main.c: 93:         rxData[i] = 0xFF;
+[e = *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux -> -> 255 `i `uc ]
+"94
+[; ;main.c: 94:     }
 }
-[e :U 1526 ]
-"90
-[; ;main.c: 90: }
-[e :UE 1515 ]
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 50 `i 1517  ]
+[e :U 1518 ]
+}
+"96
+[; ;main.c: 96: }
+[e :UE 1516 ]
+}
+"98
+[; ;main.c: 98: void PrintRXBuff(){
+[v _PrintRXBuff `(v ~T0 @X0 1 ef ]
+{
+[e :U _PrintRXBuff ]
+[f ]
+"100
+[; ;main.c: 100:     int i=0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"102
+[; ;main.c: 102:     for(i=0; i<50; i++ ){
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 50 `i 1521  ]
+[e $U 1522  ]
+[e :U 1521 ]
+{
+"103
+[; ;main.c: 103:         printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
+[e ( _printf , , (. :s 1C _i -> *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux `i ]
+"104
+[; ;main.c: 104:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 50 `i 1521  ]
+[e :U 1522 ]
+}
+"106
+[; ;main.c: 106: }
+[e :UE 1520 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"93
-[; ;main.c: 93: void main(void)
+"108
+[; ;main.c: 108: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"94
-[; ;main.c: 94: {
+"109
+[; ;main.c: 109: {
 {
 [e :U _main ]
 [f ]
-"96
-[; ;main.c: 96:     SYSTEM_Initialize();
+"111
+[; ;main.c: 111:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"103
-[; ;main.c: 103:     (INTCONbits.GIE = 1);
+"118
+[; ;main.c: 118:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"109
-[; ;main.c: 109:     (INTCONbits.PEIE = 1);
+"124
+[; ;main.c: 124:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"119
-[; ;main.c: 119:     do { LATAbits.LATA4 = 0; } while(0);
-[e :U 1531 ]
+"131
+[; ;main.c: 131:     do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1527 ]
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
+[e :U 1526 ]
+"132
+[; ;main.c: 132:     do { LATAbits.LATA5 = 0; } while(0);
 [e :U 1530 ]
-"120
-[; ;main.c: 120:     do { LATAbits.LATA5 = 0; } while(0);
-[e :U 1534 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
+[e :U 1529 ]
+"133
+[; ;main.c: 133:     do { LATAbits.LATA6 = 0; } while(0);
 [e :U 1533 ]
-"121
-[; ;main.c: 121:     do { LATAbits.LATA6 = 0; } while(0);
-[e :U 1537 ]
 {
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
+[e :U 1532 ]
+"134
+[; ;main.c: 134:     do { LATAbits.LATA7 = 0; } while(0);
 [e :U 1536 ]
-"122
-[; ;main.c: 122:     do { LATAbits.LATA7 = 0; } while(0);
-[e :U 1540 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
-[e :U 1539 ]
-"125
-[; ;main.c: 125:     volatile uint8_t rxData;
-[v _rxData `Vuc ~T0 @X0 1 a ]
-"127
-[; ;main.c: 127:     rxData = 0x31;
-[e = _rxData -> -> 49 `i `uc ]
-"131
-[; ;main.c: 131:     printf("Initalised\r\n\n");
-[e ( _printf :s 2C ]
-"133
-[; ;main.c: 133:     while(1)
-[e :U 1542 ]
-"134
-[; ;main.c: 134:     {
-{
-"135
-[; ;main.c: 135:         RXMode();
-[e ( _RXMode ..  ]
-"138
-[; ;main.c: 138:         if(EUSART1_is_rx_ready())
-[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1544  ]
+[e :U 1535 ]
 "139
-[; ;main.c: 139:         {
-{
-"140
-[; ;main.c: 140:             printf("EUSART1 received data and is ready to be read.\r\n\n");
-[e ( _printf :s 3C ]
+[; ;main.c: 139:     printf("Initalised\r\n\n");
+[e ( _printf :s 2C ]
 "141
-[; ;main.c: 141:             do { LATAbits.LATA4 = 1; } while(0);
-[e :U 1547 ]
-{
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
-}
-[e :U 1546 ]
+[; ;main.c: 141:     RXMode();
+[e ( _RXMode ..  ]
 "142
-[; ;main.c: 142:             rxData = EUSART1_Read();
-[e = _rxData ( _EUSART1_Read ..  ]
+[; ;main.c: 142:     ClearRxBuff();
+[e ( _ClearRxBuff ..  ]
 "143
-[; ;main.c: 143:             printf("Read data rxData: %c \r\n\n", rxData);
-[e ( _printf , (. :s 4C -> _rxData `i ]
-"144
-[; ;main.c: 144:             if(EUSART1_is_tx_ready())
-[e $ ! != -> ( _EUSART1_is_tx_ready ..  `i -> 0 `i 1548  ]
+[; ;main.c: 143:     PrintRXBuff();
+[e ( _PrintRXBuff ..  ]
 "145
-[; ;main.c: 145:             {
-{
+[; ;main.c: 145:     while(1)
+[e :U 1538 ]
 "146
-[; ;main.c: 146:                 printf("EUSART1 TX is Ready\r\n\n");
-[e ( _printf :s 5C ]
-"147
-[; ;main.c: 147:                 TXMode();
-[e ( _TXMode ..  ]
-"149
-[; ;main.c: 149:                 EUSART1_Write(rxData);
-[e ( _EUSART1_Write (1 _rxData ]
-"150
-[; ;main.c: 150:                 printf("EUSART1 Write Sent: %c \r\n\n", rxData);
-[e ( _printf , (. :s 6C -> _rxData `i ]
-"151
-[; ;main.c: 151:                 do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
-[e :U 1551 ]
+[; ;main.c: 146:     {
 {
-[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
-}
-[e :U 1550 ]
+"147
+[; ;main.c: 147:         if(EUSART1_is_rx_ready()){
+[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1540  ]
+{
 "152
-[; ;main.c: 152:             }
-}
-[e :U 1548 ]
+[; ;main.c: 152:             ByteNum = 0;
+[e = _ByteNum -> 0 `i ]
 "153
-[; ;main.c: 153:         }
-}
-[e :U 1544 ]
-"169
-[; ;main.c: 169:     }
+[; ;main.c: 153:             while(EUSART1_is_rx_ready()){
+[e $U 1541  ]
+[e :U 1542 ]
+{
+"155
+[; ;main.c: 155:                 rxData[ByteNum] = EUSART1_Read();
+[e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
+"156
+[; ;main.c: 156:                 _delay((unsigned long)((5)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+"157
+[; ;main.c: 157:                 ByteNum++;
+[e ++ _ByteNum -> 1 `i ]
+"158
+[; ;main.c: 158:             }
 }
 [e :U 1541 ]
-[e $U 1542  ]
+"153
+[; ;main.c: 153:             while(EUSART1_is_rx_ready()){
+[e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1542  ]
 [e :U 1543 ]
-"255
-[; ;main.c: 255: }
-[e :UE 1528 ]
+"159
+[; ;main.c: 159:             printf("EUSART Read Complete.\r\n\n");
+[e ( _printf :s 3C ]
+"161
+[; ;main.c: 161:             PrintRXBuff();
+[e ( _PrintRXBuff ..  ]
+"162
+[; ;main.c: 162:             ClearRxBuff();
+[e ( _ClearRxBuff ..  ]
+"220
+[; ;main.c: 220:         }
 }
-[p f _printf 8912896 ]
-[a 5C 69 85 83 65 82 84 49 32 84 88 32 105 115 32 82 101 97 100 121 13 10 10 0 ]
-[a 1C 84 88 77 111 100 101 13 10 10 0 ]
+[e :U 1540 ]
+"222
+[; ;main.c: 222:     }
+}
+[e :U 1537 ]
+[e $U 1538  ]
+[e :U 1539 ]
+"223
+[; ;main.c: 223: }
+[e :UE 1524 ]
+}
+[p f _printf 12615812 ]
+[a 1C 66 121 116 101 32 37 105 46 32 86 97 108 58 32 48 120 37 48 50 120 32 13 10 0 ]
 [a 2C 73 110 105 116 97 108 105 115 101 100 13 10 10 0 ]
-[a 3C 69 85 83 65 82 84 49 32 114 101 99 101 105 118 101 100 32 100 97 116 97 32 97 110 100 32 105 115 32 114 101 97 100 121 32 116 111 32 98 101 32 114 101 97 100 46 13 10 10 0 ]
-[a 6C 69 85 83 65 82 84 49 32 87 114 105 116 101 32 83 101 110 116 58 32 37 99 32 13 10 10 0 ]
-[a 4C 82 101 97 100 32 100 97 116 97 32 114 120 68 97 116 97 58 32 37 99 32 13 10 10 0 ]
+[a 3C 69 85 83 65 82 84 32 82 101 97 100 32 67 111 109 112 108 101 116 101 46 13 10 10 0 ]
