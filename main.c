@@ -51,7 +51,7 @@
  */
 
 
-char temp[2] = {'Z','\0'}; 
+
 bool Debug = 0;
 
 int loop;
@@ -160,63 +160,7 @@ void main(void)
             
             PrintRXBuff();
             ClearRxBuff();
-            
-        /*
-         
-         
-         
-        
-        // if(EUSART1_is_tx_ready())
-        // {
-            Counter++;
-            
-            rxAddress = EUSART1_Read();
-            rxFuncCode = EUSART1_Read();
-            rxFirstRegHi = EUSART1_Read();
-            rxFirstRegLo = EUSART1_Read();
-
-            // These might be function code specific - may need moving.
-            rxNumRegHi = EUSART1_Read();    // Number of registers Hi
-            rxNumRegLo = EUSART1_Read();    // Number of registers Lo
-
-            if(rxFuncCode == 0x03){
-                // printf("Specific stuff for 0x03 - Read Multiple 16bit Register\r\n\n");
-
-                rxCRCHi = EUSART1_Read();    // Number of registers Hi
-                rxCRCLo = EUSART1_Read();    // Number of registers Hi
-
-            }
-
-
-            if(rxFuncCode == 0x10){
-                // printf("Specific stuff for 0x10 - Writing Multiple 16bit Registers\r\n\n");
-                rxNumBytesMore = EUSART1_Read();    // Number of registers Hi
-            }
-
-            if(rxFuncCode == 0x04){
-                printf("Specific stuff for 0x04 - Read Single 16bit Register\r\n\n");
-            }
-
-
-            while(EUSART1_is_rx_ready()){
-                // Get anything else
-                rxData = EUSART1_Read();
-                printf("Rest of data next byte: 0x%02x \r\n\n", rxData);            
-            }
-            
-            printf("Counter %i \r\n\n", Counter);
-            printf("rxAddress 0x%02x \r\n\n", rxAddress);
-            printf("rxFuncCode 0x%02x \r\n\n", rxFuncCode);
-            printf("rxFirstRegHi 0x%02x \r\n\n", rxFirstRegHi); 
-            printf("rxFirstRegLo 0x%02x \r\n\n", rxFirstRegLo);             
-            printf("rxNumRegHi 0x%02x \r\n\n", rxNumRegHi);
-            printf("rxNumRegLo 0x%02x \r\n\n", rxNumRegLo);  
-            printf("rxCRCHi 0x%02x \r\n\n", rxCRCHi);               
-            printf("rxCRCLo 0x%02x \r\n\n", rxCRCLo);              
-            printf("rxNumBytesMore 0x%02x \r\n\n", rxNumBytesMore);            
-         
-         * */
-        // }
+           
         }
 
     }
