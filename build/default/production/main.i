@@ -17345,8 +17345,9 @@ void PrintRXBuff(){
 
     int i=0;
 
+    printf("\r\Num Bytes Received: %i\r\n", ByteNum);
     for(i=0; i< ByteNum ; i++ ){
-        printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
+        printf("Loop: %i Val: 0x%02x \r\n", i, rxData[i]);
     }
 
 }
@@ -17372,8 +17373,6 @@ void main(void)
 
 
 
-
-
     do { LATAbits.LATA4 = 0; } while(0);
     do { LATAbits.LATA5 = 0; } while(0);
     do { LATAbits.LATA6 = 0; } while(0);
@@ -17381,12 +17380,10 @@ void main(void)
 
 
 
-
     printf("Initalised\r\n\n");
 
     RXMode();
     ClearRxBuff();
-    PrintRXBuff();
 
     _Bool RXStat = 0;
 
@@ -17394,17 +17391,14 @@ void main(void)
     {
         if(EUSART1_is_rx_ready()){
 
-
-
-
             while(EUSART1_is_rx_ready()){
 
                 rxData[ByteNum] = EUSART1_Read();
-                _delay((unsigned long)((2)*(32000000/4000.0)));
+
                 ByteNum++;
             }
 
-            RXStat = 1;
+                RXStat = 1;
         }
 
         if(RXStat ==1){
@@ -17414,11 +17408,6 @@ void main(void)
             RXStat = 0;
             ByteNum = 0;
             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-        }else
-        {
-
         }
-
-
     }
 }

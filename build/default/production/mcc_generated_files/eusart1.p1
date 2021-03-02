@@ -1595,11 +1595,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "69
-[; ;mcc_generated_files/eusart1.c: 69: volatile uint8_t eusart1RxBuffer[16];
-[v _eusart1RxBuffer `Vuc ~T0 @X0 -> 16 `i e ]
+[; ;mcc_generated_files/eusart1.c: 69: volatile uint8_t eusart1RxBuffer[100];
+[v _eusart1RxBuffer `Vuc ~T0 @X0 -> 100 `i e ]
 "70
-[; ;mcc_generated_files/eusart1.c: 70: volatile eusart1_status_t eusart1RxStatusBuffer[16];
-[v _eusart1RxStatusBuffer `VS1490 ~T0 @X0 -> 16 `i e ]
+[; ;mcc_generated_files/eusart1.c: 70: volatile eusart1_status_t eusart1RxStatusBuffer[100];
+[v _eusart1RxStatusBuffer `VS1490 ~T0 @X0 -> 100 `i e ]
 "71
 [; ;mcc_generated_files/eusart1.c: 71: volatile uint8_t eusart1RxCount;
 [v _eusart1RxCount `Vuc ~T0 @X0 1 e ]

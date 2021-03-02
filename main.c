@@ -53,11 +53,12 @@ void ClearRxBuff(){
 }
 
 void PrintRXBuff(){
-
+    
     int i=0;
 
+    printf("\r\Num Bytes Received: %i\r\n", ByteNum);
     for(i=0; i< ByteNum ; i++ ){
-        printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
+        printf("Loop: %i Val: 0x%02x \r\n", i, rxData[i]);
     }
     
 }
@@ -82,14 +83,11 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    
-    // RS454TX_SetHigh();  -- What it should be
-    
+        
     D2LED_SetLow();
     D3LED_SetLow();
     D4LED_SetLow();
     D5LED_SetLow();
-
 
     // Initialize the device
     
@@ -97,25 +95,21 @@ void main(void)
 
     RXMode();
     ClearRxBuff();
-    PrintRXBuff();
     
     bool RXStat = 0;
     
     while(1)
     {
         if(EUSART1_is_rx_ready()){
-            // printf("eusart1RxCount: %08x \r\n", eusart1RxCount);
-            // Counter++;           
-            // printf("Triggered: %i \r\n\n", Counter);
-            
+           
             while(EUSART1_is_rx_ready()){
                 // While there's something to read out
                 rxData[ByteNum] = EUSART1_Read();
-                __delay_ms(2);
+                // __delay_ms(2);
                 ByteNum++;
             }
             // printf("EUSART Read Complete.\r\n\n");
-            RXStat = 1;
+                RXStat = 1;
         }
 
         if(RXStat ==1){
@@ -125,12 +119,7 @@ void main(void)
             RXStat = 0;
             ByteNum = 0;
             D2LED_Toggle();
-        }else
-        {
-            //
-        }
-
-        
+        }        
     }
 }
 /**

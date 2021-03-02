@@ -16978,8 +16978,8 @@ volatile uint8_t eusart1TxBufferRemaining;
 
 volatile uint8_t eusart1RxHead = 0;
 volatile uint8_t eusart1RxTail = 0;
-volatile uint8_t eusart1RxBuffer[16];
-volatile eusart1_status_t eusart1RxStatusBuffer[16];
+volatile uint8_t eusart1RxBuffer[100];
+volatile eusart1_status_t eusart1RxStatusBuffer[100];
 volatile uint8_t eusart1RxCount;
 volatile eusart1_status_t eusart1RxLastError;
 

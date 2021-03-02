@@ -71,10 +71,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "328
 [; ;./mcc_generated_files/eusart1.h: 328: uint8_t EUSART1_Read(void);
 [v _EUSART1_Read `(uc ~T0 @X0 0 ef ]
-[v F10007 `(v ~T0 @X0 1 tf1`ul ]
-"187 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18.h
-[v __delay `JF10007 ~T0 @X0 0 e ]
-[p i __delay ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 54: __asm("RX2PPS equ 0E8Dh");
 [; <" RX2PPS equ 0E8Dh ;# ">
@@ -1633,173 +1629,163 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 "59
-[; ;main.c: 59:     for(i=0; i< ByteNum ; i++ ){
+[; ;main.c: 59:     printf("\r\Num Bytes Received: %i\r\n", ByteNum);
+[e ( _printf , (. :s 1C _ByteNum ]
+"60
+[; ;main.c: 60:     for(i=0; i< ByteNum ; i++ ){
 {
 [e = _i -> 0 `i ]
 [e $U 1525  ]
 [e :U 1522 ]
 {
-"60
-[; ;main.c: 60:         printf("Byte %i. Val: 0x%02x \r\n", i, rxData[i]);
-[e ( _printf , , (. :s 1C _i -> *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux `i ]
 "61
-[; ;main.c: 61:     }
+[; ;main.c: 61:         printf("Loop: %i Val: 0x%02x \r\n", i, rxData[i]);
+[e ( _printf , , (. :s 2C _i -> *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux `i ]
+"62
+[; ;main.c: 62:     }
 }
 [e ++ _i -> 1 `i ]
 [e :U 1525 ]
 [e $ < _i _ByteNum 1522  ]
 [e :U 1523 ]
 }
-"63
-[; ;main.c: 63: }
+"64
+[; ;main.c: 64: }
 [e :UE 1521 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"65
-[; ;main.c: 65: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
 "66
-[; ;main.c: 66: {
+[; ;main.c: 66: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
+"67
+[; ;main.c: 67: {
 {
 [e :U _main ]
 [f ]
-"68
-[; ;main.c: 68:     SYSTEM_Initialize();
+"69
+[; ;main.c: 69:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"75
-[; ;main.c: 75:     (INTCONbits.GIE = 1);
+"76
+[; ;main.c: 76:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"81
-[; ;main.c: 81:     (INTCONbits.PEIE = 1);
+"82
+[; ;main.c: 82:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"88
-[; ;main.c: 88:     do { LATAbits.LATA4 = 0; } while(0);
+"87
+[; ;main.c: 87:     do { LATAbits.LATA4 = 0; } while(0);
 [e :U 1529 ]
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
 [e :U 1528 ]
-"89
-[; ;main.c: 89:     do { LATAbits.LATA5 = 0; } while(0);
+"88
+[; ;main.c: 88:     do { LATAbits.LATA5 = 0; } while(0);
 [e :U 1532 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
 [e :U 1531 ]
-"90
-[; ;main.c: 90:     do { LATAbits.LATA6 = 0; } while(0);
+"89
+[; ;main.c: 89:     do { LATAbits.LATA6 = 0; } while(0);
 [e :U 1535 ]
 {
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
 [e :U 1534 ]
-"91
-[; ;main.c: 91:     do { LATAbits.LATA7 = 0; } while(0);
+"90
+[; ;main.c: 90:     do { LATAbits.LATA7 = 0; } while(0);
 [e :U 1538 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
 [e :U 1537 ]
+"94
+[; ;main.c: 94:     printf("Initalised\r\n\n");
+[e ( _printf :s 3C ]
 "96
-[; ;main.c: 96:     printf("Initalised\r\n\n");
-[e ( _printf :s 2C ]
-"98
-[; ;main.c: 98:     RXMode();
+[; ;main.c: 96:     RXMode();
 [e ( _RXMode ..  ]
-"99
-[; ;main.c: 99:     ClearRxBuff();
+"97
+[; ;main.c: 97:     ClearRxBuff();
 [e ( _ClearRxBuff ..  ]
-"100
-[; ;main.c: 100:     PrintRXBuff();
-[e ( _PrintRXBuff ..  ]
-"102
-[; ;main.c: 102:     _Bool RXStat = 0;
+"99
+[; ;main.c: 99:     _Bool RXStat = 0;
 [v _RXStat `a ~T0 @X0 1 a ]
 [e = _RXStat -> -> 0 `i `a ]
-"104
-[; ;main.c: 104:     while(1)
+"101
+[; ;main.c: 101:     while(1)
 [e :U 1540 ]
-"105
-[; ;main.c: 105:     {
+"102
+[; ;main.c: 102:     {
 {
-"106
-[; ;main.c: 106:         if(EUSART1_is_rx_ready()){
+"103
+[; ;main.c: 103:         if(EUSART1_is_rx_ready()){
 [e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1542  ]
 {
-"111
-[; ;main.c: 111:             while(EUSART1_is_rx_ready()){
+"105
+[; ;main.c: 105:             while(EUSART1_is_rx_ready()){
 [e $U 1543  ]
 [e :U 1544 ]
 {
-"113
-[; ;main.c: 113:                 rxData[ByteNum] = EUSART1_Read();
+"107
+[; ;main.c: 107:                 rxData[ByteNum] = EUSART1_Read();
 [e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
-"114
-[; ;main.c: 114:                 _delay((unsigned long)((2)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"115
-[; ;main.c: 115:                 ByteNum++;
+"109
+[; ;main.c: 109:                 ByteNum++;
 [e ++ _ByteNum -> 1 `i ]
-"116
-[; ;main.c: 116:             }
+"110
+[; ;main.c: 110:             }
 }
 [e :U 1543 ]
-"111
-[; ;main.c: 111:             while(EUSART1_is_rx_ready()){
+"105
+[; ;main.c: 105:             while(EUSART1_is_rx_ready()){
 [e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1544  ]
 [e :U 1545 ]
-"118
-[; ;main.c: 118:             RXStat = 1;
+"112
+[; ;main.c: 112:                 RXStat = 1;
 [e = _RXStat -> -> 1 `i `a ]
-"119
-[; ;main.c: 119:         }
+"113
+[; ;main.c: 113:         }
 }
 [e :U 1542 ]
-"121
-[; ;main.c: 121:         if(RXStat ==1){
+"115
+[; ;main.c: 115:         if(RXStat ==1){
 [e $ ! == -> _RXStat `i -> 1 `i 1546  ]
 {
-"123
-[; ;main.c: 123:             PrintRXBuff();
+"117
+[; ;main.c: 117:             PrintRXBuff();
 [e ( _PrintRXBuff ..  ]
-"124
-[; ;main.c: 124:             ClearRxBuff();
+"118
+[; ;main.c: 118:             ClearRxBuff();
 [e ( _ClearRxBuff ..  ]
-"125
-[; ;main.c: 125:             RXStat = 0;
+"119
+[; ;main.c: 119:             RXStat = 0;
 [e = _RXStat -> -> 0 `i `a ]
-"126
-[; ;main.c: 126:             ByteNum = 0;
+"120
+[; ;main.c: 120:             ByteNum = 0;
 [e = _ByteNum -> 0 `i ]
-"127
-[; ;main.c: 127:             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+"121
+[; ;main.c: 121:             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
 [e :U 1549 ]
 {
 [e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
 }
 [e :U 1548 ]
-"128
-[; ;main.c: 128:         }else
+"122
+[; ;main.c: 122:         }
 }
-[e $U 1550  ]
 [e :U 1546 ]
-"129
-[; ;main.c: 129:         {
-{
-"131
-[; ;main.c: 131:         }
-}
-[e :U 1550 ]
-"134
-[; ;main.c: 134:     }
+"123
+[; ;main.c: 123:     }
 }
 [e :U 1539 ]
 [e $U 1540  ]
 [e :U 1541 ]
-"135
-[; ;main.c: 135: }
+"124
+[; ;main.c: 124: }
 [e :UE 1526 ]
 }
 [p f _printf 12615812 ]
-[a 1C 66 121 116 101 32 37 105 46 32 86 97 108 58 32 48 120 37 48 50 120 32 13 10 0 ]
-[a 2C 73 110 105 116 97 108 105 115 101 100 13 10 10 0 ]
+[a 1C 13 78 117 109 32 66 121 116 101 115 32 82 101 99 101 105 118 101 100 58 32 37 105 13 10 0 ]
+[a 2C 76 111 111 112 58 32 37 105 32 86 97 108 58 32 48 120 37 48 50 120 32 13 10 0 ]
+[a 3C 73 110 105 116 97 108 105 115 101 100 13 10 10 0 ]
