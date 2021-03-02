@@ -1,199 +1,95 @@
-// ==== Sent ====
-Buffer size: 0x59 bytes
- 11 10 00 01 00 28 50 01 02 03 04 05 06 07 08 09   
- 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19   
- 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29   
- 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39   
- 3A 3B 3C 3D 3E 3F 40 41 42 43 44 45 46 47 48 49   
- 4A 4B 4C 4D 4E 4F 50 7A F2                        
+02/03/21 10:48
+
+Updated and now doesn't miss or mess up the data capture. Not sure how to detect the end though as it clears the RX Buffer a few times when receiving data.
+
+===== Sent ======
+
+Buffer size: 0x49 bytes
+ 11 10 00 6B 00 20 40 00 01 02 03 04 05 06 07 08   
+ 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18   
+ 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28   
+ 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38   
+ 39 3A 3B 3C 3D 3E 3F 5A CF                        
 
 
-// ==== Received 1st Attempt ====
+
+==== Received ======
 
 Initalised
 
-Byte 0. Val: 0x11
-Byte 1. Val: 0x10
-Byte 2. Val: 0x00
-Byte 3. Val: 0x01
-Byte 4. Val: 0x00
-Byte 5. Val: 0x28
-Byte 6. Val: 0x50
-Byte 7. Val: 0x01
-Byte 8. Val: 0x02
-Byte 9. Val: 0x03
-Byte 10. Val: 0x04
-Byte 11. Val: 0x05
-Byte 12. Val: 0x06
-Byte 13. Val: 0x07
-Byte 14. Val: 0x08
-Byte 15. Val: 0x09
-Byte 16. Val: 0x0a
-Byte 17. Val: 0x1b	// <--- Out of order, missing 16 bytes?
-Byte 18. Val: 0x1c
-Byte 19. Val: 0x1d
-Byte 20. Val: 0x1e
-Byte 21. Val: 0x1f
-Byte 22. Val: 0x20
-Byte 23. Val: 0x21
-Byte 24. Val: 0x22
-Byte 25. Val: 0x23
-Byte 26. Val: 0x24
-Byte 27. Val: 0x25
-Byte 28. Val: 0x26
-Byte 29. Val: 0x27
-Byte 30. Val: 0x28
-Byte 31. Val: 0x29
-Byte 32. Val: 0x2a
-Byte 33. Val: 0x2b
-Byte 34. Val: 0x3c
-Byte 35. Val: 0x3d
-Byte 36. Val: 0x3e
-Byte 37. Val: 0x3f
-Byte 38. Val: 0x40
-Byte 39. Val: 0x41
-Byte 40. Val: 0x42
-Byte 41. Val: 0x43
-Byte 42. Val: 0x44
-Byte 43. Val: 0x45
-Byte 44. Val: 0x46
-Byte 45. Val: 0x47
-Byte 46. Val: 0x48
-Byte 47. Val: 0x49
-Byte 48. Val: 0x4a
-Byte 49. Val: 0x4b
-Byte 50. Val: 0x4c
-Byte 51. Val: 0x4d
-Byte 52. Val: 0x4e
-Byte 53. Val: 0x4f
-Byte 54. Val: 0x50
-Byte 55. Val: 0x7a
-Byte 56. Val: 0xf2
-Byte 57. Val: 0x43	// <--- Everything else shouldn't exist.
-Byte 58. Val: 0x44
-Byte 59. Val: 0x45
-Byte 60. Val: 0x46
-Byte 61. Val: 0x47
-Byte 62. Val: 0x48
-Byte 63. Val: 0x49
-Byte 64. Val: 0x4a
-Byte 65. Val: 0x4b
-Byte 66. Val: 0x4c
-Byte 67. Val: 0x4d
-Byte 68. Val: 0x4e
-Byte 69. Val: 0x4f
-Byte 70. Val: 0x50
-Byte 71. Val: 0x7a
-Byte 72. Val: 0xf2
-Byte 73. Val: 0x43
-Byte 74. Val: 0x44
-Byte 75. Val: 0x45
-Byte 76. Val: 0x46
-Byte 77. Val: 0x47
-Byte 78. Val: 0x48
-Byte 79. Val: 0x49
-Byte 80. Val: 0x4a
-Byte 81. Val: 0x4b
-Byte 82. Val: 0x4c
-Byte 83. Val: 0x4d
-Byte 84. Val: 0x4e
-Byte 85. Val: 0x4f
-Byte 86. Val: 0x50
-Byte 87. Val: 0x7a
-Byte 88. Val: 0xf2
-
-
-// ==== Received 2nd Attempt (Same as before) ====
-
-Byte 0. Val: 0x11
-Byte 1. Val: 0x10
-Byte 2. Val: 0x00
-Byte 3. Val: 0x01
-Byte 4. Val: 0x00
-Byte 5. Val: 0x28
-Byte 6. Val: 0x50
-Byte 7. Val: 0x01
-Byte 8. Val: 0x02
-Byte 9. Val: 0x03
-Byte 10. Val: 0x04
-Byte 11. Val: 0x05
-Byte 12. Val: 0x06
-Byte 13. Val: 0x07
-Byte 14. Val: 0x08
-Byte 15. Val: 0x09
-Byte 16. Val: 0x0a
-Byte 17. Val: 0x1b
-Byte 18. Val: 0x1c
-Byte 19. Val: 0x1d
-Byte 20. Val: 0x1e
-Byte 21. Val: 0x1f
-Byte 22. Val: 0x20
-Byte 23. Val: 0x21
-Byte 24. Val: 0x22
-Byte 25. Val: 0x23
-Byte 26. Val: 0x24
-Byte 27. Val: 0x25
-Byte 28. Val: 0x26
-Byte 29. Val: 0x27
-Byte 30. Val: 0x28
-Byte 31. Val: 0x29
-Byte 32. Val: 0x2a
-Byte 33. Val: 0x2b
-Byte 34. Val: 0x3c
-Byte 35. Val: 0x3d
-Byte 36. Val: 0x3e
-Byte 37. Val: 0x3f
-Byte 38. Val: 0x40
-Byte 39. Val: 0x41
-Byte 40. Val: 0x42
-Byte 41. Val: 0x43
-Byte 42. Val: 0x44
-Byte 43. Val: 0x45
-Byte 44. Val: 0x46
-Byte 45. Val: 0x47
-Byte 46. Val: 0x48
-Byte 47. Val: 0x49
-Byte 48. Val: 0x4a
-Byte 49. Val: 0x4b
-Byte 50. Val: 0x4c
-Byte 51. Val: 0x4d
-Byte 52. Val: 0x4e
-Byte 53. Val: 0x4f
-Byte 54. Val: 0x50
-Byte 55. Val: 0x7a
-Byte 56. Val: 0xf2
-Byte 57. Val: 0x43
-Byte 58. Val: 0x44
-Byte 59. Val: 0x45
-Byte 60. Val: 0x46
-Byte 61. Val: 0x47
-Byte 62. Val: 0x48
-Byte 63. Val: 0x49
-Byte 64. Val: 0x4a
-Byte 65. Val: 0x4b
-Byte 66. Val: 0x4c
-Byte 67. Val: 0x4d
-Byte 68. Val: 0x4e
-Byte 69. Val: 0x4f
-Byte 70. Val: 0x50
-Byte 71. Val: 0x7a
-Byte 72. Val: 0xf2
-Byte 73. Val: 0x43
-Byte 74. Val: 0x44
-Byte 75. Val: 0x45
-Byte 76. Val: 0x46
-Byte 77. Val: 0x47
-Byte 78. Val: 0x48
-Byte 79. Val: 0x49
-Byte 80. Val: 0x4a
-Byte 81. Val: 0x4b
-Byte 82. Val: 0x4c
-Byte 83. Val: 0x4d
-Byte 84. Val: 0x4e
-Byte 85. Val: 0x4f
-Byte 86. Val: 0x50
-Byte 87. Val: 0x7a
-Byte 88. Val: 0xf2
-
-
-
+Num Bytes Received: 1
+Loop: 0 Val: 0x11
+Num Bytes Received: 34
+Loop: 0 Val: 0x10
+Loop: 1 Val: 0x00
+Loop: 2 Val: 0x6b
+Loop: 3 Val: 0x00
+Loop: 4 Val: 0x20
+Loop: 5 Val: 0x40
+Loop: 6 Val: 0x00
+Loop: 7 Val: 0x01
+Loop: 8 Val: 0x02
+Loop: 9 Val: 0x03
+Loop: 10 Val: 0x04
+Loop: 11 Val: 0x05
+Loop: 12 Val: 0x06
+Loop: 13 Val: 0x07
+Loop: 14 Val: 0x08
+Loop: 15 Val: 0x09
+Loop: 16 Val: 0x0a
+Loop: 17 Val: 0x0b
+Loop: 18 Val: 0x0c
+Loop: 19 Val: 0x0d
+Loop: 20 Val: 0x0e
+Loop: 21 Val: 0x0f
+Loop: 22 Val: 0x10
+Loop: 23 Val: 0x11
+Loop: 24 Val: 0x12
+Loop: 25 Val: 0x13
+Loop: 26 Val: 0x14
+Loop: 27 Val: 0x15
+Loop: 28 Val: 0x16
+Loop: 29 Val: 0x17
+Loop: 30 Val: 0x18
+Loop: 31 Val: 0x19
+Loop: 32 Val: 0x1a
+Loop: 33 Val: 0x1b
+Num Bytes Received: 38
+Loop: 0 Val: 0x1c
+Loop: 1 Val: 0x1d
+Loop: 2 Val: 0x1e
+Loop: 3 Val: 0x1f
+Loop: 4 Val: 0x20
+Loop: 5 Val: 0x21
+Loop: 6 Val: 0x22
+Loop: 7 Val: 0x23
+Loop: 8 Val: 0x24
+Loop: 9 Val: 0x25
+Loop: 10 Val: 0x26
+Loop: 11 Val: 0x27
+Loop: 12 Val: 0x28
+Loop: 13 Val: 0x29
+Loop: 14 Val: 0x2a
+Loop: 15 Val: 0x2b
+Loop: 16 Val: 0x2c
+Loop: 17 Val: 0x2d
+Loop: 18 Val: 0x2e
+Loop: 19 Val: 0x2f
+Loop: 20 Val: 0x30
+Loop: 21 Val: 0x31
+Loop: 22 Val: 0x32
+Loop: 23 Val: 0x33
+Loop: 24 Val: 0x34
+Loop: 25 Val: 0x35
+Loop: 26 Val: 0x36
+Loop: 27 Val: 0x37
+Loop: 28 Val: 0x38
+Loop: 29 Val: 0x39
+Loop: 30 Val: 0x3a
+Loop: 31 Val: 0x3b
+Loop: 32 Val: 0x3c
+Loop: 33 Val: 0x3d
+Loop: 34 Val: 0x3e
+Loop: 35 Val: 0x3f
+Loop: 36 Val: 0x5a
+Loop: 37 Val: 0xcf
