@@ -97,6 +97,8 @@ void AddRxBuffToModBus(){
     }else{
         ExpectedBytes = 8;
     }
+    
+    
      
     
 }
@@ -176,6 +178,8 @@ void main(void)
 
         if(ModDataCnt == ExpectedBytes){ 
             PrintModbus();
+            D3LED_Toggle();
+            // Complete Modbus String ready to process.
         }
 
         

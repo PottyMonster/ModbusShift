@@ -17320,7 +17320,7 @@ void InitialiseString(void){
     printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
     printf("\rCard Ser No. xxxxxxx \r\n");
     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar  2 2021", "21:43:10", 2100);
+            "Mar  2 2021", "22:28:13", 2100);
     printf("\rFunction Codes Supported:\r\n");
     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
@@ -17386,6 +17386,8 @@ void AddRxBuffToModBus(){
     }else{
         ExpectedBytes = 8;
     }
+
+
 
 
 }
@@ -17465,6 +17467,8 @@ void main(void)
 
         if(ModDataCnt == ExpectedBytes){
             PrintModbus();
+            do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+
         }
 
 
