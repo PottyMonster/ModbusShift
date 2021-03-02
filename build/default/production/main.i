@@ -17304,12 +17304,28 @@ int loop;
 
 volatile eusart1_status_t rxStatus;
 int ByteNum = 0;
+int ModDataCnt = 0;
+int ExpectedBytes = 8;
 
 unsigned char rxData[100] = { 0 };
+unsigned char ModbusData[100] = { 0 };
 
 
 unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
 
+
+void InitialiseString(void){
+
+
+    printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
+    printf("\rCard Ser No. xxxxxxx \r\n");
+    printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
+            "Mar  2 2021", "21:43:10", 2100);
+    printf("\rFunction Codes Supported:\r\n");
+    printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
+    printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
+    printf("\rInitalisation Complete - Ready\r\n\n");
+}
 
 
 void UART1_Write_string(unsigned char * data, int data_len)
@@ -17332,6 +17348,14 @@ void RXMode(){
 }
 
 
+void ClearModbusData(){
+    int i = 0;
+    for(i=0; i<99; i++ ){
+        ModbusData[i] = 0xFF;
+    }
+}
+
+
 void ClearRxBuff(){
 
     int i = 0;
@@ -17341,16 +17365,46 @@ void ClearRxBuff(){
 
 }
 
-void PrintRXBuff(){
+void AddRxBuffToModBus(){
 
-    int i=0;
 
-    printf("\r\Num Bytes Received: %i\r\n", ByteNum);
-    for(i=0; i< ByteNum ; i++ ){
-        printf("Loop: %i Val: 0x%02x \r\n", i, rxData[i]);
+
+    int i = 0;
+
+    for(i=0l; i<ByteNum; i++){
+        ModbusData[ModDataCnt] = rxData[i];
+        ModDataCnt++;
     }
 
+
+
+
+    if(ModbusData[1] == 0x0F){
+        ExpectedBytes = ModbusData[6] + 9;
+    }else if (ModbusData[1] == 0x10){
+        ExpectedBytes = ModbusData[6] + 9;
+    }else{
+        ExpectedBytes = 8;
+    }
+
+
 }
+
+
+void PrintModbus(){
+
+
+
+    int i=0;
+    printf("\r\nModbus Data Capture Complete:\r\n");
+    for(i=0; i< ModDataCnt ; i++ ){
+        printf("   Byte Num: %i Val: 0x%02x \r\n", i, ModbusData[i]);
+    }
+
+    ModDataCnt = 0;
+
+}
+
 
 void main(void)
 {
@@ -17378,9 +17432,8 @@ void main(void)
     do { LATAbits.LATA6 = 0; } while(0);
     do { LATAbits.LATA7 = 0; } while(0);
 
+    InitialiseString();
 
-
-    printf("Initalised\r\n\n");
 
     RXMode();
     ClearRxBuff();
@@ -17394,20 +17447,26 @@ void main(void)
             while(EUSART1_is_rx_ready()){
 
                 rxData[ByteNum] = EUSART1_Read();
-
                 ByteNum++;
             }
 
-                RXStat = 1;
+            RXStat = 1;
         }
 
         if(RXStat ==1){
 
-            PrintRXBuff();
+
+            AddRxBuffToModBus();
             ClearRxBuff();
             RXStat = 0;
             ByteNum = 0;
             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
         }
+
+        if(ModDataCnt == ExpectedBytes){
+            PrintModbus();
+        }
+
+
     }
 }

@@ -7,7 +7,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./mcc_generated_files/eusart1.h: 75: typedef union {
 [u S1490 `S1491 1 `uc 1 ]
 [n S1490 . . status ]
-"348
+"111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"348 ./mcc_generated_files/eusart1.h
 [; ;./mcc_generated_files/eusart1.h: 348: void EUSART1_Write(uint8_t txData);
 [v _EUSART1_Write `(v ~T0 @X0 0 ef1`uc ]
 "16729 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
@@ -40,8 +42,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16414
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16414: extern volatile LATAbits_t LATAbits __attribute__((address(0xF83)));
 [v _LATAbits `VS823 ~T0 @X0 0 e@3971 ]
-"111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 [p mainexit ]
 "73 ./mcc_generated_files/mcc.h
 [; ;./mcc_generated_files/mcc.h: 73: void SYSTEM_Initialize(void);
@@ -1475,8 +1475,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _ByteNum
 -> 0 `i
 ]
+"18
+[; ;main.c: 18: int ModDataCnt = 0;
+[v _ModDataCnt `i ~T0 @X0 1 e ]
+[i _ModDataCnt
+-> 0 `i
+]
 "19
-[; ;main.c: 19: unsigned char rxData[100] = { 0 };
+[; ;main.c: 19: int ExpectedBytes = 8;
+[v _ExpectedBytes `i ~T0 @X0 1 e ]
+[i _ExpectedBytes
+-> 8 `i
+]
+"21
+[; ;main.c: 21: unsigned char rxData[100] = { 0 };
 [v _rxData `uc ~T0 @X0 -> 100 `i e ]
 [i _rxData
 :U ..
@@ -1484,7 +1496,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "22
-[; ;main.c: 22: unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
+[; ;main.c: 22: unsigned char ModbusData[100] = { 0 };
+[v _ModbusData `uc ~T0 @X0 -> 100 `i e ]
+[i _ModbusData
+:U ..
+-> -> 0 `i `uc
+..
+]
+"25
+[; ;main.c: 25: unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
 [v _data1 `uc ~T0 @X0 -> 11 `i e ]
 [i _data1
 :U ..
@@ -1501,291 +1521,442 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 173 `i `uc
 ..
 ]
-"26
-[; ;main.c: 26: void UART1_Write_string(unsigned char * data, int data_len)
+"28
+[; ;main.c: 28: void InitialiseString(void){
+[v _InitialiseString `(v ~T0 @X0 1 ef ]
+{
+[e :U _InitialiseString ]
+[f ]
+"31
+[; ;main.c: 31:     printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
+[e ( _printf :s 1C ]
+"32
+[; ;main.c: 32:     printf("\rCard Ser No. xxxxxxx \r\n");
+[e ( _printf :s 2C ]
+"33
+[; ;main.c: 33:     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
+[e ( _printf , , , (. :s 3C :s 4C :s 5C -> 2100 `i ]
+"35
+[; ;main.c: 35:     printf("\rFunction Codes Supported:\r\n");
+[e ( _printf :s 6C ]
+"36
+[; ;main.c: 36:     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
+[e ( _printf :s 7C ]
+"37
+[; ;main.c: 37:     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
+[e ( _printf :s 8C ]
+"38
+[; ;main.c: 38:     printf("\rInitalisation Complete - Ready\r\n\n");
+[e ( _printf :s 9C ]
+"39
+[; ;main.c: 39: }
+[e :UE 1497 ]
+}
+"42
+[; ;main.c: 42: void UART1_Write_string(unsigned char * data, int data_len)
 [v _UART1_Write_string `(v ~T0 @X0 1 ef2`*uc`i ]
-"27
-[; ;main.c: 27: {
+"43
+[; ;main.c: 43: {
 {
 [e :U _UART1_Write_string ]
-"26
-[; ;main.c: 26: void UART1_Write_string(unsigned char * data, int data_len)
+"42
+[; ;main.c: 42: void UART1_Write_string(unsigned char * data, int data_len)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _data_len `i ~T0 @X0 1 r2 ]
-"27
-[; ;main.c: 27: {
+"43
+[; ;main.c: 43: {
 [f ]
-"28
-[; ;main.c: 28:     for (int i = 0; i < data_len; i++) {
+"44
+[; ;main.c: 44:     for (int i = 0; i < data_len; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 1501  ]
-[e :U 1498 ]
+[e $U 1502  ]
+[e :U 1499 ]
 {
-"29
-[; ;main.c: 29:         EUSART1_Write(data[i]);
+"45
+[; ;main.c: 45:         EUSART1_Write(data[i]);
 [e ( _EUSART1_Write (1 *U + _data * -> _i `x -> -> # *U _data `i `x ]
-"30
-[; ;main.c: 30:     }
+"46
+[; ;main.c: 46:     }
 }
 [e ++ _i -> 1 `i ]
-[e :U 1501 ]
-[e $ < _i _data_len 1498  ]
-[e :U 1499 ]
+[e :U 1502 ]
+[e $ < _i _data_len 1499  ]
+[e :U 1500 ]
 }
-"31
-[; ;main.c: 31: }
-[e :UE 1497 ]
+"47
+[; ;main.c: 47: }
+[e :UE 1498 ]
 }
-"34
-[; ;main.c: 34: void TXMode(){
+"50
+[; ;main.c: 50: void TXMode(){
 [v _TXMode `(v ~T0 @X0 1 ef ]
 {
 [e :U _TXMode ]
 [f ]
-"35
-[; ;main.c: 35:     do { LATDbits.LATD0 = 1; } while(0);
-[e :U 1505 ]
+"51
+[; ;main.c: 51:     do { LATDbits.LATD0 = 1; } while(0);
+[e :U 1506 ]
 {
 [e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 }
-[e :U 1504 ]
-"36
-[; ;main.c: 36:     do { LATAbits.LATA3 = 1; } while(0);
-[e :U 1508 ]
+[e :U 1505 ]
+"52
+[; ;main.c: 52:     do { LATAbits.LATA3 = 1; } while(0);
+[e :U 1509 ]
 {
 [e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
 }
-[e :U 1507 ]
-"37
-[; ;main.c: 37: }
-[e :UE 1502 ]
+[e :U 1508 ]
+"53
+[; ;main.c: 53: }
+[e :UE 1503 ]
 }
-"40
-[; ;main.c: 40: void RXMode(){
+"56
+[; ;main.c: 56: void RXMode(){
 [v _RXMode `(v ~T0 @X0 1 ef ]
 {
 [e :U _RXMode ]
 [f ]
-"41
-[; ;main.c: 41:     do { LATDbits.LATD0 = 0; } while(0);
-[e :U 1512 ]
+"57
+[; ;main.c: 57:     do { LATDbits.LATD0 = 0; } while(0);
+[e :U 1513 ]
 {
 [e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 1511 ]
-"42
-[; ;main.c: 42:     do { LATAbits.LATA3 = 0; } while(0);
-[e :U 1515 ]
+[e :U 1512 ]
+"58
+[; ;main.c: 58:     do { LATAbits.LATA3 = 0; } while(0);
+[e :U 1516 ]
 {
 [e = . . _LATAbits 0 3 -> -> 0 `i `uc ]
 }
-[e :U 1514 ]
-"43
-[; ;main.c: 43: }
-[e :UE 1509 ]
+[e :U 1515 ]
+"59
+[; ;main.c: 59: }
+[e :UE 1510 ]
 }
-"46
-[; ;main.c: 46: void ClearRxBuff(){
+"62
+[; ;main.c: 62: void ClearModbusData(){
+[v _ClearModbusData `(v ~T0 @X0 1 ef ]
+{
+[e :U _ClearModbusData ]
+[f ]
+"63
+[; ;main.c: 63:     int i = 0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"64
+[; ;main.c: 64:     for(i=0; i<99; i++ ){
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 99 `i 1518  ]
+[e $U 1519  ]
+[e :U 1518 ]
+{
+"65
+[; ;main.c: 65:         ModbusData[i] = 0xFF;
+[e = *U + &U _ModbusData * -> -> _i `ui `ux -> -> # *U &U _ModbusData `ui `ux -> -> 255 `i `uc ]
+"66
+[; ;main.c: 66:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 99 `i 1518  ]
+[e :U 1519 ]
+}
+"67
+[; ;main.c: 67: }
+[e :UE 1517 ]
+}
+"70
+[; ;main.c: 70: void ClearRxBuff(){
 [v _ClearRxBuff `(v ~T0 @X0 1 ef ]
 {
 [e :U _ClearRxBuff ]
 [f ]
-"48
-[; ;main.c: 48:     int i = 0;
+"72
+[; ;main.c: 72:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"49
-[; ;main.c: 49:     for(i=0; i<ByteNum; i++ ){
-{
-[e = _i -> 0 `i ]
-[e $U 1520  ]
-[e :U 1517 ]
-{
-"50
-[; ;main.c: 50:         rxData[i] = 0xFF;
-[e = *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux -> -> 255 `i `uc ]
-"51
-[; ;main.c: 51:     }
-}
-[e ++ _i -> 1 `i ]
-[e :U 1520 ]
-[e $ < _i _ByteNum 1517  ]
-[e :U 1518 ]
-}
-"53
-[; ;main.c: 53: }
-[e :UE 1516 ]
-}
-"55
-[; ;main.c: 55: void PrintRXBuff(){
-[v _PrintRXBuff `(v ~T0 @X0 1 ef ]
-{
-[e :U _PrintRXBuff ]
-[f ]
-"57
-[; ;main.c: 57:     int i=0;
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-"59
-[; ;main.c: 59:     printf("\r\Num Bytes Received: %i\r\n", ByteNum);
-[e ( _printf , (. :s 1C _ByteNum ]
-"60
-[; ;main.c: 60:     for(i=0; i< ByteNum ; i++ ){
+"73
+[; ;main.c: 73:     for(i=0; i<ByteNum; i++ ){
 {
 [e = _i -> 0 `i ]
 [e $U 1525  ]
 [e :U 1522 ]
 {
-"61
-[; ;main.c: 61:         printf("Loop: %i Val: 0x%02x \r\n", i, rxData[i]);
-[e ( _printf , , (. :s 2C _i -> *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux `i ]
-"62
-[; ;main.c: 62:     }
+"74
+[; ;main.c: 74:         rxData[i] = 0xFF;
+[e = *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux -> -> 255 `i `uc ]
+"75
+[; ;main.c: 75:     }
 }
 [e ++ _i -> 1 `i ]
 [e :U 1525 ]
 [e $ < _i _ByteNum 1522  ]
 [e :U 1523 ]
 }
-"64
-[; ;main.c: 64: }
+"77
+[; ;main.c: 77: }
 [e :UE 1521 ]
 }
+"79
+[; ;main.c: 79: void AddRxBuffToModBus(){
+[v _AddRxBuffToModBus `(v ~T0 @X0 1 ef ]
+{
+[e :U _AddRxBuffToModBus ]
+[f ]
+"83
+[; ;main.c: 83:     int i = 0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"85
+[; ;main.c: 85:     for(i=0l; i<ByteNum; i++){
+{
+[e = _i -> -> 0 `l `i ]
+[e $U 1530  ]
+[e :U 1527 ]
+{
+"86
+[; ;main.c: 86:         ModbusData[ModDataCnt] = rxData[i];
+[e = *U + &U _ModbusData * -> -> _ModDataCnt `ui `ux -> -> # *U &U _ModbusData `ui `ux *U + &U _rxData * -> -> _i `ui `ux -> -> # *U &U _rxData `ui `ux ]
+"87
+[; ;main.c: 87:         ModDataCnt++;
+[e ++ _ModDataCnt -> 1 `i ]
+"88
+[; ;main.c: 88:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 1530 ]
+[e $ < _i _ByteNum 1527  ]
+[e :U 1528 ]
+}
+"93
+[; ;main.c: 93:     if(ModbusData[1] == 0x0F){
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 15 `i 1531  ]
+{
+"94
+[; ;main.c: 94:         ExpectedBytes = ModbusData[6] + 9;
+[e = _ExpectedBytes + -> *U + &U _ModbusData * -> -> -> 6 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 9 `i ]
+"95
+[; ;main.c: 95:     }else if (ModbusData[1] == 0x10){
+}
+[e $U 1532  ]
+[e :U 1531 ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 16 `i 1533  ]
+{
+"96
+[; ;main.c: 96:         ExpectedBytes = ModbusData[6] + 9;
+[e = _ExpectedBytes + -> *U + &U _ModbusData * -> -> -> 6 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 9 `i ]
+"97
+[; ;main.c: 97:     }else{
+}
+[e $U 1534  ]
+[e :U 1533 ]
+{
+"98
+[; ;main.c: 98:         ExpectedBytes = 8;
+[e = _ExpectedBytes -> 8 `i ]
+"99
+[; ;main.c: 99:     }
+}
+[e :U 1534 ]
+[e :U 1532 ]
+"102
+[; ;main.c: 102: }
+[e :UE 1526 ]
+}
+"105
+[; ;main.c: 105: void PrintModbus(){
+[v _PrintModbus `(v ~T0 @X0 1 ef ]
+{
+[e :U _PrintModbus ]
+[f ]
+"109
+[; ;main.c: 109:     int i=0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"110
+[; ;main.c: 110:     printf("\r\nModbus Data Capture Complete:\r\n");
+[e ( _printf :s 10C ]
+"111
+[; ;main.c: 111:     for(i=0; i< ModDataCnt ; i++ ){
+{
+[e = _i -> 0 `i ]
+[e $U 1539  ]
+[e :U 1536 ]
+{
+"112
+[; ;main.c: 112:         printf("   Byte Num: %i Val: 0x%02x \r\n", i, ModbusData[i]);
+[e ( _printf , , (. :s 11C _i -> *U + &U _ModbusData * -> -> _i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
+"113
+[; ;main.c: 113:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 1539 ]
+[e $ < _i _ModDataCnt 1536  ]
+[e :U 1537 ]
+}
+"115
+[; ;main.c: 115:     ModDataCnt = 0;
+[e = _ModDataCnt -> 0 `i ]
+"117
+[; ;main.c: 117: }
+[e :UE 1535 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"66
-[; ;main.c: 66: void main(void)
+"120
+[; ;main.c: 120: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"67
-[; ;main.c: 67: {
+"121
+[; ;main.c: 121: {
 {
 [e :U _main ]
 [f ]
-"69
-[; ;main.c: 69:     SYSTEM_Initialize();
+"123
+[; ;main.c: 123:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"76
-[; ;main.c: 76:     (INTCONbits.GIE = 1);
+"130
+[; ;main.c: 130:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"82
-[; ;main.c: 82:     (INTCONbits.PEIE = 1);
+"136
+[; ;main.c: 136:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"87
-[; ;main.c: 87:     do { LATAbits.LATA4 = 0; } while(0);
-[e :U 1529 ]
+"141
+[; ;main.c: 141:     do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1543 ]
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 1528 ]
-"88
-[; ;main.c: 88:     do { LATAbits.LATA5 = 0; } while(0);
-[e :U 1532 ]
+[e :U 1542 ]
+"142
+[; ;main.c: 142:     do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1546 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 1531 ]
-"89
-[; ;main.c: 89:     do { LATAbits.LATA6 = 0; } while(0);
-[e :U 1535 ]
+[e :U 1545 ]
+"143
+[; ;main.c: 143:     do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1549 ]
 {
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
-[e :U 1534 ]
-"90
-[; ;main.c: 90:     do { LATAbits.LATA7 = 0; } while(0);
-[e :U 1538 ]
+[e :U 1548 ]
+"144
+[; ;main.c: 144:     do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1552 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
-[e :U 1537 ]
-"94
-[; ;main.c: 94:     printf("Initalised\r\n\n");
-[e ( _printf :s 3C ]
-"96
-[; ;main.c: 96:     RXMode();
+[e :U 1551 ]
+"146
+[; ;main.c: 146:     InitialiseString();
+[e ( _InitialiseString ..  ]
+"149
+[; ;main.c: 149:     RXMode();
 [e ( _RXMode ..  ]
-"97
-[; ;main.c: 97:     ClearRxBuff();
+"150
+[; ;main.c: 150:     ClearRxBuff();
 [e ( _ClearRxBuff ..  ]
-"99
-[; ;main.c: 99:     _Bool RXStat = 0;
+"152
+[; ;main.c: 152:     _Bool RXStat = 0;
 [v _RXStat `a ~T0 @X0 1 a ]
 [e = _RXStat -> -> 0 `i `a ]
-"101
-[; ;main.c: 101:     while(1)
-[e :U 1540 ]
-"102
-[; ;main.c: 102:     {
+"154
+[; ;main.c: 154:     while(1)
+[e :U 1554 ]
+"155
+[; ;main.c: 155:     {
 {
-"103
-[; ;main.c: 103:         if(EUSART1_is_rx_ready()){
-[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1542  ]
+"156
+[; ;main.c: 156:         if(EUSART1_is_rx_ready()){
+[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1556  ]
 {
-"105
-[; ;main.c: 105:             while(EUSART1_is_rx_ready()){
-[e $U 1543  ]
-[e :U 1544 ]
+"158
+[; ;main.c: 158:             while(EUSART1_is_rx_ready()){
+[e $U 1557  ]
+[e :U 1558 ]
 {
-"107
-[; ;main.c: 107:                 rxData[ByteNum] = EUSART1_Read();
+"160
+[; ;main.c: 160:                 rxData[ByteNum] = EUSART1_Read();
 [e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
-"109
-[; ;main.c: 109:                 ByteNum++;
+"161
+[; ;main.c: 161:                 ByteNum++;
 [e ++ _ByteNum -> 1 `i ]
-"110
-[; ;main.c: 110:             }
+"162
+[; ;main.c: 162:             }
 }
-[e :U 1543 ]
-"105
-[; ;main.c: 105:             while(EUSART1_is_rx_ready()){
-[e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1544  ]
-[e :U 1545 ]
-"112
-[; ;main.c: 112:                 RXStat = 1;
+[e :U 1557 ]
+"158
+[; ;main.c: 158:             while(EUSART1_is_rx_ready()){
+[e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1558  ]
+[e :U 1559 ]
+"164
+[; ;main.c: 164:             RXStat = 1;
 [e = _RXStat -> -> 1 `i `a ]
-"113
-[; ;main.c: 113:         }
+"165
+[; ;main.c: 165:         }
 }
-[e :U 1542 ]
-"115
-[; ;main.c: 115:         if(RXStat ==1){
-[e $ ! == -> _RXStat `i -> 1 `i 1546  ]
+[e :U 1556 ]
+"167
+[; ;main.c: 167:         if(RXStat ==1){
+[e $ ! == -> _RXStat `i -> 1 `i 1560  ]
 {
-"117
-[; ;main.c: 117:             PrintRXBuff();
-[e ( _PrintRXBuff ..  ]
-"118
-[; ;main.c: 118:             ClearRxBuff();
+"170
+[; ;main.c: 170:             AddRxBuffToModBus();
+[e ( _AddRxBuffToModBus ..  ]
+"171
+[; ;main.c: 171:             ClearRxBuff();
 [e ( _ClearRxBuff ..  ]
-"119
-[; ;main.c: 119:             RXStat = 0;
+"172
+[; ;main.c: 172:             RXStat = 0;
 [e = _RXStat -> -> 0 `i `a ]
-"120
-[; ;main.c: 120:             ByteNum = 0;
+"173
+[; ;main.c: 173:             ByteNum = 0;
 [e = _ByteNum -> 0 `i ]
-"121
-[; ;main.c: 121:             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-[e :U 1549 ]
+"174
+[; ;main.c: 174:             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+[e :U 1563 ]
 {
 [e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
 }
-[e :U 1548 ]
-"122
-[; ;main.c: 122:         }
+[e :U 1562 ]
+"175
+[; ;main.c: 175:         }
 }
-[e :U 1546 ]
-"123
-[; ;main.c: 123:     }
+[e :U 1560 ]
+"177
+[; ;main.c: 177:         if(ModDataCnt == ExpectedBytes){
+[e $ ! == _ModDataCnt _ExpectedBytes 1564  ]
+{
+"178
+[; ;main.c: 178:             PrintModbus();
+[e ( _PrintModbus ..  ]
+"179
+[; ;main.c: 179:         }
 }
-[e :U 1539 ]
-[e $U 1540  ]
-[e :U 1541 ]
-"124
-[; ;main.c: 124: }
-[e :UE 1526 ]
+[e :U 1564 ]
+"182
+[; ;main.c: 182:     }
 }
-[p f _printf 12615812 ]
-[a 1C 13 78 117 109 32 66 121 116 101 115 32 82 101 99 101 105 118 101 100 58 32 37 105 13 10 0 ]
-[a 2C 76 111 111 112 58 32 37 105 32 86 97 108 58 32 48 120 37 48 50 120 32 13 10 0 ]
-[a 3C 73 110 105 116 97 108 105 115 101 100 13 10 10 0 ]
+[e :U 1553 ]
+[e $U 1554  ]
+[e :U 1555 ]
+"183
+[; ;main.c: 183: }
+[e :UE 1540 ]
+}
+[p f _printf 12878980 ]
+[a 4C 77 97 114 32 32 50 32 50 48 50 49 0 ]
+[a 5C 50 49 58 52 51 58 49 48 0 ]
+[a 10C 13 10 77 111 100 98 117 115 32 68 97 116 97 32 67 97 112 116 117 114 101 32 67 111 109 112 108 101 116 101 58 13 10 0 ]
+[a 6C 13 70 117 110 99 116 105 111 110 32 67 111 100 101 115 32 83 117 112 112 111 114 116 101 100 58 13 10 0 ]
+[a 1C 13 68 97 110 32 97 110 100 32 83 97 109 39 115 32 77 111 100 98 117 115 32 71 80 73 79 32 69 120 112 97 110 115 105 111 110 32 45 32 65 80 48 48 48 120 120 120 120 120 32 86 48 46 49 13 10 0 ]
+[a 7C 13 32 32 32 48 120 48 51 32 45 32 82 101 97 100 32 77 117 108 116 105 112 108 101 32 82 101 103 105 115 116 101 114 115 32 40 77 97 120 32 51 50 120 32 49 54 98 105 116 41 13 10 0 ]
+[a 2C 13 67 97 114 100 32 83 101 114 32 78 111 46 32 120 120 120 120 120 120 120 32 13 10 0 ]
+[a 11C 32 32 32 66 121 116 101 32 78 117 109 58 32 37 105 32 86 97 108 58 32 48 120 37 48 50 120 32 13 10 0 ]
+[a 9C 13 73 110 105 116 97 108 105 115 97 116 105 111 110 32 67 111 109 112 108 101 116 101 32 45 32 82 101 97 100 121 13 10 10 0 ]
+[a 3C 13 67 111 109 112 105 108 101 100 32 111 110 32 37 115 32 97 116 32 37 115 32 98 121 32 88 67 56 32 118 101 114 115 105 111 110 32 37 117 13 10 10 0 ]
+[a 8C 13 32 32 32 48 120 49 48 32 45 32 87 114 105 116 101 32 77 117 108 116 105 112 108 101 32 82 101 103 105 115 116 101 114 115 32 40 77 97 120 32 51 50 120 32 49 54 98 105 116 41 13 10 10 0 ]

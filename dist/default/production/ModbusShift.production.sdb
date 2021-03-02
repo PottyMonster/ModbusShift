@@ -15,6 +15,10 @@
 [v _pad pad `(i  1 s 2 pad ]
 "274
 [v _dtoa dtoa `(i  1 s 2 dtoa ]
+"546
+[v _stoa stoa `(i  1 s 2 stoa ]
+"593
+[v _utoa utoa `(i  1 s 2 utoa ]
 "623
 [v _xtoa xtoa `(i  1 s 2 xtoa ]
 "670
@@ -43,6 +47,10 @@
 [v _isspace isspace `(i  1 e 2 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\isupper.c
 [v _isupper isupper `(i  1 e 2 0 ]
+"9 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\lodiv.c
+[v ___lodiv __lodiv `(uo  1 e 8 0 ]
+"9 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\lomod.c
+[v ___lomod __lomod `(uo  1 e 8 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\nf_fputs.c
@@ -67,13 +75,17 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"40 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"28 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+[v _InitialiseString InitialiseString `(v  1 e 1 0 ]
+"56
 [v _RXMode RXMode `(v  1 e 1 0 ]
-"46
+"70
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
-"55
-[v _PrintRXBuff PrintRXBuff `(v  1 e 1 0 ]
-"66
+"79
+[v _AddRxBuffToModBus AddRxBuffToModBus `(v  1 e 1 0 ]
+"105
+[v _PrintModbus PrintModbus `(v  1 e 1 0 ]
+"120
 [v _main main `(v  1 e 1 0 ]
 "88 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _EUSART1_Initialize EUSART1_Initialize `(v  1 e 1 0 ]
@@ -360,7 +372,7 @@
 [v _NVMCON2 NVMCON2 `VEuc  1 e 1 @3970 ]
 "16387
 [v _LATA LATA `VEuc  1 e 1 @3971 ]
-[s S1008 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S1013 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -370,7 +382,7 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "16414
-[s S1017 . 1 `uc 1 LA0 1 0 :1:0 
+[s S1022 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -379,15 +391,15 @@
 `uc 1 LA6 1 0 :1:6 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S1026 . 1 `S1008 1 . 1 0 `S1017 1 . 1 0 ]
-[v _LATAbits LATAbits `VES1026  1 e 1 @3971 ]
+[u S1031 . 1 `S1013 1 . 1 0 `S1022 1 . 1 0 ]
+[v _LATAbits LATAbits `VES1031  1 e 1 @3971 ]
 "16499
 [v _LATB LATB `VEuc  1 e 1 @3972 ]
 "16611
 [v _LATC LATC `VEuc  1 e 1 @3973 ]
 "16723
 [v _LATD LATD `VEuc  1 e 1 @3974 ]
-[s S968 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S973 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -397,7 +409,7 @@
 `uc 1 LATD7 1 0 :1:7 
 ]
 "16750
-[s S977 . 1 `uc 1 LD0 1 0 :1:0 
+[s S982 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -406,8 +418,8 @@
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S986 . 1 `S968 1 . 1 0 `S977 1 . 1 0 ]
-[v _LATDbits LATDbits `VES986  1 e 1 @3974 ]
+[u S991 . 1 `S973 1 . 1 0 `S982 1 . 1 0 ]
+[v _LATDbits LATDbits `VES991  1 e 1 @3974 ]
 "16835
 [v _LATE LATE `VEuc  1 e 1 @3975 ]
 "16932
@@ -524,8 +536,14 @@
 [v _rxStatus rxStatus `VES396  1 e 1 0 ]
 "17
 [v _ByteNum ByteNum `i  1 e 2 0 ]
+"18
+[v _ModDataCnt ModDataCnt `i  1 e 2 0 ]
 "19
+[v _ExpectedBytes ExpectedBytes `i  1 e 2 0 ]
+"21
 [v _rxData rxData `[100]uc  1 e 100 0 ]
+"22
+[v _ModbusData ModbusData `[100]uc  1 e 100 0 ]
 "62 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _eusart1TxHead eusart1TxHead `VEuc  1 e 1 0 ]
 "63
@@ -586,12 +604,12 @@
 [v _EUSART2_OverrunErrorHandler EUSART2_OverrunErrorHandler `*.37(v  1 e 2 0 ]
 "82
 [v _EUSART2_ErrorHandler EUSART2_ErrorHandler `*.37(v  1 e 2 0 ]
-"66 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"120 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"99
-[v main@RXStat RXStat `a  1 a 1 39 ]
-"124
+"152
+[v main@RXStat RXStat `a  1 a 1 43 ]
+"183
 } 0
 "50 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -688,25 +706,30 @@
 [v EUSART1_SetErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 4 ]
 "274
 } 0
-"40 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"56 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _RXMode RXMode `(v  1 e 1 0 ]
 {
-"43
+"59
 } 0
-"55
-[v _PrintRXBuff PrintRXBuff `(v  1 e 1 0 ]
+"105
+[v _PrintModbus PrintModbus `(v  1 e 1 0 ]
 {
-"57
-[v PrintRXBuff@i i `i  1 a 2 37 ]
-"64
+"109
+[v PrintModbus@i i `i  1 a 2 41 ]
+"117
+} 0
+"28
+[v _InitialiseString InitialiseString `(v  1 e 1 0 ]
+{
+"39
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
 {
 "8
-[v printf@ap ap `[1]*.39v  1 a 2 35 ]
+[v printf@ap ap `[1]*.39v  1 a 2 39 ]
 "5
-[v printf@fmt fmt `*.32Cuc  1 p 2 27 ]
+[v printf@fmt fmt `*.32Cuc  1 p 2 29 ]
 "13
 } 0
 "1368 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\doprnt.c
@@ -714,27 +737,28 @@
 {
 "1371
 [v vfprintf@cfmt cfmt `*.32uc  1 a 2 82 ]
-[s S1131 _IO_FILE 0 ]
+[s S1149 _IO_FILE 0 ]
 "1368
-[v vfprintf@fp fp `*.2S1131  1 p 2 21 ]
-[v vfprintf@fmt fmt `*.32Cuc  1 p 2 23 ]
-[v vfprintf@ap ap `*.39*.39v  1 p 2 25 ]
+[v vfprintf@fp fp `*.2S1149  1 p 2 23 ]
+[v vfprintf@fmt fmt `*.32Cuc  1 p 2 25 ]
+[v vfprintf@ap ap `*.39*.39v  1 p 2 27 ]
 "1382
 } 0
 "670
 [v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
 {
 "675
-[v vfpfcnvrt@llu llu `uo  1 a 8 8 ]
+[v vfpfcnvrt@llu llu `uo  1 a 8 15 ]
 "674
 [v vfpfcnvrt@ll ll `o  1 a 8 0 ]
 "673
-[v vfpfcnvrt@done done `i  1 a 2 16 ]
+[v vfpfcnvrt@done done `i  1 a 2 10 ]
 "672
-[v vfpfcnvrt@c c `uc  1 a 1 20 ]
-[s S1131 _IO_FILE 0 ]
+[v vfpfcnvrt@cp cp `*.34uc  1 a 2 8 ]
+[v vfpfcnvrt@c c `uc  1 a 1 14 ]
+[s S1149 _IO_FILE 0 ]
 "670
-[v vfpfcnvrt@fp fp `*.2S1131  1 p 2 72 ]
+[v vfpfcnvrt@fp fp `*.2S1149  1 p 2 72 ]
 [v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 74 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 76 ]
 "1365
@@ -749,9 +773,9 @@
 [v xtoa@i i `i  1 a 2 68 ]
 [v xtoa@w w `i  1 a 2 58 ]
 [v xtoa@p p `i  1 a 2 56 ]
-[s S1131 _IO_FILE 0 ]
+[s S1149 _IO_FILE 0 ]
 "623
-[v xtoa@fp fp `*.2S1131  1 p 2 33 ]
+[v xtoa@fp fp `*.2S1149  1 p 2 33 ]
 [v xtoa@d d `uo  1 p 8 35 ]
 [v xtoa@x x `uc  1 p 1 43 ]
 "665
@@ -780,7 +804,65 @@
 [v isalpha@c c `i  1 p 2 4 ]
 "8
 } 0
-"274 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\doprnt.c
+"593 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\doprnt.c
+[v _utoa utoa `(i  1 s 2 utoa ]
+{
+"596
+[v utoa@n n `uo  1 a 8 55 ]
+"595
+[v utoa@i i `i  1 a 2 63 ]
+[v utoa@w w `i  1 a 2 53 ]
+[v utoa@p p `i  1 a 2 51 ]
+[s S1149 _IO_FILE 0 ]
+"593
+[v utoa@fp fp `*.2S1149  1 p 2 33 ]
+[v utoa@d d `uo  1 p 8 35 ]
+"619
+} 0
+"9 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\lomod.c
+[v ___lomod __lomod `(uo  1 e 8 0 ]
+{
+"12
+[v ___lomod@counter counter `uc  1 a 1 20 ]
+"9
+[v ___lomod@dividend dividend `uo  1 p 8 4 ]
+[v ___lomod@divisor divisor `uo  1 p 8 12 ]
+"27
+} 0
+"9 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\lodiv.c
+[v ___lodiv __lodiv `(uo  1 e 8 0 ]
+{
+"12
+[v ___lodiv@quotient quotient `uo  1 a 8 20 ]
+"13
+[v ___lodiv@counter counter `uc  1 a 1 28 ]
+"9
+[v ___lodiv@dividend dividend `uo  1 p 8 4 ]
+[v ___lodiv@divisor divisor `uo  1 p 8 12 ]
+"32
+} 0
+"546 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\doprnt.c
+[v _stoa stoa `(i  1 s 2 stoa ]
+{
+"548
+[v stoa@nuls nuls `[7]uc  1 a 7 20 ]
+"549
+[v stoa@l l `i  1 a 2 35 ]
+[v stoa@p p `i  1 a 2 33 ]
+"548
+[v stoa@cp cp `*.34uc  1 a 2 31 ]
+"549
+[v stoa@w w `i  1 a 2 29 ]
+[v stoa@i i `i  1 a 2 27 ]
+[s S1149 _IO_FILE 0 ]
+"546
+[v stoa@fp fp `*.2S1149  1 p 2 15 ]
+[v stoa@s s `*.34uc  1 p 2 17 ]
+"548
+[v stoa@F1139 F1139 `[7]uc  1 s 7 F1139 ]
+"589
+} 0
+"274
 [v _dtoa dtoa `(i  1 s 2 dtoa ]
 {
 "277
@@ -790,9 +872,9 @@
 [v dtoa@s s `i  1 a 2 57 ]
 [v dtoa@w w `i  1 a 2 55 ]
 [v dtoa@p p `i  1 a 2 53 ]
-[s S1131 _IO_FILE 0 ]
+[s S1149 _IO_FILE 0 ]
 "274
-[v dtoa@fp fp `*.2S1131  1 p 2 33 ]
+[v dtoa@fp fp `*.2S1149  1 p 2 33 ]
 [v dtoa@d d `o  1 p 8 35 ]
 "315
 } 0
@@ -802,9 +884,9 @@
 "74
 [v pad@w w `i  1 a 2 31 ]
 [v pad@i i `i  1 a 2 29 ]
-[s S1131 _IO_FILE 0 ]
+[s S1149 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.2S1131  1 p 2 22 ]
+[v pad@fp fp `*.2S1149  1 p 2 22 ]
 [v pad@buf buf `*.39uc  1 p 2 24 ]
 [v pad@p p `i  1 p 2 26 ]
 "95
@@ -813,9 +895,9 @@
 [v _strlen strlen `(ui  1 e 2 0 ]
 {
 "7
-[v strlen@a a `*.39Cuc  1 a 2 6 ]
+[v strlen@a a `*.34Cuc  1 a 2 6 ]
 "5
-[v strlen@s s `*.39Cuc  1 p 2 4 ]
+[v strlen@s s `*.34Cuc  1 p 2 4 ]
 "12
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\nf_fputs.c
@@ -827,16 +909,16 @@
 [v fputs@c c `uc  1 a 1 19 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 15 ]
-[s S1727 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.2S1727  1 p 2 17 ]
+[s S1765 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.2S1765  1 p 2 17 ]
 "19
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 6 ]
-[s S1727 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.2S1727  1 p 2 8 ]
+[s S1765 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.2S1765  1 p 2 8 ]
 "21
 } 0
 "201 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart2.c
@@ -930,12 +1012,19 @@
 [v EUSART1_Read@readValue readValue `uc  1 a 1 4 ]
 "171
 } 0
-"46 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"70 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
 {
-"48
+"72
 [v ClearRxBuff@i i `i  1 a 2 5 ]
-"53
+"77
+} 0
+"79
+[v _AddRxBuffToModBus AddRxBuffToModBus `(v  1 e 1 0 ]
+{
+"83
+[v AddRxBuffToModBus@i i `i  1 a 2 5 ]
+"102
 } 0
 "58 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `IIH(v  1 e 1 0 ]
