@@ -2,24 +2,18 @@
 #include "mcc_generated_files/mcc.h"
 #include "string.h"
 #include "stdio.h"
+#include "Modbus.h"
 
 /*
                          Main application
  */
 
 
-
 bool Debug = 0;
 
-int loop;
+// int loop;
 
-volatile eusart1_status_t rxStatus;
-int ByteNum = 0;
-int ModDataCnt = 0;
-int ExpectedBytes = 8;
 
-unsigned char rxData[100] = { 0 };      // Taken from USART Buffer
-unsigned char ModbusData[100] = { 0 };  // Received Modbus Data
 
 //11 03 06 AE41 5652 4340 49AD
 unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
@@ -46,62 +40,6 @@ void UART1_Write_string(unsigned char * data, int data_len)
     }
 }
 
-
-void TXMode(){    
-    TX_ENA_SetHigh();
-    RX_ENA_SetHigh();
-}
-
-
-void RXMode(){    
-    TX_ENA_SetLow();
-    RX_ENA_SetLow();
-}
-
-
-void ClearModbusData(){
-    int i = 0;    
-    for(i=0; i<99; i++ ){
-        ModbusData[i] = 0xFF;
-    }
-}
-
-
-void ClearRxBuff(){
-   
-    int i = 0;    
-    for(i=0; i<ByteNum; i++ ){
-        rxData[i] = 0xFF;
-    }
-    
-}
-
-void AddRxBuffToModBus(){
-    // This needs to change to copying in to ModbusData[i]
-    // ModDataCnt contains how much data has been copied over.
-
-    int i = 0;    
-    
-    for(i=0l; i<ByteNum; i++){
-        ModbusData[ModDataCnt] = rxData[i];
-        ModDataCnt++;        
-    }
-    
-    // printf("Completed Adding rxData Buffer to ModbusData Array\r\n\n");
-    // printf("ModDataCnt sitting at %i\r\n\n", ModDataCnt);
-    
-    if(ModbusData[1] == 0x0F){
-        ExpectedBytes = ModbusData[6] + 9;        
-    }else if (ModbusData[1] == 0x10){
-        ExpectedBytes = ModbusData[6] + 9;
-    }else{
-        ExpectedBytes = 8;
-    }
-    
-    
-     
-    
-}
 
 
 void PrintModbus(){
@@ -155,34 +93,13 @@ void main(void)
     
     while(1)
     {
-        if(EUSART1_is_rx_ready()){
-           
-            while(EUSART1_is_rx_ready()){
-                // While there's something to read out of the RX Buffer
-                rxData[ByteNum] = EUSART1_Read();
-                ByteNum++;
-            }
-            
-            RXStat = 1; // Flag for buffer is empty
-        }
-
-        if(RXStat ==1){
-            // Received a bunch of data with buffer loaded
-            // in to rxData. Now Add Buffer to ModBus array.
-            AddRxBuffToModBus();   // Adds rxData to ModbusData Array
-            ClearRxBuff();  // Emptry rxData ready for next load
-            RXStat = 0;     // rxData has everything flag
-            ByteNum = 0;    // Reset num bytes in buffer to 0
-            D2LED_Toggle();
-        }
-
-        if(ModDataCnt == ExpectedBytes){ 
+        if(ModbusRx() == 1){
+            // Data has been received and ready to process
             PrintModbus();
-            D3LED_Toggle();
-            // Complete Modbus String ready to process.
-        }
-
         
+        
+            ClearModbusData();   // Needed when complete
+        }
     }
 }
 /**
