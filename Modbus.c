@@ -106,7 +106,8 @@ unsigned int generateCRC(unsigned int messageLength){
 }
 
 
-unsigned char checkCRC(void){
+// unsigned char checkCRC(void){
+bool checkCRC(void){
   unsigned int crc = 0xFFFF;
   unsigned int crcHigh = 0;
   unsigned int crcLow = 0;
@@ -127,7 +128,7 @@ unsigned char checkCRC(void){
   //bytes are wrong way round so doing a swap here..
   crcHigh = (crc & 0x00FF);
   crcLow = (crc & 0xFF00) >>8;
-  printf("crcHigh: 0x%04x  crcLow: 0x%04x  \r\n\n", crcHigh, crcLow);
+  printf("crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);
   if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
   {
     return 1;
@@ -139,7 +140,7 @@ unsigned char checkCRC(void){
 
 
 bool ModbusRx(){
-    
+    RXMode();
     if(EUSART1_is_rx_ready()){
         do{
             if(EUSART1_is_rx_ready()){

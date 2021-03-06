@@ -17313,7 +17313,9 @@ void ClearModbusData(void);
 void ClearRxBuff(void);
 # 159 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 201 "./Modbus.h"
+# 186 "./Modbus.h"
+_Bool checkCRC(void);
+# 227 "./Modbus.h"
 _Bool ModbusRx(void);
 # 5 "main.c" 2
 
@@ -17330,7 +17332,7 @@ _Bool Debug = 0;
 
 
 
-unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
+unsigned char MBRespon[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
 
 
 void InitialiseString(void){
@@ -17339,20 +17341,25 @@ void InitialiseString(void){
     printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
     printf("\rCard Ser No. xxxxxxx \r\n");
     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar  6 2021", "10:09:44", 2100);
+            "Mar  6 2021", "13:31:01", 2100);
     printf("\rFunction Codes Supported:\r\n");
     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
     printf("\rInitalisation Complete - Ready\r\n\n");
 }
-
-
-void UART1_Write_string(unsigned char * data, int data_len)
+# 49 "main.c"
+ void UART1_Write_string(unsigned char * data, int data_len)
 {
+     TXMode();
+    while(!EUSART1_is_tx_ready());
     for (int i = 0; i < data_len; i++) {
         EUSART1_Write(data[i]);
+        while(!EUSART1_is_tx_done());
     }
+
 }
+
+
 
 
 
@@ -17361,11 +17368,11 @@ void PrintModbus(){
 
 
     int i=0;
-    printf("\r\nModbus Data Capture Complete:\r\n");
+    printf("Modbus Data Capture Complete:\r\n");
     for(i=0; i< ModDataCnt ; i++ ){
-        printf("   Byte Num: %i Val: 0x%02x \r\n", i, ModbusData[i]);
+        printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
     }
-
+    printf("\r\n\n");
 
 }
 
@@ -17410,6 +17417,14 @@ void main(void)
 
             PrintModbus();
 
+            if(ModbusData[1] == 0x03)
+            {
+                UART1_Write_string(MBRespon,sizeof(MBRespon));
+
+            }else{
+                printf("Function Code is: 0x%02x \r\n", ModbusData[1]);
+
+            }
 
             ClearModbusData();
         }

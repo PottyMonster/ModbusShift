@@ -1760,249 +1760,252 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Modbus.c: 106: }
 [e :UE 1528 ]
 }
-"109
-[; ;Modbus.c: 109: unsigned char checkCRC(void){
-[v _checkCRC `(uc ~T0 @X0 1 ef ]
+"110
+[; ;Modbus.c: 110: _Bool checkCRC(void){
+[v _checkCRC `(a ~T0 @X0 1 ef ]
 {
 [e :U _checkCRC ]
 [f ]
-"110
-[; ;Modbus.c: 110:   unsigned int crc = 0xFFFF;
+"111
+[; ;Modbus.c: 111:   unsigned int crc = 0xFFFF;
 [v _crc `ui ~T0 @X0 1 a ]
 [e = _crc -> 65535 `ui ]
-"111
-[; ;Modbus.c: 111:   unsigned int crcHigh = 0;
+"112
+[; ;Modbus.c: 112:   unsigned int crcHigh = 0;
 [v _crcHigh `ui ~T0 @X0 1 a ]
 [e = _crcHigh -> -> 0 `i `ui ]
-"112
-[; ;Modbus.c: 112:   unsigned int crcLow = 0;
+"113
+[; ;Modbus.c: 113:   unsigned int crcLow = 0;
 [v _crcLow `ui ~T0 @X0 1 a ]
 [e = _crcLow -> -> 0 `i `ui ]
-"113
-[; ;Modbus.c: 113:   int i,j = 0;
+"114
+[; ;Modbus.c: 114:   int i,j = 0;
 [v _i `i ~T0 @X0 1 a ]
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-"115
-[; ;Modbus.c: 115:     for(i=0;i<ModDataCnt-2;i++){
+"116
+[; ;Modbus.c: 116:     for(i=0;i<ModDataCnt-2;i++){
 {
 [e = _i -> 0 `i ]
 [e $U 1542  ]
 [e :U 1539 ]
 {
-"116
-[; ;Modbus.c: 116:       crc ^= ModbusData[i];
-[e =^ _crc -> *U + &U _ModbusData * -> -> _i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui ]
 "117
-[; ;Modbus.c: 117:       for(j=8; j!=0; j--){
+[; ;Modbus.c: 117:       crc ^= ModbusData[i];
+[e =^ _crc -> *U + &U _ModbusData * -> -> _i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui ]
+"118
+[; ;Modbus.c: 118:       for(j=8; j!=0; j--){
 {
 [e = _j -> 8 `i ]
 [e $ != _j -> 0 `i 1543  ]
 [e $U 1544  ]
 [e :U 1543 ]
 {
-"118
-[; ;Modbus.c: 118:         if((crc & 0x0001) != 0){
+"119
+[; ;Modbus.c: 119:         if((crc & 0x0001) != 0){
 [e $ ! != & _crc -> -> 1 `i `ui -> -> 0 `i `ui 1546  ]
 {
-"119
-[; ;Modbus.c: 119:           crc >>= 1;
-[e =>> _crc -> -> 1 `i `ui ]
 "120
-[; ;Modbus.c: 120:           crc ^= 0xA001;
-[e =^ _crc -> 40961 `ui ]
+[; ;Modbus.c: 120:           crc >>= 1;
+[e =>> _crc -> -> 1 `i `ui ]
 "121
-[; ;Modbus.c: 121:         }
+[; ;Modbus.c: 121:           crc ^= 0xA001;
+[e =^ _crc -> 40961 `ui ]
+"122
+[; ;Modbus.c: 122:         }
 }
 [e $U 1547  ]
-"122
-[; ;Modbus.c: 122:         else{
+"123
+[; ;Modbus.c: 123:         else{
 [e :U 1546 ]
 {
-"123
-[; ;Modbus.c: 123:           crc >>= 1;
-[e =>> _crc -> -> 1 `i `ui ]
 "124
-[; ;Modbus.c: 124:         }
+[; ;Modbus.c: 124:           crc >>= 1;
+[e =>> _crc -> -> 1 `i `ui ]
+"125
+[; ;Modbus.c: 125:         }
 }
 [e :U 1547 ]
-"125
-[; ;Modbus.c: 125:       }
+"126
+[; ;Modbus.c: 126:       }
 }
 [e -- _j -> 1 `i ]
 [e $ != _j -> 0 `i 1543  ]
 [e :U 1544 ]
 }
-"126
-[; ;Modbus.c: 126:     }
+"127
+[; ;Modbus.c: 127:     }
 }
 [e ++ _i -> 1 `i ]
 [e :U 1542 ]
 [e $ < _i - _ModDataCnt -> 2 `i 1539  ]
 [e :U 1540 ]
 }
-"128
-[; ;Modbus.c: 128:   crcHigh = (crc & 0x00FF);
-[e = _crcHigh & _crc -> -> 255 `i `ui ]
 "129
-[; ;Modbus.c: 129:   crcLow = (crc & 0xFF00) >>8;
-[e = _crcLow >> & _crc -> 65280 `ui -> 8 `i ]
+[; ;Modbus.c: 129:   crcHigh = (crc & 0x00FF);
+[e = _crcHigh & _crc -> -> 255 `i `ui ]
 "130
-[; ;Modbus.c: 130:   printf("crcHigh: 0x%04x  crcLow: 0x%04x  \r\n\n", crcHigh, crcLow);
-[e ( _printf , , (. :s 2C _crcHigh _crcLow ]
+[; ;Modbus.c: 130:   crcLow = (crc & 0xFF00) >>8;
+[e = _crcLow >> & _crc -> 65280 `ui -> 8 `i ]
 "131
-[; ;Modbus.c: 131:   if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
-[e $ ! && == _crcHigh -> *U + &U _ModbusData * -> -> _i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui == _crcLow -> *U + &U _ModbusData * -> -> + _i -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui 1548  ]
+[; ;Modbus.c: 131:   printf("crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);
+[e ( _printf , , (. :s 2C _crcHigh _crcLow ]
 "132
-[; ;Modbus.c: 132:   {
-{
+[; ;Modbus.c: 132:   if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
+[e $ ! && == _crcHigh -> *U + &U _ModbusData * -> -> _i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui == _crcLow -> *U + &U _ModbusData * -> -> + _i -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui 1548  ]
 "133
-[; ;Modbus.c: 133:     return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 1538  ]
+[; ;Modbus.c: 133:   {
+{
 "134
-[; ;Modbus.c: 134:   }
+[; ;Modbus.c: 134:     return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 1538  ]
+"135
+[; ;Modbus.c: 135:   }
 }
 [e $U 1549  ]
-"135
-[; ;Modbus.c: 135:   else{
+"136
+[; ;Modbus.c: 136:   else{
 [e :U 1548 ]
 {
-"136
-[; ;Modbus.c: 136:     return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 1538  ]
 "137
-[; ;Modbus.c: 137:   }
+[; ;Modbus.c: 137:     return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 1538  ]
+"138
+[; ;Modbus.c: 138:   }
 }
 [e :U 1549 ]
-"138
-[; ;Modbus.c: 138: }
+"139
+[; ;Modbus.c: 139: }
 [e :UE 1538 ]
 }
-"141
-[; ;Modbus.c: 141: _Bool ModbusRx(){
+"142
+[; ;Modbus.c: 142: _Bool ModbusRx(){
 [v _ModbusRx `(a ~T0 @X0 1 ef ]
 {
 [e :U _ModbusRx ]
 [f ]
 "143
-[; ;Modbus.c: 143:     if(EUSART1_is_rx_ready()){
+[; ;Modbus.c: 143:     RXMode();
+[e ( _RXMode ..  ]
+"144
+[; ;Modbus.c: 144:     if(EUSART1_is_rx_ready()){
 [e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1551  ]
 {
-"144
-[; ;Modbus.c: 144:         do{
+"145
+[; ;Modbus.c: 145:         do{
 [e :U 1554 ]
 {
-"145
-[; ;Modbus.c: 145:             if(EUSART1_is_rx_ready()){
+"146
+[; ;Modbus.c: 146:             if(EUSART1_is_rx_ready()){
 [e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1555  ]
 {
-"147
-[; ;Modbus.c: 147:                 while(EUSART1_is_rx_ready()){
+"148
+[; ;Modbus.c: 148:                 while(EUSART1_is_rx_ready()){
 [e $U 1556  ]
 [e :U 1557 ]
 {
-"149
-[; ;Modbus.c: 149:                     rxData[ByteNum] = EUSART1_Read();
-[e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
 "150
-[; ;Modbus.c: 150:                     ByteNum++;
-[e ++ _ByteNum -> 1 `i ]
+[; ;Modbus.c: 150:                     rxData[ByteNum] = EUSART1_Read();
+[e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
 "151
-[; ;Modbus.c: 151:                 }
+[; ;Modbus.c: 151:                     ByteNum++;
+[e ++ _ByteNum -> 1 `i ]
+"152
+[; ;Modbus.c: 152:                 }
 }
 [e :U 1556 ]
-"147
-[; ;Modbus.c: 147:                 while(EUSART1_is_rx_ready()){
+"148
+[; ;Modbus.c: 148:                 while(EUSART1_is_rx_ready()){
 [e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1557  ]
 [e :U 1558 ]
-"153
-[; ;Modbus.c: 153:                 RXStat = 1;
-[e = _RXStat -> -> 1 `i `a ]
 "154
-[; ;Modbus.c: 154:             }
+[; ;Modbus.c: 154:                 RXStat = 1;
+[e = _RXStat -> -> 1 `i `a ]
+"155
+[; ;Modbus.c: 155:             }
 }
 [e :U 1555 ]
-"156
-[; ;Modbus.c: 156:             if(RXStat ==1){
+"157
+[; ;Modbus.c: 157:             if(RXStat ==1){
 [e $ ! == -> _RXStat `i -> 1 `i 1559  ]
 {
-"159
-[; ;Modbus.c: 159:                 AddRxBuffToModBus();
-[e ( _AddRxBuffToModBus ..  ]
 "160
-[; ;Modbus.c: 160:                 ClearRxBuff();
-[e ( _ClearRxBuff ..  ]
+[; ;Modbus.c: 160:                 AddRxBuffToModBus();
+[e ( _AddRxBuffToModBus ..  ]
 "161
-[; ;Modbus.c: 161:                 RXStat = 0;
-[e = _RXStat -> -> 0 `i `a ]
+[; ;Modbus.c: 161:                 ClearRxBuff();
+[e ( _ClearRxBuff ..  ]
 "162
-[; ;Modbus.c: 162:                 ByteNum = 0;
-[e = _ByteNum -> 0 `i ]
+[; ;Modbus.c: 162:                 RXStat = 0;
+[e = _RXStat -> -> 0 `i `a ]
 "163
-[; ;Modbus.c: 163:                 do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+[; ;Modbus.c: 163:                 ByteNum = 0;
+[e = _ByteNum -> 0 `i ]
+"164
+[; ;Modbus.c: 164:                 do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
 [e :U 1562 ]
 {
 [e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
 }
 [e :U 1561 ]
-"164
-[; ;Modbus.c: 164:             }
+"165
+[; ;Modbus.c: 165:             }
 }
 [e :U 1559 ]
-"165
-[; ;Modbus.c: 165:         }while(ModDataCnt != ExpectedBytes);
+"166
+[; ;Modbus.c: 166:         }while(ModDataCnt != ExpectedBytes);
 }
 [e $ != _ModDataCnt _ExpectedBytes 1554  ]
 [e :U 1553 ]
-"167
-[; ;Modbus.c: 167:         do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+"168
+[; ;Modbus.c: 168:         do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
 [e :U 1565 ]
 {
 [e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
 }
 [e :U 1564 ]
-"170
-[; ;Modbus.c: 170:         if(checkCRC() == 1)
-[e $ ! == -> ( _checkCRC ..  `i -> 1 `i 1566  ]
 "171
-[; ;Modbus.c: 171:         {
-{
+[; ;Modbus.c: 171:         if(checkCRC() == 1)
+[e $ ! == -> ( _checkCRC ..  `i -> 1 `i 1566  ]
 "172
-[; ;Modbus.c: 172:             printf("CRC Checked Out. \r\n\n");
-[e ( _printf :s 3C ]
+[; ;Modbus.c: 172:         {
+{
 "173
-[; ;Modbus.c: 173:         }else{
+[; ;Modbus.c: 173:             printf("CRC Checked Out. \r\n\n");
+[e ( _printf :s 3C ]
+"174
+[; ;Modbus.c: 174:         }else{
 }
 [e $U 1567  ]
 [e :U 1566 ]
 {
-"174
-[; ;Modbus.c: 174:             printf("CRC did NOT check out. \r\n\n");
-[e ( _printf :s 4C ]
 "175
-[; ;Modbus.c: 175:         }
+[; ;Modbus.c: 175:             printf("CRC did NOT check out. \r\n\n");
+[e ( _printf :s 4C ]
+"176
+[; ;Modbus.c: 176:         }
 }
 [e :U 1567 ]
-"180
-[; ;Modbus.c: 180:         return 1;
+"181
+[; ;Modbus.c: 181:         return 1;
 [e ) -> -> 1 `i `a ]
 [e $UE 1550  ]
-"181
-[; ;Modbus.c: 181:     }
+"182
+[; ;Modbus.c: 182:     }
 }
 [e :U 1551 ]
-"182
-[; ;Modbus.c: 182:     return 0;
+"183
+[; ;Modbus.c: 183:     return 0;
 [e ) -> -> 0 `i `a ]
 [e $UE 1550  ]
-"184
-[; ;Modbus.c: 184: }
+"185
+[; ;Modbus.c: 185: }
 [e :UE 1550 ]
 }
 [p f _printf 12615812 ]
 [a 1C 67 82 67 58 32 37 105 0 ]
+[a 2C 99 114 99 72 105 103 104 58 32 48 120 37 48 50 120 32 32 99 114 99 76 111 119 58 32 48 120 37 48 50 120 32 32 13 10 0 ]
 [a 4C 67 82 67 32 100 105 100 32 78 79 84 32 99 104 101 99 107 32 111 117 116 46 32 13 10 10 0 ]
 [a 3C 67 82 67 32 67 104 101 99 107 101 100 32 79 117 116 46 32 13 10 10 0 ]
-[a 2C 99 114 99 72 105 103 104 58 32 48 120 37 48 52 120 32 32 99 114 99 76 111 119 58 32 48 120 37 48 52 120 32 32 13 10 10 0 ]

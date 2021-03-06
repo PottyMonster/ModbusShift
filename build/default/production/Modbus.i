@@ -17255,7 +17255,9 @@ void ClearModbusData(void);
 void ClearRxBuff(void);
 # 159 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 201 "./Modbus.h"
+# 186 "./Modbus.h"
+_Bool checkCRC(void);
+# 227 "./Modbus.h"
 _Bool ModbusRx(void);
 # 3 "Modbus.c" 2
 
@@ -17354,7 +17356,8 @@ unsigned int generateCRC(unsigned int messageLength){
 }
 
 
-unsigned char checkCRC(void){
+
+_Bool checkCRC(void){
   unsigned int crc = 0xFFFF;
   unsigned int crcHigh = 0;
   unsigned int crcLow = 0;
@@ -17375,7 +17378,7 @@ unsigned char checkCRC(void){
 
   crcHigh = (crc & 0x00FF);
   crcLow = (crc & 0xFF00) >>8;
-  printf("crcHigh: 0x%04x  crcLow: 0x%04x  \r\n\n", crcHigh, crcLow);
+  printf("crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);
   if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
   {
     return 1;
@@ -17387,7 +17390,7 @@ unsigned char checkCRC(void){
 
 
 _Bool ModbusRx(){
-
+    RXMode();
     if(EUSART1_is_rx_ready()){
         do{
             if(EUSART1_is_rx_ready()){

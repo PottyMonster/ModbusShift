@@ -16,7 +16,7 @@ bool Debug = 0;
 
 
 //11 03 06 AE41 5652 4340 49AD
-unsigned char data1[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
+unsigned char MBRespon[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
 
 
 void InitialiseString(void){
@@ -32,13 +32,32 @@ void InitialiseString(void){
     printf("\rInitalisation Complete - Ready\r\n\n");
 }
 
+
 // https://stackoverflow.com/questions/59882336/how-to-write-a-hex-string-over-uart-for-pic-microcontrollers-in-c
-void UART1_Write_string(unsigned char * data, int data_len)
-{
+/*
+void UART1_Write_string(unsigned char * data){
+    TXMode();
+    __delay_ms(50);
+    int data_len = sizeof(data);
+    
     for (int i = 0; i < data_len; i++) {
         EUSART1_Write(data[i]);
     }
 }
+ */
+
+ void UART1_Write_string(unsigned char * data, int data_len)
+{
+     TXMode();
+    while(!EUSART1_is_tx_ready()); // Hold the program until TX is ready
+    for (int i = 0; i < data_len; i++) {
+        EUSART1_Write(data[i]);
+        while(!EUSART1_is_tx_done()); // Hold until sent
+    }
+
+}
+
+ 
 
 
 
@@ -47,11 +66,11 @@ void PrintModbus(){
     // expected by ExpectedBytes
 
     int i=0;
-    printf("\r\nModbus Data Capture Complete:\r\n");
+    printf("Modbus Data Capture Complete:\r\n");
     for(i=0; i< ModDataCnt ; i++ ){
-        printf("   Byte Num: %i Val: 0x%02x \r\n", i, ModbusData[i]);
+        printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
     }
- 
+    printf("\r\n\n");
     
 }
 
@@ -96,6 +115,14 @@ void main(void)
             // Data has been received and ready to process
             PrintModbus();
 
+            if(ModbusData[1] == 0x03)
+            {
+                UART1_Write_string(MBRespon,sizeof(MBRespon));
+                // printf("Function Code 0x03\r\n");
+            }else{
+                printf("Function Code is: 0x%02x \r\n", ModbusData[1]);
+                
+            }
         
             ClearModbusData();   // Needed when complete
         }

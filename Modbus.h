@@ -162,6 +162,32 @@ void AddRxBuffToModBus(void);
 
 /**
   @Summary
+    Validates the received Modbus data CRC
+
+  @Description
+    Reads the Modbus command received and validates the CRC is correct for the
+    command bytes.
+
+  @Preconditions
+    A complete Modbus message must exist  in the ModbusData array, and the length
+    of the message contained in ModDataCnt.
+
+  @Param
+    None
+
+  @Returns
+    None
+
+  @Comment
+    None
+ 
+*/
+// unsigned char checkCRC(void);
+bool checkCRC(void);
+
+
+/**
+  @Summary
     Receives a Modbus input string from EUSART1.
 
   @Description
