@@ -1,13 +1,12 @@
 #include "xc.h"
 #include "mcc_generated_files/mcc.h"
 #include "Modbus.h"
+#include "stdio.h"
 
 // Define and initalise data. Might need to go in Main if global.
 int ByteNum = 0;
-
 int ExpectedBytes = 8;
 unsigned char rxData[100] = { 0 };      // Taken from USART Buffer
-
 bool RXStat = 0;
 volatile eusart1_status_t rxStatus;
 
@@ -30,6 +29,8 @@ void ClearModbusData(){
     for(i=0; i<99; i++ ){
         ModbusData[i] = 0xFF;
     }
+    
+    ModDataCnt = 0;    
 }
 
 
@@ -66,6 +67,76 @@ void AddRxBuffToModBus(){
    
 }
 
+unsigned int generateCRC(unsigned int messageLength){
+    unsigned int crc = 0xFFFF;
+    unsigned int crcHigh = 0;
+    unsigned int crcLow = 0;
+    int i,j = 0;
+
+      for(i=0;i<messageLength-2;i++){
+        crc ^= rxData[i];
+        for(j=8; j!=0; j--){
+          if((crc & 0x0001) != 0){
+            crc >>= 1;
+            crc ^= 0xA001;
+          }
+          else{
+            crc >>= 1;
+          }
+        }
+      }
+    //bytes are wrong way round so doing a swap here..
+    crcHigh = (crc & 0x00FF) <<8;
+    crcLow = (crc & 0xFF00) >>8;
+    crcHigh |= crcLow;
+    crc = crcHigh;
+    printf("CRC: %i", crc);
+    return crc;
+    
+    /*
+        crc = generateCRC(8);
+        Need to use it like this
+        response[6] = crc >> 8;
+        response[7] = crc;
+     * 
+     * 
+     */
+    
+    
+}
+
+
+unsigned char checkCRC(void){
+  unsigned int crc = 0xFFFF;
+  unsigned int crcHigh = 0;
+  unsigned int crcLow = 0;
+  int i,j = 0;
+
+    for(i=0;i<ModDataCnt-2;i++){
+      crc ^= ModbusData[i];
+      for(j=8; j!=0; j--){
+        if((crc & 0x0001) != 0){
+          crc >>= 1;
+          crc ^= 0xA001;
+        }
+        else{
+          crc >>= 1;
+        }
+      }
+    }
+  //bytes are wrong way round so doing a swap here..
+  crcHigh = (crc & 0x00FF);
+  crcLow = (crc & 0xFF00) >>8;
+  printf("crcHigh: 0x%04x  crcLow: 0x%04x  \r\n\n", crcHigh, crcLow);
+  if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
+  {
+    return 1;
+  }
+  else{
+    return 0;
+  }
+}
+
 
 bool ModbusRx(){
     
@@ -94,9 +165,21 @@ bool ModbusRx(){
         }while(ModDataCnt != ExpectedBytes);
 
         D3LED_Toggle();
-        // Complete Modbus String ready to process.        
+        
+        // generateCRC(ModDataCnt);
+        if(checkCRC() == 1)
+        {
+            printf("CRC Checked Out. \r\n\n");
+        }else{
+            printf("CRC did NOT check out. \r\n\n");
+        }
+        // Complete Modbus String ready to process.     
+        
+        // Generage response
+        
         return 1;
     }
     return 0;
 
 }
+

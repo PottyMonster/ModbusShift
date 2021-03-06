@@ -17339,7 +17339,7 @@ void InitialiseString(void){
     printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
     printf("\rCard Ser No. xxxxxxx \r\n");
     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar  4 2021", "19:28:02", 2100);
+            "Mar  6 2021", "10:09:44", 2100);
     printf("\rFunction Codes Supported:\r\n");
     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
@@ -17366,7 +17366,6 @@ void PrintModbus(){
         printf("   Byte Num: %i Val: 0x%02x \r\n", i, ModbusData[i]);
     }
 
-    ModDataCnt = 0;
 
 }
 

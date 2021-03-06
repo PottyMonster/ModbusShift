@@ -17261,11 +17261,10 @@ _Bool ModbusRx(void);
 
 
 
-int ByteNum = 0;
 
+int ByteNum = 0;
 int ExpectedBytes = 8;
 unsigned char rxData[100] = { 0 };
-
 _Bool RXStat = 0;
 volatile eusart1_status_t rxStatus;
 
@@ -17288,6 +17287,8 @@ void ClearModbusData(){
     for(i=0; i<99; i++ ){
         ModbusData[i] = 0xFF;
     }
+
+    ModDataCnt = 0;
 }
 
 
@@ -17324,6 +17325,66 @@ void AddRxBuffToModBus(){
 
 }
 
+unsigned int generateCRC(unsigned int messageLength){
+    unsigned int crc = 0xFFFF;
+    unsigned int crcHigh = 0;
+    unsigned int crcLow = 0;
+    int i,j = 0;
+
+      for(i=0;i<messageLength-2;i++){
+        crc ^= rxData[i];
+        for(j=8; j!=0; j--){
+          if((crc & 0x0001) != 0){
+            crc >>= 1;
+            crc ^= 0xA001;
+          }
+          else{
+            crc >>= 1;
+          }
+        }
+      }
+
+    crcHigh = (crc & 0x00FF) <<8;
+    crcLow = (crc & 0xFF00) >>8;
+    crcHigh |= crcLow;
+    crc = crcHigh;
+    printf("CRC: %i", crc);
+    return crc;
+# 106 "Modbus.c"
+}
+
+
+unsigned char checkCRC(void){
+  unsigned int crc = 0xFFFF;
+  unsigned int crcHigh = 0;
+  unsigned int crcLow = 0;
+  int i,j = 0;
+
+    for(i=0;i<ModDataCnt-2;i++){
+      crc ^= ModbusData[i];
+      for(j=8; j!=0; j--){
+        if((crc & 0x0001) != 0){
+          crc >>= 1;
+          crc ^= 0xA001;
+        }
+        else{
+          crc >>= 1;
+        }
+      }
+    }
+
+  crcHigh = (crc & 0x00FF);
+  crcLow = (crc & 0xFF00) >>8;
+  printf("crcHigh: 0x%04x  crcLow: 0x%04x  \r\n\n", crcHigh, crcLow);
+  if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
+  {
+    return 1;
+  }
+  else{
+    return 0;
+  }
+}
+
 
 _Bool ModbusRx(){
 
@@ -17352,6 +17413,17 @@ _Bool ModbusRx(){
         }while(ModDataCnt != ExpectedBytes);
 
         do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+
+
+        if(checkCRC() == 1)
+        {
+            printf("CRC Checked Out. \r\n\n");
+        }else{
+            printf("CRC did NOT check out. \r\n\n");
+        }
+
+
+
 
         return 1;
     }

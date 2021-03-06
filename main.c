@@ -51,8 +51,7 @@ void PrintModbus(){
     for(i=0; i< ModDataCnt ; i++ ){
         printf("   Byte Num: %i Val: 0x%02x \r\n", i, ModbusData[i]);
     }
-    
-    ModDataCnt = 0;
+ 
     
 }
 
@@ -96,7 +95,7 @@ void main(void)
         if(ModbusRx() == 1){
             // Data has been received and ready to process
             PrintModbus();
-        
+
         
             ClearModbusData();   // Needed when complete
         }
