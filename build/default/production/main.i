@@ -17329,32 +17329,34 @@ _Bool Debug = 0;
 int i = 0;
 int MBResCnt = 0;
 unsigned int MBResCRC = 0xFFFF;
+int ByteHi, ByteLo = 0xFF;
 
-unsigned char MB300xx[32] = { 0x01,0x07,0xFF,0x04,0x05,0x06,0x07,0x08,
-                            0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,
-                            0x10,0x11,0x12,0x13,0x14,0x15,0x16,
-                            0x17,0x18,0x19,0x20,0x21,0x22,0x23,
-                            0x24,0x25, 0x26};
+unsigned int MB300xx[32] = { 0x0000,0x0007,0x07FF,0x0004,0x0005,0x0006,0x0007,0x0008,
+                            0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
+                            0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
+                            0x0017,0x0018,0x0019,0x0020,0x0021,0x0022,0x0023,
+                            0x0024,0x0025, 0x0026};
 
 
-unsigned char MBRespon[32] = { 0 };
-# 34 "main.c"
+unsigned int MBRespon[32] = { 0xFFFF };
+# 39 "main.c"
 void InitialiseString(void){
 
 
     printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
     printf("\rCard Ser No. xxxxxxx \r\n");
     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar  7 2021", "12:10:40", 2100);
+            "Mar  7 2021", "16:25:04", 2100);
     printf("\rFunction Codes Supported:\r\n");
     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
     printf("\rInitalisation Complete - Ready\r\n\n");
 }
-# 61 "main.c"
- void UART1_Write_string(unsigned char * data, int data_len)
+
+
+ void UART1_Write_string(unsigned int * data, int data_len)
 {
-     TXMode();
+    TXMode();
     while(!EUSART1_is_tx_ready());
     for (int i = 0; i < data_len; i++) {
         EUSART1_Write(data[i]);
@@ -17378,7 +17380,7 @@ void PrintModRespon(){
 void ClearModbusRespon(){
     int i = 0;
     for(i=0; i<32; i++ ){
-        MBRespon[i] = 0xFF;
+        MBRespon[i] = 0xFFFF;
     }
 }
 
@@ -17395,8 +17397,11 @@ void PrintModbus(){
     printf("\r\n\n");
 
 }
-# 146 "main.c"
-unsigned int generateCRCHI(int MessCnt){
+
+
+
+
+unsigned int generateCRC(int MessCnt, _Bool HiOrLo){
   unsigned int crc = 0xFFFF;
   unsigned int crcHigh = 0;
   unsigned int crcLow = 0;
@@ -17418,38 +17423,16 @@ unsigned int generateCRCHI(int MessCnt){
     crcHigh = (crc & 0x00FF);
     crcLow = (crc & 0xFF00) >>8;
 
-
-    crc = crcHigh;
-  return crc;
-}
-
-unsigned int generateCRCLo(int MessCnt){
-  unsigned int crc = 0xFFFF;
-  unsigned int crcHigh = 0;
-  unsigned int crcLow = 0;
-  int i,j = 0;
-
-    for(i=0;i<MessCnt;i++){
-      crc ^= MBRespon[i];
-      for(j=8; j!=0; j--){
-        if((crc & 0x0001) != 0){
-          crc >>= 1;
-          crc ^= 0xA001;
-        }
-        else{
-          crc >>= 1;
-        }
-      }
+    if(HiOrLo == 1){
+        return crcHigh;
+    }else{
+        return crcLow;
     }
 
-    crcHigh = (crc & 0x00FF);
-    crcLow = (crc & 0xFF00) >>8;
-
-
-    crc = crcLow;
-  return crc;
 }
-# 209 "main.c"
+
+
+
 void main(void)
 {
 
@@ -17494,31 +17477,36 @@ void main(void)
 
             if(ModbusData[1] == 0x03)
             {
-# 262 "main.c"
+# 185 "main.c"
                 MBResCnt = 0;
-                MBRespon[0] = ModbusData[0];
-                MBRespon[1] = ModbusData[1];
-                MBRespon[2] = ModbusData[5] *2;
-                MBResCnt = MBResCnt + 3;
-                for(i=0; i< (ModbusData[5]*2) ; i++ ){
-                    MBRespon[i +3] = MB300xx[ModbusData[3] +i -1];
-
+                MBRespon[MBResCnt] = ModbusData[0];
                 MBResCnt++;
+                MBRespon[MBResCnt] = ModbusData[1];
+                MBResCnt++;
+                MBRespon[MBResCnt] = ModbusData[5] *2;
+                MBResCnt++;
+                for(i=0; i< (ModbusData[5]) ; i++ ){
+
+
+
+
+
+                    ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
+                    ByteHi = MB300xx[ModbusData[3] +i] >> 8;
+                    MBRespon[MBResCnt] = ByteHi;
+                    MBResCnt++;
+                    MBRespon[MBResCnt] = ByteLo;
+                    MBResCnt++;
                 }
 
+                ByteHi = generateCRC(MBResCnt, 1);
+                ByteLo = generateCRC(MBResCnt, 0);
 
-
-
-
-
-
-                MBRespon[i +3] = generateCRCHI(MBResCnt);
-                MBRespon[i +4] = generateCRCLo(MBResCnt);
-
+                MBRespon[MBResCnt] = ByteHi;
+                MBRespon[MBResCnt +1] = ByteLo;
                 MBResCnt = MBResCnt +2;
 
                 PrintModRespon();
-
                 UART1_Write_string(MBRespon,MBResCnt);
 
             }else{

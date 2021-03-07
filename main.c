@@ -13,15 +13,16 @@ bool Debug = 0;
 int i = 0;
 int MBResCnt = 0;
 unsigned int MBResCRC = 0xFFFF;
+int ByteHi, ByteLo = 0xFF;
 
-unsigned char MB300xx[32] = { 0x01,0x07,0xFF,0x04,0x05,0x06,0x07,0x08,
-                            0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,
-                            0x10,0x11,0x12,0x13,0x14,0x15,0x16,
-                            0x17,0x18,0x19,0x20,0x21,0x22,0x23,
-                            0x24,0x25, 0x26};     // Assigns 32x 16bit Read Registers
+unsigned int MB300xx[32] = { 0x0000,0x0007,0x07FF,0x0004,0x0005,0x0006,0x0007,0x0008,
+                            0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
+                            0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
+                            0x0017,0x0018,0x0019,0x0020,0x0021,0x0022,0x0023,
+                            0x0024,0x0025, 0x0026};     // Assigns 32x 16bit Read Registers
 
 
-unsigned char MBRespon[32] = { 0 };
+unsigned int MBRespon[32] = { 0xFFFF };
 
 // int loop;
 
@@ -30,6 +31,10 @@ unsigned char MBRespon[32] = { 0 };
 //11 03 06 AE41 5652 4340 49AD
 // unsigned char MBRespon[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
 
+// 01 03 00 02 00 05
+// will reply with
+// 01 03 06 07 ff 00 04 00 05 b5 14
+// when using default MB300xx[32] array above.
 
 void InitialiseString(void){
     // Send Initalisation String
@@ -45,22 +50,9 @@ void InitialiseString(void){
 }
 
 
-// https://stackoverflow.com/questions/59882336/how-to-write-a-hex-string-over-uart-for-pic-microcontrollers-in-c
-/*
-void UART1_Write_string(unsigned char * data){
-    TXMode();
-    __delay_ms(50);
-    int data_len = sizeof(data);
-    
-    for (int i = 0; i < data_len; i++) {
-        EUSART1_Write(data[i]);
-    }
-}
- */
-
- void UART1_Write_string(unsigned char * data, int data_len)
+ void UART1_Write_string(unsigned int * data, int data_len)
 {
-     TXMode();
+    TXMode();
     while(!EUSART1_is_tx_ready()); // Hold the program until TX is ready
     for (int i = 0; i < data_len; i++) {
         EUSART1_Write(data[i]);
@@ -84,7 +76,7 @@ void PrintModRespon(){
 void ClearModbusRespon(){
     int i = 0;    
     for(i=0; i<32; i++ ){
-        MBRespon[i] = 0xFF;
+        MBRespon[i] = 0xFFFF;
     }  
 }
 
@@ -102,48 +94,10 @@ void PrintModbus(){
     
 }
 
-/*
-unsigned int generateCRC(unsigned int messageLength){
-    unsigned int crc = 0xFFFF;
-    unsigned int crcHigh = 0;
-    unsigned int crcLow = 0;
-    int i,j = 0;
-
-      for(i=0;i<messageLength-2;i++){
-        crc ^= MBRespon[i];
-        for(j=8; j!=0; j--){
-          if((crc & 0x0001) != 0){
-            crc >>= 1;
-            crc ^= 0xA001;
-          }
-          else{
-            crc >>= 1;
-          }
-        }
-      }
-    //bytes are wrong way round so doing a swap here..
-    crcHigh = (crc & 0x00FF) <<8;
-    crcLow = (crc & 0xFF00) >>8;
-    crcHigh |= crcLow;
-    crc = crcHigh;
-    // printf("CRC: %i", crc);
-    return crc;
-    
-   //
-   //     crc = generateCRC(8);
-   //     Need to use it like this
-   //     response[6] = crc >> 8;
-   //     response[7] = crc;
-
-    
-}
-*/
-
-
 
 
 // unsigned char checkCRC(void){
-unsigned int generateCRCHI(int MessCnt){
+unsigned int generateCRC(int MessCnt, bool HiOrLo){
   unsigned int crc = 0xFFFF;
   unsigned int crcHigh = 0;
   unsigned int crcLow = 0;
@@ -164,45 +118,14 @@ unsigned int generateCRCHI(int MessCnt){
   //bytes are wrong way round so doing a swap here..
     crcHigh = (crc & 0x00FF);
     crcLow = (crc & 0xFF00) >>8;
-    // crcHigh |= crcLow;
-    // printf("Send CRC crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);    
-    crc = crcHigh;
-  return crc;
-}
-
-unsigned int generateCRCLo(int MessCnt){
-  unsigned int crc = 0xFFFF;
-  unsigned int crcHigh = 0;
-  unsigned int crcLow = 0;
-  int i,j = 0;
-
-    for(i=0;i<MessCnt;i++){
-      crc ^= MBRespon[i];
-      for(j=8; j!=0; j--){
-        if((crc & 0x0001) != 0){
-          crc >>= 1;
-          crc ^= 0xA001;
-        }
-        else{
-          crc >>= 1;
-        }
-      }
+    
+    if(HiOrLo == 1){
+        return crcHigh;
+    }else{
+        return crcLow;
     }
-  //bytes are wrong way round so doing a swap here..
-    crcHigh = (crc & 0x00FF);
-    crcLow = (crc & 0xFF00) >>8;
-    // crcHigh |= crcLow;
-    // printf("Send CRC crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);    
-    crc = crcLow;
-  return crc;
+    
 }
-
-
-
-
-
-
-
 
 
 
@@ -260,32 +183,34 @@ void main(void)
                 
                 // Function to shift in values from shift registers to MB300xx
                 MBResCnt = 0;
-                MBRespon[0] = ModbusData[0];    // Address
-                MBRespon[1] = ModbusData[1];    // Function Code
-                MBRespon[2] = ModbusData[5] *2;  // Number of bytes more
-                MBResCnt = MBResCnt + 3;
-                for(i=0; i< (ModbusData[5]*2) ; i++ ){
-                    MBRespon[i +3] = MB300xx[ModbusData[3] +i -1];
-                    // Response[3] = MB300xx[02]
+                MBRespon[MBResCnt] = ModbusData[0];    // Address
                 MBResCnt++;
+                MBRespon[MBResCnt] = ModbusData[1];    // Function Code
+                MBResCnt++;
+                MBRespon[MBResCnt] = ModbusData[5] *2;  // Number of bytes more
+                MBResCnt++;
+                for(i=0; i< (ModbusData[5]) ; i++ ){
+                    
+                    // Check ModbusData[5] (num registers max is 0x20 (Decimal 32) and
+                    // when start address ModbusData[3] is less than 0x20 (32)
+                    // and when adding on Num Registers to base address doesn't go over 32
+                    
+                    ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
+                    ByteHi = MB300xx[ModbusData[3] +i] >> 8;
+                    MBRespon[MBResCnt] = ByteHi;                   
+                    MBResCnt++;
+                    MBRespon[MBResCnt] = ByteLo;
+                    MBResCnt++;
                 }
-                // MBRespon[i +3] = 0x49;              // CRC Hi
-                // MBRespon[i +4] = 0xAD;              // CRC Hi
-                
-                // MBResCRC = generateCRC(MBResCnt);
-                // MBRespon[i +3] = MBResCRC >> 8;
-                // MBRespon[i +4] = MBResCRC;
-                
-                // https://unserver.xyz/modbus-guide/#modbus-rtu-data-frame-section
-                
-                
-                MBRespon[i +3] = generateCRCHI(MBResCnt);
-                MBRespon[i +4] = generateCRCLo(MBResCnt);
 
-                MBResCnt =  MBResCnt +2;                
+                ByteHi = generateCRC(MBResCnt, 1);  // CRC Hi
+                ByteLo = generateCRC(MBResCnt, 0);  // CRC Lo
                 
-                PrintModRespon();
+                MBRespon[MBResCnt] = ByteHi;
+                MBRespon[MBResCnt +1] = ByteLo;
+                MBResCnt = MBResCnt +2;
                 
+                PrintModRespon();   // Slows the response down.          
                 UART1_Write_string(MBRespon,MBResCnt);
 
             }else{
