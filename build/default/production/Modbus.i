@@ -17270,6 +17270,7 @@ unsigned char rxData[100] = { 0 };
 _Bool RXStat = 0;
 volatile eusart1_status_t rxStatus;
 
+unsigned char MB400xx[32] = { 0 };
 
 
 void TXMode(){
@@ -17327,33 +17328,6 @@ void AddRxBuffToModBus(){
 
 }
 
-unsigned int generateCRC(unsigned int messageLength){
-    unsigned int crc = 0xFFFF;
-    unsigned int crcHigh = 0;
-    unsigned int crcLow = 0;
-    int i,j = 0;
-
-      for(i=0;i<messageLength-2;i++){
-        crc ^= rxData[i];
-        for(j=8; j!=0; j--){
-          if((crc & 0x0001) != 0){
-            crc >>= 1;
-            crc ^= 0xA001;
-          }
-          else{
-            crc >>= 1;
-          }
-        }
-      }
-
-    crcHigh = (crc & 0x00FF) <<8;
-    crcLow = (crc & 0xFF00) >>8;
-    crcHigh |= crcLow;
-    crc = crcHigh;
-    printf("CRC: %i", crc);
-    return crc;
-# 106 "Modbus.c"
-}
 
 
 

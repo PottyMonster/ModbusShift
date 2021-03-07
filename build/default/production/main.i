@@ -17326,28 +17326,32 @@ _Bool ModbusRx(void);
 
 
 _Bool Debug = 0;
+int i = 0;
+int MBResCnt = 0;
+unsigned int MBResCRC = 0xFFFF;
+
+unsigned char MB300xx[32] = { 0x01,0x07,0xFF,0x04,0x05,0x06,0x07,0x08,
+                            0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,
+                            0x10,0x11,0x12,0x13,0x14,0x15,0x16,
+                            0x17,0x18,0x19,0x20,0x21,0x22,0x23,
+                            0x24,0x25, 0x26};
 
 
-
-
-
-
-unsigned char MBRespon[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
-
-
+unsigned char MBRespon[32] = { 0 };
+# 34 "main.c"
 void InitialiseString(void){
 
 
     printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
     printf("\rCard Ser No. xxxxxxx \r\n");
     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar  6 2021", "13:31:01", 2100);
+            "Mar  7 2021", "12:10:40", 2100);
     printf("\rFunction Codes Supported:\r\n");
     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
     printf("\rInitalisation Complete - Ready\r\n\n");
 }
-# 49 "main.c"
+# 61 "main.c"
  void UART1_Write_string(unsigned char * data, int data_len)
 {
      TXMode();
@@ -17360,7 +17364,23 @@ void InitialiseString(void){
 }
 
 
+void PrintModRespon(){
 
+    int i=0;
+    printf("Modbus Response:\r\n");
+    for(i=0; i< MBResCnt ; i++ ){
+        printf("   Byte %i : 0x%02x \r\n", i, MBRespon[i]);
+    }
+    printf("\r\n\n");
+
+}
+
+void ClearModbusRespon(){
+    int i = 0;
+    for(i=0; i<32; i++ ){
+        MBRespon[i] = 0xFF;
+    }
+}
 
 
 void PrintModbus(){
@@ -17375,8 +17395,61 @@ void PrintModbus(){
     printf("\r\n\n");
 
 }
+# 146 "main.c"
+unsigned int generateCRCHI(int MessCnt){
+  unsigned int crc = 0xFFFF;
+  unsigned int crcHigh = 0;
+  unsigned int crcLow = 0;
+  int i,j = 0;
+
+    for(i=0;i<MessCnt;i++){
+      crc ^= MBRespon[i];
+      for(j=8; j!=0; j--){
+        if((crc & 0x0001) != 0){
+          crc >>= 1;
+          crc ^= 0xA001;
+        }
+        else{
+          crc >>= 1;
+        }
+      }
+    }
+
+    crcHigh = (crc & 0x00FF);
+    crcLow = (crc & 0xFF00) >>8;
 
 
+    crc = crcHigh;
+  return crc;
+}
+
+unsigned int generateCRCLo(int MessCnt){
+  unsigned int crc = 0xFFFF;
+  unsigned int crcHigh = 0;
+  unsigned int crcLow = 0;
+  int i,j = 0;
+
+    for(i=0;i<MessCnt;i++){
+      crc ^= MBRespon[i];
+      for(j=8; j!=0; j--){
+        if((crc & 0x0001) != 0){
+          crc >>= 1;
+          crc ^= 0xA001;
+        }
+        else{
+          crc >>= 1;
+        }
+      }
+    }
+
+    crcHigh = (crc & 0x00FF);
+    crcLow = (crc & 0xFF00) >>8;
+
+
+    crc = crcLow;
+  return crc;
+}
+# 209 "main.c"
 void main(void)
 {
 
@@ -17408,6 +17481,8 @@ void main(void)
 
     RXMode();
     ClearRxBuff();
+    ClearModbusRespon();
+
 
     _Bool RXStat = 0;
 
@@ -17419,7 +17494,32 @@ void main(void)
 
             if(ModbusData[1] == 0x03)
             {
-                UART1_Write_string(MBRespon,sizeof(MBRespon));
+# 262 "main.c"
+                MBResCnt = 0;
+                MBRespon[0] = ModbusData[0];
+                MBRespon[1] = ModbusData[1];
+                MBRespon[2] = ModbusData[5] *2;
+                MBResCnt = MBResCnt + 3;
+                for(i=0; i< (ModbusData[5]*2) ; i++ ){
+                    MBRespon[i +3] = MB300xx[ModbusData[3] +i -1];
+
+                MBResCnt++;
+                }
+
+
+
+
+
+
+
+                MBRespon[i +3] = generateCRCHI(MBResCnt);
+                MBRespon[i +4] = generateCRCLo(MBResCnt);
+
+                MBResCnt = MBResCnt +2;
+
+                PrintModRespon();
+
+                UART1_Write_string(MBRespon,MBResCnt);
 
             }else{
                 printf("Function Code is: 0x%02x \r\n", ModbusData[1]);
@@ -17427,6 +17527,7 @@ void main(void)
             }
 
             ClearModbusData();
+            ClearModbusRespon();
         }
     }
 }

@@ -75,13 +75,21 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"22 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"34 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _InitialiseString InitialiseString `(v  1 e 1 0 ]
-"49
+"61
 [v _UART1_Write_string UART1_Write_string `(v  1 e 1 0 ]
-"64
+"73
+[v _PrintModRespon PrintModRespon `(v  1 e 1 0 ]
+"84
+[v _ClearModbusRespon ClearModbusRespon `(v  1 e 1 0 ]
+"92
 [v _PrintModbus PrintModbus `(v  1 e 1 0 ]
-"78
+"146
+[v _generateCRCHI generateCRCHI `(ui  1 e 2 0 ]
+"173
+[v _generateCRCLo generateCRCLo `(ui  1 e 2 0 ]
+"209
 [v _main main `(v  1 e 1 0 ]
 "88 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _EUSART1_Initialize EUSART1_Initialize `(v  1 e 1 0 ]
@@ -165,19 +173,19 @@
 [v _FLASH_EraseBlock FLASH_EraseBlock `(v  1 e 1 0 ]
 "55 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
-"15 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"16 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _TXMode TXMode `(v  1 e 1 0 ]
-"21
+"22
 [v _RXMode RXMode `(v  1 e 1 0 ]
-"27
+"28
 [v _ClearModbusData ClearModbusData `(v  1 e 1 0 ]
-"37
+"38
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
-"46
+"47
 [v _AddRxBuffToModBus AddRxBuffToModBus `(v  1 e 1 0 ]
-"110
+"74
 [v _checkCRC checkCRC `(a  1 e 1 0 ]
-"142
+"106
 [v _ModbusRx ModbusRx `(a  1 e 1 0 ]
 "12 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift/Modbus.h
 [v _ModbusData ModbusData `[100]uc  1 e 100 0 ]
@@ -417,7 +425,7 @@
 [v _LATC LATC `VEuc  1 e 1 @3973 ]
 "16723
 [v _LATD LATD `VEuc  1 e 1 @3974 ]
-[s S1102 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S1131 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -427,7 +435,7 @@
 `uc 1 LATD7 1 0 :1:7 
 ]
 "16750
-[s S1111 . 1 `uc 1 LD0 1 0 :1:0 
+[s S1140 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -436,8 +444,8 @@
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S1120 . 1 `S1102 1 . 1 0 `S1111 1 . 1 0 ]
-[v _LATDbits LATDbits `VES1120  1 e 1 @3974 ]
+[u S1149 . 1 `S1131 1 . 1 0 `S1140 1 . 1 0 ]
+[v _LATDbits LATDbits `VES1149  1 e 1 @3974 ]
 "16835
 [v _LATE LATE `VEuc  1 e 1 @3975 ]
 "16932
@@ -544,8 +552,14 @@
 [v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
 "69
 [v _nout nout `i  1 s 2 nout ]
-"19 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
-[v _MBRespon MBRespon `[11]uc  1 e 11 0 ]
+"13 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+[v _i i `i  1 e 2 0 ]
+"14
+[v _MBResCnt MBResCnt `i  1 e 2 0 ]
+"17
+[v _MB300xx MB300xx `[32]uc  1 e 32 0 ]
+"24
+[v _MBRespon MBRespon `[32]uc  1 e 32 0 ]
 "62 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _eusart1TxHead eusart1TxHead `VEuc  1 e 1 0 ]
 "63
@@ -622,25 +636,55 @@
 [v _RXStat RXStat `a  1 e 1 0 ]
 "11
 [v _rxStatus rxStatus `VES396  1 e 1 0 ]
-"78 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"209 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"130
+"297
 } 0
-"49
+"173
+[v _generateCRCLo generateCRCLo `(ui  1 e 2 0 ]
+{
+"174
+[v generateCRCLo@crc crc `ui  1 a 2 16 ]
+"177
+[v generateCRCLo@j j `i  1 a 2 14 ]
+[v generateCRCLo@i i `i  1 a 2 12 ]
+"176
+[v generateCRCLo@crcLow crcLow `ui  1 a 2 10 ]
+"173
+[v generateCRCLo@MessCnt MessCnt `i  1 p 2 4 ]
+"198
+} 0
+"146
+[v _generateCRCHI generateCRCHI `(ui  1 e 2 0 ]
+{
+"147
+[v generateCRCHI@crc crc `ui  1 a 2 15 ]
+"150
+[v generateCRCHI@j j `i  1 a 2 13 ]
+[v generateCRCHI@i i `i  1 a 2 11 ]
+"148
+[v generateCRCHI@crcHigh crcHigh `ui  1 a 2 9 ]
+"149
+[v generateCRCHI@crcLow crcLow `ui  1 a 2 7 ]
+"146
+[v generateCRCHI@MessCnt MessCnt `i  1 p 2 4 ]
+"171
+} 0
+"61
 [v _UART1_Write_string UART1_Write_string `(v  1 e 1 0 ]
 {
-"53
+"65
 [v UART1_Write_string@i i `i  1 a 2 10 ]
-"49
+"61
 [v UART1_Write_string@data data `*.39uc  1 p 2 5 ]
 [v UART1_Write_string@data_len data_len `i  1 p 2 7 ]
-"58
+"70
 } 0
-"15 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"16 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _TXMode TXMode `(v  1 e 1 0 ]
 {
-"18
+"19
 } 0
 "132 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _EUSART1_is_tx_ready EUSART1_is_tx_ready `(a  1 e 1 0 ]
@@ -755,37 +799,44 @@
 [v EUSART1_SetErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 4 ]
 "274
 } 0
-"64 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"92 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _PrintModbus PrintModbus `(v  1 e 1 0 ]
 {
-"68
+"96
 [v PrintModbus@i i `i  1 a 2 41 ]
-"75
+"103
 } 0
-"142 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"73
+[v _PrintModRespon PrintModRespon `(v  1 e 1 0 ]
+{
+"75
+[v PrintModRespon@i i `i  1 a 2 41 ]
+"82
+} 0
+"106 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _ModbusRx ModbusRx `(a  1 e 1 0 ]
 {
-"185
+"149
 } 0
-"110
+"74
 [v _checkCRC checkCRC `(a  1 e 1 0 ]
 {
-"114
-[v checkCRC@i i `i  1 a 2 8 ]
-"111
-[v checkCRC@crc crc `ui  1 a 2 6 ]
-"114
-[v checkCRC@j j `i  1 a 2 4 ]
-"113
-[v checkCRC@crcLow crcLow `ui  1 a 2 2 ]
-"112
-[v checkCRC@crcHigh crcHigh `ui  1 a 2 0 ]
-"139
+"78
+[v checkCRC@i i `i  1 a 2 54 ]
+"75
+[v checkCRC@crc crc `ui  1 a 2 52 ]
+"78
+[v checkCRC@j j `i  1 a 2 50 ]
+"77
+[v checkCRC@crcLow crcLow `ui  1 a 2 48 ]
+"76
+[v checkCRC@crcHigh crcHigh `ui  1 a 2 46 ]
+"103
 } 0
-"21
+"22
 [v _RXMode RXMode `(v  1 e 1 0 ]
 {
-"24
+"25
 } 0
 "137 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _EUSART1_is_rx_ready EUSART1_is_rx_ready `(a  1 e 1 0 ]
@@ -799,24 +850,24 @@
 [v EUSART1_Read@readValue readValue `uc  1 a 1 4 ]
 "171
 } 0
-"37 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"38 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
 {
-"39
+"40
 [v ClearRxBuff@i i `i  1 a 2 5 ]
-"44
+"45
 } 0
-"46
+"47
 [v _AddRxBuffToModBus AddRxBuffToModBus `(v  1 e 1 0 ]
 {
-"50
+"51
 [v AddRxBuffToModBus@i i `i  1 a 2 5 ]
-"68
+"69
 } 0
-"22 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+"34 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
 [v _InitialiseString InitialiseString `(v  1 e 1 0 ]
 {
-"33
+"45
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -832,9 +883,9 @@
 {
 "1371
 [v vfprintf@cfmt cfmt `*.32uc  1 a 2 82 ]
-[s S1218 _IO_FILE 0 ]
+[s S1240 _IO_FILE 0 ]
 "1368
-[v vfprintf@fp fp `*.2S1218  1 p 2 23 ]
+[v vfprintf@fp fp `*.2S1240  1 p 2 23 ]
 [v vfprintf@fmt fmt `*.32Cuc  1 p 2 25 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 27 ]
 "1382
@@ -851,9 +902,9 @@
 "672
 [v vfpfcnvrt@cp cp `*.34uc  1 a 2 8 ]
 [v vfpfcnvrt@c c `uc  1 a 1 10 ]
-[s S1218 _IO_FILE 0 ]
+[s S1240 _IO_FILE 0 ]
 "670
-[v vfpfcnvrt@fp fp `*.2S1218  1 p 2 72 ]
+[v vfpfcnvrt@fp fp `*.2S1240  1 p 2 72 ]
 [v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 74 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 76 ]
 "1365
@@ -868,9 +919,9 @@
 [v xtoa@i i `i  1 a 2 68 ]
 [v xtoa@w w `i  1 a 2 58 ]
 [v xtoa@p p `i  1 a 2 56 ]
-[s S1218 _IO_FILE 0 ]
+[s S1240 _IO_FILE 0 ]
 "623
-[v xtoa@fp fp `*.2S1218  1 p 2 33 ]
+[v xtoa@fp fp `*.2S1240  1 p 2 33 ]
 [v xtoa@d d `uo  1 p 8 35 ]
 [v xtoa@x x `uc  1 p 1 43 ]
 "665
@@ -908,9 +959,9 @@
 [v utoa@i i `i  1 a 2 63 ]
 [v utoa@w w `i  1 a 2 53 ]
 [v utoa@p p `i  1 a 2 51 ]
-[s S1218 _IO_FILE 0 ]
+[s S1240 _IO_FILE 0 ]
 "593
-[v utoa@fp fp `*.2S1218  1 p 2 33 ]
+[v utoa@fp fp `*.2S1240  1 p 2 33 ]
 [v utoa@d d `uo  1 p 8 35 ]
 "619
 } 0
@@ -949,9 +1000,9 @@
 "549
 [v stoa@w w `i  1 a 2 29 ]
 [v stoa@i i `i  1 a 2 27 ]
-[s S1218 _IO_FILE 0 ]
+[s S1240 _IO_FILE 0 ]
 "546
-[v stoa@fp fp `*.2S1218  1 p 2 15 ]
+[v stoa@fp fp `*.2S1240  1 p 2 15 ]
 [v stoa@s s `*.34uc  1 p 2 17 ]
 "548
 [v stoa@F1139 F1139 `[7]uc  1 s 7 F1139 ]
@@ -967,9 +1018,9 @@
 [v dtoa@s s `i  1 a 2 57 ]
 [v dtoa@w w `i  1 a 2 55 ]
 [v dtoa@p p `i  1 a 2 53 ]
-[s S1218 _IO_FILE 0 ]
+[s S1240 _IO_FILE 0 ]
 "274
-[v dtoa@fp fp `*.2S1218  1 p 2 33 ]
+[v dtoa@fp fp `*.2S1240  1 p 2 33 ]
 [v dtoa@d d `o  1 p 8 35 ]
 "315
 } 0
@@ -979,9 +1030,9 @@
 "74
 [v pad@w w `i  1 a 2 31 ]
 [v pad@i i `i  1 a 2 29 ]
-[s S1218 _IO_FILE 0 ]
+[s S1240 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.2S1218  1 p 2 22 ]
+[v pad@fp fp `*.2S1240  1 p 2 22 ]
 [v pad@buf buf `*.39uc  1 p 2 24 ]
 [v pad@p p `i  1 p 2 26 ]
 "95
@@ -1004,16 +1055,16 @@
 [v fputs@c c `uc  1 a 1 19 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 15 ]
-[s S1834 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.2S1834  1 p 2 17 ]
+[s S1856 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.2S1856  1 p 2 17 ]
 "19
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 6 ]
-[s S1834 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.2S1834  1 p 2 8 ]
+[s S1856 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.2S1856  1 p 2 8 ]
 "21
 } 0
 "201 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart2.c
@@ -1095,12 +1146,19 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 6 ]
 "53
 } 0
-"27 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"84 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\main.c
+[v _ClearModbusRespon ClearModbusRespon `(v  1 e 1 0 ]
+{
+"85
+[v ClearModbusRespon@i i `i  1 a 2 4 ]
+"89
+} 0
+"28 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _ClearModbusData ClearModbusData `(v  1 e 1 0 ]
 {
-"28
+"29
 [v ClearModbusData@i i `i  1 a 2 4 ]
-"34
+"35
 } 0
 "58 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `IIH(v  1 e 1 0 ]
