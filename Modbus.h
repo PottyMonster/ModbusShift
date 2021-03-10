@@ -225,6 +225,17 @@ bool checkCRC(void);
  
 */
 bool ModbusRx(void);
+void PrintModbus();
+void ClearModbusRespon();
+void PrintModRespon();
+void UART1_Write_string(unsigned int * data, int data_len);
+unsigned int generateCRC(int MessCnt, bool HiOrLo);
+void ModbusFC03(void);
+bool checkCRC(void);
+void ModbusError(int ErrorCode);
+void ModbusFC10(void);
+void PrintMB400(void);
+
 
 #ifndef MODBUS_H
 #define	MODBUS_H
