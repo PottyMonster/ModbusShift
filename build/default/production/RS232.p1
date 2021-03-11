@@ -1,84 +1,28 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"73 ./mcc_generated_files/mcc.h
-[; ;./mcc_generated_files/mcc.h: 73: void SYSTEM_Initialize(void);
-[v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"27764 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 27764:     struct {
-[s S1460 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1460 . INT0EDG INT1EDG INT2EDG . IPEN PEIE_GIEL GIE_GIEH ]
-"27773
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 27773:     struct {
-[s S1461 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1461 . . PEIE GIE ]
-"27778
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 27778:     struct {
-[s S1462 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1462 . . GIEL GIEH ]
-"27763
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 27763: typedef union {
-[u S1459 `S1460 1 `S1461 1 `S1462 1 ]
-[n S1459 . . . . ]
-"27784
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 27784: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
-[v _INTCONbits `VS1459 ~T0 @X0 0 e@4082 ]
-"16393
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16393:     struct {
-[s S824 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S824 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"16403
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16403:     struct {
-[s S825 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S825 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"16392
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16392: typedef union {
-[u S823 `S824 1 `S825 1 ]
-[n S823 . . . ]
-"16414
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16414: extern volatile LATAbits_t LATAbits __attribute__((address(0xF83)));
-[v _LATAbits `VS823 ~T0 @X0 0 e@3971 ]
-"12 ./RS232.h
-[; ;./RS232.h: 12: void InitialiseString(void);
-[v _InitialiseString `(v ~T0 @X0 0 ef ]
-"68 ./Modbus.h
-[; ;./Modbus.h: 68: void RXMode(void);
-[v _RXMode `(v ~T0 @X0 0 ef ]
-"118
-[; ;./Modbus.h: 118: void ClearRxBuff(void);
-[v _ClearRxBuff `(v ~T0 @X0 0 ef ]
-"229
-[; ;./Modbus.h: 229: void ClearModbusRespon();
-[v _ClearModbusRespon `(v ~T0 @X0 0 e? ]
-"227
-[; ;./Modbus.h: 227: _Bool ModbusRx(void);
-[v _ModbusRx `(a ~T0 @X0 0 ef ]
-"228
-[; ;./Modbus.h: 228: void PrintModbus();
-[v _PrintModbus `(v ~T0 @X0 0 e? ]
 "111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"233 ./Modbus.h
-[; ;./Modbus.h: 233: void ModbusFC03(void);
-[v _ModbusFC03 `(v ~T0 @X0 0 ef ]
-"92
-[; ;./Modbus.h: 92: void ClearModbusData(void);
-[v _ClearModbusData `(v ~T0 @X0 0 ef ]
-"237
-[; ;./Modbus.h: 237: void PrintMB400(void);
-[v _PrintMB400 `(v ~T0 @X0 0 ef ]
-"236
-[; ;./Modbus.h: 236: void ModbusFC10(void);
-[v _ModbusFC10 `(v ~T0 @X0 0 ef ]
-"235
-[; ;./Modbus.h: 235: void ModbusError(int ErrorCode);
-[v _ModbusError `(v ~T0 @X0 0 ef1`i ]
-"11 ./RS232.h
-[; ;./RS232.h: 11: int ReadRX232(int NumChars);
-[v _ReadRX232 `(i ~T0 @X0 0 ef1`i ]
-"15
-[; ;./RS232.h: 15: _Bool ValidateCmd(void);
-[v _ValidateCmd `(a ~T0 @X0 0 ef ]
-"33 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h
+"214 ./mcc_generated_files/eusart2.h
+[; ;./mcc_generated_files/eusart2.h: 214: _Bool EUSART2_is_rx_ready(void);
+[v _EUSART2_is_rx_ready `(a ~T0 @X0 0 ef ]
+"329
+[; ;./mcc_generated_files/eusart2.h: 329: uint8_t EUSART2_Read(void);
+[v _EUSART2_Read `(uc ~T0 @X0 0 ef ]
+"349
+[; ;./mcc_generated_files/eusart2.h: 349: void EUSART2_Write(uint8_t txData);
+[v _EUSART2_Write `(v ~T0 @X0 0 ef1`uc ]
+"36 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h: 36: char *strcat (char *restrict, const char *restrict);
+[v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"54
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h: 54: size_t strlen (const char *);
+[v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
+"28
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h: 28: void *memmove (void *, const void *, size_t);
+[v _memmove `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+"39
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h: 39: int strcmp (const char *, const char *);
+[v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
+"33
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h: 33: char *strcpy (char *restrict, const char *restrict);
 [v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
@@ -1467,20 +1411,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28207
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 28207: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"12 ./Modbus.h
-[; ;./Modbus.h: 12: unsigned char ModbusData[100] = { 0 };
-[v _ModbusData `uc ~T0 @X0 -> 100 `i e ]
-[i _ModbusData
-:U ..
--> -> 0 `i `uc
-..
-]
-"13
-[; ;./Modbus.h: 13: int ModDataCnt = 0;
-[v _ModDataCnt `i ~T0 @X0 1 e ]
-[i _ModDataCnt
--> 0 `i
-]
 "8 ./RS232.h
 [; ;./RS232.h: 8: char Command[16];
 [v _Command `uc ~T0 @X0 -> 16 `i e ]
@@ -1490,222 +1420,302 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _Debug
 -> -> 0 `i `a
 ]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"29 main.c
-[; ;main.c: 29: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
-"30
-[; ;main.c: 30: {
+"8 RS232.c
+[; ;RS232.c: 8: char temp[2] = {'Z','\0'};
+[v _temp `uc ~T0 @X0 -> 2 `i e ]
+[i _temp
+:U ..
+-> -> 90 `ui `uc
+-> -> 0 `ui `uc
+..
+]
+"12
+[; ;RS232.c: 12: void InitialiseString(void){
+[v _InitialiseString `(v ~T0 @X0 1 ef ]
 {
-[e :U _main ]
+[e :U _InitialiseString ]
 [f ]
-"32
-[; ;main.c: 32:     SYSTEM_Initialize();
-[e ( _SYSTEM_Initialize ..  ]
-"39
-[; ;main.c: 39:     (INTCONbits.GIE = 1);
-[e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45:     (INTCONbits.PEIE = 1);
-[e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"50
-[; ;main.c: 50:     do { LATAbits.LATA4 = 0; } while(0);
-[e :U 1500 ]
-{
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
-}
-[e :U 1499 ]
-"51
-[; ;main.c: 51:     do { LATAbits.LATA5 = 0; } while(0);
-[e :U 1503 ]
-{
-[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
-}
-[e :U 1502 ]
-"52
-[; ;main.c: 52:     do { LATAbits.LATA6 = 0; } while(0);
-[e :U 1506 ]
-{
-[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
-}
-[e :U 1505 ]
-"53
-[; ;main.c: 53:     do { LATAbits.LATA7 = 0; } while(0);
-[e :U 1509 ]
-{
-[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
-}
-[e :U 1508 ]
-"55
-[; ;main.c: 55:     InitialiseString();
-[e ( _InitialiseString ..  ]
-"58
-[; ;main.c: 58:     RXMode();
-[e ( _RXMode ..  ]
-"59
-[; ;main.c: 59:     ClearRxBuff();
-[e ( _ClearRxBuff ..  ]
-"60
-[; ;main.c: 60:     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"63
-[; ;main.c: 63:     _Bool RXStat = 0;
-[v _RXStat `a ~T0 @X0 1 a ]
-[e = _RXStat -> -> 0 `i `a ]
-"65
-[; ;main.c: 65:     while(1)
-[e :U 1511 ]
-"66
-[; ;main.c: 66:     {
-{
-"67
-[; ;main.c: 67:         if(ModbusRx() == 1){
-[e $ ! == -> ( _ModbusRx ..  `i -> 1 `i 1513  ]
-{
-"71
-[; ;main.c: 71:                 PrintModbus();
-[e ( _PrintModbus ..  ]
-"74
-[; ;main.c: 74:             switch(ModbusData[1])
-[e $U 1515  ]
-"75
-[; ;main.c: 75:             {
-{
-"76
-[; ;main.c: 76:             case 0x03:
-[e :U 1516 ]
-"77
-[; ;main.c: 77:                 {
-{
-"78
-[; ;main.c: 78:                     printf("Function Code 0x03\r\n");
+"15
+[; ;RS232.c: 15:     printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
 [e ( _printf :s 1C ]
-"81
-[; ;main.c: 81:                     ModbusFC03();
-[e ( _ModbusFC03 ..  ]
-"82
-[; ;main.c: 82:                     ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"83
-[; ;main.c: 83:                     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"84
-[; ;main.c: 84:                     break;
-[e $U 1514  ]
-"85
-[; ;main.c: 85:                 }
-}
-"86
-[; ;main.c: 86:             case 0x10:
-[e :U 1517 ]
-"87
-[; ;main.c: 87:                 {
-{
-"88
-[; ;main.c: 88:                     printf("Function Code 0x10\r\n");
+"16
+[; ;RS232.c: 16:     printf("\rCard Ser No. xxxxxxx \r\n");
 [e ( _printf :s 2C ]
-"90
-[; ;main.c: 90:                     PrintMB400();
-[e ( _PrintMB400 ..  ]
-"91
-[; ;main.c: 91:                     ModbusFC10();
-[e ( _ModbusFC10 ..  ]
-"93
-[; ;main.c: 93:                     ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"94
-[; ;main.c: 94:                     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"95
-[; ;main.c: 95:                     break;
-[e $U 1514  ]
-"96
-[; ;main.c: 96:                 }
-}
-"97
-[; ;main.c: 97:             default:
-[e :U 1518 ]
-"98
-[; ;main.c: 98:                 {
-{
-"99
-[; ;main.c: 99:                     printf("Unsupported Function Code\r\n");
-[e ( _printf :s 3C ]
-"101
-[; ;main.c: 101:                     ModbusError(0x01);
-[e ( _ModbusError (1 -> 1 `i ]
-"102
-[; ;main.c: 102:                     ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"103
-[; ;main.c: 103:                     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"104
-[; ;main.c: 104:                     break;
-[e $U 1514  ]
-"105
-[; ;main.c: 105:                 }
-}
-"106
-[; ;main.c: 106:             }
-}
-[e $U 1514  ]
-[e :U 1515 ]
-[e [\ -> *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i , $ -> 3 `i 1516
- , $ -> 16 `i 1517
- 1518 ]
-[e :U 1514 ]
-"107
-[; ;main.c: 107:         }else if(ReadRX232(16) != 0){
-}
-[e $U 1519  ]
-[e :U 1513 ]
-[e $ ! != ( _ReadRX232 (1 -> 16 `i -> 0 `i 1520  ]
-{
-"110
-[; ;main.c: 110:             printf("Nothing on RS232 \r\n");
-[e ( _printf :s 4C ]
-"112
-[; ;main.c: 112:             if(ValidateCmd() ==1){
-[e $ ! == -> ( _ValidateCmd ..  `i -> 1 `i 1521  ]
-{
-"116
-[; ;main.c: 116:              }else{
-}
-[e $U 1522  ]
-[e :U 1521 ]
-{
-"118
-[; ;main.c: 118:              }
-}
-[e :U 1522 ]
-"120
-[; ;main.c: 120:              strcpy(Command, "");
-[e ( _strcpy (2 , &U _Command :s 5C ]
-"122
-[; ;main.c: 122:         }else{
-}
-[e $U 1523  ]
-[e :U 1520 ]
-{
-"124
-[; ;main.c: 124:         }
-}
-[e :U 1523 ]
-[e :U 1519 ]
-"126
-[; ;main.c: 126:     }
-}
-[e :U 1510 ]
-[e $U 1511  ]
-[e :U 1512 ]
-"127
-[; ;main.c: 127: }
+"17
+[; ;RS232.c: 17:     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
+[e ( _printf , , , (. :s 3C :s 4C :s 5C -> 2100 `i ]
+"19
+[; ;RS232.c: 19:     printf("\rFunction Codes Supported:\r\n");
+[e ( _printf :s 6C ]
+"20
+[; ;RS232.c: 20:     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
+[e ( _printf :s 7C ]
+"21
+[; ;RS232.c: 21:     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
+[e ( _printf :s 8C ]
+"22
+[; ;RS232.c: 22:     printf("\rInitalisation Complete - Ready\r\n\n");
+[e ( _printf :s 9C ]
+"23
+[; ;RS232.c: 23: }
 [e :UE 1497 ]
 }
-[p f _printf 8388608 ]
-[a 3C 85 110 115 117 112 112 111 114 116 101 100 32 70 117 110 99 116 105 111 110 32 67 111 100 101 13 10 0 ]
-[a 1C 70 117 110 99 116 105 111 110 32 67 111 100 101 32 48 120 48 51 13 10 0 ]
-[a 2C 70 117 110 99 116 105 111 110 32 67 111 100 101 32 48 120 49 48 13 10 0 ]
-[a 4C 78 111 116 104 105 110 103 32 111 110 32 82 83 50 51 50 32 13 10 0 ]
-[a 5C 0 ]
+"26
+[; ;RS232.c: 26: int ReadRX232(int NumChars)
+[v _ReadRX232 `(i ~T0 @X0 1 ef1`i ]
+"27
+[; ;RS232.c: 27: {
+{
+[e :U _ReadRX232 ]
+"26
+[; ;RS232.c: 26: int ReadRX232(int NumChars)
+[v _NumChars `i ~T0 @X0 1 r1 ]
+"27
+[; ;RS232.c: 27: {
+[f ]
+"30
+[; ;RS232.c: 30:     if(EUSART2_is_rx_ready())
+[e $ ! != -> ( _EUSART2_is_rx_ready ..  `i -> 0 `i 1499  ]
+"31
+[; ;RS232.c: 31:     {
+{
+"33
+[; ;RS232.c: 33:         do {
+[e :U 1502 ]
+{
+"36
+[; ;RS232.c: 36:              if(EUSART2_is_rx_ready())
+[e $ ! != -> ( _EUSART2_is_rx_ready ..  `i -> 0 `i 1503  ]
+"37
+[; ;RS232.c: 37:              {
+{
+"39
+[; ;RS232.c: 39:                  temp[0]=EUSART2_Read();
+[e = *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux -> ( _EUSART2_Read ..  `uc ]
+"41
+[; ;RS232.c: 41:                  EUSART2_Write(temp[0]);
+[e ( _EUSART2_Write (1 -> *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux `uc ]
+"43
+[; ;RS232.c: 43:                  if(temp[0]!='\r'){
+[e $ ! != -> *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux `ui -> 13 `ui 1504  ]
+{
+"44
+[; ;RS232.c: 44:                      strcat(Command, temp);
+[e ( _strcat (2 , &U _Command -> &U _temp `*Cuc ]
+"45
+[; ;RS232.c: 45:                  };
+}
+[e :U 1504 ]
+"47
+[; ;RS232.c: 47:                  if(strlen(Command)>NumChars)
+[e $ ! > ( _strlen (1 -> &U _Command `*Cuc -> _NumChars `ui 1505  ]
+"48
+[; ;RS232.c: 48:                  {
+{
+"50
+[; ;RS232.c: 50:                      memmove(Command, Command+1, strlen(Command));
+[e ( _memmove (3 , , -> &U _Command `*v -> + &U _Command * -> -> 1 `i `x -> -> # *U &U _Command `i `x `*Cv ( _strlen (1 -> &U _Command `*Cuc ]
+"52
+[; ;RS232.c: 52:                  };
+}
+[e :U 1505 ]
+"54
+[; ;RS232.c: 54:                  if(temp[0]=='\r'){
+[e $ ! == -> *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux `ui -> 13 `ui 1506  ]
+{
+"56
+[; ;RS232.c: 56:                       temp[0]='z';
+[e = *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux -> -> 122 `ui `uc ]
+"57
+[; ;RS232.c: 57:                       return NumChars;
+[e ) _NumChars ]
+[e $UE 1498  ]
+"58
+[; ;RS232.c: 58:                  };
+}
+[e :U 1506 ]
+"59
+[; ;RS232.c: 59:              }else{
+}
+[e $U 1507  ]
+[e :U 1503 ]
+{
+"63
+[; ;RS232.c: 63:              }
+}
+[e :U 1507 ]
+"65
+[; ;RS232.c: 65:         }while( temp[0] !='\r' );
+}
+[e $ != -> *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux `ui -> 13 `ui 1502  ]
+[e :U 1501 ]
+"66
+[; ;RS232.c: 66:         printf("\r\n\n");
+[e ( _printf :s 10C ]
+"67
+[; ;RS232.c: 67:         return NumChars;
+[e ) _NumChars ]
+[e $UE 1498  ]
+"68
+[; ;RS232.c: 68:     }
+}
+[e :U 1499 ]
+"70
+[; ;RS232.c: 70:     return 0;
+[e ) -> 0 `i ]
+[e $UE 1498  ]
+"73
+[; ;RS232.c: 73: }
+[e :UE 1498 ]
+}
+"76
+[; ;RS232.c: 76: _Bool ValidateCmd(void){
+[v _ValidateCmd `(a ~T0 @X0 1 ef ]
+{
+[e :U _ValidateCmd ]
+[f ]
+"77
+[; ;RS232.c: 77:     printf("\r\n Validating Command: %s \r\n" , Command);
+[e ( _printf , (. :s 11C &U _Command ]
+"79
+[; ;RS232.c: 79:     if(!strcmp(Command,"debug")){
+[e $ ! ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 13C -> 0 `i 1509  ]
+{
+"80
+[; ;RS232.c: 80:         if(Debug==0){
+[e $ ! == -> _Debug `i -> 0 `i 1510  ]
+{
+"81
+[; ;RS232.c: 81:             Debug =1;
+[e = _Debug -> -> 1 `i `a ]
+"82
+[; ;RS232.c: 82:             printf("Debug Enabled\r\n");
+[e ( _printf :s 14C ]
+"83
+[; ;RS232.c: 83:         }else{
+}
+[e $U 1511  ]
+[e :U 1510 ]
+{
+"84
+[; ;RS232.c: 84:             Debug =0;
+[e = _Debug -> -> 0 `i `a ]
+"85
+[; ;RS232.c: 85:             printf("Debug Disabled\r\n");
+[e ( _printf :s 15C ]
+"86
+[; ;RS232.c: 86:         }
+}
+[e :U 1511 ]
+"87
+[; ;RS232.c: 87:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 1508  ]
+"88
+[; ;RS232.c: 88:     }else if(!strcmp(Command,"?")){
+}
+[e $U 1512  ]
+[e :U 1509 ]
+[e $ ! ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 17C -> 0 `i 1513  ]
+{
+"89
+[; ;RS232.c: 89:         InitialiseString();
+[e ( _InitialiseString ..  ]
+"90
+[; ;RS232.c: 90:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 1508  ]
+"91
+[; ;RS232.c: 91:     }else if(!strcmp(Command,"serial")){
+}
+[e $U 1514  ]
+[e :U 1513 ]
+[e $ ! ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 19C -> 0 `i 1515  ]
+{
+"92
+[; ;RS232.c: 92:         strcpy(Command, "");
+[e ( _strcpy (2 , &U _Command :s 20C ]
+"93
+[; ;RS232.c: 93:         printf("Enter card serial number: ");
+[e ( _printf :s 21C ]
+"96
+[; ;RS232.c: 96:         while(ReadRX232(16) ==0){
+[e $U 1516  ]
+[e :U 1517 ]
+{
+"98
+[; ;RS232.c: 98:         };
+}
+[e :U 1516 ]
+"96
+[; ;RS232.c: 96:         while(ReadRX232(16) ==0){
+[e $ == ( _ReadRX232 (1 -> 16 `i -> 0 `i 1517  ]
+[e :U 1518 ]
+"100
+[; ;RS232.c: 100:         printf("\r\nNext Command: %s \r\n", Command);
+[e ( _printf , (. :s 22C &U _Command ]
+"105
+[; ;RS232.c: 105:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 1508  ]
+"106
+[; ;RS232.c: 106:     }else if(!strcmp(Command,"part")){
+}
+[e $U 1519  ]
+[e :U 1515 ]
+[e $ ! ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 24C -> 0 `i 1520  ]
+{
+"107
+[; ;RS232.c: 107:         printf("\r\n Enter card part number (e.g. \"AP00070541-01\"): ");
+[e ( _printf :s 25C ]
+"114
+[; ;RS232.c: 114:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 1508  ]
+"115
+[; ;RS232.c: 115:     }else{
+}
+[e $U 1521  ]
+[e :U 1520 ]
+{
+"116
+[; ;RS232.c: 116:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 1508  ]
+"117
+[; ;RS232.c: 117:     }
+}
+[e :U 1521 ]
+[e :U 1519 ]
+[e :U 1514 ]
+[e :U 1512 ]
+"121
+[; ;RS232.c: 121: }
+[e :UE 1508 ]
+}
+[p f _printf 8651776 ]
+[a 23C 112 97 114 116 0 ]
+[a 24C 112 97 114 116 0 ]
+[a 18C 115 101 114 105 97 108 0 ]
+[a 19C 115 101 114 105 97 108 0 ]
+[a 12C 100 101 98 117 103 0 ]
+[a 13C 100 101 98 117 103 0 ]
+[a 16C 63 0 ]
+[a 17C 63 0 ]
+[a 5C 48 48 58 48 52 58 53 57 0 ]
+[a 4C 77 97 114 32 49 49 32 50 48 50 49 0 ]
+[a 21C 69 110 116 101 114 32 99 97 114 100 32 115 101 114 105 97 108 32 110 117 109 98 101 114 58 32 0 ]
+[a 25C 13 10 32 69 110 116 101 114 32 99 97 114 100 32 112 97 114 116 32 110 117 109 98 101 114 32 40 101 46 103 46 32 34 65 80 48 48 48 55 48 53 52 49 45 48 49 34 41 58 32 0 ]
+[a 15C 68 101 98 117 103 32 68 105 115 97 98 108 101 100 13 10 0 ]
+[a 14C 68 101 98 117 103 32 69 110 97 98 108 101 100 13 10 0 ]
+[a 6C 13 70 117 110 99 116 105 111 110 32 67 111 100 101 115 32 83 117 112 112 111 114 116 101 100 58 13 10 0 ]
+[a 1C 13 68 97 110 32 97 110 100 32 83 97 109 39 115 32 77 111 100 98 117 115 32 71 80 73 79 32 69 120 112 97 110 115 105 111 110 32 45 32 65 80 48 48 48 120 120 120 120 120 32 86 48 46 49 13 10 0 ]
+[a 7C 13 32 32 32 48 120 48 51 32 45 32 82 101 97 100 32 77 117 108 116 105 112 108 101 32 82 101 103 105 115 116 101 114 115 32 40 77 97 120 32 51 50 120 32 49 54 98 105 116 41 13 10 0 ]
+[a 2C 13 67 97 114 100 32 83 101 114 32 78 111 46 32 120 120 120 120 120 120 120 32 13 10 0 ]
+[a 22C 13 10 78 101 120 116 32 67 111 109 109 97 110 100 58 32 37 115 32 13 10 0 ]
+[a 11C 13 10 32 86 97 108 105 100 97 116 105 110 103 32 67 111 109 109 97 110 100 58 32 37 115 32 13 10 0 ]
+[a 9C 13 73 110 105 116 97 108 105 115 97 116 105 111 110 32 67 111 109 112 108 101 116 101 32 45 32 82 101 97 100 121 13 10 10 0 ]
+[a 3C 13 67 111 109 112 105 108 101 100 32 111 110 32 37 115 32 97 116 32 37 115 32 98 121 32 88 67 56 32 118 101 114 115 105 111 110 32 37 117 13 10 10 0 ]
+[a 8C 13 32 32 32 48 120 49 48 32 45 32 87 114 105 116 101 32 77 117 108 116 105 112 108 101 32 82 101 103 105 115 116 101 114 115 32 40 77 97 120 32 51 50 120 32 49 54 98 105 116 41 13 10 10 0 ]
+[a 10C 13 10 10 0 ]
+[a 20C 0 ]

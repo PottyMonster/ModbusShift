@@ -3,14 +3,14 @@
 #include "string.h"
 #include "stdio.h"
 #include "Modbus.h"
+#include "RS232.h"
+#include "main.h"
 
 /*
                          Main application
  */
 
 
-bool Debug = 0;
-int i = 0;
 
 
 // int loop;
@@ -24,21 +24,6 @@ int i = 0;
 // will reply with
 // 01 03 06 07 ff 00 04 00 05 b5 14
 // when using default MB300xx[32] array above.
-
-void InitialiseString(void){
-    // Send Initalisation String
-
-    printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n"); 
-    printf("\rCard Ser No. xxxxxxx \r\n"); 
-    printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            __DATE__, __TIME__, __XC8_VERSION);
-    printf("\rFunction Codes Supported:\r\n"); 
-    printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n"); 
-    printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
-    printf("\rInitalisation Complete - Ready\r\n\n");
-}
-
- 
 
 
 void main(void)
@@ -80,14 +65,17 @@ void main(void)
     while(1)
     {
         if(ModbusRx() == 1){
-            // Data has been received and ready to process
-            PrintModbus();
+            // RS485 Modbus data has been received and ready to process
+            
+            // if(Debug == 1){
+                PrintModbus();   
+            // }
 
             switch(ModbusData[1])    // check command  
             {
             case 0x03:
                 {
-                    printf("Function COde 0x03\r\n");
+                    printf("Function Code 0x03\r\n");
                     // Reads Multiple Registers
                     // ShiftRead();     // Sam's function to read in shift reg
                     ModbusFC03();
@@ -97,7 +85,7 @@ void main(void)
                 }
             case 0x10:
                 {
-                    printf("Function COde 0x10\r\n");
+                    printf("Function Code 0x10\r\n");
                     // Writes to Multiple Registers  
                     PrintMB400();   // Contents before update
                     ModbusFC10();
@@ -108,7 +96,7 @@ void main(void)
                 }
             default:
                 {
-                    printf("Unsupported Function COde\r\n");
+                    printf("Unsupported Function Code\r\n");
                     // Throw error code as function code not available
                     ModbusError(0x01);
                     ClearModbusData();   // Needed when complete
@@ -116,7 +104,25 @@ void main(void)
                     break;
                 }
             }
+        }else if(ReadRX232(16) != 0){
+            // RS232 Data has been received
+            
+            printf("Nothing on RS232 \r\n");
+            // Nothing on the RS232 UART
+            if(ValidateCmd() ==1){
+                // Might change this to action successfull. I.E validates and
+                // executes at the same time.
+                // printf("Valid Command Rx: %s \r\n" , Command);             
+             }else{
+                // printf("Invalid Command Rx: %s \r\n", Command);
+             }
+            
+             strcpy(Command, "");   // Needed to clear RS232 command
+            
+        }else{
+            // Nothing to do. No data to process.
         }
+        
     }
 }
 /**

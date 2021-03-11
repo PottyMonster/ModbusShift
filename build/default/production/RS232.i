@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "RS232.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
+# 1 "RS232.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -16825,7 +16825,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 1 "main.c" 2
+# 1 "RS232.c" 2
 
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
@@ -17239,7 +17239,26 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 99 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 2 "main.c" 2
+# 2 "RS232.c" 2
+
+
+# 1 "./RS232.h" 1
+
+
+
+
+
+
+
+char Command[16];
+
+
+int ReadRX232(int NumChars);
+void InitialiseString(void);
+
+
+_Bool ValidateCmd(void);
+# 4 "RS232.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 1 3
 # 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 3
@@ -17296,56 +17315,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 3 "main.c" 2
-
-
-# 1 "./Modbus.h" 1
-# 12 "./Modbus.h"
-unsigned char ModbusData[100] = { 0 };
-int ModDataCnt = 0;
-# 41 "./Modbus.h"
-void TXMode(void);
-# 68 "./Modbus.h"
-void RXMode(void);
-# 92 "./Modbus.h"
-void ClearModbusData(void);
-# 118 "./Modbus.h"
-void ClearRxBuff(void);
-# 159 "./Modbus.h"
-void AddRxBuffToModBus(void);
-# 186 "./Modbus.h"
-_Bool checkCRC(void);
-# 227 "./Modbus.h"
-_Bool ModbusRx(void);
-void PrintModbus();
-void ClearModbusRespon();
-void PrintModRespon();
-void UART1_Write_string(unsigned int * data, int data_len);
-unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
-void ModbusFC03(void);
-_Bool checkCRC(void);
-void ModbusError(int ErrorCode);
-void ModbusFC10(void);
-void PrintMB400(void);
-# 5 "main.c" 2
-
-# 1 "./RS232.h" 1
-
-
-
-
-
-
-
-char Command[16];
-
-
-int ReadRX232(int NumChars);
-void InitialiseString(void);
-
-
-_Bool ValidateCmd(void);
-# 6 "main.c" 2
+# 5 "RS232.c" 2
 
 # 1 "./main.h" 1
 
@@ -17356,104 +17326,120 @@ _Bool ValidateCmd(void);
 
 
 _Bool Debug = 0;
-# 7 "main.c" 2
-# 29 "main.c"
-void main(void)
+# 6 "RS232.c" 2
+
+
+char temp[2] = {'Z','\0'};
+
+
+
+void InitialiseString(void){
+
+
+    printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
+    printf("\rCard Ser No. xxxxxxx \r\n");
+    printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
+            "Mar 11 2021", "00:04:58", 2100);
+    printf("\rFunction Codes Supported:\r\n");
+    printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
+    printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
+    printf("\rInitalisation Complete - Ready\r\n\n");
+}
+
+
+int ReadRX232(int NumChars)
 {
 
-    SYSTEM_Initialize();
 
-
-
-
-
-
-    (INTCONbits.GIE = 1);
-
-
-
-
-
-    (INTCONbits.PEIE = 1);
-
-
-
-
-    do { LATAbits.LATA4 = 0; } while(0);
-    do { LATAbits.LATA5 = 0; } while(0);
-    do { LATAbits.LATA6 = 0; } while(0);
-    do { LATAbits.LATA7 = 0; } while(0);
-
-    InitialiseString();
-
-
-    RXMode();
-    ClearRxBuff();
-    ClearModbusRespon();
-
-
-    _Bool RXStat = 0;
-
-    while(1)
+    if(EUSART2_is_rx_ready())
     {
-        if(ModbusRx() == 1){
+
+        do {
 
 
+             if(EUSART2_is_rx_ready())
+             {
 
-                PrintModbus();
+                 temp[0]=EUSART2_Read();
 
+                 EUSART2_Write(temp[0]);
 
-            switch(ModbusData[1])
-            {
-            case 0x03:
-                {
-                    printf("Function Code 0x03\r\n");
+                 if(temp[0]!='\r'){
+                     strcat(Command, temp);
+                 };
 
+                 if(strlen(Command)>NumChars)
+                 {
 
-                    ModbusFC03();
-                    ClearModbusData();
-                    ClearModbusRespon();
-                    break;
-                }
-            case 0x10:
-                {
-                    printf("Function Code 0x10\r\n");
+                     memmove(Command, Command+1, strlen(Command));
 
-                    PrintMB400();
-                    ModbusFC10();
+                 };
 
-                    ClearModbusData();
-                    ClearModbusRespon();
-                    break;
-                }
-            default:
-                {
-                    printf("Unsupported Function Code\r\n");
+                 if(temp[0]=='\r'){
 
-                    ModbusError(0x01);
-                    ClearModbusData();
-                    ClearModbusRespon();
-                    break;
-                }
-            }
-        }else if(ReadRX232(16) != 0){
-
-
-            printf("Nothing on RS232 \r\n");
-
-            if(ValidateCmd() ==1){
-
-
-
+                      temp[0]='z';
+                      return NumChars;
+                 };
              }else{
+
+
 
              }
 
-             strcpy(Command, "");
-
-        }else{
-
-        }
-
+        }while( temp[0] !='\r' );
+        printf("\r\n\n");
+        return NumChars;
     }
+
+    return 0;
+
+
+}
+
+
+_Bool ValidateCmd(void){
+    printf("\r\n Validating Command: %s \r\n" , Command);
+
+    if(!strcmp(Command,"debug")){
+        if(Debug==0){
+            Debug =1;
+            printf("Debug Enabled\r\n");
+        }else{
+            Debug =0;
+            printf("Debug Disabled\r\n");
+        }
+        return 1;
+    }else if(!strcmp(Command,"?")){
+        InitialiseString();
+        return 1;
+    }else if(!strcmp(Command,"serial")){
+        strcpy(Command, "");
+        printf("Enter card serial number: ");
+
+
+        while(ReadRX232(16) ==0){
+
+        };
+
+        printf("\r\nNext Command: %s \r\n", Command);
+
+
+
+
+        return 1;
+    }else if(!strcmp(Command,"part")){
+        printf("\r\n Enter card part number (e.g. \"AP00070541-01\"): ");
+
+
+
+
+
+
+        return 1;
+    }else{
+        return 0;
+    }
+
+
+
 }

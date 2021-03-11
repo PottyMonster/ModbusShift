@@ -2,6 +2,7 @@
 #include "mcc_generated_files/mcc.h"
 #include "Modbus.h"
 #include "stdio.h"
+#include "main.h"
 
 // Define and initalise data. Might need to go in Main if global.
 int ByteNum = 0;
@@ -120,7 +121,12 @@ bool checkCRC(void){
   //bytes are wrong way round so doing a swap here..
   crcHigh = (crc & 0x00FF);
   crcLow = (crc & 0xFF00) >>8;
-  printf("crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);
+  
+  if(Debug == 1){
+    printf("crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);
+  }
+  
+  
   if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
   {
     return 1;
@@ -164,7 +170,11 @@ void ModbusFC03(){
     MBRespon[MBResCnt +1] = ByteLo;
     MBResCnt = MBResCnt +2;
 
-    PrintModRespon();   // Slows the response down.          
+    if(Debug ==1){
+        PrintModRespon();   // Slows the response down.
+    }
+    
+    
     UART1_Write_string(MBRespon,MBResCnt);
  
     
@@ -211,9 +221,11 @@ void ModbusFC10(void){
     MBRespon[MBResCnt +1] = ByteLo;
     MBResCnt = MBResCnt +2;
 
-    PrintMB400();
+    if(Debug==1){
+        PrintMB400();
+        PrintModRespon();   // Slows the response down.
+    }
     
-    PrintModRespon();   // Slows the response down.          
     UART1_Write_string(MBRespon,MBResCnt);
 
 }
@@ -288,10 +300,13 @@ void PrintModbus(){
 
     int i=0;
     printf("Modbus Data Capture Complete:\r\n");
-    for(i=0; i< ModDataCnt ; i++ ){
-        printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
+    
+    if(Debug ==1){
+        for(i=0; i< ModDataCnt ; i++ ){
+            printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
+        }
+        printf("\r\n\n");
     }
-    printf("\r\n\n");
     
 }
 
@@ -326,6 +341,7 @@ void ModbusError(int ErrorCode){
 bool ModbusRx(){
     RXMode();
     if(EUSART1_is_rx_ready()){
+        printf("Something in ESUART1 \r\n");
         do{
             if(EUSART1_is_rx_ready()){
 
