@@ -17342,6 +17342,7 @@ char Command[16];
 
 int ReadRX232(int NumChars);
 void InitialiseString(void);
+void Initalisation(void);
 
 
 _Bool ValidateCmd(void);
@@ -17399,9 +17400,9 @@ void main(void)
         if(ModbusRx() == 1){
 
 
-
+            if(Debug == 1){
                 PrintModbus();
-
+            }
 
             switch(ModbusData[1])
             {
@@ -17437,9 +17438,6 @@ void main(void)
                 }
             }
         }else if(ReadRX232(16) != 0){
-
-
-            printf("Nothing on RS232 \r\n");
 
             if(ValidateCmd() ==1){
 

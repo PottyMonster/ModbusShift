@@ -17295,18 +17295,43 @@ unsigned int MBRespon[32] = { 0xFFFF };
 unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
 
-unsigned int MB300xx[32] = { 0x0000,0x0007,0x07FF,0x0004,0x0005,0x0006,0x0007,0x0008,
+
+unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
                             0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
                             0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
-                            0x0017,0x0018,0x0019,0x0020,0x0021,0x0022,0x0023,
-                            0x0024,0x0025, 0x0026};
+                            0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
+                            0x001e,0x001f, 0x0020 };
 
 
-unsigned int MB400xx[32] = { 0x0000,0x0007,0x07FF,0x0004,0x0005,0x0006,0x0007,0x0008,
-                            0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
-                            0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
-                            0x0017,0x0018,0x0019,0x0020,0x0021,0x0022,0x0023,
-                            0x0024,0x0025, 0x0026};
+unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
+
+
+unsigned int MB302xx[1] = { 0x004 };
+
+
+unsigned int MB303xx[4] = { 0x3231,0x3039,0x3030,0x3100 };
+
+
+unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
+
+
+unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
+
+
+unsigned int MB306xx[2] = { 0x004d,0x3030 };
+
+
+unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
+
+
+
+
+unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
+                            0x0018,0x0017,0x0016,0x0015,0x0014,0x0013,0x0012,
+                            0x0011,0x0010,0x000f,0x000e,0x000d,0x000c,0x000b,
+                            0x000a,0x0009,0x0008,0x0007,0x0006,0x0005,0x0004,
+                            0x0003,0x0002, 0x0001 };
+
 
 
 void PrintMB400(void){
@@ -17354,9 +17379,6 @@ void ClearRxBuff(){
 }
 
 void AddRxBuffToModBus(){
-
-
-
     int i = 0;
 
     for(i=0l; i<ByteNum; i++){
@@ -17364,8 +17386,10 @@ void AddRxBuffToModBus(){
         ModDataCnt++;
     }
 
-
-
+    if(Debug ==1){
+        printf("Completed Adding rxData Buffer to ModbusData Array\r\n\n");
+        printf("ModDataCnt sitting at %i\r\n\n", ModDataCnt);
+    }
 
     if(ModbusData[1] == 0x0F){
         ExpectedBytes = ModbusData[6] + 9;
@@ -17377,7 +17401,21 @@ void AddRxBuffToModBus(){
 
 }
 
+void PrintModbus(){
 
+
+
+    int i=0;
+    printf("Modbus Data Capture Complete:\r\n");
+
+    if(Debug ==1){
+        for(i=0; i< ModDataCnt ; i++ ){
+            printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
+        }
+        printf("\r\n\n");
+    }
+
+}
 
 
 _Bool checkCRC(void){
@@ -17574,21 +17612,6 @@ void ClearModbusRespon(){
 }
 
 
-void PrintModbus(){
-
-
-
-    int i=0;
-    printf("Modbus Data Capture Complete:\r\n");
-
-    if(Debug ==1){
-        for(i=0; i< ModDataCnt ; i++ ){
-            printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
-        }
-        printf("\r\n\n");
-    }
-
-}
 
 
 void ModbusError(int ErrorCode){

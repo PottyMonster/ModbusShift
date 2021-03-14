@@ -10,6 +10,7 @@ char Command[16];    // Array where command builds up
 
 int ReadRX232(int NumChars);
 void InitialiseString(void);
+void Initalisation(void);
 
 
 bool ValidateCmd(void);

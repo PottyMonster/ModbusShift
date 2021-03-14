@@ -17255,6 +17255,7 @@ char Command[16];
 
 int ReadRX232(int NumChars);
 void InitialiseString(void);
+void Initalisation(void);
 
 
 _Bool ValidateCmd(void);
@@ -17328,18 +17329,58 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 _Bool Debug = 0;
 # 6 "RS232.c" 2
 
+# 1 "./Modbus.h" 1
+# 12 "./Modbus.h"
+unsigned char ModbusData[100] = { 0 };
+int ModDataCnt = 0;
+# 41 "./Modbus.h"
+void TXMode(void);
+# 68 "./Modbus.h"
+void RXMode(void);
+# 92 "./Modbus.h"
+void ClearModbusData(void);
+# 118 "./Modbus.h"
+void ClearRxBuff(void);
+# 159 "./Modbus.h"
+void AddRxBuffToModBus(void);
+# 186 "./Modbus.h"
+_Bool checkCRC(void);
+# 227 "./Modbus.h"
+_Bool ModbusRx(void);
+void PrintModbus();
+void ClearModbusRespon();
+void PrintModRespon();
+void UART1_Write_string(unsigned int * data, int data_len);
+unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
+void ModbusFC03(void);
+_Bool checkCRC(void);
+void ModbusError(int ErrorCode);
+void ModbusFC10(void);
+void PrintMB400(void);
+# 7 "RS232.c" 2
 
-char temp[2] = {'Z','\0'};
 
+
+
+void Initalisation(void){
+
+
+
+}
 
 
 void InitialiseString(void){
 
 
-    printf("\rDan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1\r\n");
-    printf("\rCard Ser No. xxxxxxx \r\n");
+
+    printf("\rDan and Sam's Modbus GPIO Expansion - AP00070125-01 Rev -\r\n");
+
+    Initalisation();
+
+    printf("\rCard Ser No. 2109002 \r\n");
+    printf("\rCard Address. 0x05 \r\n");
     printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar 11 2021", "00:04:58", 2100);
+            "Mar 14 2021", "11:59:41", 2100);
     printf("\rFunction Codes Supported:\r\n");
     printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
     printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
@@ -17351,6 +17392,11 @@ int ReadRX232(int NumChars)
 {
 
 
+
+
+    char temp[2] = {'Z','\0'};
+
+
     if(EUSART2_is_rx_ready())
     {
 
@@ -17360,35 +17406,35 @@ int ReadRX232(int NumChars)
              if(EUSART2_is_rx_ready())
              {
 
-                 temp[0]=EUSART2_Read();
-
-                 EUSART2_Write(temp[0]);
-
-                 if(temp[0]!='\r'){
-                     strcat(Command, temp);
-                 };
-
-                 if(strlen(Command)>NumChars)
-                 {
-
-                     memmove(Command, Command+1, strlen(Command));
-
-                 };
-
-                 if(temp[0]=='\r'){
-
-                      temp[0]='z';
-                      return NumChars;
-                 };
-             }else{
+                temp[0]=EUSART2_Read();
 
 
+                EUSART2_Write(temp[0]);
 
-             }
+                if(temp[0]!='\r'){
+                    strcat(Command, temp);
+                };
 
+                if(strlen(Command)>NumChars)
+                {
+
+                    memmove(Command, Command+1, strlen(Command));
+
+                };
+
+                if(temp[0]=='\r'){
+
+                    temp[0]='z';
+                    return NumChars;
+                };
+            }
         }while( temp[0] !='\r' );
+
+        Command[strlen(Command)-1] = '\0';
+
         printf("\r\n\n");
-        return NumChars;
+
+        strlen(Command);
     }
 
     return 0;
@@ -17397,45 +17443,218 @@ int ReadRX232(int NumChars)
 }
 
 
+void TogDebug(void){
+
+    if(Debug==0){
+        Debug =1;
+        printf("Debug Enabled\r\n");
+    }else{
+        Debug =0;
+        printf("Debug Disabled\r\n");
+    }
+
+}
+
+
+void ClearEEAddRange(unsigned int StartAdd, unsigned int NumBytes){
+
+
+    printf("Clearing EEPROM from Address: 0x%04x, Num Bytes: %i \r\n", StartAdd, NumBytes);
+
+    int i = 0;
+
+    for(i=0; i<NumBytes; i++){
+        DATAEE_WriteByte(StartAdd, 0xFF);
+        StartAdd++;
+    }
+
+}
+
+
+void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int NumBytes){
+
+    int i = 0;
+    unsigned char Conf, readData;
+    uint16_t dataeeAddrWrk = dataeeAddr;
+
+    printf("Saving Card Data\r\n");
+    printf("Name: %s  MBAddress: 0x%04x   dataeeAddr: 0x%04x   NumBytes: %i \r\n", Name, MBAddress, dataeeAddr, NumBytes);
+
+    printf("Enter card %s (max %i characters): ", Name, NumBytes);
+
+    strcpy(Command, "");
+
+    while(ReadRX232(NumBytes) == 0){};
+    printf("\r\nEntered: %s \r\n Confirm  Y|N?: ", Command);
+
+
+    while(!EUSART2_is_rx_ready());
+
+    Conf = EUSART2_Read();
+
+
+    if(Conf == 0x79 || Conf == 0x59){
+        Conf = 0xFF;
+        printf("Y\r\nSaving Serial Number \r\n");
+        printf("Num Chars: %i \r\n", strlen(Command));
+
+
+
+        ClearEEAddRange(dataeeAddr,NumBytes);
+
+
+        for (i = 0; i < strlen(Command); i++){
+            printf("Char 0x%02x in 0x%02x \r\n", Command[i], dataeeAddrWrk);
+            DATAEE_WriteByte(dataeeAddrWrk, Command[i]);
+            dataeeAddrWrk++;
+            _delay((unsigned long)((50)*(32000000/4000.0)));
+        }
+
+        printf("Serial Number Saved. \r\n");
+
+
+        dataeeAddrWrk = dataeeAddr;
+         _delay((unsigned long)((50)*(32000000/4000.0)));
+
+
+        for(i = 0; i < strlen(Command); i++){
+            readData = DATAEE_ReadByte(dataeeAddrWrk);
+            printf("EEPROM: 0x%02x Add: 0x%02x \r\n", readData,dataeeAddrWrk);
+            dataeeAddrWrk++;
+            _delay((unsigned long)((50)*(32000000/4000.0)));
+        }
+
+
+        strcpy(Command, "");
+
+
+
+
+
+
+
+    }
+
+
+}
+
+
+void RecSerNum(void){
+
+
+
+
+
+    int i = 0;
+    unsigned char Conf, readData;
+    uint16_t dataeeAddr = 0x0300;
+    uint8_t dataeeData = 0x00;
+
+    printf("Enter card serial number (max 8 characters): ");
+
+    strcpy(Command, "");
+    while(ReadRX232(8) == 0){};
+    printf("\r\nEntered: %s \r\n Confirm  Y|N?: ", Command);
+
+
+    while(!EUSART2_is_rx_ready());
+
+    Conf = EUSART2_Read();
+
+
+    if(Conf == 0x79 || Conf == 0x59){
+        Conf = 0xFF;
+        printf("Y\r\nSaving Serial Number \r\n");
+
+
+
+        printf("Num Chars: %i \r\n", strlen(Command));
+
+        for (i = 0; i < strlen(Command); i++){
+            printf("Char 0x%02x in 0x%02x \r\n", Command[i], dataeeAddr);
+            DATAEE_WriteByte(dataeeAddr, Command[i]);
+            dataeeAddr++;
+            _delay((unsigned long)((100)*(32000000/4000.0)));
+        }
+
+        printf("Serial Number Saved. \r\n");
+
+
+        dataeeAddr = 0x16;
+         _delay((unsigned long)((100)*(32000000/4000.0)));
+
+        for(i = 0; i < strlen(Command); i++){
+            readData = DATAEE_ReadByte(dataeeAddr);
+            printf("EEPROM: 0x%02x Add: 0x%02x \r\n", readData,dataeeAddr);
+
+
+
+
+
+            dataeeAddr++;
+            _delay((unsigned long)((50)*(32000000/4000.0)));
+        }
+
+        dataeeAddr = 0x16;
+        strcpy(Command, "");
+
+
+
+
+
+    }else{
+        printf("N\r\nNot Saving Serial Number \r\n");
+    }
+
+
+
+}
+
+
 _Bool ValidateCmd(void){
+
+    int i = 0;
+
+
     printf("\r\n Validating Command: %s \r\n" , Command);
 
     if(!strcmp(Command,"debug")){
-        if(Debug==0){
-            Debug =1;
-            printf("Debug Enabled\r\n");
-        }else{
-            Debug =0;
-            printf("Debug Disabled\r\n");
-        }
+        TogDebug();
         return 1;
     }else if(!strcmp(Command,"?")){
         InitialiseString();
         return 1;
     }else if(!strcmp(Command,"serial")){
-        strcpy(Command, "");
-        printf("Enter card serial number: ");
 
-
-        while(ReadRX232(16) ==0){
-
-        };
-
-        printf("\r\nNext Command: %s \r\n", Command);
+        char ConfName[20] = "Serial Number";
+        int MaxChars = 10;
 
 
 
 
+        SaveCardDat(ConfName,0x0300,0x0300,MaxChars);
         return 1;
+
+
     }else if(!strcmp(Command,"part")){
-        printf("\r\n Enter card part number (e.g. \"AP00070541-01\"): ");
 
-
+        char ConfName[20] = "Part Number";
+        int MaxChars = 16;
+        SaveCardDat(ConfName,0x0100,0x0100,MaxChars);
 
 
 
 
         return 1;
+    }else if(!strcmp(Command,"rev")){
+
+        char ConfName[20] = "Revision";
+        int MaxChars = 2;
+
+
+        SaveCardDat(ConfName,0x0200,0x0200,MaxChars);
+
+
     }else{
         return 0;
     }

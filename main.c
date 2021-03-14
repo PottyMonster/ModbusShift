@@ -67,9 +67,9 @@ void main(void)
         if(ModbusRx() == 1){
             // RS485 Modbus data has been received and ready to process
             
-            // if(Debug == 1){
+            if(Debug == 1){
                 PrintModbus();   
-            // }
+            }
 
             switch(ModbusData[1])    // check command  
             {
@@ -106,9 +106,6 @@ void main(void)
             }
         }else if(ReadRX232(16) != 0){
             // RS232 Data has been received
-            
-            printf("Nothing on RS232 \r\n");
-            // Nothing on the RS232 UART
             if(ValidateCmd() ==1){
                 // Might change this to action successfull. I.E validates and
                 // executes at the same time.

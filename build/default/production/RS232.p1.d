@@ -8,4 +8,5 @@ mcc_generated_files/memory.h  \
 mcc_generated_files/eusart1.h  \
 mcc_generated_files/eusart2.h  \
 RS232.h  \
-main.h 
+main.h  \
+Modbus.h 
