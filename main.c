@@ -75,7 +75,7 @@ void main(void)
             {
             case 0x03:
                 {
-                    printf("Function Code 0x03\r\n");
+                    // printf("Function Code 0x03\r\n");
                     // Reads Multiple Registers
                     // ShiftRead();     // Sam's function to read in shift reg
                     ModbusFC03();

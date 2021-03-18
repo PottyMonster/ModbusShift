@@ -22,29 +22,6 @@ unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x
                             0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
                             0x001e,0x001f, 0x0020 };     // Assigns 32x 16bit Read Registers
 
-// Part Number
-unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
-
-// Revision
-unsigned int MB302xx[1] = { 0x004 };
-
-// Serial
-unsigned int MB303xx[4] = { 0x3231,0x3039,0x3030,0x3100 };
-
-// Date
-unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
-
-// Time
-unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
-
-// Compiler Version
-unsigned int MB306xx[2] = { 0x004d,0x3030 };
-
-// Analogue Inputs
-unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
-
-
-
 // Card Write Data
 unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
                             0x0018,0x0017,0x0016,0x0015,0x0014,0x0013,0x0012,
@@ -192,13 +169,52 @@ void ModbusFC03(){
         // Check ModbusData[5] (num registers max is 0x20 (Decimal 32) and
         // when start address ModbusData[3] is less than 0x20 (32)
         // and when adding on Num Registers to base address doesn't go over 32
+        // if(ModbusData[2] == 0x03){
+            // Serial Number Request
+            // This needs to be part of validation function
+           // if(ModbusData[3] + ModbusData[5] > 0x05){
+             //   printf("Requested registers out of range. \r\n");
+           // }
+            // Part Number Request
+            // ByteLo = MB301xx[ModbusData[3] +i] & 0x00FF;
+            // ByteHi = MB301xx[ModbusData[3] +i] >> 8;                        
+        
+    /*
+    }else if(ModbusData[2] == 0x01){
+            // Part Number Request
+            if(ModbusData[3] + ModbusData[9] > 0x05){
+                printf("Requested registers out of range. \r\n");
+            }
+            
+            ByteLo = MB303xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB303xx[ModbusData[3] +i] >> 8; 
+            
+        }
+        else if(ModbusData[2] == 0x02){
+            // Revision Request
+            if(ModbusData[3] + ModbusData[9] > 0x01){
+                printf("Requested registers out of range. \r\n");
+            }
+            
+            ByteLo = MB302xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB302xx[ModbusData[3] +i] >> 8; 
+            
+        }
+        else if(ModbusData[2] == 0x00){ 
+     */
+            ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB300xx[ModbusData[3] +i] >> 8;
+            
+            // while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
+            // printf("HiByte: 0x%02x LoByte: 0x%02x \r\n",ByteHi, ByteLo);
+            // while(!EUSART2_is_tx_done());
+     //   }
+     
+            MBRespon[MBResCnt] = ByteHi;                   
+            MBResCnt++;
+            MBRespon[MBResCnt] = ByteLo;
+            MBResCnt++;  
 
-        ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
-        ByteHi = MB300xx[ModbusData[3] +i] >> 8;
-        MBRespon[MBResCnt] = ByteHi;                   
-        MBResCnt++;
-        MBRespon[MBResCnt] = ByteLo;
-        MBResCnt++;
     }
 
     ByteHi = generateCRC(MBResCnt, 1);  // CRC Hi
@@ -208,6 +224,8 @@ void ModbusFC03(){
     MBRespon[MBResCnt +1] = ByteLo;
     MBResCnt = MBResCnt +2;
 
+    printf("Modbus Response Count %i:\r\n",MBResCnt);
+    
     if(Debug ==1){
         PrintModRespon();   // Slows the response down.
     }
@@ -312,17 +330,26 @@ void UART1_Write_string(unsigned int * data, int data_len)
 }
 
 
-
 void PrintModRespon(){
 
     int i=0;
-    printf("Modbus Response:\r\n");
+    
+    
+    printf("Modbus Response Count %i:\r\n",MBResCnt);
+    while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
     for(i=0; i< MBResCnt ; i++ ){
-        printf("   Byte %i : 0x%02x \r\n", i, MBRespon[i]);
+        while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
+        printf("   Byte %02i : 0x%02x \r\n", i, MBRespon[i]);
+        while(!EUSART2_is_tx_done());
+        // __delay_ms(50);
     }
+    while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
     printf("\r\n\n");
+    while(!EUSART2_is_tx_done());
      
 }
+
+
 
 void ClearModbusRespon(){
     int i = 0;    
@@ -371,6 +398,7 @@ bool ModbusRx(){
                 while(EUSART1_is_rx_ready()){
                     // While there's something to read out of the RX Buffer
                     rxData[ByteNum] = EUSART1_Read();
+                    printf("Read: 0x%02x \r\n",rxData[ByteNum]);
                     ByteNum++;
                 }
 
@@ -386,6 +414,9 @@ bool ModbusRx(){
                 ByteNum = 0;    // Reset num bytes in buffer to 0
                 D2LED_Toggle();
             }
+            
+            printf("ModDatCnt: %i ExpetedBytes %i \r\n", ModDataCnt,ExpectedBytes);
+            
         }while(ModDataCnt != ExpectedBytes);
 
         D3LED_Toggle();

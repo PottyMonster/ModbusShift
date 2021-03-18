@@ -17333,19 +17333,40 @@ _Bool Debug = 0;
 # 12 "./Modbus.h"
 unsigned char ModbusData[100] = { 0 };
 int ModDataCnt = 0;
-# 41 "./Modbus.h"
+
+
+unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
+
+
+unsigned int MB302xx[1] = { 0x004 };
+
+
+unsigned int MB303xx[5] = { 0x3231,0x3039,0x3030,0x3100,0x3039 };
+
+
+unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
+
+
+unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
+
+
+unsigned int MB306xx[2] = { 0x004d,0x3030 };
+
+
+unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
+# 61 "./Modbus.h"
 void TXMode(void);
-# 68 "./Modbus.h"
+# 88 "./Modbus.h"
 void RXMode(void);
-# 92 "./Modbus.h"
+# 112 "./Modbus.h"
 void ClearModbusData(void);
-# 118 "./Modbus.h"
+# 138 "./Modbus.h"
 void ClearRxBuff(void);
-# 159 "./Modbus.h"
+# 179 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 186 "./Modbus.h"
+# 206 "./Modbus.h"
 _Bool checkCRC(void);
-# 227 "./Modbus.h"
+# 247 "./Modbus.h"
 _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
@@ -17369,7 +17390,61 @@ void Initalisation(void){
 }
 
 
+void SerIni(char* SerialNum){
+
+
+
+    char readDataOdd, readDataEven;
+    int i=0, j=0;
+    uint16_t dataeeAddrWrk;
+
+
+
+    dataeeAddrWrk = 0x0300;
+    for(i = 0; i < 4; i++){
+        readDataOdd = DATAEE_ReadByte(dataeeAddrWrk);
+
+        _delay((unsigned long)((50)*(32000000/4000.0)));
+
+
+        if(readDataOdd != 0xFF){
+            SerialNum[j] = readDataOdd;
+            j++;
+        }
+
+        dataeeAddrWrk++;
+        readDataEven = DATAEE_ReadByte(dataeeAddrWrk);
+
+        dataeeAddrWrk++;
+        _delay((unsigned long)((50)*(32000000/4000.0)));
+
+
+        if(readDataEven != 0xFF){
+            SerialNum[j] = readDataEven;
+            j++;
+        }
+
+        MB303xx[i] = readDataOdd *256 + readDataEven;
+
+
+
+    }
+
+    SerialNum[j] = '\0';
+
+}
+
+
+
+
+
 void InitialiseString(void){
+
+    int i=0;
+    uint16_t dataeeAddrWrk;
+
+    char SerialNum[11] = { '\0' };
+    SerIni(SerialNum);
 
 
 
@@ -17377,14 +17452,16 @@ void InitialiseString(void){
 
     Initalisation();
 
-    printf("\rCard Ser No. 2109002 \r\n");
-    printf("\rCard Address. 0x05 \r\n");
-    printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar 14 2021", "11:59:41", 2100);
-    printf("\rFunction Codes Supported:\r\n");
-    printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
-    printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
-    printf("\rInitalisation Complete - Ready\r\n\n");
+
+
+    printf("Card Ser No. %s \r\n",SerialNum);
+    printf("Card Address. 0x05 \r\n");
+    printf("Compiled on %s at %s by XC8 version %u\r\n\n",
+            "Mar 18 2021", "00:42:58", 2100);
+    printf("Function Codes Supported:\r\n");
+    printf("   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
+    printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
+    printf("Initalisation Complete - Ready\r\n\n");
 }
 
 
@@ -17539,78 +17616,6 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
 }
 
 
-void RecSerNum(void){
-
-
-
-
-
-    int i = 0;
-    unsigned char Conf, readData;
-    uint16_t dataeeAddr = 0x0300;
-    uint8_t dataeeData = 0x00;
-
-    printf("Enter card serial number (max 8 characters): ");
-
-    strcpy(Command, "");
-    while(ReadRX232(8) == 0){};
-    printf("\r\nEntered: %s \r\n Confirm  Y|N?: ", Command);
-
-
-    while(!EUSART2_is_rx_ready());
-
-    Conf = EUSART2_Read();
-
-
-    if(Conf == 0x79 || Conf == 0x59){
-        Conf = 0xFF;
-        printf("Y\r\nSaving Serial Number \r\n");
-
-
-
-        printf("Num Chars: %i \r\n", strlen(Command));
-
-        for (i = 0; i < strlen(Command); i++){
-            printf("Char 0x%02x in 0x%02x \r\n", Command[i], dataeeAddr);
-            DATAEE_WriteByte(dataeeAddr, Command[i]);
-            dataeeAddr++;
-            _delay((unsigned long)((100)*(32000000/4000.0)));
-        }
-
-        printf("Serial Number Saved. \r\n");
-
-
-        dataeeAddr = 0x16;
-         _delay((unsigned long)((100)*(32000000/4000.0)));
-
-        for(i = 0; i < strlen(Command); i++){
-            readData = DATAEE_ReadByte(dataeeAddr);
-            printf("EEPROM: 0x%02x Add: 0x%02x \r\n", readData,dataeeAddr);
-
-
-
-
-
-            dataeeAddr++;
-            _delay((unsigned long)((50)*(32000000/4000.0)));
-        }
-
-        dataeeAddr = 0x16;
-        strcpy(Command, "");
-
-
-
-
-
-    }else{
-        printf("N\r\nNot Saving Serial Number \r\n");
-    }
-
-
-
-}
-
-
 _Bool ValidateCmd(void){
 
     int i = 0;
@@ -17654,11 +17659,12 @@ _Bool ValidateCmd(void){
 
         SaveCardDat(ConfName,0x0200,0x0200,MaxChars);
 
+        return 1;
 
     }else{
         return 0;
     }
 
-
+    return 0;
 
 }

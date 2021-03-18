@@ -12,6 +12,26 @@
 unsigned char ModbusData[100] = { 0 };  // Received Modbus Data
 int ModDataCnt = 0;
 
+// Part Number
+unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
+
+// Revision
+unsigned int MB302xx[1] = { 0x004 };
+
+// Serial
+unsigned int MB303xx[5] = { 0x3231,0x3039,0x3030,0x3100,0x3039 };
+
+// Date
+unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
+
+// Time
+unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
+
+// Compiler Version
+unsigned int MB306xx[2] = { 0x004d,0x3030 };
+
+// Analogue Inputs
+unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
 
 /**
   @Summary

@@ -53,8 +53,8 @@
   Section: Macro Declarations
 */
 
-#define EUSART2_TX_BUFFER_SIZE 8
-#define EUSART2_RX_BUFFER_SIZE 8
+#define EUSART2_TX_BUFFER_SIZE 32
+#define EUSART2_RX_BUFFER_SIZE 32
 
 /**
   Section: Global Variables
@@ -103,11 +103,11 @@ void EUSART2_Initialize(void)
     // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave; 
     TX2STA = 0x24;
 
-    // SP2BRGL 64; 
-    SP2BRGL = 0x40;
+    // SP2BRGL 160; 
+    SP2BRGL = 0xA0;
 
-    // SP2BRGH 3; 
-    SP2BRGH = 0x03;
+    // SP2BRGH 1; 
+    SP2BRGH = 0x01;
 
 
     EUSART2_SetFramingErrorHandler(EUSART2_DefaultFramingErrorHandler);

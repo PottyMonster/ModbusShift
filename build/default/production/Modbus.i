@@ -17245,19 +17245,40 @@ void PMD_Initialize(void);
 # 12 "./Modbus.h"
 unsigned char ModbusData[100] = { 0 };
 int ModDataCnt = 0;
-# 41 "./Modbus.h"
+
+
+unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
+
+
+unsigned int MB302xx[1] = { 0x004 };
+
+
+unsigned int MB303xx[5] = { 0x3231,0x3039,0x3030,0x3100,0x3039 };
+
+
+unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
+
+
+unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
+
+
+unsigned int MB306xx[2] = { 0x004d,0x3030 };
+
+
+unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
+# 61 "./Modbus.h"
 void TXMode(void);
-# 68 "./Modbus.h"
+# 88 "./Modbus.h"
 void RXMode(void);
-# 92 "./Modbus.h"
+# 112 "./Modbus.h"
 void ClearModbusData(void);
-# 118 "./Modbus.h"
+# 138 "./Modbus.h"
 void ClearRxBuff(void);
-# 159 "./Modbus.h"
+# 179 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 186 "./Modbus.h"
+# 206 "./Modbus.h"
 _Bool checkCRC(void);
-# 227 "./Modbus.h"
+# 247 "./Modbus.h"
 _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
@@ -17301,29 +17322,6 @@ unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x
                             0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
                             0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
                             0x001e,0x001f, 0x0020 };
-
-
-unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
-
-
-unsigned int MB302xx[1] = { 0x004 };
-
-
-unsigned int MB303xx[4] = { 0x3231,0x3039,0x3030,0x3100 };
-
-
-unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
-
-
-unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
-
-
-unsigned int MB306xx[2] = { 0x004d,0x3030 };
-
-
-unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
-
-
 
 
 unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
@@ -17468,17 +17466,20 @@ void ModbusFC03(){
     MBRespon[MBResCnt] = ModbusData[5] *2;
     MBResCnt++;
     for(i=0; i< (ModbusData[5]) ; i++ ){
+# 205 "Modbus.c"
+            ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB300xx[ModbusData[3] +i] >> 8;
 
 
 
 
 
-        ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
-        ByteHi = MB300xx[ModbusData[3] +i] >> 8;
-        MBRespon[MBResCnt] = ByteHi;
-        MBResCnt++;
-        MBRespon[MBResCnt] = ByteLo;
-        MBResCnt++;
+
+            MBRespon[MBResCnt] = ByteHi;
+            MBResCnt++;
+            MBRespon[MBResCnt] = ByteLo;
+            MBResCnt++;
+
     }
 
     ByteHi = generateCRC(MBResCnt, 1);
@@ -17487,6 +17488,8 @@ void ModbusFC03(){
     MBRespon[MBResCnt] = ByteHi;
     MBRespon[MBResCnt +1] = ByteLo;
     MBResCnt = MBResCnt +2;
+
+    printf("Modbus Response Count %i:\r\n",MBResCnt);
 
     if(Debug ==1){
         PrintModRespon();
@@ -17592,17 +17595,26 @@ void UART1_Write_string(unsigned int * data, int data_len)
 }
 
 
-
 void PrintModRespon(){
 
     int i=0;
-    printf("Modbus Response:\r\n");
+
+
+    printf("Modbus Response Count %i:\r\n",MBResCnt);
+    while(!EUSART2_is_tx_ready());
     for(i=0; i< MBResCnt ; i++ ){
-        printf("   Byte %i : 0x%02x \r\n", i, MBRespon[i]);
+        while(!EUSART2_is_tx_ready());
+        printf("   Byte %02i : 0x%02x \r\n", i, MBRespon[i]);
+        while(!EUSART2_is_tx_done());
+
     }
+    while(!EUSART2_is_tx_ready());
     printf("\r\n\n");
+    while(!EUSART2_is_tx_done());
 
 }
+
+
 
 void ClearModbusRespon(){
     int i = 0;
@@ -17651,6 +17663,7 @@ _Bool ModbusRx(){
                 while(EUSART1_is_rx_ready()){
 
                     rxData[ByteNum] = EUSART1_Read();
+                    printf("Read: 0x%02x \r\n",rxData[ByteNum]);
                     ByteNum++;
                 }
 
@@ -17666,6 +17679,9 @@ _Bool ModbusRx(){
                 ByteNum = 0;
                 do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
             }
+
+            printf("ModDatCnt: %i ExpetedBytes %i \r\n", ModDataCnt,ExpectedBytes);
+
         }while(ModDataCnt != ExpectedBytes);
 
         do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);

@@ -1541,8 +1541,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "64
-[; ;mcc_generated_files/eusart2.c: 64: volatile uint8_t eusart2TxBuffer[8];
-[v _eusart2TxBuffer `Vuc ~T0 @X0 -> 8 `i e ]
+[; ;mcc_generated_files/eusart2.c: 64: volatile uint8_t eusart2TxBuffer[32];
+[v _eusart2TxBuffer `Vuc ~T0 @X0 -> 32 `i e ]
 "65
 [; ;mcc_generated_files/eusart2.c: 65: volatile uint8_t eusart2TxBufferRemaining;
 [v _eusart2TxBufferRemaining `Vuc ~T0 @X0 1 e ]
@@ -1559,11 +1559,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "69
-[; ;mcc_generated_files/eusart2.c: 69: volatile uint8_t eusart2RxBuffer[8];
-[v _eusart2RxBuffer `Vuc ~T0 @X0 -> 8 `i e ]
+[; ;mcc_generated_files/eusart2.c: 69: volatile uint8_t eusart2RxBuffer[32];
+[v _eusart2RxBuffer `Vuc ~T0 @X0 -> 32 `i e ]
 "70
-[; ;mcc_generated_files/eusart2.c: 70: volatile eusart2_status_t eusart2RxStatusBuffer[8];
-[v _eusart2RxStatusBuffer `VS1492 ~T0 @X0 -> 8 `i e ]
+[; ;mcc_generated_files/eusart2.c: 70: volatile eusart2_status_t eusart2RxStatusBuffer[32];
+[v _eusart2RxStatusBuffer `VS1492 ~T0 @X0 -> 32 `i e ]
 "71
 [; ;mcc_generated_files/eusart2.c: 71: volatile uint8_t eusart2RxCount;
 [v _eusart2RxCount `Vuc ~T0 @X0 1 e ]
@@ -1615,11 +1615,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/eusart2.c: 104:     TX2STA = 0x24;
 [e = _TX2STA -> -> 36 `i `uc ]
 "107
-[; ;mcc_generated_files/eusart2.c: 107:     SP2BRGL = 0x40;
-[e = _SP2BRGL -> -> 64 `i `uc ]
+[; ;mcc_generated_files/eusart2.c: 107:     SP2BRGL = 0xA0;
+[e = _SP2BRGL -> -> 160 `i `uc ]
 "110
-[; ;mcc_generated_files/eusart2.c: 110:     SP2BRGH = 0x03;
-[e = _SP2BRGH -> -> 3 `i `uc ]
+[; ;mcc_generated_files/eusart2.c: 110:     SP2BRGH = 0x01;
+[e = _SP2BRGH -> -> 1 `i `uc ]
 "113
 [; ;mcc_generated_files/eusart2.c: 113:     EUSART2_SetFramingErrorHandler(EUSART2_DefaultFramingErrorHandler);
 [e ( _EUSART2_SetFramingErrorHandler (1 &U _EUSART2_DefaultFramingErrorHandler ]

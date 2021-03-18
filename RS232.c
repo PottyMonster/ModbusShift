@@ -15,8 +15,62 @@ void Initalisation(void){
 }
 
 
+void SerIni(char* SerialNum){
+    // Move card part, ser and rev from EEPROM to MB401xx
+    // Move compiler Date, Time, XC8 Version to MB401
+
+    char readDataOdd, readDataEven;
+    int i=0, j=0;
+    uint16_t dataeeAddrWrk;
+ 
+
+    // Serial Number to ModBus
+    dataeeAddrWrk = 0x0300;
+    for(i = 0; i < 4; i++){
+        readDataOdd = DATAEE_ReadByte(dataeeAddrWrk);   // Returns byte from EEPROM
+        // printf("readDataOdd: 0x%02x Add: 0x%02x \r\n", readDataOdd,dataeeAddrWrk);
+        __delay_ms(50);
+        
+        // This doesn't work
+        if(readDataOdd != 0xFF){
+            SerialNum[j] = readDataOdd;
+            j++;
+        }
+                
+        dataeeAddrWrk++;
+        readDataEven = DATAEE_ReadByte(dataeeAddrWrk);
+        // printf("readDataOdd: 0x%02x Add: 0x%02x \r\n", readDataEven,dataeeAddrWrk);          
+        dataeeAddrWrk++;
+        __delay_ms(50);
+
+        // This doesn't work
+        if(readDataEven != 0xFF){
+            SerialNum[j] = readDataEven;
+            j++;
+        }
+        
+        MB303xx[i] = readDataOdd *256 + readDataEven;   // Merge to 16bits
+        
+        // printf("Odd: 0x%02x Even: 0x%02x Merged: 0x%04x \r\n",readDataOdd, readDataEven, MB303xx[i]);
+        
+    }
+    
+    SerialNum[j] = '\0';
+    
+}
+
+
+
+
+
 void InitialiseString(void){
-       
+
+    int i=0;
+    uint16_t dataeeAddrWrk;     
+    
+    char SerialNum[11] = { '\0' };    
+    SerIni(SerialNum);   
+    
     // Send Initalisation String
 
     printf("\rDan and Sam's Modbus GPIO Expansion - AP00070125-01 Rev -\r\n"); 
@@ -25,14 +79,14 @@ void InitialiseString(void){
     
     // Needs to read EEPROM and update Mdbus registers too.
     
-    printf("\rCard Ser No. 2109002 \r\n"); 
-    printf("\rCard Address. 0x05 \r\n");
-    printf("\rCompiled on %s at %s by XC8 version %u\r\n\n",
+    printf("Card Ser No. %s \r\n",SerialNum);  
+    printf("Card Address. 0x05 \r\n");
+    printf("Compiled on %s at %s by XC8 version %u\r\n\n",
             __DATE__, __TIME__, __XC8_VERSION);
-    printf("\rFunction Codes Supported:\r\n"); 
-    printf("\r   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n"); 
-    printf("\r   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
-    printf("\rInitalisation Complete - Ready\r\n\n");
+    printf("Function Codes Supported:\r\n"); 
+    printf("   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n"); 
+    printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
+    printf("Initalisation Complete - Ready\r\n\n");
 }
 
 
@@ -230,11 +284,12 @@ bool ValidateCmd(void){
         // Parameter, MB ADdress, EEProm Address, Max Chars
         SaveCardDat(ConfName,0x0200,0x0200,MaxChars);
         
+        return 1;
     
     }else{
         return 0;
     }
     
-
+    return 0;
     
 }

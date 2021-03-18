@@ -16973,7 +16973,7 @@ void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 62 "mcc_generated_files/eusart1.c"
 volatile uint8_t eusart1TxHead = 0;
 volatile uint8_t eusart1TxTail = 0;
-volatile uint8_t eusart1TxBuffer[16];
+volatile uint8_t eusart1TxBuffer[64];
 volatile uint8_t eusart1TxBufferRemaining;
 
 volatile uint8_t eusart1RxHead = 0;

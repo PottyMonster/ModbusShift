@@ -17303,19 +17303,40 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 12 "./Modbus.h"
 unsigned char ModbusData[100] = { 0 };
 int ModDataCnt = 0;
-# 41 "./Modbus.h"
+
+
+unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
+
+
+unsigned int MB302xx[1] = { 0x004 };
+
+
+unsigned int MB303xx[5] = { 0x3231,0x3039,0x3030,0x3100,0x3039 };
+
+
+unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
+
+
+unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
+
+
+unsigned int MB306xx[2] = { 0x004d,0x3030 };
+
+
+unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
+# 61 "./Modbus.h"
 void TXMode(void);
-# 68 "./Modbus.h"
+# 88 "./Modbus.h"
 void RXMode(void);
-# 92 "./Modbus.h"
+# 112 "./Modbus.h"
 void ClearModbusData(void);
-# 118 "./Modbus.h"
+# 138 "./Modbus.h"
 void ClearRxBuff(void);
-# 159 "./Modbus.h"
+# 179 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 186 "./Modbus.h"
+# 206 "./Modbus.h"
 _Bool checkCRC(void);
-# 227 "./Modbus.h"
+# 247 "./Modbus.h"
 _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
@@ -17408,7 +17429,7 @@ void main(void)
             {
             case 0x03:
                 {
-                    printf("Function Code 0x03\r\n");
+
 
 
                     ModbusFC03();

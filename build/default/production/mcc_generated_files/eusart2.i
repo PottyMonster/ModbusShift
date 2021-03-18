@@ -17113,13 +17113,13 @@ void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 62 "mcc_generated_files/eusart2.c"
 volatile uint8_t eusart2TxHead = 0;
 volatile uint8_t eusart2TxTail = 0;
-volatile uint8_t eusart2TxBuffer[8];
+volatile uint8_t eusart2TxBuffer[32];
 volatile uint8_t eusart2TxBufferRemaining;
 
 volatile uint8_t eusart2RxHead = 0;
 volatile uint8_t eusart2RxTail = 0;
-volatile uint8_t eusart2RxBuffer[8];
-volatile eusart2_status_t eusart2RxStatusBuffer[8];
+volatile uint8_t eusart2RxBuffer[32];
+volatile eusart2_status_t eusart2RxStatusBuffer[32];
 volatile uint8_t eusart2RxCount;
 volatile eusart2_status_t eusart2RxLastError;
 
@@ -17156,10 +17156,10 @@ void EUSART2_Initialize(void)
     TX2STA = 0x24;
 
 
-    SP2BRGL = 0x40;
+    SP2BRGL = 0xA0;
 
 
-    SP2BRGH = 0x03;
+    SP2BRGH = 0x01;
 
 
     EUSART2_SetFramingErrorHandler(EUSART2_DefaultFramingErrorHandler);
