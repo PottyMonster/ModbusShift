@@ -1,0 +1,122 @@
+02/03/21 10:48
+
+Now receives the full Modbus input regardless of how long it is.
+
+====== PUTTY LOG ======
+
+Dan and Sam's Modbus GPIO Expansion - AP000xxxxx V0.1
+Card Ser No. xxxxxxx
+Compiled on Mar  2 2021 at 21:43:10 by XC8 version 2100
+
+Function Codes Supported:
+   0x03 - Read Multiple Registers (Max 32x 16bit)
+   0x10 - Write Multiple Registers (Max 32x 16bit)
+
+Initalisation Complete - Ready
+
+
+Modbus Data Capture Complete:
+   Byte Num: 0 Val: 0x11
+   Byte Num: 1 Val: 0x03
+   Byte Num: 2 Val: 0x00
+   Byte Num: 3 Val: 0x6b
+   Byte Num: 4 Val: 0x00
+   Byte Num: 5 Val: 0x03
+   Byte Num: 6 Val: 0x76
+   Byte Num: 7 Val: 0x87
+
+Modbus Data Capture Complete:
+   Byte Num: 0 Val: 0x11
+   Byte Num: 1 Val: 0x03
+   Byte Num: 2 Val: 0x00
+   Byte Num: 3 Val: 0x6b
+   Byte Num: 4 Val: 0x00
+   Byte Num: 5 Val: 0x03
+   Byte Num: 6 Val: 0x76
+   Byte Num: 7 Val: 0x87
+
+Modbus Data Capture Complete:
+   Byte Num: 0 Val: 0x11
+   Byte Num: 1 Val: 0x03
+   Byte Num: 2 Val: 0x00
+   Byte Num: 3 Val: 0x6b
+   Byte Num: 4 Val: 0x00
+   Byte Num: 5 Val: 0x04
+   Byte Num: 6 Val: 0x37
+   Byte Num: 7 Val: 0x45
+
+Modbus Data Capture Complete:
+   Byte Num: 0 Val: 0x11
+   Byte Num: 1 Val: 0x10
+   Byte Num: 2 Val: 0x00
+   Byte Num: 3 Val: 0x6b
+   Byte Num: 4 Val: 0x00
+   Byte Num: 5 Val: 0x20
+   Byte Num: 6 Val: 0x40
+   Byte Num: 7 Val: 0x00
+   Byte Num: 8 Val: 0x01
+   Byte Num: 9 Val: 0x02
+   Byte Num: 10 Val: 0x03
+   Byte Num: 11 Val: 0x04
+   Byte Num: 12 Val: 0x05
+   Byte Num: 13 Val: 0x06
+   Byte Num: 14 Val: 0x07
+   Byte Num: 15 Val: 0x00
+   Byte Num: 16 Val: 0x00
+   Byte Num: 17 Val: 0x00
+   Byte Num: 18 Val: 0x00
+   Byte Num: 19 Val: 0x00
+   Byte Num: 20 Val: 0x00
+   Byte Num: 21 Val: 0x00
+   Byte Num: 22 Val: 0x00
+   Byte Num: 23 Val: 0x00
+   Byte Num: 24 Val: 0x00
+   Byte Num: 25 Val: 0x00
+   Byte Num: 26 Val: 0x00
+   Byte Num: 27 Val: 0x00
+   Byte Num: 28 Val: 0x00
+   Byte Num: 29 Val: 0x00
+   Byte Num: 30 Val: 0x00
+   Byte Num: 31 Val: 0x00
+   Byte Num: 32 Val: 0x00
+   Byte Num: 33 Val: 0x00
+   Byte Num: 34 Val: 0x00
+   Byte Num: 35 Val: 0x00
+   Byte Num: 36 Val: 0x00
+   Byte Num: 37 Val: 0x00
+   Byte Num: 38 Val: 0x00
+   Byte Num: 39 Val: 0x00
+   Byte Num: 40 Val: 0x00
+   Byte Num: 41 Val: 0x00
+   Byte Num: 42 Val: 0x00
+   Byte Num: 43 Val: 0x00
+   Byte Num: 44 Val: 0x00
+   Byte Num: 45 Val: 0x00
+   Byte Num: 46 Val: 0x00
+   Byte Num: 47 Val: 0x00
+   Byte Num: 48 Val: 0x00
+   Byte Num: 49 Val: 0x00
+   Byte Num: 50 Val: 0x00
+   Byte Num: 51 Val: 0x00
+   Byte Num: 52 Val: 0x00
+   Byte Num: 53 Val: 0x00
+   Byte Num: 54 Val: 0x00
+   Byte Num: 55 Val: 0x00
+   Byte Num: 56 Val: 0x00
+   Byte Num: 57 Val: 0x00
+   Byte Num: 58 Val: 0x00
+   Byte Num: 59 Val: 0x00
+   Byte Num: 60 Val: 0x00
+   Byte Num: 61 Val: 0x00
+   Byte Num: 62 Val: 0x00
+   Byte Num: 63 Val: 0x00
+   Byte Num: 64 Val: 0x00
+   Byte Num: 65 Val: 0x00
+   Byte Num: 66 Val: 0x00
+   Byte Num: 67 Val: 0x00
+   Byte Num: 68 Val: 0x00
+   Byte Num: 69 Val: 0x00
+   Byte Num: 70 Val: 0x00
+   Byte Num: 71 Val: 0x26
+   Byte Num: 72 Val: 0x76
+

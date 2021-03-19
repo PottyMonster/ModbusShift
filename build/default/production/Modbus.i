@@ -16825,20 +16825,17 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 1 "Modbus.c" 2
-
+# 2 "Modbus.c" 2
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
 # 1 "./mcc_generated_files/device_config.h" 1
-# 50 "./mcc_generated_files/mcc.h" 2
-
+# 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
 # 246 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 258 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
-# 51 "./mcc_generated_files/mcc.h" 2
-
+# 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -16922,11 +16919,9 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 52 "./mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
 # 53 "./mcc_generated_files/mcc.h" 2
-
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
+# 54 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\conio.h" 1 3
 
 
@@ -16958,13 +16953,11 @@ extern __bit kbhit(void);
 
 extern char * cgets(char *);
 extern void cputs(const char *);
-# 54 "./mcc_generated_files/mcc.h" 2
-
+# 55 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 110 "./mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
-# 55 "./mcc_generated_files/mcc.h" 2
-
+# 56 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/memory.h" 1
 # 99 "./mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -16982,8 +16975,7 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
+# 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/eusart1.h" 1
 # 75 "./mcc_generated_files/eusart1.h"
 typedef union {
@@ -17037,8 +17029,7 @@ void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 505 "./mcc_generated_files/eusart1.h"
 void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 57 "./mcc_generated_files/mcc.h" 2
-
+# 58 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/eusart2.h" 1
 # 57 "./mcc_generated_files/eusart2.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
@@ -17179,7 +17170,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 57 "./mcc_generated_files/eusart2.h" 2
+# 58 "./mcc_generated_files/eusart2.h" 2
 # 76 "./mcc_generated_files/eusart2.h"
 typedef union {
     struct {
@@ -17232,15 +17223,14 @@ void EUSART2_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "./mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 58 "./mcc_generated_files/mcc.h" 2
+# 59 "./mcc_generated_files/mcc.h" 2
 # 73 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 # 86 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
 # 99 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 2 "Modbus.c" 2
-
+# 3 "Modbus.c" 2
 # 1 "./Modbus.h" 1
 # 12 "./Modbus.h"
 unsigned char ModbusData[100] = { 0 };
@@ -17253,7 +17243,7 @@ unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
 unsigned int MB302xx[1] = { 0x004 };
 
 
-unsigned int MB303xx[5] = { 0x3231,0x3039,0x3030,0x3100,0x3039 };
+unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
 
 
 unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
@@ -17290,8 +17280,7 @@ _Bool checkCRC(void);
 void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
-# 3 "Modbus.c" 2
-
+# 4 "Modbus.c" 2
 
 # 1 "./main.h" 1
 
@@ -17302,8 +17291,7 @@ void PrintMB400(void);
 
 
 _Bool Debug = 0;
-# 5 "Modbus.c" 2
-
+# 6 "Modbus.c" 2
 
 
 int ByteNum = 0;
@@ -17465,20 +17453,104 @@ void ModbusFC03(){
     MBResCnt++;
     MBRespon[MBResCnt] = ModbusData[5] *2;
     MBResCnt++;
+
+
+
+    switch(ModbusData[2]){
+
+        case 0x00:
+        {
+            printf("Circuit Get\r\n");
+            break;
+        }
+        case 0x01:
+        {
+            printf("Part No.\r\n");
+            break;
+        }
+        case 0x02:
+        {
+            printf("Revision\r\n");
+            break;
+        }
+        case 0x03:
+        {
+            printf("Serial No.\r\n");
+            break;
+        }
+        case 0x04:
+        {
+            printf("Compile Date\r\n");
+            break;
+        }
+        case 0x05:
+        {
+            printf("Compile Time\r\n");
+            break;
+        }
+        case 0x06:
+        {
+            printf("Compiler Ver\r\n");
+            break;
+        }
+        case 0x07:
+        {
+            printf("Analogue Inputs\r\n");
+            break;
+        }
+    }
+
+
     for(i=0; i< (ModbusData[5]) ; i++ ){
-# 205 "Modbus.c"
+
+
+
+
+        if(ModbusData[2] == 0x03){
+
+
+
+
+
+
+            ByteLo = MB303xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB303xx[ModbusData[3] +i] >> 8;
+
+
+        }else if(ModbusData[2] == 0x01){
+
+
+
+
+
+
+            ByteLo = MB301xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB301xx[ModbusData[3] +i] >> 8;
+
+        }
+        else if(ModbusData[2] == 0x02){
+
+
+
+
+
+            ByteLo = MB302xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB302xx[ModbusData[3] +i] >> 8;
+
+        }
+        else if(ModbusData[2] == 0x00){
             ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
             ByteHi = MB300xx[ModbusData[3] +i] >> 8;
 
 
 
 
+        }
 
-
-            MBRespon[MBResCnt] = ByteHi;
-            MBResCnt++;
-            MBRespon[MBResCnt] = ByteLo;
-            MBResCnt++;
+        MBRespon[MBResCnt] = ByteHi;
+        MBResCnt++;
+        MBRespon[MBResCnt] = ByteLo;
+        MBResCnt++;
 
     }
 
@@ -17489,9 +17561,8 @@ void ModbusFC03(){
     MBRespon[MBResCnt +1] = ByteLo;
     MBResCnt = MBResCnt +2;
 
-    printf("Modbus Response Count %i:\r\n",MBResCnt);
-
     if(Debug ==1){
+        printf("Modbus Response Count %i:\r\n",MBResCnt);
         PrintModRespon();
     }
 
@@ -17656,14 +17727,19 @@ void ModbusError(int ErrorCode){
 _Bool ModbusRx(){
     RXMode();
     if(EUSART1_is_rx_ready()){
-        printf("Something in ESUART1 \r\n");
+        if(Debug ==1){
+            printf("Something in ESUART1 \r\n");
+        }
         do{
             if(EUSART1_is_rx_ready()){
 
                 while(EUSART1_is_rx_ready()){
 
                     rxData[ByteNum] = EUSART1_Read();
-                    printf("Read: 0x%02x \r\n",rxData[ByteNum]);
+
+                    if(Debug == 1){
+                        printf("Read: 0x%02x \r\n",rxData[ByteNum]);
+                    }
                     ByteNum++;
                 }
 
@@ -17680,7 +17756,9 @@ _Bool ModbusRx(){
                 do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
             }
 
-            printf("ModDatCnt: %i ExpetedBytes %i \r\n", ModDataCnt,ExpectedBytes);
+            if(Debug == 1){
+                printf("ModDatCnt: %i ExpetedBytes %i \r\n", ModDataCnt,ExpectedBytes);
+            }
 
         }while(ModDataCnt != ExpectedBytes);
 
@@ -17689,9 +17767,9 @@ _Bool ModbusRx(){
 
         if(checkCRC() == 1)
         {
-            printf("CRC Checked Out. \r\n\n");
+            printf("Modbus Rx Good Good.\r\n\n");
         }else{
-            printf("CRC did NOT check out. \r\n\n");
+            printf("Modbus Rx Bad.\r\n\n");
         }
 
 

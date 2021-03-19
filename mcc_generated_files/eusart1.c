@@ -53,8 +53,8 @@
   Section: Macro Declarations
 */
 
-#define EUSART1_TX_BUFFER_SIZE 64
-#define EUSART1_RX_BUFFER_SIZE 100
+#define EUSART1_TX_BUFFER_SIZE 16
+#define EUSART1_RX_BUFFER_SIZE 100       // Modified by DT from 8 to 32.
 
 /**
   Section: Global Variables
@@ -103,11 +103,13 @@ void EUSART1_Initialize(void)
     // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave; 
     TX1STA = 0x24;
 
-    // SP1BRGL 64; 
-    SP1BRGL = 0x40;
+    // SP1BRGL 64;  
+    // SP1BRGL = 0x40;  // 9600 Baud
+    SP1BRGL = 0xA0;     // 19200 Baud
 
     // SP1BRGH 3; 
-    SP1BRGH = 0x03;
+    SP1BRGH = 0x03; // 9600 Baud
+    SP1BRGH = 0x01; // 19200 Baud
 
 
     EUSART1_SetFramingErrorHandler(EUSART1_DefaultFramingErrorHandler);

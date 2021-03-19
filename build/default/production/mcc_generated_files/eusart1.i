@@ -16828,11 +16828,9 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 54 "mcc_generated_files/eusart1.h" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
 # 55 "mcc_generated_files/eusart1.h" 2
-
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
+# 56 "mcc_generated_files/eusart1.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -16916,7 +16914,7 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 56 "mcc_generated_files/eusart1.h" 2
+# 57 "mcc_generated_files/eusart1.h" 2
 # 75 "mcc_generated_files/eusart1.h"
 typedef union {
     struct {
@@ -16969,11 +16967,11 @@ void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 505 "mcc_generated_files/eusart1.h"
 void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 50 "mcc_generated_files/eusart1.c" 2
+# 51 "mcc_generated_files/eusart1.c" 2
 # 62 "mcc_generated_files/eusart1.c"
 volatile uint8_t eusart1TxHead = 0;
 volatile uint8_t eusart1TxTail = 0;
-volatile uint8_t eusart1TxBuffer[64];
+volatile uint8_t eusart1TxBuffer[16];
 volatile uint8_t eusart1TxBufferRemaining;
 
 volatile uint8_t eusart1RxHead = 0;
@@ -17016,10 +17014,12 @@ void EUSART1_Initialize(void)
     TX1STA = 0x24;
 
 
-    SP1BRGL = 0x40;
+
+    SP1BRGL = 0xA0;
 
 
     SP1BRGH = 0x03;
+    SP1BRGH = 0x01;
 
 
     EUSART1_SetFramingErrorHandler(EUSART1_DefaultFramingErrorHandler);

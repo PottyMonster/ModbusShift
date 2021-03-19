@@ -16828,11 +16828,9 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 54 "mcc_generated_files/eusart2.h" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
 # 55 "mcc_generated_files/eusart2.h" 2
-
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
+# 56 "mcc_generated_files/eusart2.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -16916,8 +16914,7 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 56 "mcc_generated_files/eusart2.h" 2
-
+# 57 "mcc_generated_files/eusart2.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -17056,7 +17053,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 57 "mcc_generated_files/eusart2.h" 2
+# 58 "mcc_generated_files/eusart2.h" 2
 # 76 "mcc_generated_files/eusart2.h"
 typedef union {
     struct {
@@ -17109,7 +17106,7 @@ void EUSART2_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 50 "mcc_generated_files/eusart2.c" 2
+# 51 "mcc_generated_files/eusart2.c" 2
 # 62 "mcc_generated_files/eusart2.c"
 volatile uint8_t eusart2TxHead = 0;
 volatile uint8_t eusart2TxTail = 0;
@@ -17156,7 +17153,9 @@ void EUSART2_Initialize(void)
     TX2STA = 0x24;
 
 
+
     SP2BRGL = 0xA0;
+
 
 
     SP2BRGH = 0x01;

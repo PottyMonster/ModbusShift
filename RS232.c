@@ -26,7 +26,7 @@ void SerIni(char* SerialNum){
 
     // Serial Number to ModBus
     dataeeAddrWrk = 0x0300;
-    for(i = 0; i < 4; i++){
+    for(i = 0; i < 5; i++){
         readDataOdd = DATAEE_ReadByte(dataeeAddrWrk);   // Returns byte from EEPROM
         // printf("readDataOdd: 0x%02x Add: 0x%02x \r\n", readDataOdd,dataeeAddrWrk);
         __delay_ms(50);
@@ -162,12 +162,10 @@ void ClearEEAddRange(unsigned int StartAdd, unsigned int NumBytes){
     // Writes 0xFF in to EEPROM address space
     
     printf("Clearing EEPROM from Address: 0x%04x, Num Bytes: %i \r\n", StartAdd, NumBytes);
-    
-    int i = 0;
-    
-    for(i=0; i<NumBytes; i++){
-        DATAEE_WriteByte(StartAdd, 0xFF);
-        StartAdd++;
+        
+    for(int i = 0; i<NumBytes; i++){
+        DATAEE_WriteByte(StartAdd +i, 0xFF);
+        printf("Clear 0x%04x NumByte:  %i \r\n", StartAdd +i, NumBytes);
     }
     
 }
@@ -262,7 +260,9 @@ bool ValidateCmd(void){
         // RecSerNum(); // Temp replaced with new function SaveCardDat below
         
         // Parameter, MB ADdress, EEProm Address, Max Chars
-        SaveCardDat(ConfName,0x0300,0x0300,MaxChars);   
+        SaveCardDat(ConfName,0x0300,0x0300,MaxChars);  
+        InitialiseString();
+        
         return 1;
 
 

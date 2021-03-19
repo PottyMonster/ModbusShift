@@ -16825,20 +16825,17 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 1 "main.c" 2
-
+# 2 "main.c" 2
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
 # 1 "./mcc_generated_files/device_config.h" 1
-# 50 "./mcc_generated_files/mcc.h" 2
-
+# 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
 # 246 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 258 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
-# 51 "./mcc_generated_files/mcc.h" 2
-
+# 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -16922,11 +16919,9 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 52 "./mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
 # 53 "./mcc_generated_files/mcc.h" 2
-
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
+# 54 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\conio.h" 1 3
 
 
@@ -16958,13 +16953,11 @@ extern __bit kbhit(void);
 
 extern char * cgets(char *);
 extern void cputs(const char *);
-# 54 "./mcc_generated_files/mcc.h" 2
-
+# 55 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 110 "./mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
-# 55 "./mcc_generated_files/mcc.h" 2
-
+# 56 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/memory.h" 1
 # 99 "./mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -16982,8 +16975,7 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
+# 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/eusart1.h" 1
 # 75 "./mcc_generated_files/eusart1.h"
 typedef union {
@@ -17037,8 +17029,7 @@ void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 505 "./mcc_generated_files/eusart1.h"
 void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 57 "./mcc_generated_files/mcc.h" 2
-
+# 58 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/eusart2.h" 1
 # 57 "./mcc_generated_files/eusart2.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
@@ -17179,7 +17170,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 57 "./mcc_generated_files/eusart2.h" 2
+# 58 "./mcc_generated_files/eusart2.h" 2
 # 76 "./mcc_generated_files/eusart2.h"
 typedef union {
     struct {
@@ -17232,15 +17223,14 @@ void EUSART2_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "./mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 58 "./mcc_generated_files/mcc.h" 2
+# 59 "./mcc_generated_files/mcc.h" 2
 # 73 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 # 86 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
 # 99 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 2 "main.c" 2
-
+# 3 "main.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 1 3
 # 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -17296,8 +17286,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 3 "main.c" 2
-
+# 4 "main.c" 2
 
 # 1 "./Modbus.h" 1
 # 12 "./Modbus.h"
@@ -17311,7 +17300,7 @@ unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
 unsigned int MB302xx[1] = { 0x004 };
 
 
-unsigned int MB303xx[5] = { 0x3231,0x3039,0x3030,0x3100,0x3039 };
+unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
 
 
 unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
@@ -17348,8 +17337,7 @@ _Bool checkCRC(void);
 void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
-# 5 "main.c" 2
-
+# 6 "main.c" 2
 # 1 "./RS232.h" 1
 
 
@@ -17367,8 +17355,7 @@ void Initalisation(void);
 
 
 _Bool ValidateCmd(void);
-# 6 "main.c" 2
-
+# 7 "main.c" 2
 # 1 "./main.h" 1
 
 
@@ -17378,7 +17365,7 @@ _Bool ValidateCmd(void);
 
 
 _Bool Debug = 0;
-# 7 "main.c" 2
+# 8 "main.c" 2
 # 29 "main.c"
 void main(void)
 {
@@ -17433,8 +17420,6 @@ void main(void)
 
 
                     ModbusFC03();
-                    ClearModbusData();
-                    ClearModbusRespon();
                     break;
                 }
             case 0x10:
@@ -17444,8 +17429,6 @@ void main(void)
                     PrintMB400();
                     ModbusFC10();
 
-                    ClearModbusData();
-                    ClearModbusRespon();
                     break;
                 }
             default:
@@ -17453,11 +17436,11 @@ void main(void)
                     printf("Unsupported Function Code\r\n");
 
                     ModbusError(0x01);
-                    ClearModbusData();
-                    ClearModbusRespon();
                     break;
                 }
             }
+            ClearModbusData();
+            ClearModbusRespon();
         }else if(ReadRX232(16) != 0){
 
             if(ValidateCmd() ==1){

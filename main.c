@@ -79,8 +79,6 @@ void main(void)
                     // Reads Multiple Registers
                     // ShiftRead();     // Sam's function to read in shift reg
                     ModbusFC03();
-                    ClearModbusData();   // Needed when complete
-                    ClearModbusRespon();
                     break;
                 }
             case 0x10:
@@ -90,8 +88,6 @@ void main(void)
                     PrintMB400();   // Contents before update
                     ModbusFC10();
                     // ShiftWrite();    // Sam's function to write to shift reg 
-                    ClearModbusData();   // Needed when complete
-                    ClearModbusRespon();
                     break;
                 }
             default:
@@ -99,11 +95,11 @@ void main(void)
                     printf("Unsupported Function Code\r\n");
                     // Throw error code as function code not available
                     ModbusError(0x01);
-                    ClearModbusData();   // Needed when complete
-                    ClearModbusRespon();
                     break;
-                }
+                }           
             }
+            ClearModbusData();   // Needed when complete
+            ClearModbusRespon();          
         }else if(ReadRX232(16) != 0){
             // RS232 Data has been received
             if(ValidateCmd() ==1){

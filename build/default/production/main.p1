@@ -58,9 +58,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "253
 [; ;./Modbus.h: 253: void ModbusFC03(void);
 [v _ModbusFC03 `(v ~T0 @X0 0 ef ]
-"112
-[; ;./Modbus.h: 112: void ClearModbusData(void);
-[v _ClearModbusData `(v ~T0 @X0 0 ef ]
 "111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "257 ./Modbus.h
@@ -72,6 +69,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "255
 [; ;./Modbus.h: 255: void ModbusError(int ErrorCode);
 [v _ModbusError `(v ~T0 @X0 0 ef1`i ]
+"112
+[; ;./Modbus.h: 112: void ClearModbusData(void);
+[v _ClearModbusData `(v ~T0 @X0 0 ef ]
 "11 ./RS232.h
 [; ;./RS232.h: 11: int ReadRX232(int NumChars);
 [v _ReadRX232 `(i ~T0 @X0 0 ef1`i ]
@@ -1504,15 +1504,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "22
-[; ;./Modbus.h: 22: unsigned int MB303xx[5] = { 0x3231,0x3039,0x3030,0x3100,0x3039 };
+[; ;./Modbus.h: 22: unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
 [v _MB303xx `ui ~T0 @X0 -> 5 `i e ]
 [i _MB303xx
 :U ..
--> -> 12849 `i `ui
--> -> 12345 `i `ui
--> -> 12336 `i `ui
--> -> 12544 `i `ui
--> -> 12345 `i `ui
+-> -> 12594 `i `ui
+-> -> 13108 `i `ui
+-> -> 13622 `i `ui
+-> -> 14136 `i `ui
+-> -> 14640 `i `ui
 ..
 ]
 "25
@@ -1664,70 +1664,52 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 81:                     ModbusFC03();
 [e ( _ModbusFC03 ..  ]
 "82
-[; ;main.c: 82:                     ClearModbusData();
-[e ( _ClearModbusData ..  ]
+[; ;main.c: 82:                     break;
+[e $U 1515  ]
 "83
-[; ;main.c: 83:                     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
+[; ;main.c: 83:                 }
+}
 "84
-[; ;main.c: 84:                     break;
-[e $U 1515  ]
-"85
-[; ;main.c: 85:                 }
-}
-"86
-[; ;main.c: 86:             case 0x10:
+[; ;main.c: 84:             case 0x10:
 [e :U 1518 ]
-"87
-[; ;main.c: 87:                 {
+"85
+[; ;main.c: 85:                 {
 {
-"88
-[; ;main.c: 88:                     printf("Function Code 0x10\r\n");
+"86
+[; ;main.c: 86:                     printf("Function Code 0x10\r\n");
 [e ( _printf :s 1C ]
-"90
-[; ;main.c: 90:                     PrintMB400();
+"88
+[; ;main.c: 88:                     PrintMB400();
 [e ( _PrintMB400 ..  ]
-"91
-[; ;main.c: 91:                     ModbusFC10();
+"89
+[; ;main.c: 89:                     ModbusFC10();
 [e ( _ModbusFC10 ..  ]
+"91
+[; ;main.c: 91:                     break;
+[e $U 1515  ]
+"92
+[; ;main.c: 92:                 }
+}
 "93
-[; ;main.c: 93:                     ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"94
-[; ;main.c: 94:                     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"95
-[; ;main.c: 95:                     break;
-[e $U 1515  ]
-"96
-[; ;main.c: 96:                 }
-}
-"97
-[; ;main.c: 97:             default:
+[; ;main.c: 93:             default:
 [e :U 1519 ]
-"98
-[; ;main.c: 98:                 {
+"94
+[; ;main.c: 94:                 {
 {
-"99
-[; ;main.c: 99:                     printf("Unsupported Function Code\r\n");
+"95
+[; ;main.c: 95:                     printf("Unsupported Function Code\r\n");
 [e ( _printf :s 2C ]
-"101
-[; ;main.c: 101:                     ModbusError(0x01);
+"97
+[; ;main.c: 97:                     ModbusError(0x01);
 [e ( _ModbusError (1 -> 1 `i ]
-"102
-[; ;main.c: 102:                     ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"103
-[; ;main.c: 103:                     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"104
-[; ;main.c: 104:                     break;
+"98
+[; ;main.c: 98:                     break;
 [e $U 1515  ]
-"105
-[; ;main.c: 105:                 }
+"99
+[; ;main.c: 99:                 }
 }
-"106
-[; ;main.c: 106:             }
+"100
+[; ;main.c: 100:             }
 }
 [e $U 1515  ]
 [e :U 1516 ]
@@ -1735,49 +1717,55 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 16 `i 1518
  1519 ]
 [e :U 1515 ]
-"107
-[; ;main.c: 107:         }else if(ReadRX232(16) != 0){
+"101
+[; ;main.c: 101:             ClearModbusData();
+[e ( _ClearModbusData ..  ]
+"102
+[; ;main.c: 102:             ClearModbusRespon();
+[e ( _ClearModbusRespon ..  ]
+"103
+[; ;main.c: 103:         }else if(ReadRX232(16) != 0){
 }
 [e $U 1520  ]
 [e :U 1513 ]
 [e $ ! != ( _ReadRX232 (1 -> 16 `i -> 0 `i 1521  ]
 {
-"109
-[; ;main.c: 109:             if(ValidateCmd() ==1){
+"105
+[; ;main.c: 105:             if(ValidateCmd() ==1){
 [e $ ! == -> ( _ValidateCmd ..  `i -> 1 `i 1522  ]
 {
-"113
-[; ;main.c: 113:              }else{
+"109
+[; ;main.c: 109:              }else{
 }
 [e $U 1523  ]
 [e :U 1522 ]
 {
-"115
-[; ;main.c: 115:              }
+"111
+[; ;main.c: 111:              }
 }
 [e :U 1523 ]
-"117
-[; ;main.c: 117:              strcpy(Command, "");
+"113
+[; ;main.c: 113:              strcpy(Command, "");
 [e ( _strcpy (2 , &U _Command :s 3C ]
-"119
-[; ;main.c: 119:         }else{
+"115
+[; ;main.c: 115:         }else{
 }
 [e $U 1524  ]
 [e :U 1521 ]
 {
-"121
-[; ;main.c: 121:         }
+"117
+[; ;main.c: 117:         }
 }
 [e :U 1524 ]
 [e :U 1520 ]
-"123
-[; ;main.c: 123:     }
+"119
+[; ;main.c: 119:     }
 }
 [e :U 1510 ]
 [e $U 1511  ]
 [e :U 1512 ]
-"124
-[; ;main.c: 124: }
+"120
+[; ;main.c: 120: }
 [e :UE 1497 ]
 }
 [p f _printf 8388608 ]
