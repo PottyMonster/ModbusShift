@@ -17244,8 +17244,7 @@ char Command[16];
 
 
 int ReadRX232(int NumChars);
-void InitialiseString(void);
-void Initalisation(void);
+void InitialiseString(_Bool Partial);
 
 
 _Bool ValidateCmd(void);
@@ -17358,7 +17357,10 @@ _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
 void PrintModRespon();
-void UART1_Write_string(unsigned int * data, int data_len);
+
+void PrintModRespon2();
+
+void UART1_Write_string(unsigned char * data, int data_len);
 unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
 void ModbusFC03(void);
 _Bool checkCRC(void);
@@ -17366,35 +17368,24 @@ void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
 # 8 "RS232.c" 2
-
-
-
-void Initalisation(void){
-
-
-
-}
-
-
-void SerIni(char* SerialNum){
+# 58 "RS232.c"
+void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumBytes){
 
 
 
     char readDataOdd, readDataEven;
     int i=0, j=0;
-    uint16_t dataeeAddrWrk;
 
 
 
-    dataeeAddrWrk = 0x0300;
-    for(i = 0; i < 5; i++){
+    for(i = 0; i < NumBytes; i++){
         readDataOdd = DATAEE_ReadByte(dataeeAddrWrk);
 
         _delay((unsigned long)((50)*(32000000/4000.0)));
 
 
         if(readDataOdd != 0xFF){
-            SerialNum[j] = readDataOdd;
+            RetNum[j] = readDataOdd;
             j++;
         }
 
@@ -17406,17 +17397,22 @@ void SerIni(char* SerialNum){
 
 
         if(readDataEven != 0xFF){
-            SerialNum[j] = readDataEven;
+            RetNum[j] = readDataEven;
             j++;
         }
 
-        MB303xx[i] = readDataOdd *256 + readDataEven;
-
+        if(!strcmp("Serial",Name)){
+            MB303xx[i] = readDataOdd *256 + readDataEven;
+        }else if(!strcmp("Part",Name)){
+            MB301xx[i] = readDataOdd *256 + readDataEven;
+        }else if(!strcmp("Rev",Name)){
+            MB302xx[i] = readDataOdd *256 + readDataEven;
+        }
 
 
     }
 
-    SerialNum[j] = '\0';
+    RetNum[j] = '\0';
 
 }
 
@@ -17424,30 +17420,54 @@ void SerIni(char* SerialNum){
 
 
 
-void InitialiseString(void){
 
-    int i=0;
-    uint16_t dataeeAddrWrk;
+void InitialiseString(_Bool Partial){
+
 
     char SerialNum[11] = { '\0' };
-    SerIni(SerialNum);
+
+    CardConfigIni("Serial", SerialNum,0x0300,5);
+
+    char PartNum[19] = { '\0' };
+    CardConfigIni("Part", PartNum,0x0100,8);
+
+    char RevNum[2] = { '\0' };
+    CardConfigIni("Rev", RevNum,0x0200,1);
 
 
 
-    printf("\rDan and Sam's Modbus GPIO Expansion - AP00070125-01 Rev -\r\n");
-
-    Initalisation();
+    printf("\r\nDan and Sam's Modbus GPIO Expansion\r\n");
 
 
 
     printf("Card Ser No. %s \r\n",SerialNum);
+    printf("Card Part No. %s \r\n",PartNum);
+    printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar 19 2021", "19:07:07", 2100);
-    printf("Function Codes Supported:\r\n");
-    printf("   0x03 - Read Multiple Registers (Max 32x 16bit)\r\n");
-    printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n\n");
-    printf("Initalisation Complete - Ready\r\n\n");
+            "Mar 21 2021", "00:28:31", 2100);
+
+    if(Partial != 1){
+        printf("Initalisation Complete - Ready\r\n\n");
+        printf("Modbus Function Codes Supported:\r\n\n");
+        printf("   0x03 - Read Multiple 16bit Registers\r\n");
+        printf("      Add 0x0000 to 0x0031 - 32x Circuit Get Status (lower 8bits only)\r\n");
+        printf("      Add 0x0100 to 0x0108 - Part Number\r\n");
+        printf("      Add 0x0200 - Revision\r\n");
+        printf("      Add 0x0300 to 0x0304 - Revision\r\n");
+        printf("      Add 0x0400 to 0x0404 - Compile Date - WIP\r\n");
+        printf("      Add 0x0500 to 0x0503 - Compile Time - WIP\r\n");
+        printf("      Add 0x0600 to 0x0601 - Compiler Version - WIP\r\n");
+        printf("      Add 0x0700 to 0x0702 - 3x Analogue Inputs - WIP\r\n\n");
+        printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n");
+        printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");
+
+        printf("Commands Supported:\r\n");
+        printf("   ? - Initalise and display card details\r\n");
+        printf("   serial - Set card serial number\r\n");
+        printf("   part - Set card part number\r\n");
+        printf("   rev - Set card part number\r\n");
+    }
 }
 
 
@@ -17482,7 +17502,7 @@ int ReadRX232(int NumChars)
                 {
 
                     memmove(Command, Command+1, strlen(Command));
-                    printf("Del First Char, now contains %s \r\n" , Command);
+
                 };
 
                 if(temp[0]=='\r'){
@@ -17522,11 +17542,10 @@ void TogDebug(void){
 void ClearEEAddRange(unsigned int StartAdd, unsigned int NumBytes){
 
 
-    printf("Clearing EEPROM from Address: 0x%04x, Num Bytes: %i \r\n", StartAdd, NumBytes);
+    printf("Clearing EEPROM from Address: 0x%04x for num bytes: %i \r\n", StartAdd, NumBytes);
 
     for(int i = 0; i<NumBytes; i++){
         DATAEE_WriteByte(StartAdd +i, 0xFF);
-        printf("Clear 0x%04x NumByte:  %i \r\n", StartAdd +i, NumBytes);
     }
 
 }
@@ -17538,10 +17557,7 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
     unsigned char Conf, readData;
     uint16_t dataeeAddrWrk = dataeeAddr;
 
-    printf("Saving Card Data\r\n");
-    printf("Name: %s  MBAddress: 0x%04x   dataeeAddr: 0x%04x   NumBytes: %i \r\n", Name, MBAddress, dataeeAddr, NumBytes);
-
-    printf("Enter card %s (max %i characters): ", Name, NumBytes);
+    printf("\r\nEnter card %s (max %i characters): ", Name, NumBytes);
 
     strcpy(Command, "");
 
@@ -17556,7 +17572,7 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
 
     if(Conf == 0x79 || Conf == 0x59){
         Conf = 0xFF;
-        printf("Y\r\nSaving Serial Number \r\n");
+        printf("Y\r\nSaving %s\r\n", Name);
         printf("Num Chars: %i \r\n", strlen(Command));
 
 
@@ -17565,35 +17581,17 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
 
 
         for (i = 0; i < strlen(Command); i++){
-            printf("Char 0x%02x in 0x%02x \r\n", Command[i], dataeeAddrWrk);
             DATAEE_WriteByte(dataeeAddrWrk, Command[i]);
             dataeeAddrWrk++;
             _delay((unsigned long)((50)*(32000000/4000.0)));
         }
 
-        printf("Serial Number Saved. \r\n");
-
-
-        dataeeAddrWrk = dataeeAddr;
-         _delay((unsigned long)((50)*(32000000/4000.0)));
-
-
-        for(i = 0; i < strlen(Command); i++){
-            readData = DATAEE_ReadByte(dataeeAddrWrk);
-            printf("EEPROM: 0x%02x Add: 0x%02x \r\n", readData,dataeeAddrWrk);
-            dataeeAddrWrk++;
-            _delay((unsigned long)((50)*(32000000/4000.0)));
-        }
-
-
+        printf("%s Saved. \r\n",Name);
+# 290 "RS232.c"
         strcpy(Command, "");
 
-
-
-
-
-
-
+    }else if(Conf == 0x4e || Conf == 0x6e){
+        printf("Not saved\r\n");
     }
 
 
@@ -17605,16 +17603,14 @@ _Bool ValidateCmd(void){
     int i = 0;
 
 
-    printf("\r\n Validating Command: %s \r\n" , Command);
 
     if(!strcmp(Command,"debug")){
         TogDebug();
         return 1;
     }else if(!strcmp(Command,"?")){
-        InitialiseString();
+        InitialiseString(0);
         return 1;
     }else if(!strcmp(Command,"serial")){
-
         char ConfName[20] = "Serial Number";
         int MaxChars = 10;
 
@@ -17622,17 +17618,16 @@ _Bool ValidateCmd(void){
 
 
         SaveCardDat(ConfName,0x0300,0x0300,MaxChars);
-        InitialiseString();
+        InitialiseString(1);
 
         return 1;
 
 
     }else if(!strcmp(Command,"part")){
-
         char ConfName[20] = "Part Number";
         int MaxChars = 16;
         SaveCardDat(ConfName,0x0100,0x0100,MaxChars);
-
+        InitialiseString(1);
 
 
 
@@ -17642,9 +17637,9 @@ _Bool ValidateCmd(void){
         char ConfName[20] = "Revision";
         int MaxChars = 2;
 
-
         SaveCardDat(ConfName,0x0200,0x0200,MaxChars);
 
+        InitialiseString(1);
         return 1;
 
     }else{

@@ -4,6 +4,8 @@
 #include "stdio.h"
 #include "main.h"
 
+
+
 // Define and initalise data. Might need to go in Main if global.
 int ByteNum = 0;
 int ExpectedBytes = 8;
@@ -11,7 +13,8 @@ unsigned char rxData[100] = { 0 };      // Taken from USART Buffer
 bool RXStat = 0;
 volatile eusart1_status_t rxStatus;
 int MBResCnt = 0;
-unsigned int MBRespon[32] = { 0xFFFF };
+unsigned char MBRespon[75] = { 0xFF };    // Works
+// unsigned int MBRespon[32] = { 0xFFFF };    
 unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
 
@@ -37,7 +40,7 @@ void PrintMB400(void){
     int i=0;
     
     for(i=0; i<32; i++ ){
-        printf("Reg: %i Data: 0x%04x \r\n", i, MB400xx[i]);
+        printf("   Reg: %i Data: 0x%04x \r\n", i, MB400xx[i]);
     }
     
 }
@@ -103,14 +106,13 @@ void PrintModbus(){
     // expected by ExpectedBytes
 
     int i=0;
-    printf("Modbus Data Capture Complete:\r\n");
+    printf("\r\nModbus Data Capture Complete:\r\n");
     
-    if(Debug ==1){
-        for(i=0; i< ModDataCnt ; i++ ){
-            printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
-        }
-        printf("\r\n\n");
+    for(i=0; i< ModDataCnt ; i++ ){
+        printf("   Byte %i : 0x%02x \r\n", i, ModbusData[i]);
     }
+    printf("\r\n\n");
+
     
 }
 
@@ -171,42 +173,42 @@ void ModbusFC03(){
         
         case 0x00:
         {
-            printf("Circuit Get\r\n");
+            printf("Requested Circuit Data\r\n\n");
             break;
         }
         case 0x01:
         {
-            printf("Part No.\r\n");
+            printf("Requested Part No.\r\n\n");
             break;
         }
         case 0x02:
         {
-            printf("Revision\r\n");
+            printf("Requested Revision\r\n\n");
             break;
         }
         case 0x03:
         {
-            printf("Serial No.\r\n");
+            printf("Requested Serial No.\r\n\n");
             break;
         }
         case 0x04:
         {
-            printf("Compile Date\r\n");
+            printf("Requested Compile Date\r\n\n");
             break;
         }
         case 0x05:
         {
-            printf("Compile Time\r\n");
+            printf("Requested Compile Time\r\n\n");
             break;
         }
         case 0x06:
         {
-            printf("Compiler Ver\r\n");
+            printf("Requested Compiler Ver\r\n\n");
             break;
         }
         case 0x07:
         {
-            printf("Analogue Inputs\r\n");
+            printf("Requested Analogue Inputs\r\n\n");
             break;
         }
     }
@@ -253,9 +255,6 @@ void ModbusFC03(){
             ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
             ByteHi = MB300xx[ModbusData[3] +i] >> 8;
             
-            // while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
-            // printf("HiByte: 0x%02x LoByte: 0x%02x \r\n",ByteHi, ByteLo);
-            // while(!EUSART2_is_tx_done());
         }
      
         MBRespon[MBResCnt] = ByteHi;                   
@@ -272,12 +271,10 @@ void ModbusFC03(){
     MBRespon[MBResCnt +1] = ByteLo;
     MBResCnt = MBResCnt +2;
     
-    if(Debug ==1){
-        printf("Modbus Response Count %i:\r\n",MBResCnt);
-        PrintModRespon();   // Slows the response down.
-    }
+   
+    // printf("Modbus Response Count %i:\r\n",MBResCnt);
     
-    
+    // Send Modbus response back to Master.
     UART1_Write_string(MBRespon,MBResCnt);
  
     
@@ -365,7 +362,7 @@ unsigned int generateCRC(int MessCnt, bool HiOrLo){
     
 }
 
-void UART1_Write_string(unsigned int * data, int data_len)
+void UART1_Write_string(unsigned char * data, int data_len)
 {
     TXMode();
     while(!EUSART1_is_tx_ready()); // Hold the program until TX is ready
@@ -377,23 +374,22 @@ void UART1_Write_string(unsigned int * data, int data_len)
 }
 
 
+// Corrupts output.
+// Best results with TX and RX buffer set to 32.
 void PrintModRespon(){
 
     int i=0;
     
-    
     printf("Modbus Response Count %i:\r\n",MBResCnt);
-    while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
+    
     for(i=0; i< MBResCnt ; i++ ){
         while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
         printf("   Byte %02i : 0x%02x \r\n", i, MBRespon[i]);
-        while(!EUSART2_is_tx_done());
-        // __delay_ms(50);
+        while(!EUSART2_is_tx_done());   // Hold until done.
     }
-    while(!EUSART2_is_tx_ready()); // Hold the program until TX is ready
+    
     printf("\r\n\n");
-    while(!EUSART2_is_tx_done());
-     
+    
 }
 
 
@@ -401,7 +397,7 @@ void PrintModRespon(){
 void ClearModbusRespon(){
     int i = 0;    
     for(i=0; i<32; i++ ){
-        MBRespon[i] = 0xFFFF;
+        MBRespon[i] = 0xFF;
     }  
 }
 
@@ -467,9 +463,6 @@ bool ModbusRx(){
                 D2LED_Toggle();
             }
             
-            if(Debug == 1){
-                printf("ModDatCnt: %i ExpetedBytes %i \r\n", ModDataCnt,ExpectedBytes);
-            }
             
         }while(ModDataCnt != ExpectedBytes);
 
@@ -478,9 +471,9 @@ bool ModbusRx(){
         // generateCRC(ModDataCnt);
         if(checkCRC() == 1)
         {
-            printf("Modbus Rx Good Good.\r\n\n");
+            printf("\r\nReceived Modbus CRC checked out.\r\n");
         }else{
-            printf("Modbus Rx Bad.\r\n\n");
+            printf("\r\nReceived Modbus CRC is bad.\r\n");
         }
         // Complete Modbus String ready to process.     
         

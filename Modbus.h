@@ -248,7 +248,10 @@ bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
 void PrintModRespon();
-void UART1_Write_string(unsigned int * data, int data_len);
+
+void PrintModRespon2();
+
+void UART1_Write_string(unsigned char * data, int data_len);
 unsigned int generateCRC(int MessCnt, bool HiOrLo);
 void ModbusFC03(void);
 bool checkCRC(void);

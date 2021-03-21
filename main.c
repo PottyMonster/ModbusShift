@@ -52,7 +52,7 @@ void main(void)
     D4LED_SetLow();
     D5LED_SetLow();
 
-    InitialiseString(); // Sends initalisation string over RS232
+    InitialiseString(0); // Sends initalisation string over RS232
     
 
     RXMode();
@@ -67,10 +67,6 @@ void main(void)
         if(ModbusRx() == 1){
             // RS485 Modbus data has been received and ready to process
             
-            if(Debug == 1){
-                PrintModbus();   
-            }
-
             switch(ModbusData[1])    // check command  
             {
             case 0x03:
@@ -85,6 +81,7 @@ void main(void)
                 {
                     printf("Function Code 0x10\r\n");
                     // Writes to Multiple Registers  
+                    printf("Modbus Register Before Update:");
                     PrintMB400();   // Contents before update
                     ModbusFC10();
                     // ShiftWrite();    // Sam's function to write to shift reg 
@@ -98,8 +95,15 @@ void main(void)
                     break;
                 }           
             }
+            
+            PrintModbus();
+            PrintModRespon();
+            
+            // PrintModRespon2();
+
             ClearModbusData();   // Needed when complete
-            ClearModbusRespon();          
+            ClearModbusRespon();
+            
         }else if(ReadRX232(16) != 0){
             // RS232 Data has been received
             if(ValidateCmd() ==1){
@@ -109,8 +113,8 @@ void main(void)
              }else{
                 // printf("Invalid Command Rx: %s \r\n", Command);
              }
-            
-             strcpy(Command, "");   // Needed to clear RS232 command
+            printf("\r\nEnter Command : ");
+            strcpy(Command, "");   // Needed to clear RS232 command
             
         }else{
             // Nothing to do. No data to process.

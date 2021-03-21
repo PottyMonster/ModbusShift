@@ -17330,7 +17330,10 @@ _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
 void PrintModRespon();
-void UART1_Write_string(unsigned int * data, int data_len);
+
+void PrintModRespon2();
+
+void UART1_Write_string(unsigned char * data, int data_len);
 unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
 void ModbusFC03(void);
 _Bool checkCRC(void);
@@ -17350,8 +17353,7 @@ char Command[16];
 
 
 int ReadRX232(int NumChars);
-void InitialiseString(void);
-void Initalisation(void);
+void InitialiseString(_Bool Partial);
 
 
 _Bool ValidateCmd(void);
@@ -17393,7 +17395,7 @@ void main(void)
     do { LATAbits.LATA6 = 0; } while(0);
     do { LATAbits.LATA7 = 0; } while(0);
 
-    InitialiseString();
+    InitialiseString(0);
 
 
     RXMode();
@@ -17407,10 +17409,6 @@ void main(void)
     {
         if(ModbusRx() == 1){
 
-
-            if(Debug == 1){
-                PrintModbus();
-            }
 
             switch(ModbusData[1])
             {
@@ -17426,6 +17424,7 @@ void main(void)
                 {
                     printf("Function Code 0x10\r\n");
 
+                    printf("Modbus Register Before Update:");
                     PrintMB400();
                     ModbusFC10();
 
@@ -17439,8 +17438,15 @@ void main(void)
                     break;
                 }
             }
+
+            PrintModbus();
+            PrintModRespon();
+
+
+
             ClearModbusData();
             ClearModbusRespon();
+
         }else if(ReadRX232(16) != 0){
 
             if(ValidateCmd() ==1){
@@ -17450,8 +17456,8 @@ void main(void)
              }else{
 
              }
-
-             strcpy(Command, "");
+            printf("\r\nEnter Command : ");
+            strcpy(Command, "");
 
         }else{
 
