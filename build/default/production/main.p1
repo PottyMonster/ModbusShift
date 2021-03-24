@@ -40,40 +40,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 ./RS232.h
 [; ;./RS232.h: 12: void InitialiseString(_Bool Partial);
 [v _InitialiseString `(v ~T0 @X0 0 ef1`a ]
-"88 ./Modbus.h
-[; ;./Modbus.h: 88: void RXMode(void);
+"102 ./Modbus.h
+[; ;./Modbus.h: 102: void RXMode(void);
 [v _RXMode `(v ~T0 @X0 0 ef ]
-"138
-[; ;./Modbus.h: 138: void ClearRxBuff(void);
+"152
+[; ;./Modbus.h: 152: void ClearRxBuff(void);
 [v _ClearRxBuff `(v ~T0 @X0 0 ef ]
-"249
-[; ;./Modbus.h: 249: void ClearModbusRespon();
+"263
+[; ;./Modbus.h: 263: void ClearModbusRespon();
 [v _ClearModbusRespon `(v ~T0 @X0 0 e? ]
-"247
-[; ;./Modbus.h: 247: _Bool ModbusRx(void);
+"261
+[; ;./Modbus.h: 261: _Bool ModbusRx(void);
 [v _ModbusRx `(a ~T0 @X0 0 ef ]
-"256
-[; ;./Modbus.h: 256: void ModbusFC03(void);
+"270
+[; ;./Modbus.h: 270: void ModbusFC03(void);
 [v _ModbusFC03 `(v ~T0 @X0 0 ef ]
 "111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"260 ./Modbus.h
-[; ;./Modbus.h: 260: void PrintMB400(void);
+"274 ./Modbus.h
+[; ;./Modbus.h: 274: void PrintMB400(void);
 [v _PrintMB400 `(v ~T0 @X0 0 ef ]
-"259
-[; ;./Modbus.h: 259: void ModbusFC10(void);
+"273
+[; ;./Modbus.h: 273: void ModbusFC10(void);
 [v _ModbusFC10 `(v ~T0 @X0 0 ef ]
-"258
-[; ;./Modbus.h: 258: void ModbusError(int ErrorCode);
+"272
+[; ;./Modbus.h: 272: void ModbusError(int ErrorCode);
 [v _ModbusError `(v ~T0 @X0 0 ef1`i ]
-"248
-[; ;./Modbus.h: 248: void PrintModbus();
+"262
+[; ;./Modbus.h: 262: void PrintModbus();
 [v _PrintModbus `(v ~T0 @X0 0 e? ]
-"250
-[; ;./Modbus.h: 250: void PrintModRespon();
+"264
+[; ;./Modbus.h: 264: void PrintModRespon();
 [v _PrintModRespon `(v ~T0 @X0 0 e? ]
-"112
-[; ;./Modbus.h: 112: void ClearModbusData(void);
+"126
+[; ;./Modbus.h: 126: void ClearModbusData(void);
 [v _ClearModbusData `(v ~T0 @X0 0 ef ]
 "11 ./RS232.h
 [; ;./RS232.h: 11: int ReadRX232(int NumChars);
@@ -1471,11 +1471,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 28207: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "12 ./Modbus.h
-[; ;./Modbus.h: 12: unsigned char ModbusData[100] = { 0 };
+[; ;./Modbus.h: 12: unsigned char ModbusData[100] = { 0xFF };
 [v _ModbusData `uc ~T0 @X0 -> 100 `i e ]
 [i _ModbusData
 :U ..
--> -> 0 `i `uc
+-> -> 255 `i `uc
 ..
 ]
 "13
@@ -1485,7 +1485,85 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `i
 ]
 "16
-[; ;./Modbus.h: 16: unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
+[; ;./Modbus.h: 16: unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
+[v _MB300xx `ui ~T0 @X0 -> 32 `i e ]
+[i _MB300xx
+:U ..
+-> -> 1 `i `ui
+-> -> 2 `i `ui
+-> -> 3 `i `ui
+-> -> 4 `i `ui
+-> -> 5 `i `ui
+-> -> 6 `i `ui
+-> -> 7 `i `ui
+-> -> 8 `i `ui
+-> -> 9 `i `ui
+-> -> 10 `i `ui
+-> -> 11 `i `ui
+-> -> 12 `i `ui
+-> -> 13 `i `ui
+-> -> 14 `i `ui
+-> -> 15 `i `ui
+-> -> 16 `i `ui
+-> -> 17 `i `ui
+-> -> 18 `i `ui
+-> -> 19 `i `ui
+-> -> 20 `i `ui
+-> -> 21 `i `ui
+-> -> 22 `i `ui
+-> -> 23 `i `ui
+-> -> 24 `i `ui
+-> -> 25 `i `ui
+-> -> 26 `i `ui
+-> -> 27 `i `ui
+-> -> 28 `i `ui
+-> -> 29 `i `ui
+-> -> 30 `i `ui
+-> -> 31 `i `ui
+-> -> 32 `i `ui
+..
+]
+"23
+[; ;./Modbus.h: 23: unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
+[v _MB400xx `ui ~T0 @X0 -> 32 `i e ]
+[i _MB400xx
+:U ..
+-> -> 32 `i `ui
+-> -> 31 `i `ui
+-> -> 30 `i `ui
+-> -> 29 `i `ui
+-> -> 28 `i `ui
+-> -> 27 `i `ui
+-> -> 26 `i `ui
+-> -> 25 `i `ui
+-> -> 24 `i `ui
+-> -> 23 `i `ui
+-> -> 22 `i `ui
+-> -> 21 `i `ui
+-> -> 20 `i `ui
+-> -> 19 `i `ui
+-> -> 18 `i `ui
+-> -> 17 `i `ui
+-> -> 16 `i `ui
+-> -> 15 `i `ui
+-> -> 14 `i `ui
+-> -> 13 `i `ui
+-> -> 12 `i `ui
+-> -> 11 `i `ui
+-> -> 10 `i `ui
+-> -> 9 `i `ui
+-> -> 8 `i `ui
+-> -> 7 `i `ui
+-> -> 6 `i `ui
+-> -> 5 `i `ui
+-> -> 4 `i `ui
+-> -> 3 `i `ui
+-> -> 2 `i `ui
+-> -> 1 `i `ui
+..
+]
+"31
+[; ;./Modbus.h: 31: unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
 [v _MB301xx `ui ~T0 @X0 -> 7 `i e ]
 [i _MB301xx
 :U ..
@@ -1498,16 +1576,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 12800 `i `ui
 ..
 ]
-"19
-[; ;./Modbus.h: 19: unsigned int MB302xx[1] = { 0x004 };
+"34
+[; ;./Modbus.h: 34: unsigned int MB302xx[1] = { 0x004 };
 [v _MB302xx `ui ~T0 @X0 -> -> 1 `i `ux e ]
 [i _MB302xx
 :U ..
 -> -> 4 `i `ui
 ..
 ]
-"22
-[; ;./Modbus.h: 22: unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
+"37
+[; ;./Modbus.h: 37: unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
 [v _MB303xx `ui ~T0 @X0 -> 5 `i e ]
 [i _MB303xx
 :U ..
@@ -1518,45 +1596,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 14640 `i `ui
 ..
 ]
-"25
-[; ;./Modbus.h: 25: unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
-[v _MB304xx `ui ~T0 @X0 -> 5 `i e ]
+"40
+[; ;./Modbus.h: 40: unsigned int MB304xx[6] = { 0xFF };
+[v _MB304xx `ui ~T0 @X0 -> 6 `i e ]
 [i _MB304xx
 :U ..
--> -> 16725 `i `ui
--> -> 18208 `i `ui
--> -> 12345 `i `ui
--> -> 12848 `i `ui
--> -> 12849 `i `ui
+-> -> 255 `i `ui
 ..
 ]
-"28
-[; ;./Modbus.h: 28: unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
-[v _MB305xx `ui ~T0 @X0 -> 3 `i e ]
+"43
+[; ;./Modbus.h: 43: unsigned int MB305xx[8] = { 0xFF };
+[v _MB305xx `ui ~T0 @X0 -> 8 `i e ]
 [i _MB305xx
 :U ..
--> -> 12599 `i `ui
--> -> 13109 `i `ui
--> -> 13369 `i `ui
+-> -> 255 `i `ui
 ..
 ]
-"31
-[; ;./Modbus.h: 31: unsigned int MB306xx[2] = { 0x004d,0x3030 };
-[v _MB306xx `ui ~T0 @X0 -> 2 `i e ]
+"46
+[; ;./Modbus.h: 46: unsigned int MB306xx[3] = { 0xFF };
+[v _MB306xx `ui ~T0 @X0 -> 3 `i e ]
 [i _MB306xx
 :U ..
--> -> 77 `i `ui
--> -> 12336 `i `ui
-..
-]
-"34
-[; ;./Modbus.h: 34: unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
-[v _MB307xx `ui ~T0 @X0 -> 3 `i e ]
-[i _MB307xx
-:U ..
--> -> 1114 `i `ui
--> -> 241 `i `ui
--> -> 452 `i `ui
+-> -> 255 `i `ui
 ..
 ]
 "8 ./RS232.h

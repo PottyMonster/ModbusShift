@@ -17233,8 +17233,23 @@ void PMD_Initialize(void);
 # 3 "Modbus.c" 2
 # 1 "./Modbus.h" 1
 # 12 "./Modbus.h"
-unsigned char ModbusData[100] = { 0 };
+unsigned char ModbusData[100] = { 0xFF };
 int ModDataCnt = 0;
+
+
+unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
+                            0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
+                            0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
+                            0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
+                            0x001e,0x001f, 0x0020 };
+
+
+unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
+                            0x0018,0x0017,0x0016,0x0015,0x0014,0x0013,0x0012,
+                            0x0011,0x0010,0x000f,0x000e,0x000d,0x000c,0x000b,
+                            0x000a,0x0009,0x0008,0x0007,0x0006,0x0005,0x0004,
+                            0x0003,0x0002, 0x0001 };
+
 
 
 unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
@@ -17246,29 +17261,26 @@ unsigned int MB302xx[1] = { 0x004 };
 unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
 
 
-unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
+unsigned int MB304xx[6] = { 0xFF };
 
 
-unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
+unsigned int MB305xx[8] = { 0xFF };
 
 
-unsigned int MB306xx[2] = { 0x004d,0x3030 };
-
-
-unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
-# 61 "./Modbus.h"
+unsigned int MB306xx[3] = { 0xFF };
+# 75 "./Modbus.h"
 void TXMode(void);
-# 88 "./Modbus.h"
+# 102 "./Modbus.h"
 void RXMode(void);
-# 112 "./Modbus.h"
+# 126 "./Modbus.h"
 void ClearModbusData(void);
-# 138 "./Modbus.h"
+# 152 "./Modbus.h"
 void ClearRxBuff(void);
-# 179 "./Modbus.h"
+# 193 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 206 "./Modbus.h"
+# 220 "./Modbus.h"
 _Bool checkCRC(void);
-# 247 "./Modbus.h"
+# 261 "./Modbus.h"
 _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
@@ -17309,20 +17321,6 @@ unsigned char MBRespon[75] = { 0xFF };
 
 unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
-
-
-unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
-                            0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
-                            0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
-                            0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
-                            0x001e,0x001f, 0x0020 };
-
-
-unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
-                            0x0018,0x0017,0x0016,0x0015,0x0014,0x0013,0x0012,
-                            0x0011,0x0010,0x000f,0x000e,0x000d,0x000c,0x000b,
-                            0x000a,0x0009,0x0008,0x0007,0x0006,0x0005,0x0004,
-                            0x0003,0x0002, 0x0001 };
 
 
 
@@ -17495,11 +17493,6 @@ void ModbusFC03(){
         }
         case 0x06:
         {
-            printf("Requested Compiler Ver\r\n\n");
-            break;
-        }
-        case 0x07:
-        {
             printf("Requested Analogue Inputs\r\n\n");
             break;
         }
@@ -17541,6 +17534,16 @@ void ModbusFC03(){
 
             ByteLo = MB302xx[ModbusData[3] +i] & 0x00FF;
             ByteHi = MB302xx[ModbusData[3] +i] >> 8;
+
+        }else if(ModbusData[2] == 0x04){
+
+            ByteLo = MB304xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB304xx[ModbusData[3] +i] >> 8;
+
+        }else if(ModbusData[2] == 0x05){
+
+            ByteLo = MB305xx[ModbusData[3] +i] & 0x00FF;
+            ByteHi = MB305xx[ModbusData[3] +i] >> 8;
 
         }
         else if(ModbusData[2] == 0x00){

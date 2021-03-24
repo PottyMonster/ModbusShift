@@ -7,54 +7,6 @@
 #include "Modbus.h"
 
 
-/*
-void SerIni(char* SerialNum){
-    // Move card part, ser and rev from EEPROM to MB401xx
-    // Move compiler Date, Time, XC8 Version to MB401
-
-    char readDataOdd, readDataEven;
-    int i=0, j=0;
-    uint16_t dataeeAddrWrk;
- 
-
-    // Serial Number to ModBus
-    dataeeAddrWrk = 0x0300;
-    for(i = 0; i < 5; i++){
-        readDataOdd = DATAEE_ReadByte(dataeeAddrWrk);   // Returns byte from EEPROM
-        // printf("readDataOdd: 0x%02x Add: 0x%02x \r\n", readDataOdd,dataeeAddrWrk);
-        __delay_ms(50);
-        
-        // This doesn't work
-        if(readDataOdd != 0xFF){
-            SerialNum[j] = readDataOdd;
-            j++;
-        }
-                
-        dataeeAddrWrk++;
-        readDataEven = DATAEE_ReadByte(dataeeAddrWrk);
-        // printf("readDataOdd: 0x%02x Add: 0x%02x \r\n", readDataEven,dataeeAddrWrk);          
-        dataeeAddrWrk++;
-        __delay_ms(50);
-
-        // This doesn't work
-        if(readDataEven != 0xFF){
-            SerialNum[j] = readDataEven;
-            j++;
-        }
-        
-        MB303xx[i] = readDataOdd *256 + readDataEven;   // Merge to 16bits
-        
-        // printf("Odd: 0x%02x Even: 0x%02x Merged: 0x%04x \r\n",readDataOdd, readDataEven, MB303xx[i]);
-        
-    }
-    
-    SerialNum[j] = '\0';
-    
-}
- */
-
-
-
 void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumBytes){
     // Move card part, ser and rev from EEPROM to Measure Bus registers.
     // Move compiler Date, Time to Measure Bus registers.
@@ -104,11 +56,9 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
 
 
 
-
-
-
 void InitialiseString(bool Partial){
 
+    char readDataOdd, readDataEven;
     
     char SerialNum[11] = { '\0' };    
     // SerIni(SerialNum);   
@@ -132,6 +82,28 @@ void InitialiseString(bool Partial){
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
             __DATE__, __TIME__, __XC8_VERSION);
+    
+    int j = 0;
+    
+    // Load Compiled Date in to Modbus registers
+    char Date[11] = __DATE__;    
+    for(int i=0; i<12; i = i+2){     
+        readDataOdd = Date[i];
+        readDataEven = Date[i +1];        
+        MB304xx[j] = readDataOdd *256 + readDataEven;   // Merge to 16bits
+        j++;
+    }
+    
+    // Load Compiled Time in to Modbus registers
+    j = 0;
+    char Time[8] = __TIME__;
+    for(int i=0; i<8; i = i+2){     
+        readDataOdd = Time[i];
+        readDataEven = Time[i +1];        
+        MB305xx[j] = readDataOdd *256 + readDataEven;   // Merge to 16bits
+        j++;
+    }
+      
 
     if(Partial != 1){
         printf("Initalisation Complete - Ready\r\n\n");   
@@ -141,10 +113,9 @@ void InitialiseString(bool Partial){
         printf("      Add 0x0100 to 0x0108 - Part Number\r\n");
         printf("      Add 0x0200 - Revision\r\n");
         printf("      Add 0x0300 to 0x0304 - Revision\r\n");
-        printf("      Add 0x0400 to 0x0404 - Compile Date - WIP\r\n");
-        printf("      Add 0x0500 to 0x0503 - Compile Time - WIP\r\n");
-        printf("      Add 0x0600 to 0x0601 - Compiler Version - WIP\r\n");
-        printf("      Add 0x0700 to 0x0702 - 3x Analogue Inputs - WIP\r\n\n");    
+        printf("      Add 0x0400 to 0x0405 - Compile Date (ASCII)\r\n");
+        printf("      Add 0x0500 to 0x0504 - Compile Time - (ASCII)\r\n");
+        printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs - WIP\r\n\n");    
         printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");    
 
@@ -153,6 +124,8 @@ void InitialiseString(bool Partial){
         printf("   serial - Set card serial number\r\n");
         printf("   part - Set card part number\r\n");
         printf("   rev - Set card part number\r\n");
+        
+        printf("\r\nEnter Command : ");
     }
 }
 
@@ -178,7 +151,7 @@ int ReadRX232(int NumChars)
                 temp[0]=EUSART2_Read();
 
                 
-                EUSART2_Write(temp[0]);  // send a byte to TX  (from Rx)
+                EUSART2_Write(temp[0]);  // Echo back
                 
                 if(temp[0]!='\r'){
                     strcat(Command, temp);

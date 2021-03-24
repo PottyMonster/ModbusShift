@@ -17317,8 +17317,23 @@ _Bool Debug = 0;
 # 7 "RS232.c" 2
 # 1 "./Modbus.h" 1
 # 12 "./Modbus.h"
-unsigned char ModbusData[100] = { 0 };
+unsigned char ModbusData[100] = { 0xFF };
 int ModDataCnt = 0;
+
+
+unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
+                            0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
+                            0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
+                            0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
+                            0x001e,0x001f, 0x0020 };
+
+
+unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
+                            0x0018,0x0017,0x0016,0x0015,0x0014,0x0013,0x0012,
+                            0x0011,0x0010,0x000f,0x000e,0x000d,0x000c,0x000b,
+                            0x000a,0x0009,0x0008,0x0007,0x0006,0x0005,0x0004,
+                            0x0003,0x0002, 0x0001 };
+
 
 
 unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
@@ -17330,29 +17345,26 @@ unsigned int MB302xx[1] = { 0x004 };
 unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
 
 
-unsigned int MB304xx[5] = { 0x4155,0x4720,0x3039,0x3230,0x3231 };
+unsigned int MB304xx[6] = { 0xFF };
 
 
-unsigned int MB305xx[3] = { 0x3137,0x3335,0x3439 };
+unsigned int MB305xx[8] = { 0xFF };
 
 
-unsigned int MB306xx[2] = { 0x004d,0x3030 };
-
-
-unsigned int MB307xx[3] = { 0x045a, 0x00f1, 0x01c4 };
-# 61 "./Modbus.h"
+unsigned int MB306xx[3] = { 0xFF };
+# 75 "./Modbus.h"
 void TXMode(void);
-# 88 "./Modbus.h"
+# 102 "./Modbus.h"
 void RXMode(void);
-# 112 "./Modbus.h"
+# 126 "./Modbus.h"
 void ClearModbusData(void);
-# 138 "./Modbus.h"
+# 152 "./Modbus.h"
 void ClearRxBuff(void);
-# 179 "./Modbus.h"
+# 193 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 206 "./Modbus.h"
+# 220 "./Modbus.h"
 _Bool checkCRC(void);
-# 247 "./Modbus.h"
+# 261 "./Modbus.h"
 _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
@@ -17368,7 +17380,8 @@ void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
 # 8 "RS232.c" 2
-# 58 "RS232.c"
+
+
 void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumBytes){
 
 
@@ -17418,11 +17431,9 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
 
 
 
-
-
-
 void InitialiseString(_Bool Partial){
 
+    char readDataOdd, readDataEven;
 
     char SerialNum[11] = { '\0' };
 
@@ -17445,7 +17456,29 @@ void InitialiseString(_Bool Partial){
     printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar 21 2021", "00:28:31", 2100);
+            "Mar 24 2021", "22:55:24", 2100);
+
+    int j = 0;
+
+
+    char Date[11] = "Mar 24 2021";
+    for(int i=0; i<12; i = i+2){
+        readDataOdd = Date[i];
+        readDataEven = Date[i +1];
+        MB304xx[j] = readDataOdd *256 + readDataEven;
+        j++;
+    }
+
+
+    j = 0;
+    char Time[8] = "22:55:24";
+    for(int i=0; i<8; i = i+2){
+        readDataOdd = Time[i];
+        readDataEven = Time[i +1];
+        MB305xx[j] = readDataOdd *256 + readDataEven;
+        j++;
+    }
+
 
     if(Partial != 1){
         printf("Initalisation Complete - Ready\r\n\n");
@@ -17455,10 +17488,9 @@ void InitialiseString(_Bool Partial){
         printf("      Add 0x0100 to 0x0108 - Part Number\r\n");
         printf("      Add 0x0200 - Revision\r\n");
         printf("      Add 0x0300 to 0x0304 - Revision\r\n");
-        printf("      Add 0x0400 to 0x0404 - Compile Date - WIP\r\n");
-        printf("      Add 0x0500 to 0x0503 - Compile Time - WIP\r\n");
-        printf("      Add 0x0600 to 0x0601 - Compiler Version - WIP\r\n");
-        printf("      Add 0x0700 to 0x0702 - 3x Analogue Inputs - WIP\r\n\n");
+        printf("      Add 0x0400 to 0x0405 - Compile Date (ASCII)\r\n");
+        printf("      Add 0x0500 to 0x0504 - Compile Time - (ASCII)\r\n");
+        printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs - WIP\r\n\n");
         printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");
 
@@ -17467,6 +17499,8 @@ void InitialiseString(_Bool Partial){
         printf("   serial - Set card serial number\r\n");
         printf("   part - Set card part number\r\n");
         printf("   rev - Set card part number\r\n");
+
+        printf("\r\nEnter Command : ");
     }
 }
 
@@ -17587,7 +17621,7 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
         }
 
         printf("%s Saved. \r\n",Name);
-# 290 "RS232.c"
+# 263 "RS232.c"
         strcpy(Command, "");
 
     }else if(Conf == 0x4e || Conf == 0x6e){
