@@ -115,7 +115,7 @@ void InitialiseString(bool Partial){
         printf("      Add 0x0300 to 0x0304 - Revision\r\n");
         printf("      Add 0x0400 to 0x0405 - Compile Date (ASCII)\r\n");
         printf("      Add 0x0500 to 0x0504 - Compile Time - (ASCII)\r\n");
-        printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs - WIP\r\n\n");    
+        printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs (0x000 to 0x03ff)\r\n\n");    
         printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");    
 
@@ -126,7 +126,11 @@ void InitialiseString(bool Partial){
         printf("   rev - Set card part number\r\n");
         
         printf("\r\nEnter Command : ");
-    }
+        
+        uint16_t convertedValue;
+        convertedValue = ADCC_GetSingleConversion(AIP_0);        
+        printf("ADC: 0x%04x \r\n", convertedValue);
+    };
 }
 
 

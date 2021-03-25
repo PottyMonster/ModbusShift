@@ -56,6 +56,8 @@
 #include "memory.h"
 #include "eusart1.h"
 #include "eusart2.h"
+#include "adcc.h"
+
 
 
 

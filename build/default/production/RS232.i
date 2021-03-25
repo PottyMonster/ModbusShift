@@ -17224,11 +17224,78 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "./mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 59 "./mcc_generated_files/mcc.h" 2
-# 73 "./mcc_generated_files/mcc.h"
+# 1 "./mcc_generated_files/adcc.h" 1
+# 72 "./mcc_generated_files/adcc.h"
+typedef uint16_t adc_result_t;
+# 86 "./mcc_generated_files/adcc.h"
+typedef enum
+{
+    AIP_0 = 0x0,
+    channel_VSS = 0x3C,
+    channel_Temp = 0x3D,
+    channel_DAC1 = 0x3E,
+    channel_FVR_buf1 = 0x3F
+} adcc_channel_t;
+# 127 "./mcc_generated_files/adcc.h"
+void ADCC_Initialize(void);
+# 156 "./mcc_generated_files/adcc.h"
+void ADCC_StartConversion(adcc_channel_t channel);
+# 186 "./mcc_generated_files/adcc.h"
+_Bool ADCC_IsConversionDone(void);
+# 218 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetConversionResult(void);
+# 249 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+# 274 "./mcc_generated_files/adcc.h"
+void ADCC_StopConversion(void);
+# 301 "./mcc_generated_files/adcc.h"
+void ADCC_SetStopOnInterrupt(void);
+# 326 "./mcc_generated_files/adcc.h"
+void ADCC_DischargeSampleCapacitor(void);
+# 352 "./mcc_generated_files/adcc.h"
+void ADCC_LoadAcquisitionRegister(uint8_t);
+# 378 "./mcc_generated_files/adcc.h"
+void ADCC_SetPrechargeTime(uint8_t);
+# 403 "./mcc_generated_files/adcc.h"
+void ADCC_SetRepeatCount(uint8_t);
+# 431 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetCurrentCountofConversions(void);
+# 455 "./mcc_generated_files/adcc.h"
+void ADCC_ClearAccumulator(void);
+# 480 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetAccumulatorValue(void);
+# 508 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasAccumulatorOverflowed(void);
+# 533 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetFilterValue(void);
+# 561 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetPreviousResult(void);
+# 587 "./mcc_generated_files/adcc.h"
+void ADCC_DefineSetPoint(uint16_t);
+# 613 "./mcc_generated_files/adcc.h"
+void ADCC_SetUpperThreshold(uint16_t);
+# 639 "./mcc_generated_files/adcc.h"
+void ADCC_SetLowerThreshold(uint16_t);
+# 666 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetErrorCalculation(void);
+# 693 "./mcc_generated_files/adcc.h"
+void ADCC_EnableDoubleSampling(void);
+# 717 "./mcc_generated_files/adcc.h"
+void ADCC_EnableContinuousConversion(void);
+# 741 "./mcc_generated_files/adcc.h"
+void ADCC_DisableContinuousConversion(void);
+# 769 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedUpperThreshold(void);
+# 797 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedLowerThreshold(void);
+# 824 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetConversionStageStatus(void);
+# 60 "./mcc_generated_files/mcc.h" 2
+# 75 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 86 "./mcc_generated_files/mcc.h"
+# 88 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 99 "./mcc_generated_files/mcc.h"
+# 101 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 3 "RS232.c" 2
 
@@ -17456,12 +17523,12 @@ void InitialiseString(_Bool Partial){
     printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar 24 2021", "22:55:24", 2100);
+            "Mar 25 2021", "00:23:59", 2100);
 
     int j = 0;
 
 
-    char Date[11] = "Mar 24 2021";
+    char Date[11] = "Mar 25 2021";
     for(int i=0; i<12; i = i+2){
         readDataOdd = Date[i];
         readDataEven = Date[i +1];
@@ -17471,7 +17538,7 @@ void InitialiseString(_Bool Partial){
 
 
     j = 0;
-    char Time[8] = "22:55:24";
+    char Time[8] = "00:23:59";
     for(int i=0; i<8; i = i+2){
         readDataOdd = Time[i];
         readDataEven = Time[i +1];
@@ -17490,7 +17557,7 @@ void InitialiseString(_Bool Partial){
         printf("      Add 0x0300 to 0x0304 - Revision\r\n");
         printf("      Add 0x0400 to 0x0405 - Compile Date (ASCII)\r\n");
         printf("      Add 0x0500 to 0x0504 - Compile Time - (ASCII)\r\n");
-        printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs - WIP\r\n\n");
+        printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs (0x000 to 0x03ff)\r\n\n");
         printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");
 
@@ -17501,7 +17568,11 @@ void InitialiseString(_Bool Partial){
         printf("   rev - Set card part number\r\n");
 
         printf("\r\nEnter Command : ");
-    }
+
+        uint16_t convertedValue;
+        convertedValue = ADCC_GetSingleConversion(AIP_0);
+        printf("ADC: 0x%04x \r\n", convertedValue);
+    };
 }
 
 
@@ -17621,7 +17692,7 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
         }
 
         printf("%s Saved. \r\n",Name);
-# 263 "RS232.c"
+# 267 "RS232.c"
         strcpy(Command, "");
 
     }else if(Conf == 0x4e || Conf == 0x6e){

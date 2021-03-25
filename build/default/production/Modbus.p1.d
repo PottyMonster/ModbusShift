@@ -7,5 +7,6 @@ mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/memory.h  \
 mcc_generated_files/eusart1.h  \
 mcc_generated_files/eusart2.h  \
+mcc_generated_files/adcc.h  \
 Modbus.h  \
 main.h 

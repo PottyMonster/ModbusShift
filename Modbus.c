@@ -242,10 +242,19 @@ void ModbusFC03(){
             ByteHi = MB305xx[ModbusData[3] +i] >> 8;
             
         }
-        else if(ModbusData[2] == 0x00){ 
+        else if(ModbusData[2] == 0x00){
+            // Circuit Registers
             ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
             ByteHi = MB300xx[ModbusData[3] +i] >> 8;
             
+        }else if(ModbusData[2] == 0x06){
+            // Analogue Input Read
+            uint16_t convertedValue;
+            convertedValue = ADCC_GetSingleConversion(AIP_0);        
+            printf("ADC: 0x%04x \r\n", convertedValue);
+            
+            ByteLo = convertedValue & 0x00FF;
+            ByteHi = convertedValue >> 8;          
         }
      
         MBRespon[MBResCnt] = ByteHi;                   

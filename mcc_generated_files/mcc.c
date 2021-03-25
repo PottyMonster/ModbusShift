@@ -55,6 +55,8 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     EUSART1_Initialize();
     EUSART2_Initialize();
+    ADCC_Initialize();
+    ADCC_DisableContinuousConversion();
 }
 
 void OSCILLATOR_Initialize(void)
