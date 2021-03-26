@@ -11,21 +11,6 @@
  */
 
 
-
-
-// int loop;
-
-
-
-//11 03 06 AE41 5652 4340 49AD
-// unsigned char MBRespon[] = {0x11, 0x03, 0x06, 0xAE, 0x41, 0x56, 0x52, 0x43, 0x40, 0x49, 0xAD};
-
-// 01 03 00 02 00 05
-// will reply with
-// 01 03 06 07 ff 00 04 00 05 b5 14
-// when using default MB300xx[32] array above.
-
-
 void main(void)
 {
     // Initialize the device

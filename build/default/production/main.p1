@@ -1630,142 +1630,142 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `a
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"29 main.c
-[; ;main.c: 29: void main(void)
+"14 main.c
+[; ;main.c: 14: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"30
-[; ;main.c: 30: {
+"15
+[; ;main.c: 15: {
 {
 [e :U _main ]
 [f ]
-"32
-[; ;main.c: 32:     SYSTEM_Initialize();
+"17
+[; ;main.c: 17:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"39
-[; ;main.c: 39:     (INTCONbits.GIE = 1);
+"24
+[; ;main.c: 24:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45:     (INTCONbits.PEIE = 1);
+"30
+[; ;main.c: 30:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"50
-[; ;main.c: 50:     do { LATAbits.LATA4 = 0; } while(0);
+"35
+[; ;main.c: 35:     do { LATAbits.LATA4 = 0; } while(0);
 [e :U 1500 ]
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
 [e :U 1499 ]
-"51
-[; ;main.c: 51:     do { LATAbits.LATA5 = 0; } while(0);
+"36
+[; ;main.c: 36:     do { LATAbits.LATA5 = 0; } while(0);
 [e :U 1503 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
 [e :U 1502 ]
-"52
-[; ;main.c: 52:     do { LATAbits.LATA6 = 0; } while(0);
+"37
+[; ;main.c: 37:     do { LATAbits.LATA6 = 0; } while(0);
 [e :U 1506 ]
 {
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
 [e :U 1505 ]
-"53
-[; ;main.c: 53:     do { LATAbits.LATA7 = 0; } while(0);
+"38
+[; ;main.c: 38:     do { LATAbits.LATA7 = 0; } while(0);
 [e :U 1509 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
 [e :U 1508 ]
-"55
-[; ;main.c: 55:     InitialiseString(0);
+"40
+[; ;main.c: 40:     InitialiseString(0);
 [e ( _InitialiseString (1 -> -> 0 `i `a ]
-"58
-[; ;main.c: 58:     RXMode();
+"43
+[; ;main.c: 43:     RXMode();
 [e ( _RXMode ..  ]
-"59
-[; ;main.c: 59:     ClearRxBuff();
+"44
+[; ;main.c: 44:     ClearRxBuff();
 [e ( _ClearRxBuff ..  ]
-"60
-[; ;main.c: 60:     ClearModbusRespon();
+"45
+[; ;main.c: 45:     ClearModbusRespon();
 [e ( _ClearModbusRespon ..  ]
-"63
-[; ;main.c: 63:     _Bool RXStat = 0;
+"48
+[; ;main.c: 48:     _Bool RXStat = 0;
 [v _RXStat `a ~T0 @X0 1 a ]
 [e = _RXStat -> -> 0 `i `a ]
-"65
-[; ;main.c: 65:     while(1)
+"50
+[; ;main.c: 50:     while(1)
 [e :U 1511 ]
-"66
-[; ;main.c: 66:     {
+"51
+[; ;main.c: 51:     {
 {
-"67
-[; ;main.c: 67:         if(ModbusRx() == 1){
+"52
+[; ;main.c: 52:         if(ModbusRx() == 1){
 [e $ ! == -> ( _ModbusRx ..  `i -> 1 `i 1513  ]
 {
-"70
-[; ;main.c: 70:             switch(ModbusData[1])
+"55
+[; ;main.c: 55:             switch(ModbusData[1])
 [e $U 1515  ]
-"71
-[; ;main.c: 71:             {
+"56
+[; ;main.c: 56:             {
 {
-"72
-[; ;main.c: 72:             case 0x03:
+"57
+[; ;main.c: 57:             case 0x03:
 [e :U 1516 ]
+"58
+[; ;main.c: 58:                 {
+{
+"62
+[; ;main.c: 62:                     ModbusFC03();
+[e ( _ModbusFC03 ..  ]
+"63
+[; ;main.c: 63:                     break;
+[e $U 1514  ]
+"64
+[; ;main.c: 64:                 }
+}
+"65
+[; ;main.c: 65:             case 0x10:
+[e :U 1517 ]
+"66
+[; ;main.c: 66:                 {
+{
+"67
+[; ;main.c: 67:                     printf("Function Code 0x10\r\n");
+[e ( _printf :s 1C ]
+"69
+[; ;main.c: 69:                     printf("Modbus Register Before Update:");
+[e ( _printf :s 2C ]
+"70
+[; ;main.c: 70:                     PrintMB400();
+[e ( _PrintMB400 ..  ]
+"71
+[; ;main.c: 71:                     ModbusFC10();
+[e ( _ModbusFC10 ..  ]
 "73
-[; ;main.c: 73:                 {
+[; ;main.c: 73:                     break;
+[e $U 1514  ]
+"74
+[; ;main.c: 74:                 }
+}
+"75
+[; ;main.c: 75:             default:
+[e :U 1518 ]
+"76
+[; ;main.c: 76:                 {
 {
 "77
-[; ;main.c: 77:                     ModbusFC03();
-[e ( _ModbusFC03 ..  ]
-"78
-[; ;main.c: 78:                     break;
-[e $U 1514  ]
-"79
-[; ;main.c: 79:                 }
-}
-"80
-[; ;main.c: 80:             case 0x10:
-[e :U 1517 ]
-"81
-[; ;main.c: 81:                 {
-{
-"82
-[; ;main.c: 82:                     printf("Function Code 0x10\r\n");
-[e ( _printf :s 1C ]
-"84
-[; ;main.c: 84:                     printf("Modbus Register Before Update:");
-[e ( _printf :s 2C ]
-"85
-[; ;main.c: 85:                     PrintMB400();
-[e ( _PrintMB400 ..  ]
-"86
-[; ;main.c: 86:                     ModbusFC10();
-[e ( _ModbusFC10 ..  ]
-"88
-[; ;main.c: 88:                     break;
-[e $U 1514  ]
-"89
-[; ;main.c: 89:                 }
-}
-"90
-[; ;main.c: 90:             default:
-[e :U 1518 ]
-"91
-[; ;main.c: 91:                 {
-{
-"92
-[; ;main.c: 92:                     printf("Unsupported Function Code\r\n");
+[; ;main.c: 77:                     printf("Unsupported Function Code\r\n");
 [e ( _printf :s 3C ]
-"94
-[; ;main.c: 94:                     ModbusError(0x01);
+"79
+[; ;main.c: 79:                     ModbusError(0x01);
 [e ( _ModbusError (1 -> 1 `i ]
-"95
-[; ;main.c: 95:                     break;
+"80
+[; ;main.c: 80:                     break;
 [e $U 1514  ]
-"96
-[; ;main.c: 96:                 }
+"81
+[; ;main.c: 81:                 }
 }
-"97
-[; ;main.c: 97:             }
+"82
+[; ;main.c: 82:             }
 }
 [e $U 1514  ]
 [e :U 1515 ]
@@ -1773,64 +1773,64 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 16 `i 1517
  1518 ]
 [e :U 1514 ]
-"99
-[; ;main.c: 99:             PrintModbus();
+"84
+[; ;main.c: 84:             PrintModbus();
 [e ( _PrintModbus ..  ]
-"100
-[; ;main.c: 100:             PrintModRespon();
+"85
+[; ;main.c: 85:             PrintModRespon();
 [e ( _PrintModRespon ..  ]
-"104
-[; ;main.c: 104:             ClearModbusData();
+"89
+[; ;main.c: 89:             ClearModbusData();
 [e ( _ClearModbusData ..  ]
-"105
-[; ;main.c: 105:             ClearModbusRespon();
+"90
+[; ;main.c: 90:             ClearModbusRespon();
 [e ( _ClearModbusRespon ..  ]
-"107
-[; ;main.c: 107:         }else if(ReadRX232(16) != 0){
+"92
+[; ;main.c: 92:         }else if(ReadRX232(16) != 0){
 }
 [e $U 1519  ]
 [e :U 1513 ]
 [e $ ! != ( _ReadRX232 (1 -> 16 `i -> 0 `i 1520  ]
 {
-"109
-[; ;main.c: 109:             if(ValidateCmd() ==1){
+"94
+[; ;main.c: 94:             if(ValidateCmd() ==1){
 [e $ ! == -> ( _ValidateCmd ..  `i -> 1 `i 1521  ]
 {
-"113
-[; ;main.c: 113:              }else{
+"98
+[; ;main.c: 98:              }else{
 }
 [e $U 1522  ]
 [e :U 1521 ]
 {
-"115
-[; ;main.c: 115:              }
+"100
+[; ;main.c: 100:              }
 }
 [e :U 1522 ]
-"116
-[; ;main.c: 116:             printf("\r\nEnter Command : ");
+"101
+[; ;main.c: 101:             printf("\r\nEnter Command : ");
 [e ( _printf :s 4C ]
-"117
-[; ;main.c: 117:             strcpy(Command, "");
+"102
+[; ;main.c: 102:             strcpy(Command, "");
 [e ( _strcpy (2 , &U _Command :s 5C ]
-"119
-[; ;main.c: 119:         }else{
+"104
+[; ;main.c: 104:         }else{
 }
 [e $U 1523  ]
 [e :U 1520 ]
 {
-"121
-[; ;main.c: 121:         }
+"106
+[; ;main.c: 106:         }
 }
 [e :U 1523 ]
 [e :U 1519 ]
-"123
-[; ;main.c: 123:     }
+"108
+[; ;main.c: 108:     }
 }
 [e :U 1510 ]
 [e $U 1511  ]
 [e :U 1512 ]
-"124
-[; ;main.c: 124: }
+"109
+[; ;main.c: 109: }
 [e :UE 1497 ]
 }
 [p f _printf 8388608 ]
