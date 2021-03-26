@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 18F46K40 ]
 [d frameptr 4065 ]
-"307 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"349 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [e E10491 . `uc
 AIP_0 0
 channel_VSS 60
@@ -209,35 +209,35 @@ channel_FVR_buf1 63
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 "23 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _PrintMB400 PrintMB400 `(v  1 e 1 0 ]
-"36
+"37
 [v _TXMode TXMode `(v  1 e 1 0 ]
-"42
+"43
 [v _RXMode RXMode `(v  1 e 1 0 ]
-"48
+"49
 [v _ClearModbusData ClearModbusData `(v  1 e 1 0 ]
-"58
+"59
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
-"67
+"68
 [v _AddRxBuffToModBus AddRxBuffToModBus `(v  1 e 1 0 ]
-"90
+"91
 [v _PrintModbus PrintModbus `(v  1 e 1 0 ]
-"136
+"137
 [v _checkCRC checkCRC `(a  1 e 1 0 ]
-"173
+"174
 [v _ModbusFC03 ModbusFC03 `(v  1 e 1 0 ]
-"339
+"378
 [v _ModbusFC10 ModbusFC10 `(v  1 e 1 0 ]
-"396
+"435
 [v _generateCRC generateCRC `(ui  1 e 2 0 ]
-"426
+"465
 [v _UART1_Write_string UART1_Write_string `(v  1 e 1 0 ]
-"440
+"477
 [v _PrintModRespon PrintModRespon `(v  1 e 1 0 ]
-"458
+"533
 [v _ClearModbusRespon ClearModbusRespon `(v  1 e 1 0 ]
-"468
+"543
 [v _ModbusError ModbusError `(v  1 e 1 0 ]
-"494
+"569
 [v _ModbusRx ModbusRx `(a  1 e 1 0 ]
 "10 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\RS232.c
 [v _CardConfigIni CardConfigIni `(v  1 e 1 0 ]
@@ -465,24 +465,24 @@ channel_FVR_buf1 63
 [v _ADREF ADREF `VEuc  1 e 1 @3928 ]
 "13480
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @3929 ]
-[s S1724 . 1 `uc 1 ADDSEN 1 0 :1:0 
+[s S1747 . 1 `uc 1 ADDSEN 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 ADGPOL 1 0 :1:5 
 `uc 1 ADIPEN 1 0 :1:6 
 `uc 1 ADPPOL 1 0 :1:7 
 ]
 "13494
-[u S1730 . 1 `S1724 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES1730  1 e 1 @3929 ]
+[u S1753 . 1 `S1747 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES1753  1 e 1 @3929 ]
 "13519
 [v _ADCON2 ADCON2 `VEuc  1 e 1 @3930 ]
-[s S1660 . 1 `uc 1 ADMD 1 0 :3:0 
+[s S1683 . 1 `uc 1 ADMD 1 0 :3:0 
 `uc 1 ADACLR 1 0 :1:3 
 `uc 1 ADCRS 1 0 :3:4 
 `uc 1 ADPSIS 1 0 :1:7 
 ]
 "13541
-[s S1665 . 1 `uc 1 ADMD0 1 0 :1:0 
+[s S1688 . 1 `uc 1 ADMD0 1 0 :1:0 
 `uc 1 ADMD1 1 0 :1:1 
 `uc 1 ADMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -490,16 +490,16 @@ channel_FVR_buf1 63
 `uc 1 ADCRS1 1 0 :1:5 
 `uc 1 ADCRS2 1 0 :1:6 
 ]
-[u S1673 . 1 `S1660 1 . 1 0 `S1665 1 . 1 0 ]
-[v _ADCON2bits ADCON2bits `VES1673  1 e 1 @3930 ]
+[u S1696 . 1 `S1683 1 . 1 0 `S1688 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES1696  1 e 1 @3930 ]
 "13596
 [v _ADCON3 ADCON3 `VEuc  1 e 1 @3931 ]
-[s S1631 . 1 `uc 1 ADTMD 1 0 :3:0 
+[s S1654 . 1 `uc 1 ADTMD 1 0 :3:0 
 `uc 1 ADSOI 1 0 :1:3 
 `uc 1 ADCALC 1 0 :3:4 
 ]
 "13617
-[s S1635 . 1 `uc 1 ADTMD0 1 0 :1:0 
+[s S1658 . 1 `uc 1 ADTMD0 1 0 :1:0 
 `uc 1 ADTMD1 1 0 :1:1 
 `uc 1 ADTMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -507,8 +507,8 @@ channel_FVR_buf1 63
 `uc 1 ADCALC1 1 0 :1:5 
 `uc 1 ADCALC2 1 0 :1:6 
 ]
-[u S1643 . 1 `S1631 1 . 1 0 `S1635 1 . 1 0 ]
-[v _ADCON3bits ADCON3bits `VES1643  1 e 1 @3931 ]
+[u S1666 . 1 `S1654 1 . 1 0 `S1658 1 . 1 0 ]
+[v _ADCON3bits ADCON3bits `VES1666  1 e 1 @3931 ]
 "13667
 [v _ADACQ ADACQ `VEuc  1 e 1 @3932 ]
 "13737
@@ -519,7 +519,7 @@ channel_FVR_buf1 63
 [v _ADPCH ADPCH `VEuc  1 e 1 @3935 ]
 "13917
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @3936 ]
-[s S1577 . 1 `uc 1 ADGO 1 0 :1:0 
+[s S1600 . 1 `uc 1 ADGO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -529,21 +529,21 @@ channel_FVR_buf1 63
 `uc 1 ADON 1 0 :1:7 
 ]
 "13952
-[s S1586 . 1 `uc 1 GO 1 0 :1:0 
+[s S1609 . 1 `uc 1 GO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM0 1 0 :1:2 
 ]
-[s S1590 . 1 `uc 1 DONE 1 0 :1:0 
+[s S1613 . 1 `uc 1 DONE 1 0 :1:0 
 ]
-[s S1592 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
+[s S1615 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
 ]
-[s S1594 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+[s S1617 . 1 `uc 1 GO_nDONE 1 0 :1:0 
 ]
-[s S1596 . 1 `uc 1 . 1 0 :7:0 
+[s S1619 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 ADCAL 1 0 :1:7 
 ]
-[u S1599 . 1 `S1577 1 . 1 0 `S1586 1 . 1 0 `S1590 1 . 1 0 `S1592 1 . 1 0 `S1594 1 . 1 0 `S1596 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES1599  1 e 1 @3936 ]
+[u S1622 . 1 `S1600 1 . 1 0 `S1609 1 . 1 0 `S1613 1 . 1 0 `S1615 1 . 1 0 `S1617 1 . 1 0 `S1619 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES1622  1 e 1 @3936 ]
 "14019
 [v _ADPREVL ADPREVL `VEuc  1 e 1 @3937 ]
 "14089
@@ -554,7 +554,7 @@ channel_FVR_buf1 63
 [v _ADRESH ADRESH `VEuc  1 e 1 @3940 ]
 "14298
 [v _ADSTAT ADSTAT `VEuc  1 e 1 @3941 ]
-[s S1692 . 1 `uc 1 ADSTAT 1 0 :3:0 
+[s S1715 . 1 `uc 1 ADSTAT 1 0 :3:0 
 `uc 1 . 1 0 :1:3 
 `uc 1 ADMATH 1 0 :1:4 
 `uc 1 ADLTHR 1 0 :1:5 
@@ -562,12 +562,12 @@ channel_FVR_buf1 63
 `uc 1 ADAOV 1 0 :1:7 
 ]
 "14318
-[s S1699 . 1 `uc 1 ADSTAT0 1 0 :1:0 
+[s S1722 . 1 `uc 1 ADSTAT0 1 0 :1:0 
 `uc 1 ADSTAT1 1 0 :1:1 
 `uc 1 ADSTAT2 1 0 :1:2 
 ]
-[u S1703 . 1 `S1692 1 . 1 0 `S1699 1 . 1 0 ]
-[v _ADSTATbits ADSTATbits `VES1703  1 e 1 @3941 ]
+[u S1726 . 1 `S1715 1 . 1 0 `S1722 1 . 1 0 ]
+[v _ADSTATbits ADSTATbits `VES1726  1 e 1 @3941 ]
 "14363
 [v _ADRPT ADRPT `VEuc  1 e 1 @3942 ]
 "14433
@@ -867,9 +867,9 @@ channel_FVR_buf1 63
 [v _ValidateCmd ValidateCmd `(a  1 e 1 0 ]
 {
 "313
-[v ValidateCmd@ConfName_1542 ConfName `[20]uc  1 a 20 40 ]
+[v ValidateCmd@ConfName_1565 ConfName `[20]uc  1 a 20 40 ]
 "303
-[v ValidateCmd@ConfName_1538 ConfName `[20]uc  1 a 20 20 ]
+[v ValidateCmd@ConfName_1561 ConfName `[20]uc  1 a 20 20 ]
 "290
 [v ValidateCmd@ConfName ConfName `[20]uc  1 a 20 0 ]
 "289
@@ -889,16 +889,16 @@ channel_FVR_buf1 63
 [v _SaveCardDat SaveCardDat `(v  1 e 1 0 ]
 {
 "219
-[v SaveCardDat@i i `i  1 a 2 63 ]
+[v SaveCardDat@i i `i  1 a 2 65 ]
 "221
-[v SaveCardDat@dataeeAddrWrk dataeeAddrWrk `us  1 a 2 61 ]
+[v SaveCardDat@dataeeAddrWrk dataeeAddrWrk `us  1 a 2 63 ]
 "220
-[v SaveCardDat@Conf Conf `uc  1 a 1 65 ]
+[v SaveCardDat@Conf Conf `uc  1 a 1 67 ]
 "217
-[v SaveCardDat@Name Name `*.39uc  1 p 2 49 ]
-[v SaveCardDat@MBAddress MBAddress `ui  1 p 2 51 ]
-[v SaveCardDat@dataeeAddr dataeeAddr `us  1 p 2 53 ]
-[v SaveCardDat@NumBytes NumBytes `i  1 p 2 55 ]
+[v SaveCardDat@Name Name `*.39uc  1 p 2 51 ]
+[v SaveCardDat@MBAddress MBAddress `ui  1 p 2 53 ]
+[v SaveCardDat@dataeeAddr dataeeAddr `us  1 p 2 55 ]
+[v SaveCardDat@NumBytes NumBytes `i  1 p 2 57 ]
 "274
 } 0
 "137
@@ -907,7 +907,7 @@ channel_FVR_buf1 63
 "143
 [v ReadRX232@temp temp `[2]uc  1 a 2 84 ]
 "137
-[v ReadRX232@NumChars NumChars `i  1 p 2 45 ]
+[v ReadRX232@NumChars NumChars `i  1 p 2 47 ]
 "138
 [v ReadRX232@F10772 F10772 `[2]uc  1 s 2 F10772 ]
 "189
@@ -962,8 +962,8 @@ channel_FVR_buf1 63
 "210
 [v ClearEEAddRange@i i `i  1 a 2 84 ]
 "205
-[v ClearEEAddRange@StartAdd StartAdd `ui  1 p 2 45 ]
-[v ClearEEAddRange@NumBytes NumBytes `ui  1 p 2 47 ]
+[v ClearEEAddRange@StartAdd StartAdd `ui  1 p 2 47 ]
+[v ClearEEAddRange@NumBytes NumBytes `ui  1 p 2 49 ]
 "214
 } 0
 "165 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/memory.c
@@ -981,26 +981,26 @@ channel_FVR_buf1 63
 {
 [v InitialiseString@Partial Partial `a  1 a 1 wreg ]
 "130
-[v InitialiseString@convertedValue convertedValue `us  1 a 2 95 ]
+[v InitialiseString@convertedValue convertedValue `us  1 a 2 97 ]
 "100
-[v InitialiseString@i_1472 i `i  1 a 2 105 ]
+[v InitialiseString@i_1495 i `i  1 a 2 107 ]
 "90
-[v InitialiseString@i i `i  1 a 2 103 ]
+[v InitialiseString@i i `i  1 a 2 105 ]
 "67
-[v InitialiseString@PartNum PartNum `[19]uc  1 a 19 45 ]
+[v InitialiseString@PartNum PartNum `[19]uc  1 a 19 47 ]
 "63
-[v InitialiseString@SerialNum SerialNum `[11]uc  1 a 11 83 ]
+[v InitialiseString@SerialNum SerialNum `[11]uc  1 a 11 85 ]
 "89
-[v InitialiseString@Date Date `[11]uc  1 a 11 64 ]
+[v InitialiseString@Date Date `[11]uc  1 a 11 66 ]
 "99
-[v InitialiseString@Time Time `[8]uc  1 a 8 75 ]
+[v InitialiseString@Time Time `[8]uc  1 a 8 77 ]
 "70
-[v InitialiseString@RevNum RevNum `[2]uc  1 a 2 97 ]
+[v InitialiseString@RevNum RevNum `[2]uc  1 a 2 99 ]
 "86
-[v InitialiseString@j j `i  1 a 2 101 ]
+[v InitialiseString@j j `i  1 a 2 103 ]
 "61
-[v InitialiseString@readDataEven readDataEven `uc  1 a 1 100 ]
-[v InitialiseString@readDataOdd readDataOdd `uc  1 a 1 99 ]
+[v InitialiseString@readDataEven readDataEven `uc  1 a 1 102 ]
+[v InitialiseString@readDataOdd readDataOdd `uc  1 a 1 101 ]
 "59
 [v InitialiseString@Partial Partial `a  1 a 1 wreg ]
 "86
@@ -1008,7 +1008,7 @@ channel_FVR_buf1 63
 "98
 [v InitialiseString@F10766 F10766 `[8]uc  1 s 8 F10766 ]
 "63
-[v InitialiseString@Partial Partial `a  1 a 1 94 ]
+[v InitialiseString@Partial Partial `a  1 a 1 96 ]
 "134
 } 0
 "10
@@ -1145,21 +1145,23 @@ channel_FVR_buf1 63
 {
 "271
 } 0
-"90 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"91 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _PrintModbus PrintModbus `(v  1 e 1 0 ]
 {
-"119
-[v PrintModbus@j j `i  1 a 2 50 ]
-"94
-[v PrintModbus@i i `i  1 a 2 52 ]
-"133
+"120
+[v PrintModbus@j j `i  1 a 2 52 ]
+"95
+[v PrintModbus@i i `i  1 a 2 54 ]
+"134
 } 0
-"440
+"477
 [v _PrintModRespon PrintModRespon `(v  1 e 1 0 ]
 {
-"442
-[v PrintModRespon@i i `i  1 a 2 45 ]
-"454
+"493
+[v PrintModRespon@j j `i  1 a 2 50 ]
+"479
+[v PrintModRespon@i i `i  1 a 2 52 ]
+"529
 } 0
 "134 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart2.c
 [v _EUSART2_is_tx_ready EUSART2_is_tx_ready `(a  1 e 1 0 ]
@@ -1174,34 +1176,34 @@ channel_FVR_buf1 63
 "23 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _PrintMB400 PrintMB400 `(v  1 e 1 0 ]
 {
-"26
+"27
 [v PrintMB400@i i `i  1 a 2 84 ]
-"32
+"33
 } 0
-"494
+"569
 [v _ModbusRx ModbusRx `(a  1 e 1 0 ]
 {
-"544
+"619
 } 0
-"136
+"137
 [v _checkCRC checkCRC `(a  1 e 1 0 ]
 {
-"140
-[v checkCRC@i i `i  1 a 2 58 ]
-"137
-[v checkCRC@crc crc `ui  1 a 2 56 ]
-"140
-[v checkCRC@j j `i  1 a 2 54 ]
-"139
-[v checkCRC@crcLow crcLow `ui  1 a 2 52 ]
+"141
+[v checkCRC@i i `i  1 a 2 60 ]
 "138
-[v checkCRC@crcHigh crcHigh `ui  1 a 2 50 ]
-"170
+[v checkCRC@crc crc `ui  1 a 2 58 ]
+"141
+[v checkCRC@j j `i  1 a 2 56 ]
+"140
+[v checkCRC@crcLow crcLow `ui  1 a 2 54 ]
+"139
+[v checkCRC@crcHigh crcHigh `ui  1 a 2 52 ]
+"171
 } 0
-"42
+"43
 [v _RXMode RXMode `(v  1 e 1 0 ]
 {
-"45
+"46
 } 0
 "139 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _EUSART1_is_rx_ready EUSART1_is_rx_ready `(a  1 e 1 0 ]
@@ -1215,49 +1217,49 @@ channel_FVR_buf1 63
 [v EUSART1_Read@readValue readValue `uc  1 a 1 4 ]
 "173
 } 0
-"58 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"59 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _ClearRxBuff ClearRxBuff `(v  1 e 1 0 ]
 {
-"60
+"61
 [v ClearRxBuff@i i `i  1 a 2 5 ]
-"65
+"66
 } 0
-"67
+"68
 [v _AddRxBuffToModBus AddRxBuffToModBus `(v  1 e 1 0 ]
 {
-"68
-[v AddRxBuffToModBus@i i `i  1 a 2 45 ]
-"88
+"69
+[v AddRxBuffToModBus@i i `i  1 a 2 47 ]
+"89
 } 0
-"339
+"378
 [v _ModbusFC10 ModbusFC10 `(v  1 e 1 0 ]
 {
-"344
-[v ModbusFC10@j j `i  1 a 2 54 ]
-"343
-[v ModbusFC10@i i `i  1 a 2 52 ]
-"345
-[v ModbusFC10@TempData TempData `ui  1 a 2 49 ]
-"346
-[v ModbusFC10@error error `a  1 a 1 51 ]
-"392
+"383
+[v ModbusFC10@j j `i  1 a 2 56 ]
+"382
+[v ModbusFC10@i i `i  1 a 2 54 ]
+"384
+[v ModbusFC10@TempData TempData `ui  1 a 2 51 ]
+"385
+[v ModbusFC10@error error `a  1 a 1 53 ]
+"431
 } 0
-"173
+"174
 [v _ModbusFC03 ModbusFC03 `(v  1 e 1 0 ]
 {
-"306
-[v ModbusFC03@convertedValue convertedValue `us  1 a 2 49 ]
-"176
-[v ModbusFC03@i i `i  1 a 2 52 ]
+"348
+[v ModbusFC03@convertedValue convertedValue `us  1 a 2 53 ]
 "177
-[v ModbusFC03@error error `a  1 a 1 51 ]
-"337
+[v ModbusFC03@i i `i  1 a 2 56 ]
+"178
+[v ModbusFC03@error error `a  1 a 1 55 ]
+"376
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
 {
 "8
-[v printf@ap ap `[1]*.39v  1 a 2 43 ]
+[v printf@ap ap `[1]*.39v  1 a 2 45 ]
 "5
 [v printf@fmt fmt `*.32Cuc  1 p 2 29 ]
 "13
@@ -1267,9 +1269,9 @@ channel_FVR_buf1 63
 {
 "1371
 [v vfprintf@cfmt cfmt `*.32uc  1 a 2 82 ]
-[s S1800 _IO_FILE 0 ]
+[s S1823 _IO_FILE 0 ]
 "1368
-[v vfprintf@fp fp `*.2S1800  1 p 2 23 ]
+[v vfprintf@fp fp `*.2S1823  1 p 2 23 ]
 [v vfprintf@fmt fmt `*.32Cuc  1 p 2 25 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 27 ]
 "1382
@@ -1286,9 +1288,9 @@ channel_FVR_buf1 63
 "672
 [v vfpfcnvrt@cp cp `*.34uc  1 a 2 8 ]
 [v vfpfcnvrt@c c `uc  1 a 1 10 ]
-[s S1800 _IO_FILE 0 ]
+[s S1823 _IO_FILE 0 ]
 "670
-[v vfpfcnvrt@fp fp `*.2S1800  1 p 2 72 ]
+[v vfpfcnvrt@fp fp `*.2S1823  1 p 2 72 ]
 [v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 74 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 76 ]
 "1365
@@ -1303,9 +1305,9 @@ channel_FVR_buf1 63
 [v xtoa@i i `i  1 a 2 68 ]
 [v xtoa@w w `i  1 a 2 58 ]
 [v xtoa@p p `i  1 a 2 56 ]
-[s S1800 _IO_FILE 0 ]
+[s S1823 _IO_FILE 0 ]
 "623
-[v xtoa@fp fp `*.2S1800  1 p 2 33 ]
+[v xtoa@fp fp `*.2S1823  1 p 2 33 ]
 [v xtoa@d d `uo  1 p 8 35 ]
 [v xtoa@x x `uc  1 p 1 43 ]
 "665
@@ -1343,9 +1345,9 @@ channel_FVR_buf1 63
 [v utoa@i i `i  1 a 2 63 ]
 [v utoa@w w `i  1 a 2 53 ]
 [v utoa@p p `i  1 a 2 51 ]
-[s S1800 _IO_FILE 0 ]
+[s S1823 _IO_FILE 0 ]
 "593
-[v utoa@fp fp `*.2S1800  1 p 2 33 ]
+[v utoa@fp fp `*.2S1823  1 p 2 33 ]
 [v utoa@d d `uo  1 p 8 35 ]
 "619
 } 0
@@ -1384,9 +1386,9 @@ channel_FVR_buf1 63
 "549
 [v stoa@w w `i  1 a 2 29 ]
 [v stoa@i i `i  1 a 2 27 ]
-[s S1800 _IO_FILE 0 ]
+[s S1823 _IO_FILE 0 ]
 "546
-[v stoa@fp fp `*.2S1800  1 p 2 15 ]
+[v stoa@fp fp `*.2S1823  1 p 2 15 ]
 [v stoa@s s `*.34uc  1 p 2 17 ]
 "548
 [v stoa@F1139 F1139 `[7]uc  1 s 7 F1139 ]
@@ -1402,9 +1404,9 @@ channel_FVR_buf1 63
 [v dtoa@s s `i  1 a 2 57 ]
 [v dtoa@w w `i  1 a 2 55 ]
 [v dtoa@p p `i  1 a 2 53 ]
-[s S1800 _IO_FILE 0 ]
+[s S1823 _IO_FILE 0 ]
 "274
-[v dtoa@fp fp `*.2S1800  1 p 2 33 ]
+[v dtoa@fp fp `*.2S1823  1 p 2 33 ]
 [v dtoa@d d `o  1 p 8 35 ]
 "315
 } 0
@@ -1414,9 +1416,9 @@ channel_FVR_buf1 63
 "74
 [v pad@w w `i  1 a 2 31 ]
 [v pad@i i `i  1 a 2 29 ]
-[s S1800 _IO_FILE 0 ]
+[s S1823 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.2S1800  1 p 2 22 ]
+[v pad@fp fp `*.2S1823  1 p 2 22 ]
 [v pad@buf buf `*.39uc  1 p 2 24 ]
 [v pad@p p `i  1 p 2 26 ]
 "95
@@ -1439,16 +1441,16 @@ channel_FVR_buf1 63
 [v fputs@c c `uc  1 a 1 19 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 15 ]
-[s S2418 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.2S2418  1 p 2 17 ]
+[s S2441 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.2S2441  1 p 2 17 ]
 "19
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 6 ]
-[s S2418 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.2S2418  1 p 2 8 ]
+[s S2441 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.2S2441  1 p 2 8 ]
 "21
 } 0
 "203 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart2.c
@@ -1530,43 +1532,43 @@ channel_FVR_buf1 63
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 6 ]
 "53
 } 0
-"468 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"543 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _ModbusError ModbusError `(v  1 e 1 0 ]
 {
 [v ModbusError@ErrorCode ErrorCode `i  1 p 2 19 ]
-"490
+"565
 } 0
-"396
+"435
 [v _generateCRC generateCRC `(ui  1 e 2 0 ]
 {
-"397
+"436
 [v generateCRC@crc crc `ui  1 a 2 17 ]
-"400
+"439
 [v generateCRC@j j `i  1 a 2 15 ]
 [v generateCRC@i i `i  1 a 2 13 ]
-"399
+"438
 [v generateCRC@crcLow crcLow `ui  1 a 2 11 ]
-"398
+"437
 [v generateCRC@crcHigh crcHigh `ui  1 a 2 9 ]
-"396
+"435
 [v generateCRC@MessCnt MessCnt `i  1 p 2 4 ]
 [v generateCRC@HiOrLo HiOrLo `a  1 p 1 6 ]
-"424
+"463
 } 0
-"426
+"465
 [v _UART1_Write_string UART1_Write_string `(v  1 e 1 0 ]
 {
-"430
+"469
 [v UART1_Write_string@i i `i  1 a 2 10 ]
-"426
+"465
 [v UART1_Write_string@data data `*.39uc  1 p 2 5 ]
 [v UART1_Write_string@data_len data_len `i  1 p 2 7 ]
-"435
+"474
 } 0
-"36
+"37
 [v _TXMode TXMode `(v  1 e 1 0 ]
 {
-"39
+"40
 } 0
 "134 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/eusart1.c
 [v _EUSART1_is_tx_ready EUSART1_is_tx_ready `(a  1 e 1 0 ]
@@ -1595,19 +1597,19 @@ channel_FVR_buf1 63
 [v ADCC_GetSingleConversion@channel channel `E10046  1 a 1 8 ]
 "154
 } 0
-"458 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
+"533 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\Modbus.c
 [v _ClearModbusRespon ClearModbusRespon `(v  1 e 1 0 ]
 {
-"459
+"534
 [v ClearModbusRespon@i i `i  1 a 2 4 ]
-"463
+"538
 } 0
-"48
+"49
 [v _ClearModbusData ClearModbusData `(v  1 e 1 0 ]
 {
-"49
+"50
 [v ClearModbusData@i i `i  1 a 2 4 ]
-"55
+"56
 } 0
 "58 H:\Users\danie\Google Drive\Work\Modbus\Git\ModbusShift\ModbusShift\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `IIH(v  1 e 1 0 ]

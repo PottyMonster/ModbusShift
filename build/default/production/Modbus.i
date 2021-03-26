@@ -17393,6 +17393,7 @@ int ByteHi, ByteLo = 0xFF;
 
 void PrintMB400(void){
 
+
     printf("UpdatedMB400 \r\n");
     int i=0;
 
@@ -17463,40 +17464,40 @@ void PrintModbus(){
 
 
     int i=0;
-    printf("\r\nModbus Data Capture Complete:\r\n");
+    printf("\r\nModbus Received:\r\n");
 
     if(ModbusData[1] == 0x03){
 
-        printf("   Byte 01: 0x%02x - Card Address\r\n",ModbusData[0]);
-        printf("   Byte 02: 0x%02x - Function Code (Read Multiple Registers)\r\n",ModbusData[1]);
-        printf("   Byte 03: 0x%02x - 1st Reg Add Hi\r\n",ModbusData[2]);
-        printf("   Byte 04: 0x%02x - 1st Reg Add Lo\r\n",ModbusData[3]);
-        printf("   Byte 05: 0x%02x - Num of Reg Hi\r\n",ModbusData[4]);
-        printf("   Byte 06: 0x%02x - Num of Reg Lo\r\n",ModbusData[5]);
+        printf("   Byte 00: 0x%02x - Card Address\r\n",ModbusData[0]);
+        printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n",ModbusData[1]);
+        printf("   Byte 02: 0x%02x - 1st Reg Add Hi\r\n",ModbusData[2]);
+        printf("   Byte 03: 0x%02x - 1st Reg Add Lo\r\n",ModbusData[3]);
+        printf("   Byte 04: 0x%02x - Num of Reg Hi\r\n",ModbusData[4]);
+        printf("   Byte 05: 0x%02x - Num of Reg Lo\r\n",ModbusData[5]);
         printf("   Byte 06: 0x%02x - CRC Hi\r\n",ModbusData[6]);
         printf("   Byte 07: 0x%02x - CRC Lo\r\n",ModbusData[7]);
 
     }else if(ModbusData[1] == 0x10){
 
-        printf("   Byte 01: 0x%02x - Card Address\r\n",ModbusData[0]);
-        printf("   Byte 02: 0x%02x - Function Code (Write Multiple Registers)\r\n",ModbusData[1]);
-        printf("   Byte 03: 0x%02x - 1st Reg Add Hi\r\n",ModbusData[2]);
-        printf("   Byte 04: 0x%02x - 1st Reg Add Lo\r\n",ModbusData[3]);
-        printf("   Byte 05: 0x%02x - Num of Reg Hi\r\n",ModbusData[4]);
-        printf("   Byte 06: 0x%02x - Num of Reg Lo\r\n",ModbusData[5]);
-        printf("   Byte 07: 0x%02x - Num Bytes More\r\n",ModbusData[6]);
+        printf("   Byte 00: 0x%02x - Card Address\r\n",ModbusData[0]);
+        printf("   Byte 01: 0x%02x - Function Code (Write Multi Reg)\r\n",ModbusData[1]);
+        printf("   Byte 02: 0x%02x - 1st Reg Add Hi\r\n",ModbusData[2]);
+        printf("   Byte 03: 0x%02x - 1st Reg Add Lo\r\n",ModbusData[3]);
+        printf("   Byte 04: 0x%02x - Num of Reg Hi\r\n",ModbusData[4]);
+        printf("   Byte 05: 0x%02x - Num of Reg Lo\r\n",ModbusData[5]);
+        printf("   Byte 06: 0x%02x - Num Bytes More\r\n",ModbusData[6]);
 
 
         int j = 1;
         for(i=7; i< ModDataCnt -2 ; i++ ){
-            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x 0x%02x)\r\n", i+1, ModbusData[i],j, ModbusData[2], ModbusData[3] + j-1);
+            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x%02x / Circuit %i)\r\n", i, ModbusData[i],j, ModbusData[2], ModbusData[3] + j-1,ModbusData[3] + j-1);
             i++;
-            printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i+1, ModbusData[i],j);
+            printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i, ModbusData[i],j);
             j++;
         }
 
-        printf("   Byte %02i: 0x%02x - CRC Hi\r\n",i+1, ModbusData[i]);
-        printf("   Byte %02i: 0x%02x - CRC Lo\r\n",i + 2, ModbusData[i + 1]);
+        printf("   Byte %02i: 0x%02x - CRC Hi\r\n",i, ModbusData[i]);
+        printf("   Byte %02i: 0x%02x - CRC Lo\r\n",i + 1, ModbusData[i + 1]);
 
     }
 
@@ -17556,70 +17557,111 @@ void ModbusFC03(){
     MBResCnt++;
 
 
-
     switch(ModbusData[2]){
 
         case 0x00:
         {
-           if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32){
-                printf("Requested registers out of range.  0x0000 to 0x020.\r\n");
+            printf("Requested Circuit Data\r\n");
+
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 0) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32)){
+
+                printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
+
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                        ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
-            printf("Requested Circuit Data\r\n\n");
             break;
         }
         case 0x01:
         {
-           if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 9){
-                printf("Requested registers out of range. \r\n");
+            printf("Requested Part No.\r\n");
+
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 256) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 264)){
+
+                printf("Registers out of range.\r\nValid: 0x0100 to 0x0108.\r\n");
+
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
-            printf("Requested Part No.\r\n\n");
             break;
         }
         case 0x02:
         {
-           if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1){
-                printf("Requested registers out of range. \r\n");
+            printf("Requested Revision\r\n");
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 512) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 512)){
+
+                printf("Registers out of range.\r\nValid: 0x0512.\r\n");
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
-            printf("Requested Revision\r\n\n");
             break;
         }
         case 0x03:
         {
-           if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 5){
-                printf("Requested registers out of range. \r\n");
+            printf("Requested Serial No.\r\n");
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 768) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 772)){
+
+                printf("Registers out of range.\r\nValid: 0x0300 to 0x0304.\r\n");
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
-            printf("Requested Serial No.\r\n\n");
             break;
         }
         case 0x04:
         {
-           if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 6){
-                printf("Requested registers out of range. \r\n");
+            printf("Requested Compile Date\r\n");
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 1024) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1029)){
+
+                printf("Registers out of range.\r\nValid: 0x0400 to 0x0405.\r\n");
+
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
-            printf("Requested Compile Date\r\n\n");
             break;
         }
         case 0x05:
         {
-           if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 4){
-                printf("Requested registers out of range. \r\n");
+            printf("Requested Compile Time\r\n");
+
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 1280) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1283)){
+
+                printf("Registers out of range.\r\nValid: 0x0500 to 0x0503.\r\n");
+
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
-            printf("Requested Compile Time\r\n\n");
             break;
         }
         case 0x06:
         {
-           if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 3){
-                printf("Requested registers out of range. \r\n");
+            printf("Requested Analogue Inputs\r\n");
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 1536) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1538)){
+
+                printf("Registers out of range.\r\nValid: 0x0600 to 0x0602.\r\n");
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
-            printf("Requested Analogue Inputs\r\n\n");
             break;
         }
     }
@@ -17695,9 +17737,6 @@ void ModbusFC03(){
         MBRespon[MBResCnt] = ByteHi;
         MBRespon[MBResCnt +1] = ByteLo;
         MBResCnt = MBResCnt +2;
-
-
-
 
 
         UART1_Write_string(MBRespon,MBResCnt);
@@ -17806,20 +17845,56 @@ void UART1_Write_string(unsigned char * data, int data_len)
 }
 
 
-
-
 void PrintModRespon(){
 
     int i=0;
 
-    printf("Modbus Response Count %i:\r\n",MBResCnt);
+    printf("Modbus Response:\r\n");
 
-    for(i=0; i< MBResCnt ; i++ ){
-        while(!EUSART2_is_tx_ready());
-        printf("   Byte %02i : 0x%02x \r\n", i, MBRespon[i]);
-        while(!EUSART2_is_tx_done());
+
+    if(MBRespon[1] == 0x03){
+
+
+        printf("   Byte 00: 0x%02x - Card Address\r\n", MBRespon[0]);
+        printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n", MBRespon[1]);
+        printf("   Byte 02: 0x%02x - Num Bytes More\r\n", MBRespon[2]);
+
+
+
+        int j = 1;
+        for(i=0; i< MBRespon[2] ; i++ ){
+            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x %02x)\r\n", i+1, MBRespon[i+3],j, ModbusData[2], ModbusData[3] +j-1);
+            i++;
+            printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i+1, MBRespon[i+3],j);
+            j++;
+        }
+
+
+        printf("   Byte %02i: 0x%02x - CRC Hi\r\n", i +1 , MBRespon[i + 2 + 1] );
+        printf("   Byte %02i: 0x%02x - CRC Lo\r\n", i +2 , MBRespon[i + 2 + 2] );
+
+    }else if(MBRespon[1] == 0x10){
+
+
+        printf("   Byte 00: 0x%02x - Card Address\r\n", MBRespon[0]);
+        printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n", MBRespon[1]);
+        printf("   Byte 02: 0x%02x - 1st Reg Add Hi\r\n", MBRespon[2]);
+        printf("   Byte 03: 0x%02x - 1st Reg Add Lo\r\n", MBRespon[3]);
+        printf("   Byte 04: 0x%02x - Num of Reg Hi\r\n", MBRespon[4]);
+        printf("   Byte 05: 0x%02x - Num of Reg Lo\r\n", MBRespon[5]);
+
+
+
+        printf("   Byte 06: 0x%02x - CRC Hi\r\n", MBRespon[6]);
+        printf("   Byte 07: 0x%02x - CRC Hi\r\n", MBRespon[7]);
+
+    }else{
+        for(i=0; i< MBResCnt ; i++ ){
+            while(!EUSART2_is_tx_ready());
+            printf("   Byte %02i: 0x%02x \r\n", i, MBRespon[i]);
+            while(!EUSART2_is_tx_done());
+        }
     }
-
     printf("\r\n\n");
 
 }
