@@ -19,11 +19,10 @@ unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
 
 
-
+/*
 void PrintMB400(void){
     // This is just used for debuging to print out the circuit receive registers.
     // Can be used before and after Modbus writes to check it's been updated.
-    printf("UpdatedMB400 \r\n");
     int i=0;
     
     for(i=0; i<32; i++ ){
@@ -31,7 +30,18 @@ void PrintMB400(void){
     }
     
 }
+*/
 
+// *********** THIS NEEDS FIXING ************* //
+void PrintMB400(void){
+    // This is just used for debuging to print out the circuit receive registers.
+    // Can be used before and after Modbus writes to check it's been updated.
+   
+    for(int i = ModbusData[3]; i<ModbusData[6]; i++ ){
+        printf("   Reg: %i Data: 0x%04x \r\n", i, MB400xx[i]);
+    }
+    
+}
 
 
 void TXMode(){    
@@ -172,6 +182,75 @@ bool checkCRC(void){
 
 
 void ModbusFC03(){
+    // Read 16bit Output HOLDING registers MB400xx
+    // and generate Modbus Output
+
+    int i = 0;
+    bool error = 0;
+    
+    MBResCnt = 0;
+    MBRespon[MBResCnt] = ModbusData[0];    // Address
+    MBResCnt++;
+    MBRespon[MBResCnt] = ModbusData[1];    // Function Code
+    MBResCnt++;
+    MBRespon[MBResCnt] = ModbusData[5] *2;  // Number of bytes more
+    MBResCnt++;
+    
+    // Validate Address Ranges
+    switch(ModbusData[2]){
+        
+        case 0x00:
+        {
+            printf("Requested Output Holding Registers\r\n");
+            
+            if(
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 0) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32)){
+                
+                printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
+            
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
+                        ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
+                error = 1;
+            }
+            break;
+        }
+        
+    }
+    
+    if(error == 0){
+        for(i=0; i< (ModbusData[5]) ; i++ ){
+
+             if(ModbusData[2] == 0x00){
+                // Circuit Registers
+                ByteLo = MB400xx[ModbusData[3] +i] & 0x00FF;
+                ByteHi = MB400xx[ModbusData[3] +i] >> 8;
+
+            }
+
+            MBRespon[MBResCnt] = ByteHi;                   
+            MBResCnt++;
+            MBRespon[MBResCnt] = ByteLo;
+            MBResCnt++;  
+
+        }
+
+        ByteHi = generateCRC(MBResCnt, 1);  // CRC Hi
+        ByteLo = generateCRC(MBResCnt, 0);  // CRC Lo
+
+        MBRespon[MBResCnt] = ByteHi;
+        MBRespon[MBResCnt +1] = ByteLo;
+        MBResCnt = MBResCnt +2;
+
+        // Send Modbus response back to Master.
+        UART1_Write_string(MBRespon,MBResCnt);
+    }else{
+        ModbusError(0x02);
+    }
+    
+}
+
+void ModbusFC04(){
     // Read 16bit Output registers
     // and generate Modbus Output
     int i = 0;
@@ -376,7 +455,7 @@ void ModbusFC03(){
 }
 
 void ModbusFC10(void){
-    // Write multiple data
+    // Write multiple data to register MB400xx
     // and generate Modbus Output
     
     int i = 0;

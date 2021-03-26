@@ -108,28 +108,34 @@ void InitialiseString(bool Partial){
     if(Partial != 1){
         printf("Initalisation Complete - Ready\r\n\n");   
         printf("Modbus Function Codes Supported:\r\n\n"); 
-        printf("   0x03 - Read Multiple 16bit Registers\r\n");
+        printf("   0x04 - Read Multiple 16bit Registers\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Get Status (lower 8bits only)\r\n");    
-        printf("      Add 0x0100 to 0x0108 - Part Number\r\n");
-        printf("      Add 0x0200 - Revision\r\n");
-        printf("      Add 0x0300 to 0x0304 - Revision\r\n");
+        printf("      Add 0x0100 to 0x0108 - Part Number (ASCII)\r\n");
+        printf("      Add 0x0200 - Revision (ASCII)\r\n");
+        printf("      Add 0x0300 to 0x0304 - Serial Number (ASCII)\r\n");
         printf("      Add 0x0400 to 0x0405 - Compile Date (ASCII)\r\n");
         printf("      Add 0x0500 to 0x0504 - Compile Time - (ASCII)\r\n");
         printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs (0x000 to 0x03ff)\r\n\n");    
-        printf("   0x10 - Write Multiple Registers (Max 32x 16bit)\r\n");
-        printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");    
-
+        printf("   0x10 - Write Multiple Output Holding Registers (Max 32x 16bit)\r\n");
+        printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");
+        printf("   0x03 - Read Multiple Output Holding Registers (Max 32x 16bit)\r\n");
+        printf("      Add 0x0000 to 0x0031 - 32x Circuit Get Status  (lower 8bits only)\r\n\n");
+        
+        
         printf("Commands Supported:\r\n"); 
         printf("   ? - Initalise and display card details\r\n"); 
         printf("   serial - Set card serial number\r\n");
         printf("   part - Set card part number\r\n");
         printf("   rev - Set card part number\r\n");
+        printf("   debug - Toggles trace outputs. Slows down time device can respond between commands. DEFAULT ON!\r\n\n");
+ 
+        uint16_t convertedValue;
+        convertedValue = ADCC_GetSingleConversion(AIP_0);        
+        printf("ADC0: 0x%04x \r\n", convertedValue);
         
         printf("\r\nEnter Command : ");
         
-        uint16_t convertedValue;
-        convertedValue = ADCC_GetSingleConversion(AIP_0);        
-        printf("ADC: 0x%04x \r\n", convertedValue);
+
     };
 }
 

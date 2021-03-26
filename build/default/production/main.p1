@@ -52,19 +52,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "261
 [; ;./Modbus.h: 261: _Bool ModbusRx(void);
 [v _ModbusRx `(a ~T0 @X0 0 ef ]
-"270
-[; ;./Modbus.h: 270: void ModbusFC03(void);
-[v _ModbusFC03 `(v ~T0 @X0 0 ef ]
 "111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"274 ./Modbus.h
-[; ;./Modbus.h: 274: void PrintMB400(void);
+"270 ./Modbus.h
+[; ;./Modbus.h: 270: void ModbusFC03(void);
+[v _ModbusFC03 `(v ~T0 @X0 0 ef ]
+"275
+[; ;./Modbus.h: 275: void PrintMB400(void);
 [v _PrintMB400 `(v ~T0 @X0 0 ef ]
-"273
-[; ;./Modbus.h: 273: void ModbusFC10(void);
+"274
+[; ;./Modbus.h: 274: void ModbusFC10(void);
 [v _ModbusFC10 `(v ~T0 @X0 0 ef ]
-"272
-[; ;./Modbus.h: 272: void ModbusError(int ErrorCode);
+"271
+[; ;./Modbus.h: 271: void ModbusFC04(void);
+[v _ModbusFC04 `(v ~T0 @X0 0 ef ]
+"273
+[; ;./Modbus.h: 273: void ModbusError(int ErrorCode);
 [v _ModbusError `(v ~T0 @X0 0 ef1`i ]
 "262
 [; ;./Modbus.h: 262: void PrintModbus();
@@ -1630,212 +1633,239 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `a
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"14 main.c
-[; ;main.c: 14: void main(void)
+"23 main.c
+[; ;main.c: 23: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"15
-[; ;main.c: 15: {
+"24
+[; ;main.c: 24: {
 {
 [e :U _main ]
 [f ]
-"17
-[; ;main.c: 17:     SYSTEM_Initialize();
+"26
+[; ;main.c: 26:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"24
-[; ;main.c: 24:     (INTCONbits.GIE = 1);
+"33
+[; ;main.c: 33:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"30
-[; ;main.c: 30:     (INTCONbits.PEIE = 1);
+"39
+[; ;main.c: 39:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"35
-[; ;main.c: 35:     do { LATAbits.LATA4 = 0; } while(0);
+"44
+[; ;main.c: 44:     do { LATAbits.LATA4 = 0; } while(0);
 [e :U 1500 ]
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
 [e :U 1499 ]
-"36
-[; ;main.c: 36:     do { LATAbits.LATA5 = 0; } while(0);
+"45
+[; ;main.c: 45:     do { LATAbits.LATA5 = 0; } while(0);
 [e :U 1503 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
 [e :U 1502 ]
-"37
-[; ;main.c: 37:     do { LATAbits.LATA6 = 0; } while(0);
+"46
+[; ;main.c: 46:     do { LATAbits.LATA6 = 0; } while(0);
 [e :U 1506 ]
 {
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
 [e :U 1505 ]
-"38
-[; ;main.c: 38:     do { LATAbits.LATA7 = 0; } while(0);
+"47
+[; ;main.c: 47:     do { LATAbits.LATA7 = 0; } while(0);
 [e :U 1509 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
 [e :U 1508 ]
-"40
-[; ;main.c: 40:     InitialiseString(0);
+"49
+[; ;main.c: 49:     InitialiseString(0);
 [e ( _InitialiseString (1 -> -> 0 `i `a ]
-"43
-[; ;main.c: 43:     RXMode();
+"52
+[; ;main.c: 52:     RXMode();
 [e ( _RXMode ..  ]
-"44
-[; ;main.c: 44:     ClearRxBuff();
+"53
+[; ;main.c: 53:     ClearRxBuff();
 [e ( _ClearRxBuff ..  ]
-"45
-[; ;main.c: 45:     ClearModbusRespon();
+"54
+[; ;main.c: 54:     ClearModbusRespon();
 [e ( _ClearModbusRespon ..  ]
-"48
-[; ;main.c: 48:     _Bool RXStat = 0;
+"57
+[; ;main.c: 57:     _Bool RXStat = 0;
 [v _RXStat `a ~T0 @X0 1 a ]
 [e = _RXStat -> -> 0 `i `a ]
-"50
-[; ;main.c: 50:     while(1)
+"59
+[; ;main.c: 59:     while(1)
 [e :U 1511 ]
-"51
-[; ;main.c: 51:     {
+"60
+[; ;main.c: 60:     {
 {
-"52
-[; ;main.c: 52:         if(ModbusRx() == 1){
+"61
+[; ;main.c: 61:         if(ModbusRx() == 1){
 [e $ ! == -> ( _ModbusRx ..  `i -> 1 `i 1513  ]
 {
-"55
-[; ;main.c: 55:             switch(ModbusData[1])
-[e $U 1515  ]
-"56
-[; ;main.c: 56:             {
-{
-"57
-[; ;main.c: 57:             case 0x03:
-[e :U 1516 ]
-"58
-[; ;main.c: 58:                 {
-{
-"62
-[; ;main.c: 62:                     ModbusFC03();
-[e ( _ModbusFC03 ..  ]
-"63
-[; ;main.c: 63:                     break;
-[e $U 1514  ]
 "64
-[; ;main.c: 64:                 }
-}
+[; ;main.c: 64:             switch(ModbusData[1])
+[e $U 1515  ]
 "65
-[; ;main.c: 65:             case 0x10:
-[e :U 1517 ]
+[; ;main.c: 65:             {
+{
 "66
-[; ;main.c: 66:                 {
-{
+[; ;main.c: 66:             case 0x03:
+[e :U 1516 ]
 "67
-[; ;main.c: 67:                     printf("Function Code 0x10\r\n");
-[e ( _printf :s 1C ]
-"69
-[; ;main.c: 69:                     printf("Modbus Register Before Update:");
-[e ( _printf :s 2C ]
-"70
-[; ;main.c: 70:                     PrintMB400();
-[e ( _PrintMB400 ..  ]
-"71
-[; ;main.c: 71:                     ModbusFC10();
-[e ( _ModbusFC10 ..  ]
-"73
-[; ;main.c: 73:                     break;
-[e $U 1514  ]
-"74
-[; ;main.c: 74:                 }
-}
-"75
-[; ;main.c: 75:             default:
-[e :U 1518 ]
-"76
-[; ;main.c: 76:                 {
+[; ;main.c: 67:                 {
 {
-"77
-[; ;main.c: 77:                     printf("Unsupported Function Code\r\n");
-[e ( _printf :s 3C ]
-"79
-[; ;main.c: 79:                     ModbusError(0x01);
-[e ( _ModbusError (1 -> 1 `i ]
-"80
-[; ;main.c: 80:                     break;
+"68
+[; ;main.c: 68:                     printf("Function Code 0x03\r\n");
+[e ( _printf :s 1C ]
+"70
+[; ;main.c: 70:                     ModbusFC03();
+[e ( _ModbusFC03 ..  ]
+"71
+[; ;main.c: 71:                     break;
 [e $U 1514  ]
-"81
-[; ;main.c: 81:                 }
+"72
+[; ;main.c: 72:                 }
 }
+"73
+[; ;main.c: 73:             case 0x10:
+[e :U 1517 ]
+"74
+[; ;main.c: 74:                 {
+{
+"75
+[; ;main.c: 75:                     printf("Function Code 0x10\r\n");
+[e ( _printf :s 2C ]
+"77
+[; ;main.c: 77:                     printf("Modbus Register Before Update:");
+[e ( _printf :s 3C ]
+"78
+[; ;main.c: 78:                     PrintMB400();
+[e ( _PrintMB400 ..  ]
+"79
+[; ;main.c: 79:                     ModbusFC10();
+[e ( _ModbusFC10 ..  ]
+"81
+[; ;main.c: 81:                     printf("Modbus Register After Update:");
+[e ( _printf :s 4C ]
 "82
-[; ;main.c: 82:             }
+[; ;main.c: 82:                     PrintMB400();
+[e ( _PrintMB400 ..  ]
+"83
+[; ;main.c: 83:                     break;
+[e $U 1514  ]
+"84
+[; ;main.c: 84:                 }
+}
+"85
+[; ;main.c: 85:             case 0x04:
+[e :U 1518 ]
+"86
+[; ;main.c: 86:                 {
+{
+"90
+[; ;main.c: 90:                     ModbusFC04();
+[e ( _ModbusFC04 ..  ]
+"91
+[; ;main.c: 91:                     break;
+[e $U 1514  ]
+"92
+[; ;main.c: 92:                 }
+}
+"93
+[; ;main.c: 93:             default:
+[e :U 1519 ]
+"94
+[; ;main.c: 94:                 {
+{
+"95
+[; ;main.c: 95:                     printf("Unsupported Function Code\r\n");
+[e ( _printf :s 5C ]
+"97
+[; ;main.c: 97:                     ModbusError(0x01);
+[e ( _ModbusError (1 -> 1 `i ]
+"98
+[; ;main.c: 98:                     break;
+[e $U 1514  ]
+"99
+[; ;main.c: 99:                 }
+}
+"100
+[; ;main.c: 100:             }
 }
 [e $U 1514  ]
 [e :U 1515 ]
 [e [\ -> *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i , $ -> 3 `i 1516
  , $ -> 16 `i 1517
- 1518 ]
+ , $ -> 4 `i 1518
+ 1519 ]
 [e :U 1514 ]
-"84
-[; ;main.c: 84:             PrintModbus();
-[e ( _PrintModbus ..  ]
-"85
-[; ;main.c: 85:             PrintModRespon();
-[e ( _PrintModRespon ..  ]
-"89
-[; ;main.c: 89:             ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"90
-[; ;main.c: 90:             ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"92
-[; ;main.c: 92:         }else if(ReadRX232(16) != 0){
-}
-[e $U 1519  ]
-[e :U 1513 ]
-[e $ ! != ( _ReadRX232 (1 -> 16 `i -> 0 `i 1520  ]
-{
-"94
-[; ;main.c: 94:             if(ValidateCmd() ==1){
-[e $ ! == -> ( _ValidateCmd ..  `i -> 1 `i 1521  ]
-{
-"98
-[; ;main.c: 98:              }else{
-}
-[e $U 1522  ]
-[e :U 1521 ]
-{
-"100
-[; ;main.c: 100:              }
-}
-[e :U 1522 ]
-"101
-[; ;main.c: 101:             printf("\r\nEnter Command : ");
-[e ( _printf :s 4C ]
 "102
-[; ;main.c: 102:             strcpy(Command, "");
-[e ( _strcpy (2 , &U _Command :s 5C ]
-"104
-[; ;main.c: 104:         }else{
+[; ;main.c: 102:             PrintModbus();
+[e ( _PrintModbus ..  ]
+"103
+[; ;main.c: 103:             PrintModRespon();
+[e ( _PrintModRespon ..  ]
+"107
+[; ;main.c: 107:             ClearModbusData();
+[e ( _ClearModbusData ..  ]
+"108
+[; ;main.c: 108:             ClearModbusRespon();
+[e ( _ClearModbusRespon ..  ]
+"110
+[; ;main.c: 110:         }else if(ReadRX232(16) != 0){
+}
+[e $U 1520  ]
+[e :U 1513 ]
+[e $ ! != ( _ReadRX232 (1 -> 16 `i -> 0 `i 1521  ]
+{
+"112
+[; ;main.c: 112:             if(ValidateCmd() ==1){
+[e $ ! == -> ( _ValidateCmd ..  `i -> 1 `i 1522  ]
+{
+"116
+[; ;main.c: 116:              }else{
 }
 [e $U 1523  ]
-[e :U 1520 ]
+[e :U 1522 ]
 {
-"106
-[; ;main.c: 106:         }
+"118
+[; ;main.c: 118:              }
 }
 [e :U 1523 ]
-[e :U 1519 ]
-"108
-[; ;main.c: 108:     }
+"119
+[; ;main.c: 119:             printf("\r\nEnter Command : ");
+[e ( _printf :s 6C ]
+"120
+[; ;main.c: 120:             strcpy(Command, "");
+[e ( _strcpy (2 , &U _Command :s 7C ]
+"122
+[; ;main.c: 122:         }else{
+}
+[e $U 1524  ]
+[e :U 1521 ]
+{
+"124
+[; ;main.c: 124:         }
+}
+[e :U 1524 ]
+[e :U 1520 ]
+"126
+[; ;main.c: 126:     }
 }
 [e :U 1510 ]
 [e $U 1511  ]
 [e :U 1512 ]
-"109
-[; ;main.c: 109: }
+"127
+[; ;main.c: 127: }
 [e :UE 1497 ]
 }
 [p f _printf 8388608 ]
-[a 2C 77 111 100 98 117 115 32 82 101 103 105 115 116 101 114 32 66 101 102 111 114 101 32 85 112 100 97 116 101 58 0 ]
-[a 4C 13 10 69 110 116 101 114 32 67 111 109 109 97 110 100 32 58 32 0 ]
-[a 3C 85 110 115 117 112 112 111 114 116 101 100 32 70 117 110 99 116 105 111 110 32 67 111 100 101 13 10 0 ]
-[a 1C 70 117 110 99 116 105 111 110 32 67 111 100 101 32 48 120 49 48 13 10 0 ]
-[a 5C 0 ]
+[a 4C 77 111 100 98 117 115 32 82 101 103 105 115 116 101 114 32 65 102 116 101 114 32 85 112 100 97 116 101 58 0 ]
+[a 3C 77 111 100 98 117 115 32 82 101 103 105 115 116 101 114 32 66 101 102 111 114 101 32 85 112 100 97 116 101 58 0 ]
+[a 6C 13 10 69 110 116 101 114 32 67 111 109 109 97 110 100 32 58 32 0 ]
+[a 5C 85 110 115 117 112 112 111 114 116 101 100 32 70 117 110 99 116 105 111 110 32 67 111 100 101 13 10 0 ]
+[a 1C 70 117 110 99 116 105 111 110 32 67 111 100 101 32 48 120 48 51 13 10 0 ]
+[a 2C 70 117 110 99 116 105 111 110 32 67 111 100 101 32 48 120 49 48 13 10 0 ]
+[a 7C 0 ]

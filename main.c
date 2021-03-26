@@ -7,6 +7,15 @@
 #include "main.h"
 
 /*
+ 
+ * Function Code 0x10 writes to 16 bit output holding registers (broadcast enabled)
+ * Funciton Code 0x03 reads 16 bit output holding registers
+ * Function Code 0x04 reads multiple 16 bit inputs
+ * Function Code 0x08 Reset Slave
+ 
+ */
+
+/*
                          Main application
  */
 
@@ -56,9 +65,8 @@ void main(void)
             {
             case 0x03:
                 {
-                    // printf("Function Code 0x03\r\n");
-                    // Reads Multiple Registers
-                    // ShiftRead();     // Sam's function to read in shift reg
+                    printf("Function Code 0x03\r\n");
+                    // Reads Multiple Output Holding Registers
                     ModbusFC03();
                     break;
                 }
@@ -67,11 +75,21 @@ void main(void)
                     printf("Function Code 0x10\r\n");
                     // Writes to Multiple Registers  
                     printf("Modbus Register Before Update:");
-                    PrintMB400();   // Contents before update
-                    ModbusFC10();
+                    PrintMB400();   // Print Write Register
+                    ModbusFC10();   // Perform Modbus Update of Write register.
                     // ShiftWrite();    // Sam's function to write to shift reg 
+                    printf("Modbus Register After Update:");
+                    PrintMB400();   // Print Write Register
                     break;
                 }
+            case 0x04:
+                {
+                    // printf("Function Code 0x03\r\n");
+                    // Reads Multiple Input Registers
+                    // ShiftRead();     // Sam's function to read in shift reg
+                    ModbusFC04();
+                    break;
+                }            
             default:
                 {
                     printf("Unsupported Function Code\r\n");

@@ -17415,6 +17415,7 @@ void PrintModRespon2();
 void UART1_Write_string(unsigned char * data, int data_len);
 unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
 void ModbusFC03(void);
+void ModbusFC04(void);
 _Bool checkCRC(void);
 void ModbusError(int ErrorCode);
 void ModbusFC10(void);
@@ -17447,12 +17448,7 @@ _Bool ValidateCmd(void);
 
 _Bool Debug = 0;
 # 8 "main.c" 2
-
-
-
-
-
-
+# 23 "main.c"
 void main(void)
 {
 
@@ -17498,8 +17494,7 @@ void main(void)
             {
             case 0x03:
                 {
-
-
+                    printf("Function Code 0x03\r\n");
 
                     ModbusFC03();
                     break;
@@ -17512,6 +17507,16 @@ void main(void)
                     PrintMB400();
                     ModbusFC10();
 
+                    printf("Modbus Register After Update:");
+                    PrintMB400();
+                    break;
+                }
+            case 0x04:
+                {
+
+
+
+                    ModbusFC04();
                     break;
                 }
             default:

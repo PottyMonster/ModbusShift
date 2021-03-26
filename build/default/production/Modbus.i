@@ -17358,6 +17358,7 @@ void PrintModRespon2();
 void UART1_Write_string(unsigned char * data, int data_len);
 unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
 void ModbusFC03(void);
+void ModbusFC04(void);
 _Bool checkCRC(void);
 void ModbusError(int ErrorCode);
 void ModbusFC10(void);
@@ -17388,21 +17389,16 @@ unsigned char MBRespon[75] = { 0xFF };
 
 unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
-
-
-
+# 36 "Modbus.c"
 void PrintMB400(void){
 
 
-    printf("UpdatedMB400 \r\n");
-    int i=0;
 
-    for(i=0; i<32; i++ ){
+    for(int i = ModbusData[3]; i<ModbusData[6]; i++ ){
         printf("   Reg: %i Data: 0x%04x \r\n", i, MB400xx[i]);
     }
 
 }
-
 
 
 void TXMode(){
@@ -17543,6 +17539,75 @@ _Bool checkCRC(void){
 
 
 void ModbusFC03(){
+
+
+
+    int i = 0;
+    _Bool error = 0;
+
+    MBResCnt = 0;
+    MBRespon[MBResCnt] = ModbusData[0];
+    MBResCnt++;
+    MBRespon[MBResCnt] = ModbusData[1];
+    MBResCnt++;
+    MBRespon[MBResCnt] = ModbusData[5] *2;
+    MBResCnt++;
+
+
+    switch(ModbusData[2]){
+
+        case 0x00:
+        {
+            printf("Requested Output Holding Registers\r\n");
+
+            if(
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 0) ||
+                (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32)){
+
+                printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
+
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+                        ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
+                error = 1;
+            }
+            break;
+        }
+
+    }
+
+    if(error == 0){
+        for(i=0; i< (ModbusData[5]) ; i++ ){
+
+             if(ModbusData[2] == 0x00){
+
+                ByteLo = MB400xx[ModbusData[3] +i] & 0x00FF;
+                ByteHi = MB400xx[ModbusData[3] +i] >> 8;
+
+            }
+
+            MBRespon[MBResCnt] = ByteHi;
+            MBResCnt++;
+            MBRespon[MBResCnt] = ByteLo;
+            MBResCnt++;
+
+        }
+
+        ByteHi = generateCRC(MBResCnt, 1);
+        ByteLo = generateCRC(MBResCnt, 0);
+
+        MBRespon[MBResCnt] = ByteHi;
+        MBRespon[MBResCnt +1] = ByteLo;
+        MBResCnt = MBResCnt +2;
+
+
+        UART1_Write_string(MBRespon,MBResCnt);
+    }else{
+        ModbusError(0x02);
+    }
+
+}
+
+void ModbusFC04(){
 
 
     int i = 0;
