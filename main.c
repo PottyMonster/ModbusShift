@@ -51,10 +51,11 @@ void main(void)
 
     RXMode();
     ClearRxBuff();
-    ClearModbusRespon();
-    
+    ClearModbusRespon(); 
     
     bool RXStat = 0;
+    
+    printf("Enter Command : ");
     
     while(1)
     {
@@ -65,26 +66,30 @@ void main(void)
             {
             case 0x03:
                 {
-                    printf("Function Code 0x03\r\n");
+                    printf("Function Code 0x03 - Read Output Holding Registers\r\n");
                     // Reads Multiple Output Holding Registers
                     ModbusFC03();
                     break;
                 }
             case 0x10:
                 {
-                    printf("Function Code 0x10\r\n");
+                    printf("Function Code 0x10 - Write to Output Holding Registers \r\n");
                     // Writes to Multiple Registers  
-                    printf("Modbus Register Before Update:");
-                    PrintMB400();   // Print Write Register
+                    if(Debug == 1){
+                        printf("Modbus Register Before Update: \r\n");
+                        PrintMB400();   // Print Write Register
+                    }
                     ModbusFC10();   // Perform Modbus Update of Write register.
                     // ShiftWrite();    // Sam's function to write to shift reg 
-                    printf("Modbus Register After Update:");
-                    PrintMB400();   // Print Write Register
+                    if(Debug ==1){
+                        printf("Modbus Register After Update: \r\n");
+                        PrintMB400();   // Print Write Register
+                    }
                     break;
                 }
             case 0x04:
                 {
-                    // printf("Function Code 0x03\r\n");
+                    printf("Function Code 0x04 - Read Input Registers\r\n");
                     // Reads Multiple Input Registers
                     // ShiftRead();     // Sam's function to read in shift reg
                     ModbusFC04();
@@ -99,13 +104,15 @@ void main(void)
                 }           
             }
             
-            PrintModbus();
-            PrintModRespon();
+            if(Debug==1){
+                PrintModbus();
+                PrintModRespon();
+            }
             
             // PrintModRespon2();
-
             ClearModbusData();   // Needed when complete
             ClearModbusRespon();
+            printf("Enter Command: ");
             
         }else if(ReadRX232(16) != 0){
             // RS232 Data has been received

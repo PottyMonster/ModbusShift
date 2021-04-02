@@ -53,8 +53,8 @@
   Section: Macro Declarations
 */
 
-#define EUSART2_TX_BUFFER_SIZE 32   // 32 Works (Sort of)
-#define EUSART2_RX_BUFFER_SIZE 32   // 32 Works (Sort of)
+#define EUSART2_TX_BUFFER_SIZE 32   // 32 Works
+#define EUSART2_RX_BUFFER_SIZE 32   // 32 Works
 
 /**
   Section: Global Variables
@@ -105,11 +105,13 @@ void EUSART2_Initialize(void)
 
     // SP2BRGL 64; 
     // SP2BRGL = 0x40;   //9600 Baud
-    SP2BRGL = 0xA0;   // 19200 Baud
+    SP2BRGL = 0xA0;   // 19200 Baud - Works
+	// SP2BRGL = 0x80;   // 57600 Baud - Fails
 
     // SP2BRGH 3; 
     // SP2BRGH = 0x03;  // 9600 Baud
-    SP2BRGH = 0x01;     // 19200 Baud
+    SP2BRGH = 0x01;     // 19200 Baud - Works
+	// SP2BRGH = 0x00;     // 57600 Baud - Fails
 
 
     EUSART2_SetFramingErrorHandler(EUSART2_DefaultFramingErrorHandler);

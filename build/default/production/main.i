@@ -17446,7 +17446,8 @@ _Bool ValidateCmd(void);
 
 
 
-_Bool Debug = 0;
+_Bool Debug = 1;
+unsigned int Address = 0x05;
 # 8 "main.c" 2
 # 23 "main.c"
 void main(void)
@@ -17482,8 +17483,9 @@ void main(void)
     ClearRxBuff();
     ClearModbusRespon();
 
-
     _Bool RXStat = 0;
+
+    printf("Enter Command : ");
 
     while(1)
     {
@@ -17494,26 +17496,30 @@ void main(void)
             {
             case 0x03:
                 {
-                    printf("Function Code 0x03\r\n");
+                    printf("Function Code 0x03 - Read Output Holding Registers\r\n");
 
                     ModbusFC03();
                     break;
                 }
             case 0x10:
                 {
-                    printf("Function Code 0x10\r\n");
+                    printf("Function Code 0x10 - Write to Output Holding Registers \r\n");
 
-                    printf("Modbus Register Before Update:");
-                    PrintMB400();
+                    if(Debug == 1){
+                        printf("Modbus Register Before Update: \r\n");
+                        PrintMB400();
+                    }
                     ModbusFC10();
 
-                    printf("Modbus Register After Update:");
-                    PrintMB400();
+                    if(Debug ==1){
+                        printf("Modbus Register After Update: \r\n");
+                        PrintMB400();
+                    }
                     break;
                 }
             case 0x04:
                 {
-
+                    printf("Function Code 0x04 - Read Input Registers\r\n");
 
 
                     ModbusFC04();
@@ -17528,13 +17534,15 @@ void main(void)
                 }
             }
 
-            PrintModbus();
-            PrintModRespon();
-
+            if(Debug==1){
+                PrintModbus();
+                PrintModRespon();
+            }
 
 
             ClearModbusData();
             ClearModbusRespon();
+            printf("Enter Command: ");
 
         }else if(ReadRX232(16) != 0){
 

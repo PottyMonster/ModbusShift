@@ -17373,7 +17373,8 @@ void PrintMB400(void);
 
 
 
-_Bool Debug = 0;
+_Bool Debug = 1;
+unsigned int Address = 0x05;
 # 6 "Modbus.c" 2
 
 
@@ -17394,9 +17395,11 @@ void PrintMB400(void){
 
 
 
-    for(int i = ModbusData[3]; i<ModbusData[6]; i++ ){
-        printf("   Reg: %i Data: 0x%04x \r\n", i, MB400xx[i]);
+
+    for(int i = ModbusData[3]; i<ModbusData[6] /2; i++ ){
+        printf("   Reg: %i Data: 0x%04x \r\n", i , MB400xx[i]);
     }
+
 
 }
 
@@ -17440,11 +17443,6 @@ void AddRxBuffToModBus(){
         ModDataCnt++;
     }
 
-    if(Debug ==1){
-        printf("Completed Adding rxData Buffer to ModbusData Array\r\n\n");
-        printf("ModDataCnt sitting at %i\r\n\n", ModDataCnt);
-    }
-
     if(ModbusData[1] == 0x0F){
         ExpectedBytes = ModbusData[6] + 9;
     }else if (ModbusData[1] == 0x10){
@@ -17462,7 +17460,7 @@ void PrintModbus(){
     int i=0;
     printf("\r\nModbus Received:\r\n");
 
-    if(ModbusData[1] == 0x03){
+    if(ModbusData[1] == 0x03 || ModbusData[1] == 0x04){
 
         printf("   Byte 00: 0x%02x - Card Address\r\n",ModbusData[0]);
         printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n",ModbusData[1]);
@@ -17486,7 +17484,7 @@ void PrintModbus(){
 
         int j = 1;
         for(i=7; i< ModDataCnt -2 ; i++ ){
-            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x%02x / Circuit %i)\r\n", i, ModbusData[i],j, ModbusData[2], ModbusData[3] + j-1,ModbusData[3] + j-1);
+            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x%02x / Circuit %i)\r\n", i-1, ModbusData[i],j, ModbusData[2], ModbusData[3] + j-1,ModbusData[3] + j-1);
             i++;
             printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i, ModbusData[i],j);
             j++;
@@ -17523,9 +17521,9 @@ _Bool checkCRC(void){
   crcHigh = (crc & 0x00FF);
   crcLow = (crc & 0xFF00) >>8;
 
-  if(Debug == 1){
-    printf("crcHigh: 0x%02x  crcLow: 0x%02x  \r\n", crcHigh, crcLow);
-  }
+
+
+
 
 
   if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
@@ -17558,7 +17556,7 @@ void ModbusFC03(){
 
         case 0x00:
         {
-            printf("Requested Output Holding Registers\r\n");
+
 
             if(
                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 0) ||
@@ -17601,8 +17599,10 @@ void ModbusFC03(){
 
 
         UART1_Write_string(MBRespon,MBResCnt);
+        printf("Operation Successful \r\n\n");
     }else{
         ModbusError(0x02);
+        printf("Operation Failed \r\n\n");
     }
 
 }
@@ -17745,20 +17745,11 @@ void ModbusFC04(){
 
             }else if(ModbusData[2] == 0x01){
 
-
-
-
-
-
                 ByteLo = MB301xx[ModbusData[3] +i] & 0x00FF;
                 ByteHi = MB301xx[ModbusData[3] +i] >> 8;
 
             }
             else if(ModbusData[2] == 0x02){
-
-
-
-
 
                 ByteLo = MB302xx[ModbusData[3] +i] & 0x00FF;
                 ByteHi = MB302xx[ModbusData[3] +i] >> 8;
@@ -17805,8 +17796,10 @@ void ModbusFC04(){
 
 
         UART1_Write_string(MBRespon,MBResCnt);
+        printf("Operation Successful \r\n\n");
     }else{
         ModbusError(0x02);
+        printf("Operation Failed \r\n\n");
     }
 
 }
@@ -17861,8 +17854,10 @@ void ModbusFC10(void){
         MBResCnt = MBResCnt +2;
 
         UART1_Write_string(MBRespon,MBResCnt);
+        printf("Operation Successful \r\n\n");
     }else{
         ModbusError(0x02);
+        printf("Operation Failed \r\n\n");
     }
 }
 
@@ -17917,7 +17912,7 @@ void PrintModRespon(){
     printf("Modbus Response:\r\n");
 
 
-    if(MBRespon[1] == 0x03){
+    if(MBRespon[1] == 0x03 || MBRespon[1] == 0x04){
 
 
         printf("   Byte 00: 0x%02x - Card Address\r\n", MBRespon[0]);
@@ -17928,7 +17923,7 @@ void PrintModRespon(){
 
         int j = 1;
         for(i=0; i< MBRespon[2] ; i++ ){
-            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x %02x)\r\n", i+1, MBRespon[i+3],j, ModbusData[2], ModbusData[3] +j-1);
+            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x %02x)\r\n", i+1, MBRespon[i+3],j-1, ModbusData[2], ModbusData[3] +j-1);
             i++;
             printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i+1, MBRespon[i+3],j);
             j++;
@@ -18006,7 +18001,7 @@ _Bool ModbusRx(){
     RXMode();
     if(EUSART1_is_rx_ready()){
         if(Debug ==1){
-            printf("Something in ESUART1 \r\n");
+            printf("\r\nSomething in ESUART1 \r\n");
         }
         do{
             if(EUSART1_is_rx_ready()){
@@ -18014,10 +18009,6 @@ _Bool ModbusRx(){
                 while(EUSART1_is_rx_ready()){
 
                     rxData[ByteNum] = EUSART1_Read();
-
-                    if(Debug == 1){
-                        printf("Read: 0x%02x \r\n",rxData[ByteNum]);
-                    }
                     ByteNum++;
                 }
 
@@ -18042,13 +18033,19 @@ _Bool ModbusRx(){
 
         if(checkCRC() == 1)
         {
-            printf("\r\nReceived Modbus CRC checked out.\r\n");
+            if(Address == ModbusData[0] || ModbusData[0] == 0x00){
+                printf("\r\nReceived Modbus CRC Good and Address IS for me.\r\n");
+                return 1;
+            }else{
+                printf("\r\nReceived Modbus CRC Good but Address NOT for me.\r\n");
+                ClearModbusData();
+                return 0;
+            }
         }else{
-            printf("\r\nReceived Modbus CRC is bad.\r\n");
+            printf("\r\nReceived Modbus CRC is bad.\r\n\n");
+            return 0;
         }
 
-
-        return 1;
     }
     return 0;
 

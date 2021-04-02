@@ -5,7 +5,8 @@
  * Created on 10 March 2021, 23:09
  */
 
-bool Debug = 0;
+bool Debug = 1;
+unsigned int Address = 0x05;
 
 #ifndef MAIN_H
 #define	MAIN_H

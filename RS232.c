@@ -131,10 +131,7 @@ void InitialiseString(bool Partial){
  
         uint16_t convertedValue;
         convertedValue = ADCC_GetSingleConversion(AIP_0);        
-        printf("ADC0: 0x%04x \r\n", convertedValue);
-        
-        printf("\r\nEnter Command : ");
-        
+        printf("ADC0: 0x%04x \r\n", convertedValue);        
 
     };
 }
@@ -199,10 +196,10 @@ void TogDebug(void){
 
     if(Debug==0){
         Debug =1;
-        printf("Debug Enabled\r\n");
+        printf("\r\nDebug Enabled\r\n");
     }else{
         Debug =0;
-        printf("Debug Disabled\r\n");
+        printf("\r\nDebug Disabled\r\n");
     }    
     
 }
@@ -257,18 +254,6 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
         
         printf("%s Saved. \r\n",Name);
         
-        // This but just reads it back out for checking it's worked.
-        /*
-        dataeeAddrWrk = dataeeAddr;
-         __delay_ms(50);        
-        
-
-        for(i = 0; i < strlen(Command); i++){
-            readData = DATAEE_ReadByte(dataeeAddrWrk);
-            dataeeAddrWrk++;
-            __delay_ms(50);
-        }
-        */
         // Clear RS232 Command 
         strcpy(Command, "");  
         
@@ -295,32 +280,21 @@ bool ValidateCmd(void){
     }else if(!strcmp(Command,"serial")){
         char ConfName[20] = "Serial Number";
         int MaxChars = 10;
-        // Change Serial Number
-        // RecSerNum(); // Temp replaced with new function SaveCardDat below
-        
         // Parameter, MB ADdress, EEProm Address, Max Chars
         SaveCardDat(ConfName,0x0300,0x0300,MaxChars);  
         InitialiseString(1);
-        
         return 1;
-
-
     }else if(!strcmp(Command,"part")){
         char ConfName[20] = "Part Number";
         int MaxChars = 16;
         SaveCardDat(ConfName,0x0100,0x0100,MaxChars);
         InitialiseString(1);
-        
-        // Read next string as serial number
-
         return 1;
     }else if(!strcmp(Command,"rev")){
-
         char ConfName[20] = "Revision";
         int MaxChars = 2;
         // Parameter, MB ADdress, EEProm Address, Max Chars
         SaveCardDat(ConfName,0x0200,0x0200,MaxChars);
-        
         InitialiseString(1);
         return 1;
     

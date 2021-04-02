@@ -17380,7 +17380,8 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 
 
 
-_Bool Debug = 0;
+_Bool Debug = 1;
+unsigned int Address = 0x05;
 # 7 "RS232.c" 2
 # 1 "./Modbus.h" 1
 # 12 "./Modbus.h"
@@ -17524,12 +17525,12 @@ void InitialiseString(_Bool Partial){
     printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Mar 26 2021", "23:39:27", 2100);
+            "Apr  2 2021", "23:36:13", 2100);
 
     int j = 0;
 
 
-    char Date[11] = "Mar 26 2021";
+    char Date[11] = "Apr  2 2021";
     for(int i=0; i<12; i = i+2){
         readDataOdd = Date[i];
         readDataEven = Date[i +1];
@@ -17539,7 +17540,7 @@ void InitialiseString(_Bool Partial){
 
 
     j = 0;
-    char Time[8] = "23:39:27";
+    char Time[8] = "23:36:13";
     for(int i=0; i<8; i = i+2){
         readDataOdd = Time[i];
         readDataEven = Time[i +1];
@@ -17575,9 +17576,6 @@ void InitialiseString(_Bool Partial){
         uint16_t convertedValue;
         convertedValue = ADCC_GetSingleConversion(AIP_0);
         printf("ADC0: 0x%04x \r\n", convertedValue);
-
-        printf("\r\nEnter Command : ");
-
 
     };
 }
@@ -17642,10 +17640,10 @@ void TogDebug(void){
 
     if(Debug==0){
         Debug =1;
-        printf("Debug Enabled\r\n");
+        printf("\r\nDebug Enabled\r\n");
     }else{
         Debug =0;
-        printf("Debug Disabled\r\n");
+        printf("\r\nDebug Disabled\r\n");
     }
 
 }
@@ -17699,7 +17697,8 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
         }
 
         printf("%s Saved. \r\n",Name);
-# 273 "RS232.c"
+
+
         strcpy(Command, "");
 
     }else if(Conf == 0x4e || Conf == 0x6e){
@@ -17726,31 +17725,20 @@ _Bool ValidateCmd(void){
         char ConfName[20] = "Serial Number";
         int MaxChars = 10;
 
-
-
-
         SaveCardDat(ConfName,0x0300,0x0300,MaxChars);
         InitialiseString(1);
-
         return 1;
-
-
     }else if(!strcmp(Command,"part")){
         char ConfName[20] = "Part Number";
         int MaxChars = 16;
         SaveCardDat(ConfName,0x0100,0x0100,MaxChars);
         InitialiseString(1);
-
-
-
         return 1;
     }else if(!strcmp(Command,"rev")){
-
         char ConfName[20] = "Revision";
         int MaxChars = 2;
 
         SaveCardDat(ConfName,0x0200,0x0200,MaxChars);
-
         InitialiseString(1);
         return 1;
 

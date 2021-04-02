@@ -105,11 +105,13 @@ void EUSART1_Initialize(void)
 
     // SP1BRGL 64;  
     // SP1BRGL = 0x40;  // 9600 Baud
-    SP1BRGL = 0xA0;     // 19200 Baud
+    SP1BRGL = 0xA0;     // 19200 Baud - Works
+	// SP1BRGL = 0x80;     // 57600 Baud - Fails
 
     // SP1BRGH 3; 
-    SP1BRGH = 0x03; // 9600 Baud
-    SP1BRGH = 0x01; // 19200 Baud
+    // SP1BRGH = 0x03; // 9600 Baud
+    SP1BRGH = 0x01; // 19200 Baud - Works
+	// SP1BRGH = 0x00; // 57600 Baud - Fails
 
 
     EUSART1_SetFramingErrorHandler(EUSART1_DefaultFramingErrorHandler);

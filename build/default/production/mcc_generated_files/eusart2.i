@@ -17158,7 +17158,9 @@ void EUSART2_Initialize(void)
 
 
 
+
     SP2BRGH = 0x01;
+
 
 
     EUSART2_SetFramingErrorHandler(EUSART2_DefaultFramingErrorHandler);
