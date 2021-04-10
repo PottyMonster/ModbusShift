@@ -16831,9 +16831,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 246 "./mcc_generated_files/pin_manager.h"
+# 266 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 258 "./mcc_generated_files/pin_manager.h"
+# 278 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
@@ -17361,11 +17361,13 @@ unsigned char ModbusData[100] = { 0xFF };
 int ModDataCnt = 0;
 
 
+
 unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
                             0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
                             0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
                             0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
                             0x001e,0x001f, 0x0020 };
+
 
 
 unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
@@ -17375,36 +17377,38 @@ unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x
                             0x0003,0x0002, 0x0001 };
 
 
-
-unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
-
-
-unsigned int MB302xx[1] = { 0x004 };
+unsigned int MB301xx[8] = { 0xFFFF };
 
 
-unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
+unsigned int MB302xx[1] = { 0xFFFF };
 
 
-unsigned int MB304xx[6] = { 0xFF };
+unsigned int MB303xx[5] = { 0XFFFF };
 
 
-unsigned int MB305xx[8] = { 0xFF };
+unsigned int MB304xx[6] = { 0xFFFF };
 
 
-unsigned int MB306xx[3] = { 0xFF };
-# 75 "./Modbus.h"
+unsigned int MB305xx[4] = { 0xFFFF };
+
+
+unsigned int MB306xx[2] = { 0x000c, 0x000f };
+
+
+unsigned int MB307xx[5] = { 0xFFFF };
+# 79 "./Modbus.h"
 void TXMode(void);
-# 102 "./Modbus.h"
+# 106 "./Modbus.h"
 void RXMode(void);
-# 126 "./Modbus.h"
+# 130 "./Modbus.h"
 void ClearModbusData(void);
-# 152 "./Modbus.h"
+# 156 "./Modbus.h"
 void ClearRxBuff(void);
-# 193 "./Modbus.h"
+# 197 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 220 "./Modbus.h"
+# 224 "./Modbus.h"
 _Bool checkCRC(void);
-# 261 "./Modbus.h"
+# 265 "./Modbus.h"
 _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();

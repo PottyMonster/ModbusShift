@@ -16831,9 +16831,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 246 "./mcc_generated_files/pin_manager.h"
+# 266 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 258 "./mcc_generated_files/pin_manager.h"
+# 278 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
@@ -17389,11 +17389,13 @@ unsigned char ModbusData[100] = { 0xFF };
 int ModDataCnt = 0;
 
 
+
 unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
                             0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
                             0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
                             0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
                             0x001e,0x001f, 0x0020 };
+
 
 
 unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
@@ -17403,36 +17405,38 @@ unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x
                             0x0003,0x0002, 0x0001 };
 
 
-
-unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
-
-
-unsigned int MB302xx[1] = { 0x004 };
+unsigned int MB301xx[8] = { 0xFFFF };
 
 
-unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
+unsigned int MB302xx[1] = { 0xFFFF };
 
 
-unsigned int MB304xx[6] = { 0xFF };
+unsigned int MB303xx[5] = { 0XFFFF };
 
 
-unsigned int MB305xx[8] = { 0xFF };
+unsigned int MB304xx[6] = { 0xFFFF };
 
 
-unsigned int MB306xx[3] = { 0xFF };
-# 75 "./Modbus.h"
+unsigned int MB305xx[4] = { 0xFFFF };
+
+
+unsigned int MB306xx[2] = { 0x000c, 0x000f };
+
+
+unsigned int MB307xx[5] = { 0xFFFF };
+# 79 "./Modbus.h"
 void TXMode(void);
-# 102 "./Modbus.h"
+# 106 "./Modbus.h"
 void RXMode(void);
-# 126 "./Modbus.h"
+# 130 "./Modbus.h"
 void ClearModbusData(void);
-# 152 "./Modbus.h"
+# 156 "./Modbus.h"
 void ClearRxBuff(void);
-# 193 "./Modbus.h"
+# 197 "./Modbus.h"
 void AddRxBuffToModBus(void);
-# 220 "./Modbus.h"
+# 224 "./Modbus.h"
 _Bool checkCRC(void);
-# 261 "./Modbus.h"
+# 265 "./Modbus.h"
 _Bool ModbusRx(void);
 void PrintModbus();
 void ClearModbusRespon();
@@ -17455,19 +17459,23 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
 
 
 
+
     char readDataOdd, readDataEven;
     int i=0, j=0;
+
+
 
 
 
     for(i = 0; i < NumBytes; i++){
         readDataOdd = DATAEE_ReadByte(dataeeAddrWrk);
 
-        _delay((unsigned long)((50)*(32000000/4000.0)));
+        _delay((unsigned long)((20)*(32000000/4000.0)));
 
 
         if(readDataOdd != 0xFF){
             RetNum[j] = readDataOdd;
+
             j++;
         }
 
@@ -17475,11 +17483,12 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
         readDataEven = DATAEE_ReadByte(dataeeAddrWrk);
 
         dataeeAddrWrk++;
-        _delay((unsigned long)((50)*(32000000/4000.0)));
+        _delay((unsigned long)((20)*(32000000/4000.0)));
 
 
         if(readDataEven != 0xFF){
             RetNum[j] = readDataEven;
+
             j++;
         }
 
@@ -17489,6 +17498,10 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
             MB301xx[i] = readDataOdd *256 + readDataEven;
         }else if(!strcmp("Rev",Name)){
             MB302xx[i] = readDataOdd *256 + readDataEven;
+        }else if(!strcmp("SIPO",Name)){
+            MB306xx[0] = readDataOdd *256 + readDataEven;
+        }else if(!strcmp("PISO",Name)){
+            MB306xx[1] = readDataOdd *256 + readDataEven;
         }
 
 
@@ -17506,13 +17519,21 @@ void InitialiseString(_Bool Partial){
 
     char SerialNum[11] = { '\0' };
 
-    CardConfigIni("Serial", SerialNum,0x0300,5);
+    CardConfigIni("Serial", SerialNum,0x0120,5);
 
     char PartNum[19] = { '\0' };
     CardConfigIni("Part", PartNum,0x0100,8);
 
-    char RevNum[2] = { '\0' };
-    CardConfigIni("Rev", RevNum,0x0200,1);
+    char RevNum[3] = { '\0' };
+    CardConfigIni("Rev", RevNum,0x0110,1);
+
+    char SIPO[3] = { '\0' };
+    CardConfigIni("SIPO", SIPO,0x0130,1);
+
+
+    char PISO[3] = { '\0' };
+    CardConfigIni("PISO", PISO,0x0132,1);
+
 
 
 
@@ -17525,12 +17546,16 @@ void InitialiseString(_Bool Partial){
     printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Apr  2 2021", "23:36:13", 2100);
+            "Apr 10 2021", "19:29:45", 2100);
+    printf("SIPO Count Config: %d \r\n", MB306xx[0]);
+    printf("PISO Count Config: %d \r\n\n", MB306xx[1]);
+
+
 
     int j = 0;
 
 
-    char Date[11] = "Apr  2 2021";
+    char Date[11] = "Apr 10 2021";
     for(int i=0; i<12; i = i+2){
         readDataOdd = Date[i];
         readDataEven = Date[i +1];
@@ -17540,7 +17565,7 @@ void InitialiseString(_Bool Partial){
 
 
     j = 0;
-    char Time[8] = "23:36:13";
+    char Time[8] = "19:29:45";
     for(int i=0; i<8; i = i+2){
         readDataOdd = Time[i];
         readDataEven = Time[i +1];
@@ -17559,7 +17584,9 @@ void InitialiseString(_Bool Partial){
         printf("      Add 0x0300 to 0x0304 - Serial Number (ASCII)\r\n");
         printf("      Add 0x0400 to 0x0405 - Compile Date (ASCII)\r\n");
         printf("      Add 0x0500 to 0x0504 - Compile Time - (ASCII)\r\n");
-        printf("      Add 0x0600 to 0x0602 - 3x Analogue Inputs (0x000 to 0x03ff)\r\n\n");
+        printf("      Add 0x0600 - Serial In Parallel Out Count (SIPO) Config \r\n");
+        printf("      Add 0x0601 - Parallel In Serial Out Count (PISO) Config \r\n");
+        printf("      Add 0x0700 to 0x0704 - 5x Analogue Inputs (0x000 to 0x03ff)\r\n\n");
         printf("   0x10 - Write Multiple Output Holding Registers (Max 32x 16bit)\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");
         printf("   0x03 - Read Multiple Output Holding Registers (Max 32x 16bit)\r\n");
@@ -17656,12 +17683,15 @@ void ClearEEAddRange(unsigned int StartAdd, unsigned int NumBytes){
 
     for(int i = 0; i<NumBytes; i++){
         DATAEE_WriteByte(StartAdd +i, 0xFF);
+
     }
 
 }
 
 
 void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int NumBytes){
+
+    printf("\r\n SaveCardDat Name: %s MBAddress: 0x%04x dataeeAddr: 0x%04x NumBytes: %i \r\n", Name, MBAddress, dataeeAddr, NumBytes);
 
     int i = 0;
     unsigned char Conf, readData;
@@ -17683,17 +17713,30 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
     if(Conf == 0x79 || Conf == 0x59){
         Conf = 0xFF;
         printf("Y\r\nSaving %s\r\n", Name);
-        printf("Num Chars: %i \r\n", strlen(Command));
+
 
 
 
         ClearEEAddRange(dataeeAddr,NumBytes);
 
 
-        for (i = 0; i < strlen(Command); i++){
-            DATAEE_WriteByte(dataeeAddrWrk, Command[i]);
+        if((!strcmp("SIPO",Name)) || (!strcmp("PISO",Name))){
+
+            int num = atoi(Command);
+
+            DATAEE_WriteByte(dataeeAddrWrk, 0x00);
             dataeeAddrWrk++;
-            _delay((unsigned long)((50)*(32000000/4000.0)));
+
+            DATAEE_WriteByte(dataeeAddrWrk, num);
+        }else{
+
+
+            for (i = 0; i < strlen(Command); i++){
+                DATAEE_WriteByte(dataeeAddrWrk, Command[i]);
+
+                dataeeAddrWrk++;
+                _delay((unsigned long)((20)*(32000000/4000.0)));
+            }
         }
 
         printf("%s Saved. \r\n",Name);
@@ -17725,7 +17768,7 @@ _Bool ValidateCmd(void){
         char ConfName[20] = "Serial Number";
         int MaxChars = 10;
 
-        SaveCardDat(ConfName,0x0300,0x0300,MaxChars);
+        SaveCardDat(ConfName,0x0300,0x0120,MaxChars);
         InitialiseString(1);
         return 1;
     }else if(!strcmp(Command,"part")){
@@ -17738,11 +17781,25 @@ _Bool ValidateCmd(void){
         char ConfName[20] = "Revision";
         int MaxChars = 2;
 
-        SaveCardDat(ConfName,0x0200,0x0200,MaxChars);
+        SaveCardDat(ConfName,0x0200,0x0110,MaxChars);
         InitialiseString(1);
         return 1;
+    }else if((!strcmp(Command,"SIPO")) || (!strcmp(Command,"sipo"))){
+        char ConfName[20] = "SIPO";
+        int MaxChars = 2;
 
-    }else{
+        SaveCardDat(ConfName,0x0600,0x0130,MaxChars);
+        InitialiseString(1);
+        return 1;
+    }else if((!strcmp(Command,"PISO")) || (!strcmp(Command,"piso"))){
+        char ConfName[20] = "PISO";
+        int MaxChars = 2;
+
+        SaveCardDat(ConfName,0x0601,0x0132,MaxChars);
+        InitialiseString(1);
+        return 1;
+    }
+    else{
         return 0;
     }
 

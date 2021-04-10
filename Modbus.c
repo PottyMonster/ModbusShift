@@ -201,17 +201,27 @@ void ModbusFC03(){
             // printf("Requested Output Holding Registers\r\n");
             
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 0) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 0) ||  
+                // (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 31)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > (MB306xx[0]-1))){
                 
-                printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
+                printf("Registers out of range.\r\nValid: 0x0000 to 0x%04x.\r\n", MB306xx[0]-1);
             
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
-                        ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
+                        ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
             break;
         }
+        default:
+            {
+                // Throw error code as function code not available
+                printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
+                        ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));                
+                error = 1; 
+                break;
+            }         
         
     }
     
@@ -271,13 +281,12 @@ void ModbusFC04(){
             printf("Requested Circuit Data\r\n");
             
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 0) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32)){
-                
-                printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 0) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > (MB306xx[1]-1))){
+                printf("Registers out of range.\r\nValid: 0x0000 to 0x%04x.\r\n", MB306xx[1]-1);
             
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
-                        ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));
+                    ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
             }
             break;
@@ -287,13 +296,13 @@ void ModbusFC04(){
             printf("Requested Part No.\r\n");
             
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 256) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 264)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 256) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 263)){
                 
                 printf("Registers out of range.\r\nValid: 0x0100 to 0x0108.\r\n");
                 
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
-                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));                
+                    ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3]));                
                 error = 1;
             }
             break;
@@ -302,12 +311,12 @@ void ModbusFC04(){
         {
             printf("Requested Revision\r\n");
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 512) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 512)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 512) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 512)){
                 
                 printf("Registers out of range.\r\nValid: 0x0512.\r\n");
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
-                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3]));                 
+                    ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3]));                 
                 error = 1;
             }               
             break;
@@ -316,12 +325,12 @@ void ModbusFC04(){
         {
             printf("Requested Serial No.\r\n");
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 768) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 772)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 768) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 772)){
                 
                 printf("Registers out of range.\r\nValid: 0x0300 to 0x0304.\r\n");
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
-                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3])); 
+                    ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3])); 
                 error = 1;
             }
             break;
@@ -330,13 +339,13 @@ void ModbusFC04(){
         {
             printf("Requested Compile Date\r\n");
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 1024) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1029)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 1024) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1029)){
                 
                 printf("Registers out of range.\r\nValid: 0x0400 to 0x0405.\r\n");
                 
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
-                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3])); 
+                    ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3])); 
                 error = 1;
             }
             break;
@@ -346,8 +355,8 @@ void ModbusFC04(){
             printf("Requested Compile Time\r\n");
             
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 1280) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1283)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 1280) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1283)){
                 
                 printf("Registers out of range.\r\nValid: 0x0500 to 0x0503.\r\n");
                 
@@ -359,26 +368,37 @@ void ModbusFC04(){
         }
         case 0x06:
         {
-            printf("Requested Analogue Inputs\r\n");
+            printf("Requested GPIO Count Config\r\n");
             if(
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) < 1536) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1538)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 1536) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1537)){
                 
-                printf("Registers out of range.\r\nValid: 0x0600 to 0x0602.\r\n");
+                printf("Registers out of range.\r\nValid: 0x0600 to 0x0601.\r\n");
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
-                    ((ModbusData[4] * 256) + ModbusData[5]) + (ModbusData[2] * 256 + ModbusData[3])); 
+                    ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3])); 
                 error = 1;
             }
             break;
         }
+        case 0x07:
+        {
+            printf("Requested Analogue Inputs\r\n");
+            if(
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 1792) ||  
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1796)){
+                
+                printf("Registers out of range.\r\nValid: 0x0700 to 0x0704.\r\n");
+                printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
+                    ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3])); 
+                error = 1;
+            }
+            break;
+        }        
     }
     
     if(error == 0){
         for(i=0; i< (ModbusData[5]) ; i++ ){
 
-            // Check ModbusData[5] (num registers max is 0x20 (Decimal 32) and
-            // when start address ModbusData[3] is less than 0x20 (32)
-            // and when adding on Num Registers to base address doesn't go over 32
             if(ModbusData[2] == 0x03){
                 // Serial Number Request
                 ByteLo = MB303xx[ModbusData[3] +i] & 0x00FF;
@@ -413,6 +433,11 @@ void ModbusFC04(){
                 ByteHi = MB300xx[ModbusData[3] +i] >> 8;
 
             }else if(ModbusData[2] == 0x06){
+                // GPIO Count Config
+                uint16_t convertedValue;
+                ByteLo = MB306xx[ModbusData[3] +i] & 0x00FF;
+                ByteHi = MB306xx[ModbusData[3] +i] >> 8;
+            }else if(ModbusData[2] == 0x07){
                 // Analogue Input Read
                 uint16_t convertedValue;
                 convertedValue = ADCC_GetSingleConversion(AIP_0);        
@@ -455,10 +480,25 @@ void ModbusFC10(void){
     unsigned int TempData = 0x0000;
     bool error = 0;
     
+    /*
     if(((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32){
          printf("Requested registers out of range.  0x0000 to 0x020.\r\n");
          error = 1;
      }
+     */
+    
+    if(
+        (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 0) ||  
+        // (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 31)){
+        (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > (MB306xx[0]-1))){
+
+        printf("Registers out of range.\r\nValid: 0x0000 to 0x%04x.\r\n", MB306xx[0]-1);
+
+        printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
+                ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3]));
+        error = 1;
+    }
+     
     
     if(error == 0){
 
@@ -565,7 +605,7 @@ void PrintModRespon(){
         /* ---- This needs work ---- */
         int j = 1;
         for(i=0; i< MBRespon[2] ; i++ ){
-            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x %02x)\r\n", i+1, MBRespon[i+3],j-1, ModbusData[2], ModbusData[3] +j-1);
+            printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x %02x)\r\n", i+1, MBRespon[i+3],j, ModbusData[2], ModbusData[3] +j-1);
             i++;
             printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i+1, MBRespon[i+3],j);
             j++;

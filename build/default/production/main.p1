@@ -40,43 +40,43 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 ./RS232.h
 [; ;./RS232.h: 12: void InitialiseString(_Bool Partial);
 [v _InitialiseString `(v ~T0 @X0 0 ef1`a ]
-"102 ./Modbus.h
-[; ;./Modbus.h: 102: void RXMode(void);
+"106 ./Modbus.h
+[; ;./Modbus.h: 106: void RXMode(void);
 [v _RXMode `(v ~T0 @X0 0 ef ]
-"152
-[; ;./Modbus.h: 152: void ClearRxBuff(void);
+"156
+[; ;./Modbus.h: 156: void ClearRxBuff(void);
 [v _ClearRxBuff `(v ~T0 @X0 0 ef ]
-"263
-[; ;./Modbus.h: 263: void ClearModbusRespon();
+"267
+[; ;./Modbus.h: 267: void ClearModbusRespon();
 [v _ClearModbusRespon `(v ~T0 @X0 0 e? ]
 "111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"261 ./Modbus.h
-[; ;./Modbus.h: 261: _Bool ModbusRx(void);
+"265 ./Modbus.h
+[; ;./Modbus.h: 265: _Bool ModbusRx(void);
 [v _ModbusRx `(a ~T0 @X0 0 ef ]
-"270
-[; ;./Modbus.h: 270: void ModbusFC03(void);
-[v _ModbusFC03 `(v ~T0 @X0 0 ef ]
-"275
-[; ;./Modbus.h: 275: void PrintMB400(void);
-[v _PrintMB400 `(v ~T0 @X0 0 ef ]
 "274
-[; ;./Modbus.h: 274: void ModbusFC10(void);
+[; ;./Modbus.h: 274: void ModbusFC03(void);
+[v _ModbusFC03 `(v ~T0 @X0 0 ef ]
+"279
+[; ;./Modbus.h: 279: void PrintMB400(void);
+[v _PrintMB400 `(v ~T0 @X0 0 ef ]
+"278
+[; ;./Modbus.h: 278: void ModbusFC10(void);
 [v _ModbusFC10 `(v ~T0 @X0 0 ef ]
-"271
-[; ;./Modbus.h: 271: void ModbusFC04(void);
+"275
+[; ;./Modbus.h: 275: void ModbusFC04(void);
 [v _ModbusFC04 `(v ~T0 @X0 0 ef ]
-"273
-[; ;./Modbus.h: 273: void ModbusError(int ErrorCode);
+"277
+[; ;./Modbus.h: 277: void ModbusError(int ErrorCode);
 [v _ModbusError `(v ~T0 @X0 0 ef1`i ]
-"262
-[; ;./Modbus.h: 262: void PrintModbus();
+"266
+[; ;./Modbus.h: 266: void PrintModbus();
 [v _PrintModbus `(v ~T0 @X0 0 e? ]
-"264
-[; ;./Modbus.h: 264: void PrintModRespon();
+"268
+[; ;./Modbus.h: 268: void PrintModRespon();
 [v _PrintModRespon `(v ~T0 @X0 0 e? ]
-"126
-[; ;./Modbus.h: 126: void ClearModbusData(void);
+"130
+[; ;./Modbus.h: 130: void ClearModbusData(void);
 [v _ClearModbusData `(v ~T0 @X0 0 ef ]
 "11 ./RS232.h
 [; ;./RS232.h: 11: int ReadRX232(int NumChars);
@@ -1487,8 +1487,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _ModDataCnt
 -> 0 `i
 ]
-"16
-[; ;./Modbus.h: 16: unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
+"17
+[; ;./Modbus.h: 17: unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 [v _MB300xx `ui ~T0 @X0 -> 32 `i e ]
 [i _MB300xx
 :U ..
@@ -1526,8 +1526,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 32 `i `ui
 ..
 ]
-"23
-[; ;./Modbus.h: 23: unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
+"25
+[; ;./Modbus.h: 25: unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
 [v _MB400xx `ui ~T0 @X0 -> 32 `i e ]
 [i _MB400xx
 :U ..
@@ -1565,62 +1565,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `ui
 ..
 ]
-"31
-[; ;./Modbus.h: 31: unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
-[v _MB301xx `ui ~T0 @X0 -> 7 `i e ]
+"32
+[; ;./Modbus.h: 32: unsigned int MB301xx[8] = { 0xFFFF };
+[v _MB301xx `ui ~T0 @X0 -> 8 `i e ]
 [i _MB301xx
 :U ..
--> -> 16720 `i `ui
--> -> 12336 `i `ui
--> -> 12342 `i `ui
--> -> 12339 `i `ui
--> -> 12339 `i `ui
--> -> 11568 `i `ui
--> -> 12800 `i `ui
+-> 65535 `ui
 ..
 ]
-"34
-[; ;./Modbus.h: 34: unsigned int MB302xx[1] = { 0x004 };
+"35
+[; ;./Modbus.h: 35: unsigned int MB302xx[1] = { 0xFFFF };
 [v _MB302xx `ui ~T0 @X0 -> -> 1 `i `ux e ]
 [i _MB302xx
 :U ..
--> -> 4 `i `ui
+-> 65535 `ui
 ..
 ]
-"37
-[; ;./Modbus.h: 37: unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
+"38
+[; ;./Modbus.h: 38: unsigned int MB303xx[5] = { 0XFFFF };
 [v _MB303xx `ui ~T0 @X0 -> 5 `i e ]
 [i _MB303xx
 :U ..
--> -> 12594 `i `ui
--> -> 13108 `i `ui
--> -> 13622 `i `ui
--> -> 14136 `i `ui
--> -> 14640 `i `ui
+-> 65535 `ui
 ..
 ]
-"40
-[; ;./Modbus.h: 40: unsigned int MB304xx[6] = { 0xFF };
+"41
+[; ;./Modbus.h: 41: unsigned int MB304xx[6] = { 0xFFFF };
 [v _MB304xx `ui ~T0 @X0 -> 6 `i e ]
 [i _MB304xx
 :U ..
--> -> 255 `i `ui
+-> 65535 `ui
 ..
 ]
-"43
-[; ;./Modbus.h: 43: unsigned int MB305xx[8] = { 0xFF };
-[v _MB305xx `ui ~T0 @X0 -> 8 `i e ]
+"44
+[; ;./Modbus.h: 44: unsigned int MB305xx[4] = { 0xFFFF };
+[v _MB305xx `ui ~T0 @X0 -> 4 `i e ]
 [i _MB305xx
 :U ..
--> -> 255 `i `ui
+-> 65535 `ui
 ..
 ]
-"46
-[; ;./Modbus.h: 46: unsigned int MB306xx[3] = { 0xFF };
-[v _MB306xx `ui ~T0 @X0 -> 3 `i e ]
+"47
+[; ;./Modbus.h: 47: unsigned int MB306xx[2] = { 0x000c, 0x000f };
+[v _MB306xx `ui ~T0 @X0 -> 2 `i e ]
 [i _MB306xx
 :U ..
--> -> 255 `i `ui
+-> -> 12 `i `ui
+-> -> 15 `i `ui
+..
+]
+"50
+[; ;./Modbus.h: 50: unsigned int MB307xx[5] = { 0xFFFF };
+[v _MB307xx `ui ~T0 @X0 -> 5 `i e ]
+[i _MB307xx
+:U ..
+-> 65535 `ui
 ..
 ]
 "8 ./RS232.h

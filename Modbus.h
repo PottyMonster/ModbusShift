@@ -12,38 +12,42 @@
 unsigned char ModbusData[100] = { 0xFF };  // Received Modbus Data
 int ModDataCnt = 0;
 
-// Card Monitor Data
+// Circuit Input Registers, 
+// Function Code 4 (Get Input Registers)
 unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
                             0x0009,0x000a,0x000b,0x000c,0x000d,0x000e,0x000f,
                             0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,
                             0x0017,0x0018,0x0019,0x001a,0x001b,0x001c,0x001d,
                             0x001e,0x001f, 0x0020 };     // Assigns 32x 16bit Read Registers
 
-// Card Write Data
+// Circuit Setup and Control Registers, 
+// Function Codes 3 (Read Holding Registers) and 10 (Write Multi Holding Registers)
 unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
                             0x0018,0x0017,0x0016,0x0015,0x0014,0x0013,0x0012,
                             0x0011,0x0010,0x000f,0x000e,0x000d,0x000c,0x000b,
                             0x000a,0x0009,0x0008,0x0007,0x0006,0x0005,0x0004,
                             0x0003,0x0002, 0x0001 };     // Assigns 32x 16bit Write Registers
 
-
 // Part Number
-unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
+unsigned int MB301xx[8] = { 0xFFFF };
 
 // Revision
-unsigned int MB302xx[1] = { 0x004 };
+unsigned int MB302xx[1] = { 0xFFFF };
 
 // Serial
-unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
+unsigned int MB303xx[5] = { 0XFFFF };
 
 // Date
-unsigned int MB304xx[6] = { 0xFF };
+unsigned int MB304xx[6] = { 0xFFFF };
 
 // Time
-unsigned int MB305xx[8] = { 0xFF };
+unsigned int MB305xx[4] = { 0xFFFF };
+
+// GPIO Count, Element 0 = SIPO Count, Element 1 = PISO Count
+unsigned int MB306xx[2] = { 0x000c, 0x000f };
 
 // Analogue Inputs
-unsigned int MB306xx[3] = { 0xFF };
+unsigned int MB307xx[5] = { 0xFFFF };
 
 
 

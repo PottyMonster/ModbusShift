@@ -39,17 +39,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16414
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16414: extern volatile LATAbits_t LATAbits __attribute__((address(0xF83)));
 [v _LATAbits `VS823 ~T0 @X0 0 e@3971 ]
-"269 ./Modbus.h
-[; ;./Modbus.h: 269: unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
+"273 ./Modbus.h
+[; ;./Modbus.h: 273: unsigned int generateCRC(int MessCnt, _Bool HiOrLo);
 [v _generateCRC `(ui ~T0 @X0 0 ef2`i`a ]
-"268
-[; ;./Modbus.h: 268: void UART1_Write_string(unsigned char * data, int data_len);
+"272
+[; ;./Modbus.h: 272: void UART1_Write_string(unsigned char * data, int data_len);
 [v _UART1_Write_string `(v ~T0 @X0 0 ef2`*uc`i ]
-"273
-[; ;./Modbus.h: 273: void ModbusError(int ErrorCode);
+"277
+[; ;./Modbus.h: 277: void ModbusError(int ErrorCode);
 [v _ModbusError `(v ~T0 @X0 0 ef1`i ]
-"418 Modbus.c
-[; ;Modbus.c: 418:                 convertedValue = ADCC_GetSingleConversion(AIP_0);
+"443 Modbus.c
+[; ;Modbus.c: 443:                 convertedValue = ADCC_GetSingleConversion(AIP_0);
 [c E10491 0 60 61 62 63 .. ]
 [n E10491 . AIP_0 channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "249 ./mcc_generated_files/adcc.h
@@ -1476,8 +1476,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _ModDataCnt
 -> 0 `i
 ]
-"16
-[; ;./Modbus.h: 16: unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
+"17
+[; ;./Modbus.h: 17: unsigned int MB300xx[32] = { 0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 [v _MB300xx `ui ~T0 @X0 -> 32 `i e ]
 [i _MB300xx
 :U ..
@@ -1515,8 +1515,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 32 `i `ui
 ..
 ]
-"23
-[; ;./Modbus.h: 23: unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
+"25
+[; ;./Modbus.h: 25: unsigned int MB400xx[32] = { 0x0020,0x001f,0x001e,0x001d,0x001c,0x001b,0x001a,0x0019,
 [v _MB400xx `ui ~T0 @X0 -> 32 `i e ]
 [i _MB400xx
 :U ..
@@ -1554,62 +1554,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `ui
 ..
 ]
-"31
-[; ;./Modbus.h: 31: unsigned int MB301xx[7] = { 0x4150,0x3030,0x3036,0x3033,0x3033,0x2d30,0x3200};
-[v _MB301xx `ui ~T0 @X0 -> 7 `i e ]
+"32
+[; ;./Modbus.h: 32: unsigned int MB301xx[8] = { 0xFFFF };
+[v _MB301xx `ui ~T0 @X0 -> 8 `i e ]
 [i _MB301xx
 :U ..
--> -> 16720 `i `ui
--> -> 12336 `i `ui
--> -> 12342 `i `ui
--> -> 12339 `i `ui
--> -> 12339 `i `ui
--> -> 11568 `i `ui
--> -> 12800 `i `ui
+-> 65535 `ui
 ..
 ]
-"34
-[; ;./Modbus.h: 34: unsigned int MB302xx[1] = { 0x004 };
+"35
+[; ;./Modbus.h: 35: unsigned int MB302xx[1] = { 0xFFFF };
 [v _MB302xx `ui ~T0 @X0 -> -> 1 `i `ux e ]
 [i _MB302xx
 :U ..
--> -> 4 `i `ui
+-> 65535 `ui
 ..
 ]
-"37
-[; ;./Modbus.h: 37: unsigned int MB303xx[5] = { 0x3132,0x3334,0x3536,0x3738,0x3930 };
+"38
+[; ;./Modbus.h: 38: unsigned int MB303xx[5] = { 0XFFFF };
 [v _MB303xx `ui ~T0 @X0 -> 5 `i e ]
 [i _MB303xx
 :U ..
--> -> 12594 `i `ui
--> -> 13108 `i `ui
--> -> 13622 `i `ui
--> -> 14136 `i `ui
--> -> 14640 `i `ui
+-> 65535 `ui
 ..
 ]
-"40
-[; ;./Modbus.h: 40: unsigned int MB304xx[6] = { 0xFF };
+"41
+[; ;./Modbus.h: 41: unsigned int MB304xx[6] = { 0xFFFF };
 [v _MB304xx `ui ~T0 @X0 -> 6 `i e ]
 [i _MB304xx
 :U ..
--> -> 255 `i `ui
+-> 65535 `ui
 ..
 ]
-"43
-[; ;./Modbus.h: 43: unsigned int MB305xx[8] = { 0xFF };
-[v _MB305xx `ui ~T0 @X0 -> 8 `i e ]
+"44
+[; ;./Modbus.h: 44: unsigned int MB305xx[4] = { 0xFFFF };
+[v _MB305xx `ui ~T0 @X0 -> 4 `i e ]
 [i _MB305xx
 :U ..
--> -> 255 `i `ui
+-> 65535 `ui
 ..
 ]
-"46
-[; ;./Modbus.h: 46: unsigned int MB306xx[3] = { 0xFF };
-[v _MB306xx `ui ~T0 @X0 -> 3 `i e ]
+"47
+[; ;./Modbus.h: 47: unsigned int MB306xx[2] = { 0x000c, 0x000f };
+[v _MB306xx `ui ~T0 @X0 -> 2 `i e ]
 [i _MB306xx
 :U ..
--> -> 255 `i `ui
+-> -> 12 `i `ui
+-> -> 15 `i `ui
+..
+]
+"50
+[; ;./Modbus.h: 50: unsigned int MB307xx[5] = { 0xFFFF };
+[v _MB307xx `ui ~T0 @X0 -> 5 `i e ]
+[i _MB307xx
+:U ..
+-> 65535 `ui
 ..
 ]
 "8 ./main.h
@@ -2172,1376 +2171,1460 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "203
 [; ;Modbus.c: 203:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 32 `i 1557  ]
-"205
-[; ;Modbus.c: 205:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32)){
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 0 `i > -> + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i `ui - *U + &U _MB306xx * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> -> 1 `i `ui 1557  ]
+"206
+[; ;Modbus.c: 206:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > (MB306xx[0]-1))){
 {
-"207
-[; ;Modbus.c: 207:                 printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
-[e ( _printf :s 23C ]
-"209
-[; ;Modbus.c: 209:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 24C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"211
-[; ;Modbus.c: 211:                 error = 1;
-[e = _error -> -> 1 `i `a ]
+"208
+[; ;Modbus.c: 208:                 printf("Registers out of range.\r\nValid: 0x0000 to 0x%04x.\r\n", MB306xx[0]-1);
+[e ( _printf , (. :s 23C - *U + &U _MB306xx * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> -> 1 `i `ui ]
+"210
+[; ;Modbus.c: 210:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 24C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
 "212
-[; ;Modbus.c: 212:             }
+[; ;Modbus.c: 212:                 error = 1;
+[e = _error -> -> 1 `i `a ]
+"213
+[; ;Modbus.c: 213:             }
 }
 [e :U 1557 ]
-"213
-[; ;Modbus.c: 213:             break;
-[e $U 1554  ]
 "214
-[; ;Modbus.c: 214:         }
+[; ;Modbus.c: 214:             break;
+[e $U 1554  ]
+"215
+[; ;Modbus.c: 215:         }
 }
 "216
-[; ;Modbus.c: 216:     }
+[; ;Modbus.c: 216:         default:
+[e :U 1558 ]
+"217
+[; ;Modbus.c: 217:             {
+{
+"219
+[; ;Modbus.c: 219:                 printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
+[e ( _printf :s 25C ]
+"220
+[; ;Modbus.c: 220:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 26C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
+"222
+[; ;Modbus.c: 222:                 error = 1;
+[e = _error -> -> 1 `i `a ]
+"223
+[; ;Modbus.c: 223:                 break;
+[e $U 1554  ]
+"224
+[; ;Modbus.c: 224:             }
+}
+"226
+[; ;Modbus.c: 226:     }
 }
 [e $U 1554  ]
 [e :U 1555 ]
 [e [\ -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i , $ -> 0 `i 1556
- 1554 ]
+ 1558 ]
 [e :U 1554 ]
-"218
-[; ;Modbus.c: 218:     if(error == 0){
-[e $ ! == -> _error `i -> 0 `i 1558  ]
+"228
+[; ;Modbus.c: 228:     if(error == 0){
+[e $ ! == -> _error `i -> 0 `i 1559  ]
 {
-"219
-[; ;Modbus.c: 219:         for(i=0; i< (ModbusData[5]) ; i++ ){
+"229
+[; ;Modbus.c: 229:         for(i=0; i< (ModbusData[5]) ; i++ ){
 {
 [e = _i -> 0 `i ]
-[e $U 1562  ]
-[e :U 1559 ]
-{
-"221
-[; ;Modbus.c: 221:              if(ModbusData[2] == 0x00){
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i 1563  ]
-{
-"223
-[; ;Modbus.c: 223:                 ByteLo = MB400xx[ModbusData[3] +i] & 0x00FF;
-[e = _ByteLo -> & *U + &U _MB400xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB400xx `ui `ux -> -> 255 `i `ui `i ]
-"224
-[; ;Modbus.c: 224:                 ByteHi = MB400xx[ModbusData[3] +i] >> 8;
-[e = _ByteHi -> >> *U + &U _MB400xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB400xx `ui `ux -> 8 `i `i ]
-"226
-[; ;Modbus.c: 226:             }
-}
-[e :U 1563 ]
-"228
-[; ;Modbus.c: 228:             MBRespon[MBResCnt] = ByteHi;
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
-"229
-[; ;Modbus.c: 229:             MBResCnt++;
-[e ++ _MBResCnt -> 1 `i ]
-"230
-[; ;Modbus.c: 230:             MBRespon[MBResCnt] = ByteLo;
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
-"231
-[; ;Modbus.c: 231:             MBResCnt++;
-[e ++ _MBResCnt -> 1 `i ]
-"233
-[; ;Modbus.c: 233:         }
-}
-[e ++ _i -> 1 `i ]
-[e :U 1562 ]
-[e $ < _i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i 1559  ]
+[e $U 1563  ]
 [e :U 1560 ]
-}
-"235
-[; ;Modbus.c: 235:         ByteHi = generateCRC(MBResCnt, 1);
-[e = _ByteHi -> ( _generateCRC (2 , _MBResCnt -> -> 1 `i `a `i ]
-"236
-[; ;Modbus.c: 236:         ByteLo = generateCRC(MBResCnt, 0);
-[e = _ByteLo -> ( _generateCRC (2 , _MBResCnt -> -> 0 `i `a `i ]
-"238
-[; ;Modbus.c: 238:         MBRespon[MBResCnt] = ByteHi;
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
-"239
-[; ;Modbus.c: 239:         MBRespon[MBResCnt +1] = ByteLo;
-[e = *U + &U _MBRespon * -> -> + _MBResCnt -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
-"240
-[; ;Modbus.c: 240:         MBResCnt = MBResCnt +2;
-[e = _MBResCnt + _MBResCnt -> 2 `i ]
-"243
-[; ;Modbus.c: 243:         UART1_Write_string(MBRespon,MBResCnt);
-[e ( _UART1_Write_string (2 , &U _MBRespon _MBResCnt ]
-"244
-[; ;Modbus.c: 244:         printf("Operation Successful \r\n\n");
-[e ( _printf :s 25C ]
-"245
-[; ;Modbus.c: 245:     }else{
-}
-[e $U 1564  ]
-[e :U 1558 ]
 {
-"246
-[; ;Modbus.c: 246:         ModbusError(0x02);
-[e ( _ModbusError (1 -> 2 `i ]
-"247
-[; ;Modbus.c: 247:         printf("Operation Failed \r\n\n");
-[e ( _printf :s 26C ]
-"248
-[; ;Modbus.c: 248:     }
+"231
+[; ;Modbus.c: 231:              if(ModbusData[2] == 0x00){
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i 1564  ]
+{
+"233
+[; ;Modbus.c: 233:                 ByteLo = MB400xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB400xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB400xx `ui `ux -> -> 255 `i `ui `i ]
+"234
+[; ;Modbus.c: 234:                 ByteHi = MB400xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB400xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB400xx `ui `ux -> 8 `i `i ]
+"236
+[; ;Modbus.c: 236:             }
 }
 [e :U 1564 ]
+"238
+[; ;Modbus.c: 238:             MBRespon[MBResCnt] = ByteHi;
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
+"239
+[; ;Modbus.c: 239:             MBResCnt++;
+[e ++ _MBResCnt -> 1 `i ]
+"240
+[; ;Modbus.c: 240:             MBRespon[MBResCnt] = ByteLo;
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
+"241
+[; ;Modbus.c: 241:             MBResCnt++;
+[e ++ _MBResCnt -> 1 `i ]
+"243
+[; ;Modbus.c: 243:         }
+}
+[e ++ _i -> 1 `i ]
+[e :U 1563 ]
+[e $ < _i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i 1560  ]
+[e :U 1561 ]
+}
+"245
+[; ;Modbus.c: 245:         ByteHi = generateCRC(MBResCnt, 1);
+[e = _ByteHi -> ( _generateCRC (2 , _MBResCnt -> -> 1 `i `a `i ]
+"246
+[; ;Modbus.c: 246:         ByteLo = generateCRC(MBResCnt, 0);
+[e = _ByteLo -> ( _generateCRC (2 , _MBResCnt -> -> 0 `i `a `i ]
+"248
+[; ;Modbus.c: 248:         MBRespon[MBResCnt] = ByteHi;
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
+"249
+[; ;Modbus.c: 249:         MBRespon[MBResCnt +1] = ByteLo;
+[e = *U + &U _MBRespon * -> -> + _MBResCnt -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
 "250
-[; ;Modbus.c: 250: }
+[; ;Modbus.c: 250:         MBResCnt = MBResCnt +2;
+[e = _MBResCnt + _MBResCnt -> 2 `i ]
+"253
+[; ;Modbus.c: 253:         UART1_Write_string(MBRespon,MBResCnt);
+[e ( _UART1_Write_string (2 , &U _MBRespon _MBResCnt ]
+"254
+[; ;Modbus.c: 254:         printf("Operation Successful \r\n\n");
+[e ( _printf :s 27C ]
+"255
+[; ;Modbus.c: 255:     }else{
+}
+[e $U 1565  ]
+[e :U 1559 ]
+{
+"256
+[; ;Modbus.c: 256:         ModbusError(0x02);
+[e ( _ModbusError (1 -> 2 `i ]
+"257
+[; ;Modbus.c: 257:         printf("Operation Failed \r\n\n");
+[e ( _printf :s 28C ]
+"258
+[; ;Modbus.c: 258:     }
+}
+[e :U 1565 ]
+"260
+[; ;Modbus.c: 260: }
 [e :UE 1553 ]
 }
-"252
-[; ;Modbus.c: 252: void ModbusFC04(){
+"262
+[; ;Modbus.c: 262: void ModbusFC04(){
 [v _ModbusFC04 `(v ~T0 @X0 1 ef ]
 {
 [e :U _ModbusFC04 ]
 [f ]
-"255
-[; ;Modbus.c: 255:     int i = 0;
+"265
+[; ;Modbus.c: 265:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"256
-[; ;Modbus.c: 256:     _Bool error = 0;
+"266
+[; ;Modbus.c: 266:     _Bool error = 0;
 [v _error `a ~T0 @X0 1 a ]
 [e = _error -> -> 0 `i `a ]
-"258
-[; ;Modbus.c: 258:     MBResCnt = 0;
+"268
+[; ;Modbus.c: 268:     MBResCnt = 0;
 [e = _MBResCnt -> 0 `i ]
-"259
-[; ;Modbus.c: 259:     MBRespon[MBResCnt] = ModbusData[0];
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"260
-[; ;Modbus.c: 260:     MBResCnt++;
-[e ++ _MBResCnt -> 1 `i ]
-"261
-[; ;Modbus.c: 261:     MBRespon[MBResCnt] = ModbusData[1];
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"262
-[; ;Modbus.c: 262:     MBResCnt++;
-[e ++ _MBResCnt -> 1 `i ]
-"263
-[; ;Modbus.c: 263:     MBRespon[MBResCnt] = ModbusData[5] *2;
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> * -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 2 `i `uc ]
-"264
-[; ;Modbus.c: 264:     MBResCnt++;
-[e ++ _MBResCnt -> 1 `i ]
-"267
-[; ;Modbus.c: 267:     switch(ModbusData[2]){
-[e $U 1567  ]
-{
 "269
-[; ;Modbus.c: 269:         case 0x00:
-[e :U 1568 ]
+[; ;Modbus.c: 269:     MBRespon[MBResCnt] = ModbusData[0];
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
 "270
-[; ;Modbus.c: 270:         {
-{
+[; ;Modbus.c: 270:     MBResCnt++;
+[e ++ _MBResCnt -> 1 `i ]
 "271
-[; ;Modbus.c: 271:             printf("Requested Circuit Data\r\n");
-[e ( _printf :s 27C ]
+[; ;Modbus.c: 271:     MBRespon[MBResCnt] = ModbusData[1];
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
+"272
+[; ;Modbus.c: 272:     MBResCnt++;
+[e ++ _MBResCnt -> 1 `i ]
 "273
-[; ;Modbus.c: 273:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 32 `i 1569  ]
-"275
-[; ;Modbus.c: 275:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32)){
-{
+[; ;Modbus.c: 273:     MBRespon[MBResCnt] = ModbusData[5] *2;
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> * -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 2 `i `uc ]
+"274
+[; ;Modbus.c: 274:     MBResCnt++;
+[e ++ _MBResCnt -> 1 `i ]
 "277
-[; ;Modbus.c: 277:                 printf("Registers out of range.\r\nValid: 0x0000 to 0x0031.\r\n");
-[e ( _printf :s 28C ]
+[; ;Modbus.c: 277:     switch(ModbusData[2]){
+[e $U 1568  ]
+{
 "279
-[; ;Modbus.c: 279:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 29C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"281
-[; ;Modbus.c: 281:                 error = 1;
-[e = _error -> -> 1 `i `a ]
-"282
-[; ;Modbus.c: 282:             }
-}
+[; ;Modbus.c: 279:         case 0x00:
 [e :U 1569 ]
+"280
+[; ;Modbus.c: 280:         {
+{
+"281
+[; ;Modbus.c: 281:             printf("Requested Circuit Data\r\n");
+[e ( _printf :s 29C ]
 "283
-[; ;Modbus.c: 283:             break;
-[e $U 1566  ]
-"284
-[; ;Modbus.c: 284:         }
-}
+[; ;Modbus.c: 283:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 0 `i > -> + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i `ui - *U + &U _MB306xx * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> -> 1 `i `ui 1570  ]
 "285
-[; ;Modbus.c: 285:         case 0x01:
-[e :U 1570 ]
+[; ;Modbus.c: 285:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > (MB306xx[1]-1))){
+{
 "286
-[; ;Modbus.c: 286:         {
-{
-"287
-[; ;Modbus.c: 287:             printf("Requested Part No.\r\n");
-[e ( _printf :s 30C ]
-"289
-[; ;Modbus.c: 289:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 264 `i 1571  ]
-"291
-[; ;Modbus.c: 291:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 264)){
-{
-"293
-[; ;Modbus.c: 293:                 printf("Registers out of range.\r\nValid: 0x0100 to 0x0108.\r\n");
-[e ( _printf :s 31C ]
-"295
-[; ;Modbus.c: 295:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 32C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"297
-[; ;Modbus.c: 297:                 error = 1;
+[; ;Modbus.c: 286:                 printf("Registers out of range.\r\nValid: 0x0000 to 0x%04x.\r\n", MB306xx[1]-1);
+[e ( _printf , (. :s 30C - *U + &U _MB306xx * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> -> 1 `i `ui ]
+"288
+[; ;Modbus.c: 288:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 31C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
+"290
+[; ;Modbus.c: 290:                 error = 1;
 [e = _error -> -> 1 `i `a ]
-"298
-[; ;Modbus.c: 298:             }
+"291
+[; ;Modbus.c: 291:             }
 }
+[e :U 1570 ]
+"292
+[; ;Modbus.c: 292:             break;
+[e $U 1567  ]
+"293
+[; ;Modbus.c: 293:         }
+}
+"294
+[; ;Modbus.c: 294:         case 0x01:
 [e :U 1571 ]
-"299
-[; ;Modbus.c: 299:             break;
-[e $U 1566  ]
-"300
-[; ;Modbus.c: 300:         }
-}
-"301
-[; ;Modbus.c: 301:         case 0x02:
-[e :U 1572 ]
-"302
-[; ;Modbus.c: 302:         {
+"295
+[; ;Modbus.c: 295:         {
 {
-"303
-[; ;Modbus.c: 303:             printf("Requested Revision\r\n");
+"296
+[; ;Modbus.c: 296:             printf("Requested Part No.\r\n");
+[e ( _printf :s 32C ]
+"298
+[; ;Modbus.c: 298:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 256 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 263 `i 1572  ]
+"300
+[; ;Modbus.c: 300:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 263)){
+{
+"302
+[; ;Modbus.c: 302:                 printf("Registers out of range.\r\nValid: 0x0100 to 0x0108.\r\n");
 [e ( _printf :s 33C ]
 "304
-[; ;Modbus.c: 304:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 512 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 512 `i 1573  ]
+[; ;Modbus.c: 304:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 34C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
 "306
-[; ;Modbus.c: 306:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 512)){
-{
-"308
-[; ;Modbus.c: 308:                 printf("Registers out of range.\r\nValid: 0x0512.\r\n");
-[e ( _printf :s 34C ]
-"309
-[; ;Modbus.c: 309:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 35C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"311
-[; ;Modbus.c: 311:                 error = 1;
+[; ;Modbus.c: 306:                 error = 1;
 [e = _error -> -> 1 `i `a ]
-"312
-[; ;Modbus.c: 312:             }
+"307
+[; ;Modbus.c: 307:             }
 }
+[e :U 1572 ]
+"308
+[; ;Modbus.c: 308:             break;
+[e $U 1567  ]
+"309
+[; ;Modbus.c: 309:         }
+}
+"310
+[; ;Modbus.c: 310:         case 0x02:
 [e :U 1573 ]
+"311
+[; ;Modbus.c: 311:         {
+{
+"312
+[; ;Modbus.c: 312:             printf("Requested Revision\r\n");
+[e ( _printf :s 35C ]
 "313
-[; ;Modbus.c: 313:             break;
-[e $U 1566  ]
-"314
-[; ;Modbus.c: 314:         }
-}
+[; ;Modbus.c: 313:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 512 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 512 `i 1574  ]
 "315
-[; ;Modbus.c: 315:         case 0x03:
-[e :U 1574 ]
-"316
-[; ;Modbus.c: 316:         {
+[; ;Modbus.c: 315:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 512)){
 {
 "317
-[; ;Modbus.c: 317:             printf("Requested Serial No.\r\n");
+[; ;Modbus.c: 317:                 printf("Registers out of range.\r\nValid: 0x0512.\r\n");
 [e ( _printf :s 36C ]
 "318
-[; ;Modbus.c: 318:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 768 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 772 `i 1575  ]
+[; ;Modbus.c: 318:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 37C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
 "320
-[; ;Modbus.c: 320:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 772)){
-{
-"322
-[; ;Modbus.c: 322:                 printf("Registers out of range.\r\nValid: 0x0300 to 0x0304.\r\n");
-[e ( _printf :s 37C ]
-"323
-[; ;Modbus.c: 323:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 38C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"325
-[; ;Modbus.c: 325:                 error = 1;
+[; ;Modbus.c: 320:                 error = 1;
 [e = _error -> -> 1 `i `a ]
-"326
-[; ;Modbus.c: 326:             }
+"321
+[; ;Modbus.c: 321:             }
 }
+[e :U 1574 ]
+"322
+[; ;Modbus.c: 322:             break;
+[e $U 1567  ]
+"323
+[; ;Modbus.c: 323:         }
+}
+"324
+[; ;Modbus.c: 324:         case 0x03:
 [e :U 1575 ]
+"325
+[; ;Modbus.c: 325:         {
+{
+"326
+[; ;Modbus.c: 326:             printf("Requested Serial No.\r\n");
+[e ( _printf :s 38C ]
 "327
-[; ;Modbus.c: 327:             break;
-[e $U 1566  ]
-"328
-[; ;Modbus.c: 328:         }
-}
+[; ;Modbus.c: 327:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 768 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 772 `i 1576  ]
 "329
-[; ;Modbus.c: 329:         case 0x04:
-[e :U 1576 ]
-"330
-[; ;Modbus.c: 330:         {
+[; ;Modbus.c: 329:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 772)){
 {
 "331
-[; ;Modbus.c: 331:             printf("Requested Compile Date\r\n");
+[; ;Modbus.c: 331:                 printf("Registers out of range.\r\nValid: 0x0300 to 0x0304.\r\n");
 [e ( _printf :s 39C ]
 "332
-[; ;Modbus.c: 332:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1024 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1029 `i 1577  ]
+[; ;Modbus.c: 332:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 40C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
 "334
-[; ;Modbus.c: 334:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1029)){
-{
+[; ;Modbus.c: 334:                 error = 1;
+[e = _error -> -> 1 `i `a ]
+"335
+[; ;Modbus.c: 335:             }
+}
+[e :U 1576 ]
 "336
-[; ;Modbus.c: 336:                 printf("Registers out of range.\r\nValid: 0x0400 to 0x0405.\r\n");
-[e ( _printf :s 40C ]
+[; ;Modbus.c: 336:             break;
+[e $U 1567  ]
+"337
+[; ;Modbus.c: 337:         }
+}
 "338
-[; ;Modbus.c: 338:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 41C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"340
-[; ;Modbus.c: 340:                 error = 1;
-[e = _error -> -> 1 `i `a ]
-"341
-[; ;Modbus.c: 341:             }
-}
+[; ;Modbus.c: 338:         case 0x04:
 [e :U 1577 ]
-"342
-[; ;Modbus.c: 342:             break;
-[e $U 1566  ]
+"339
+[; ;Modbus.c: 339:         {
+{
+"340
+[; ;Modbus.c: 340:             printf("Requested Compile Date\r\n");
+[e ( _printf :s 41C ]
+"341
+[; ;Modbus.c: 341:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1024 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1029 `i 1578  ]
 "343
-[; ;Modbus.c: 343:         }
-}
-"344
-[; ;Modbus.c: 344:         case 0x05:
-[e :U 1578 ]
+[; ;Modbus.c: 343:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1029)){
+{
 "345
-[; ;Modbus.c: 345:         {
-{
-"346
-[; ;Modbus.c: 346:             printf("Requested Compile Time\r\n");
+[; ;Modbus.c: 345:                 printf("Registers out of range.\r\nValid: 0x0400 to 0x0405.\r\n");
 [e ( _printf :s 42C ]
-"348
-[; ;Modbus.c: 348:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1280 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1283 `i 1579  ]
-"350
-[; ;Modbus.c: 350:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1283)){
-{
-"352
-[; ;Modbus.c: 352:                 printf("Registers out of range.\r\nValid: 0x0500 to 0x0503.\r\n");
-[e ( _printf :s 43C ]
-"354
-[; ;Modbus.c: 354:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 44C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"356
-[; ;Modbus.c: 356:                 error = 1;
+"347
+[; ;Modbus.c: 347:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 43C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
+"349
+[; ;Modbus.c: 349:                 error = 1;
 [e = _error -> -> 1 `i `a ]
-"357
-[; ;Modbus.c: 357:             }
+"350
+[; ;Modbus.c: 350:             }
 }
+[e :U 1578 ]
+"351
+[; ;Modbus.c: 351:             break;
+[e $U 1567  ]
+"352
+[; ;Modbus.c: 352:         }
+}
+"353
+[; ;Modbus.c: 353:         case 0x05:
 [e :U 1579 ]
-"358
-[; ;Modbus.c: 358:             break;
-[e $U 1566  ]
-"359
-[; ;Modbus.c: 359:         }
-}
-"360
-[; ;Modbus.c: 360:         case 0x06:
-[e :U 1580 ]
-"361
-[; ;Modbus.c: 361:         {
+"354
+[; ;Modbus.c: 354:         {
 {
-"362
-[; ;Modbus.c: 362:             printf("Requested Analogue Inputs\r\n");
+"355
+[; ;Modbus.c: 355:             printf("Requested Compile Time\r\n");
+[e ( _printf :s 44C ]
+"357
+[; ;Modbus.c: 357:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1280 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1283 `i 1580  ]
+"359
+[; ;Modbus.c: 359:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1283)){
+{
+"361
+[; ;Modbus.c: 361:                 printf("Registers out of range.\r\nValid: 0x0500 to 0x0503.\r\n");
 [e ( _printf :s 45C ]
 "363
-[; ;Modbus.c: 363:             if(
-[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1536 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1538 `i 1581  ]
+[; ;Modbus.c: 363:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 46C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
 "365
-[; ;Modbus.c: 365:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 1538)){
-{
-"367
-[; ;Modbus.c: 367:                 printf("Registers out of range.\r\nValid: 0x0600 to 0x0602.\r\n");
-[e ( _printf :s 46C ]
-"368
-[; ;Modbus.c: 368:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
-[e ( _printf , , (. :s 47C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
-"370
-[; ;Modbus.c: 370:                 error = 1;
+[; ;Modbus.c: 365:                 error = 1;
 [e = _error -> -> 1 `i `a ]
-"371
-[; ;Modbus.c: 371:             }
+"366
+[; ;Modbus.c: 366:             }
 }
+[e :U 1580 ]
+"367
+[; ;Modbus.c: 367:             break;
+[e $U 1567  ]
+"368
+[; ;Modbus.c: 368:         }
+}
+"369
+[; ;Modbus.c: 369:         case 0x06:
 [e :U 1581 ]
+"370
+[; ;Modbus.c: 370:         {
+{
+"371
+[; ;Modbus.c: 371:             printf("Requested GPIO Count Config\r\n");
+[e ( _printf :s 47C ]
 "372
-[; ;Modbus.c: 372:             break;
-[e $U 1566  ]
-"373
-[; ;Modbus.c: 373:         }
-}
+[; ;Modbus.c: 372:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1536 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1537 `i 1582  ]
 "374
-[; ;Modbus.c: 374:     }
-}
-[e $U 1566  ]
-[e :U 1567 ]
-[e [\ -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i , $ -> 0 `i 1568
- , $ -> 1 `i 1570
- , $ -> 2 `i 1572
- , $ -> 3 `i 1574
- , $ -> 4 `i 1576
- , $ -> 5 `i 1578
- , $ -> 6 `i 1580
- 1566 ]
-[e :U 1566 ]
+[; ;Modbus.c: 374:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1537)){
+{
 "376
-[; ;Modbus.c: 376:     if(error == 0){
-[e $ ! == -> _error `i -> 0 `i 1582  ]
-{
+[; ;Modbus.c: 376:                 printf("Registers out of range.\r\nValid: 0x0600 to 0x0601.\r\n");
+[e ( _printf :s 48C ]
 "377
-[; ;Modbus.c: 377:         for(i=0; i< (ModbusData[5]) ; i++ ){
-{
-[e = _i -> 0 `i ]
-[e $U 1586  ]
-[e :U 1583 ]
-{
-"382
-[; ;Modbus.c: 382:             if(ModbusData[2] == 0x03){
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 3 `i 1587  ]
-{
-"384
-[; ;Modbus.c: 384:                 ByteLo = MB303xx[ModbusData[3] +i] & 0x00FF;
-[e = _ByteLo -> & *U + &U _MB303xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB303xx `ui `ux -> -> 255 `i `ui `i ]
-"385
-[; ;Modbus.c: 385:                 ByteHi = MB303xx[ModbusData[3] +i] >> 8;
-[e = _ByteHi -> >> *U + &U _MB303xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB303xx `ui `ux -> 8 `i `i ]
-"388
-[; ;Modbus.c: 388:             }else if(ModbusData[2] == 0x01){
+[; ;Modbus.c: 377:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 49C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
+"379
+[; ;Modbus.c: 379:                 error = 1;
+[e = _error -> -> 1 `i `a ]
+"380
+[; ;Modbus.c: 380:             }
 }
-[e $U 1588  ]
-[e :U 1587 ]
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i 1589  ]
+[e :U 1582 ]
+"381
+[; ;Modbus.c: 381:             break;
+[e $U 1567  ]
+"382
+[; ;Modbus.c: 382:         }
+}
+"383
+[; ;Modbus.c: 383:         case 0x07:
+[e :U 1583 ]
+"384
+[; ;Modbus.c: 384:         {
+{
+"385
+[; ;Modbus.c: 385:             printf("Requested Analogue Inputs\r\n");
+[e ( _printf :s 50C ]
+"386
+[; ;Modbus.c: 386:             if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1792 `i > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 1796 `i 1584  ]
+"388
+[; ;Modbus.c: 388:                 (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1796)){
 {
 "390
-[; ;Modbus.c: 390:                 ByteLo = MB301xx[ModbusData[3] +i] & 0x00FF;
-[e = _ByteLo -> & *U + &U _MB301xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB301xx `ui `ux -> -> 255 `i `ui `i ]
+[; ;Modbus.c: 390:                 printf("Registers out of range.\r\nValid: 0x0700 to 0x0704.\r\n");
+[e ( _printf :s 51C ]
 "391
-[; ;Modbus.c: 391:                 ByteHi = MB301xx[ModbusData[3] +i] >> 8;
-[e = _ByteHi -> >> *U + &U _MB301xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB301xx `ui `ux -> 8 `i `i ]
+[; ;Modbus.c: 391:                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 52C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
 "393
-[; ;Modbus.c: 393:             }
-}
-[e $U 1590  ]
+[; ;Modbus.c: 393:                 error = 1;
+[e = _error -> -> 1 `i `a ]
 "394
-[; ;Modbus.c: 394:             else if(ModbusData[2] == 0x02){
-[e :U 1589 ]
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 2 `i 1591  ]
-{
+[; ;Modbus.c: 394:             }
+}
+[e :U 1584 ]
+"395
+[; ;Modbus.c: 395:             break;
+[e $U 1567  ]
 "396
-[; ;Modbus.c: 396:                 ByteLo = MB302xx[ModbusData[3] +i] & 0x00FF;
-[e = _ByteLo -> & *U + &U _MB302xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB302xx `ui `ux -> -> 255 `i `ui `i ]
+[; ;Modbus.c: 396:         }
+}
 "397
-[; ;Modbus.c: 397:                 ByteHi = MB302xx[ModbusData[3] +i] >> 8;
-[e = _ByteHi -> >> *U + &U _MB302xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB302xx `ui `ux -> 8 `i `i ]
+[; ;Modbus.c: 397:     }
+}
+[e $U 1567  ]
+[e :U 1568 ]
+[e [\ -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i , $ -> 0 `i 1569
+ , $ -> 1 `i 1571
+ , $ -> 2 `i 1573
+ , $ -> 3 `i 1575
+ , $ -> 4 `i 1577
+ , $ -> 5 `i 1579
+ , $ -> 6 `i 1581
+ , $ -> 7 `i 1583
+ 1567 ]
+[e :U 1567 ]
 "399
-[; ;Modbus.c: 399:             }else if(ModbusData[2] == 0x04){
-}
-[e $U 1592  ]
-[e :U 1591 ]
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 4 `i 1593  ]
+[; ;Modbus.c: 399:     if(error == 0){
+[e $ ! == -> _error `i -> 0 `i 1585  ]
 {
-"401
-[; ;Modbus.c: 401:                 ByteLo = MB304xx[ModbusData[3] +i] & 0x00FF;
-[e = _ByteLo -> & *U + &U _MB304xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB304xx `ui `ux -> -> 255 `i `ui `i ]
+"400
+[; ;Modbus.c: 400:         for(i=0; i< (ModbusData[5]) ; i++ ){
+{
+[e = _i -> 0 `i ]
+[e $U 1589  ]
+[e :U 1586 ]
+{
 "402
-[; ;Modbus.c: 402:                 ByteHi = MB304xx[ModbusData[3] +i] >> 8;
-[e = _ByteHi -> >> *U + &U _MB304xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB304xx `ui `ux -> 8 `i `i ]
+[; ;Modbus.c: 402:             if(ModbusData[2] == 0x03){
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 3 `i 1590  ]
+{
 "404
-[; ;Modbus.c: 404:             }else if(ModbusData[2] == 0x05){
+[; ;Modbus.c: 404:                 ByteLo = MB303xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB303xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB303xx `ui `ux -> -> 255 `i `ui `i ]
+"405
+[; ;Modbus.c: 405:                 ByteHi = MB303xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB303xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB303xx `ui `ux -> 8 `i `i ]
+"408
+[; ;Modbus.c: 408:             }else if(ModbusData[2] == 0x01){
 }
-[e $U 1594  ]
-[e :U 1593 ]
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 5 `i 1595  ]
-{
-"406
-[; ;Modbus.c: 406:                 ByteLo = MB305xx[ModbusData[3] +i] & 0x00FF;
-[e = _ByteLo -> & *U + &U _MB305xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB305xx `ui `ux -> -> 255 `i `ui `i ]
-"407
-[; ;Modbus.c: 407:                 ByteHi = MB305xx[ModbusData[3] +i] >> 8;
-[e = _ByteHi -> >> *U + &U _MB305xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB305xx `ui `ux -> 8 `i `i ]
-"409
-[; ;Modbus.c: 409:             }
-}
-[e $U 1596  ]
-"410
-[; ;Modbus.c: 410:             else if(ModbusData[2] == 0x00){
-[e :U 1595 ]
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i 1597  ]
-{
-"412
-[; ;Modbus.c: 412:                 ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
-[e = _ByteLo -> & *U + &U _MB300xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB300xx `ui `ux -> -> 255 `i `ui `i ]
-"413
-[; ;Modbus.c: 413:                 ByteHi = MB300xx[ModbusData[3] +i] >> 8;
-[e = _ByteHi -> >> *U + &U _MB300xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB300xx `ui `ux -> 8 `i `i ]
-"415
-[; ;Modbus.c: 415:             }else if(ModbusData[2] == 0x06){
-}
-[e $U 1598  ]
-[e :U 1597 ]
-[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 6 `i 1599  ]
-{
-"417
-[; ;Modbus.c: 417:                 uint16_t convertedValue;
-[v _convertedValue `us ~T0 @X0 1 a ]
-"418
-[; ;Modbus.c: 418:                 convertedValue = ADCC_GetSingleConversion(AIP_0);
-[e = _convertedValue ( _ADCC_GetSingleConversion (1 . `E10491 0 ]
-"419
-[; ;Modbus.c: 419:                 printf("ADC: 0x%04x \r\n", convertedValue);
-[e ( _printf , (. :s 48C -> _convertedValue `ui ]
-"421
-[; ;Modbus.c: 421:                 ByteLo = convertedValue & 0x00FF;
-[e = _ByteLo -> & -> _convertedValue `ui -> -> 255 `i `ui `i ]
-"422
-[; ;Modbus.c: 422:                 ByteHi = convertedValue >> 8;
-[e = _ByteHi -> >> -> _convertedValue `ui -> 8 `i `i ]
-"423
-[; ;Modbus.c: 423:             }
-}
-[e :U 1599 ]
-[e :U 1598 ]
-[e :U 1596 ]
-[e :U 1594 ]
-[e :U 1592 ]
+[e $U 1591  ]
 [e :U 1590 ]
-[e :U 1588 ]
-"425
-[; ;Modbus.c: 425:             MBRespon[MBResCnt] = ByteHi;
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i 1592  ]
+{
+"410
+[; ;Modbus.c: 410:                 ByteLo = MB301xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB301xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB301xx `ui `ux -> -> 255 `i `ui `i ]
+"411
+[; ;Modbus.c: 411:                 ByteHi = MB301xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB301xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB301xx `ui `ux -> 8 `i `i ]
+"413
+[; ;Modbus.c: 413:             }
+}
+[e $U 1593  ]
+"414
+[; ;Modbus.c: 414:             else if(ModbusData[2] == 0x02){
+[e :U 1592 ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 2 `i 1594  ]
+{
+"416
+[; ;Modbus.c: 416:                 ByteLo = MB302xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB302xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB302xx `ui `ux -> -> 255 `i `ui `i ]
+"417
+[; ;Modbus.c: 417:                 ByteHi = MB302xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB302xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB302xx `ui `ux -> 8 `i `i ]
+"419
+[; ;Modbus.c: 419:             }else if(ModbusData[2] == 0x04){
+}
+[e $U 1595  ]
+[e :U 1594 ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 4 `i 1596  ]
+{
+"421
+[; ;Modbus.c: 421:                 ByteLo = MB304xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB304xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB304xx `ui `ux -> -> 255 `i `ui `i ]
+"422
+[; ;Modbus.c: 422:                 ByteHi = MB304xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB304xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB304xx `ui `ux -> 8 `i `i ]
+"424
+[; ;Modbus.c: 424:             }else if(ModbusData[2] == 0x05){
+}
+[e $U 1597  ]
+[e :U 1596 ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 5 `i 1598  ]
+{
 "426
-[; ;Modbus.c: 426:             MBResCnt++;
-[e ++ _MBResCnt -> 1 `i ]
+[; ;Modbus.c: 426:                 ByteLo = MB305xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB305xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB305xx `ui `ux -> -> 255 `i `ui `i ]
 "427
-[; ;Modbus.c: 427:             MBRespon[MBResCnt] = ByteLo;
-[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
-"428
-[; ;Modbus.c: 428:             MBResCnt++;
-[e ++ _MBResCnt -> 1 `i ]
+[; ;Modbus.c: 427:                 ByteHi = MB305xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB305xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB305xx `ui `ux -> 8 `i `i ]
+"429
+[; ;Modbus.c: 429:             }
+}
+[e $U 1599  ]
 "430
-[; ;Modbus.c: 430:         }
+[; ;Modbus.c: 430:             else if(ModbusData[2] == 0x00){
+[e :U 1598 ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i 1600  ]
+{
+"432
+[; ;Modbus.c: 432:                 ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB300xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB300xx `ui `ux -> -> 255 `i `ui `i ]
+"433
+[; ;Modbus.c: 433:                 ByteHi = MB300xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB300xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB300xx `ui `ux -> 8 `i `i ]
+"435
+[; ;Modbus.c: 435:             }else if(ModbusData[2] == 0x06){
+}
+[e $U 1601  ]
+[e :U 1600 ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 6 `i 1602  ]
+{
+"437
+[; ;Modbus.c: 437:                 uint16_t convertedValue;
+[v _convertedValue `us ~T0 @X0 1 a ]
+"438
+[; ;Modbus.c: 438:                 ByteLo = MB306xx[ModbusData[3] +i] & 0x00FF;
+[e = _ByteLo -> & *U + &U _MB306xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> -> 255 `i `ui `i ]
+"439
+[; ;Modbus.c: 439:                 ByteHi = MB306xx[ModbusData[3] +i] >> 8;
+[e = _ByteHi -> >> *U + &U _MB306xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> 8 `i `i ]
+"440
+[; ;Modbus.c: 440:             }else if(ModbusData[2] == 0x07){
+}
+[e $U 1603  ]
+[e :U 1602 ]
+[e $ ! == -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 7 `i 1604  ]
+{
+"442
+[; ;Modbus.c: 442:                 uint16_t convertedValue;
+[v _convertedValue `us ~T0 @X0 1 a ]
+"443
+[; ;Modbus.c: 443:                 convertedValue = ADCC_GetSingleConversion(AIP_0);
+[e = _convertedValue ( _ADCC_GetSingleConversion (1 . `E10491 0 ]
+"444
+[; ;Modbus.c: 444:                 printf("ADC: 0x%04x \r\n", convertedValue);
+[e ( _printf , (. :s 53C -> _convertedValue `ui ]
+"446
+[; ;Modbus.c: 446:                 ByteLo = convertedValue & 0x00FF;
+[e = _ByteLo -> & -> _convertedValue `ui -> -> 255 `i `ui `i ]
+"447
+[; ;Modbus.c: 447:                 ByteHi = convertedValue >> 8;
+[e = _ByteHi -> >> -> _convertedValue `ui -> 8 `i `i ]
+"448
+[; ;Modbus.c: 448:             }
+}
+[e :U 1604 ]
+[e :U 1603 ]
+[e :U 1601 ]
+[e :U 1599 ]
+[e :U 1597 ]
+[e :U 1595 ]
+[e :U 1593 ]
+[e :U 1591 ]
+"450
+[; ;Modbus.c: 450:             MBRespon[MBResCnt] = ByteHi;
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
+"451
+[; ;Modbus.c: 451:             MBResCnt++;
+[e ++ _MBResCnt -> 1 `i ]
+"452
+[; ;Modbus.c: 452:             MBRespon[MBResCnt] = ByteLo;
+[e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
+"453
+[; ;Modbus.c: 453:             MBResCnt++;
+[e ++ _MBResCnt -> 1 `i ]
+"455
+[; ;Modbus.c: 455:         }
 }
 [e ++ _i -> 1 `i ]
-[e :U 1586 ]
-[e $ < _i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i 1583  ]
-[e :U 1584 ]
+[e :U 1589 ]
+[e $ < _i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i 1586  ]
+[e :U 1587 ]
 }
-"432
-[; ;Modbus.c: 432:         ByteHi = generateCRC(MBResCnt, 1);
+"457
+[; ;Modbus.c: 457:         ByteHi = generateCRC(MBResCnt, 1);
 [e = _ByteHi -> ( _generateCRC (2 , _MBResCnt -> -> 1 `i `a `i ]
-"433
-[; ;Modbus.c: 433:         ByteLo = generateCRC(MBResCnt, 0);
+"458
+[; ;Modbus.c: 458:         ByteLo = generateCRC(MBResCnt, 0);
 [e = _ByteLo -> ( _generateCRC (2 , _MBResCnt -> -> 0 `i `a `i ]
-"435
-[; ;Modbus.c: 435:         MBRespon[MBResCnt] = ByteHi;
+"460
+[; ;Modbus.c: 460:         MBRespon[MBResCnt] = ByteHi;
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
-"436
-[; ;Modbus.c: 436:         MBRespon[MBResCnt +1] = ByteLo;
+"461
+[; ;Modbus.c: 461:         MBRespon[MBResCnt +1] = ByteLo;
 [e = *U + &U _MBRespon * -> -> + _MBResCnt -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
-"437
-[; ;Modbus.c: 437:         MBResCnt = MBResCnt +2;
+"462
+[; ;Modbus.c: 462:         MBResCnt = MBResCnt +2;
 [e = _MBResCnt + _MBResCnt -> 2 `i ]
-"440
-[; ;Modbus.c: 440:         UART1_Write_string(MBRespon,MBResCnt);
+"465
+[; ;Modbus.c: 465:         UART1_Write_string(MBRespon,MBResCnt);
 [e ( _UART1_Write_string (2 , &U _MBRespon _MBResCnt ]
-"441
-[; ;Modbus.c: 441:         printf("Operation Successful \r\n\n");
-[e ( _printf :s 49C ]
-"442
-[; ;Modbus.c: 442:     }else{
+"466
+[; ;Modbus.c: 466:         printf("Operation Successful \r\n\n");
+[e ( _printf :s 54C ]
+"467
+[; ;Modbus.c: 467:     }else{
 }
-[e $U 1600  ]
-[e :U 1582 ]
+[e $U 1605  ]
+[e :U 1585 ]
 {
-"443
-[; ;Modbus.c: 443:         ModbusError(0x02);
+"468
+[; ;Modbus.c: 468:         ModbusError(0x02);
 [e ( _ModbusError (1 -> 2 `i ]
-"444
-[; ;Modbus.c: 444:         printf("Operation Failed \r\n\n");
-[e ( _printf :s 50C ]
-"445
-[; ;Modbus.c: 445:     }
+"469
+[; ;Modbus.c: 469:         printf("Operation Failed \r\n\n");
+[e ( _printf :s 55C ]
+"470
+[; ;Modbus.c: 470:     }
 }
-[e :U 1600 ]
-"447
-[; ;Modbus.c: 447: }
-[e :UE 1565 ]
+[e :U 1605 ]
+"472
+[; ;Modbus.c: 472: }
+[e :UE 1566 ]
 }
-"449
-[; ;Modbus.c: 449: void ModbusFC10(void){
+"474
+[; ;Modbus.c: 474: void ModbusFC10(void){
 [v _ModbusFC10 `(v ~T0 @X0 1 ef ]
 {
 [e :U _ModbusFC10 ]
 [f ]
-"453
-[; ;Modbus.c: 453:     int i = 0;
+"478
+[; ;Modbus.c: 478:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"454
-[; ;Modbus.c: 454:     int j = 0;
+"479
+[; ;Modbus.c: 479:     int j = 0;
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-"455
-[; ;Modbus.c: 455:     unsigned int TempData = 0x0000;
+"480
+[; ;Modbus.c: 480:     unsigned int TempData = 0x0000;
 [v _TempData `ui ~T0 @X0 1 a ]
 [e = _TempData -> -> 0 `i `ui ]
-"456
-[; ;Modbus.c: 456:     _Bool error = 0;
+"481
+[; ;Modbus.c: 481:     _Bool error = 0;
 [v _error `a ~T0 @X0 1 a ]
 [e = _error -> -> 0 `i `a ]
-"458
-[; ;Modbus.c: 458:     if(((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32){
-[e $ ! > + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 32 `i 1602  ]
+"490
+[; ;Modbus.c: 490:     if(
+[e $ ! || < + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i -> 0 `i > -> + + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i `ui - *U + &U _MB306xx * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> -> 1 `i `ui 1607  ]
+"493
+[; ;Modbus.c: 493:         (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > (MB306xx[0]-1))){
 {
-"459
-[; ;Modbus.c: 459:          printf("Requested registers out of range.  0x0000 to 0x020.\r\n");
-[e ( _printf :s 51C ]
-"460
-[; ;Modbus.c: 460:          error = 1;
+"495
+[; ;Modbus.c: 495:         printf("Registers out of range.\r\nValid: 0x0000 to 0x%04x.\r\n", MB306xx[0]-1);
+[e ( _printf , (. :s 56C - *U + &U _MB306xx * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux -> -> 1 `i `ui ]
+"497
+[; ;Modbus.c: 497:         printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
+[e ( _printf , , (. :s 57C + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i + - + * -> *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 1 `i + * -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i ]
+"499
+[; ;Modbus.c: 499:         error = 1;
 [e = _error -> -> 1 `i `a ]
-"461
-[; ;Modbus.c: 461:      }
+"500
+[; ;Modbus.c: 500:     }
 }
-[e :U 1602 ]
-"463
-[; ;Modbus.c: 463:     if(error == 0){
-[e $ ! == -> _error `i -> 0 `i 1603  ]
+[e :U 1607 ]
+"503
+[; ;Modbus.c: 503:     if(error == 0){
+[e $ ! == -> _error `i -> 0 `i 1608  ]
 {
-"465
-[; ;Modbus.c: 465:         MBResCnt = 0;
+"505
+[; ;Modbus.c: 505:         MBResCnt = 0;
 [e = _MBResCnt -> 0 `i ]
-"466
-[; ;Modbus.c: 466:         MBRespon[MBResCnt] = ModbusData[0];
+"506
+[; ;Modbus.c: 506:         MBRespon[MBResCnt] = ModbusData[0];
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"467
-[; ;Modbus.c: 467:         MBResCnt++;
+"507
+[; ;Modbus.c: 507:         MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"468
-[; ;Modbus.c: 468:         MBRespon[MBResCnt] = ModbusData[1];
+"508
+[; ;Modbus.c: 508:         MBRespon[MBResCnt] = ModbusData[1];
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"469
-[; ;Modbus.c: 469:         MBResCnt++;
+"509
+[; ;Modbus.c: 509:         MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"470
-[; ;Modbus.c: 470:         MBRespon[MBResCnt] = ModbusData[2];
+"510
+[; ;Modbus.c: 510:         MBRespon[MBResCnt] = ModbusData[2];
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"471
-[; ;Modbus.c: 471:         MBResCnt++;
+"511
+[; ;Modbus.c: 511:         MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"472
-[; ;Modbus.c: 472:         MBRespon[MBResCnt] = ModbusData[3];
+"512
+[; ;Modbus.c: 512:         MBRespon[MBResCnt] = ModbusData[3];
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"473
-[; ;Modbus.c: 473:         MBResCnt++;
+"513
+[; ;Modbus.c: 513:         MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"474
-[; ;Modbus.c: 474:         MBRespon[MBResCnt] = ModbusData[4];
+"514
+[; ;Modbus.c: 514:         MBRespon[MBResCnt] = ModbusData[4];
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 4 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"475
-[; ;Modbus.c: 475:         MBResCnt++;
+"515
+[; ;Modbus.c: 515:         MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"476
-[; ;Modbus.c: 476:         MBRespon[MBResCnt] = ModbusData[5];
+"516
+[; ;Modbus.c: 516:         MBRespon[MBResCnt] = ModbusData[5];
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"477
-[; ;Modbus.c: 477:         MBResCnt++;
+"517
+[; ;Modbus.c: 517:         MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"479
-[; ;Modbus.c: 479:         for(i=0; i< (ModbusData[5]) ; i++ ){
+"519
+[; ;Modbus.c: 519:         for(i=0; i< (ModbusData[5]) ; i++ ){
 {
 [e = _i -> 0 `i ]
-[e $U 1607  ]
-[e :U 1604 ]
+[e $U 1612  ]
+[e :U 1609 ]
 {
-"486
-[; ;Modbus.c: 486:             TempData = ModbusData[7 +j] *256 + ModbusData[8 +j];
+"526
+[; ;Modbus.c: 526:             TempData = ModbusData[7 +j] *256 + ModbusData[8 +j];
 [e = _TempData -> + * -> *U + &U _ModbusData * -> -> + -> 7 `i _j `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 256 `i -> *U + &U _ModbusData * -> -> + -> 8 `i _j `ui `ux -> -> # *U &U _ModbusData `ui `ux `i `ui ]
-"487
-[; ;Modbus.c: 487:             j = j+2;
+"527
+[; ;Modbus.c: 527:             j = j+2;
 [e = _j + _j -> 2 `i ]
-"488
-[; ;Modbus.c: 488:             MB400xx[ModbusData[3] +i] = TempData;
+"528
+[; ;Modbus.c: 528:             MB400xx[ModbusData[3] +i] = TempData;
 [e = *U + &U _MB400xx * -> -> + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _i `ui `ux -> -> # *U &U _MB400xx `ui `ux _TempData ]
-"489
-[; ;Modbus.c: 489:         }
+"529
+[; ;Modbus.c: 529:         }
 }
 [e ++ _i -> 1 `i ]
-[e :U 1607 ]
-[e $ < _i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i 1604  ]
-[e :U 1605 ]
+[e :U 1612 ]
+[e $ < _i -> *U + &U _ModbusData * -> -> -> 5 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i 1609  ]
+[e :U 1610 ]
 }
-"491
-[; ;Modbus.c: 491:         ByteHi = generateCRC(MBResCnt, 1);
+"531
+[; ;Modbus.c: 531:         ByteHi = generateCRC(MBResCnt, 1);
 [e = _ByteHi -> ( _generateCRC (2 , _MBResCnt -> -> 1 `i `a `i ]
-"492
-[; ;Modbus.c: 492:         ByteLo = generateCRC(MBResCnt, 0);
+"532
+[; ;Modbus.c: 532:         ByteLo = generateCRC(MBResCnt, 0);
 [e = _ByteLo -> ( _generateCRC (2 , _MBResCnt -> -> 0 `i `a `i ]
-"494
-[; ;Modbus.c: 494:         MBRespon[MBResCnt] = ByteHi;
+"534
+[; ;Modbus.c: 534:         MBRespon[MBResCnt] = ByteHi;
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
-"495
-[; ;Modbus.c: 495:         MBRespon[MBResCnt +1] = ByteLo;
+"535
+[; ;Modbus.c: 535:         MBRespon[MBResCnt +1] = ByteLo;
 [e = *U + &U _MBRespon * -> -> + _MBResCnt -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
-"496
-[; ;Modbus.c: 496:         MBResCnt = MBResCnt +2;
+"536
+[; ;Modbus.c: 536:         MBResCnt = MBResCnt +2;
 [e = _MBResCnt + _MBResCnt -> 2 `i ]
-"498
-[; ;Modbus.c: 498:         UART1_Write_string(MBRespon,MBResCnt);
+"538
+[; ;Modbus.c: 538:         UART1_Write_string(MBRespon,MBResCnt);
 [e ( _UART1_Write_string (2 , &U _MBRespon _MBResCnt ]
-"499
-[; ;Modbus.c: 499:         printf("Operation Successful \r\n\n");
-[e ( _printf :s 52C ]
-"500
-[; ;Modbus.c: 500:     }else{
+"539
+[; ;Modbus.c: 539:         printf("Operation Successful \r\n\n");
+[e ( _printf :s 58C ]
+"540
+[; ;Modbus.c: 540:     }else{
 }
-[e $U 1608  ]
-[e :U 1603 ]
-{
-"501
-[; ;Modbus.c: 501:         ModbusError(0x02);
-[e ( _ModbusError (1 -> 2 `i ]
-"502
-[; ;Modbus.c: 502:         printf("Operation Failed \r\n\n");
-[e ( _printf :s 53C ]
-"503
-[; ;Modbus.c: 503:     }
-}
+[e $U 1613  ]
 [e :U 1608 ]
-"504
-[; ;Modbus.c: 504: }
-[e :UE 1601 ]
+{
+"541
+[; ;Modbus.c: 541:         ModbusError(0x02);
+[e ( _ModbusError (1 -> 2 `i ]
+"542
+[; ;Modbus.c: 542:         printf("Operation Failed \r\n\n");
+[e ( _printf :s 59C ]
+"543
+[; ;Modbus.c: 543:     }
 }
-"508
-[; ;Modbus.c: 508: unsigned int generateCRC(int MessCnt, _Bool HiOrLo){
+[e :U 1613 ]
+"544
+[; ;Modbus.c: 544: }
+[e :UE 1606 ]
+}
+"548
+[; ;Modbus.c: 548: unsigned int generateCRC(int MessCnt, _Bool HiOrLo){
 [v _generateCRC `(ui ~T0 @X0 1 ef2`i`a ]
 {
 [e :U _generateCRC ]
 [v _MessCnt `i ~T0 @X0 1 r1 ]
 [v _HiOrLo `a ~T0 @X0 1 r2 ]
 [f ]
-"509
-[; ;Modbus.c: 509:   unsigned int crc = 0xFFFF;
+"549
+[; ;Modbus.c: 549:   unsigned int crc = 0xFFFF;
 [v _crc `ui ~T0 @X0 1 a ]
 [e = _crc -> 65535 `ui ]
-"510
-[; ;Modbus.c: 510:   unsigned int crcHigh = 0;
+"550
+[; ;Modbus.c: 550:   unsigned int crcHigh = 0;
 [v _crcHigh `ui ~T0 @X0 1 a ]
 [e = _crcHigh -> -> 0 `i `ui ]
-"511
-[; ;Modbus.c: 511:   unsigned int crcLow = 0;
+"551
+[; ;Modbus.c: 551:   unsigned int crcLow = 0;
 [v _crcLow `ui ~T0 @X0 1 a ]
 [e = _crcLow -> -> 0 `i `ui ]
-"512
-[; ;Modbus.c: 512:   int i,j = 0;
+"552
+[; ;Modbus.c: 552:   int i,j = 0;
 [v _i `i ~T0 @X0 1 a ]
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-"514
-[; ;Modbus.c: 514:     for(i=0;i<MessCnt;i++){
+"554
+[; ;Modbus.c: 554:     for(i=0;i<MessCnt;i++){
 {
 [e = _i -> 0 `i ]
-[e $U 1613  ]
-[e :U 1610 ]
+[e $U 1618  ]
+[e :U 1615 ]
 {
-"515
-[; ;Modbus.c: 515:       crc ^= MBRespon[i];
+"555
+[; ;Modbus.c: 555:       crc ^= MBRespon[i];
 [e =^ _crc -> *U + &U _MBRespon * -> -> _i `ui `ux -> -> # *U &U _MBRespon `ui `ux `ui ]
-"516
-[; ;Modbus.c: 516:       for(j=8; j!=0; j--){
+"556
+[; ;Modbus.c: 556:       for(j=8; j!=0; j--){
 {
 [e = _j -> 8 `i ]
-[e $ != _j -> 0 `i 1614  ]
-[e $U 1615  ]
-[e :U 1614 ]
-{
-"517
-[; ;Modbus.c: 517:         if((crc & 0x0001) != 0){
-[e $ ! != & _crc -> -> 1 `i `ui -> -> 0 `i `ui 1617  ]
-{
-"518
-[; ;Modbus.c: 518:           crc >>= 1;
-[e =>> _crc -> -> 1 `i `ui ]
-"519
-[; ;Modbus.c: 519:           crc ^= 0xA001;
-[e =^ _crc -> 40961 `ui ]
-"520
-[; ;Modbus.c: 520:         }
-}
-[e $U 1618  ]
-"521
-[; ;Modbus.c: 521:         else{
-[e :U 1617 ]
-{
-"522
-[; ;Modbus.c: 522:           crc >>= 1;
-[e =>> _crc -> -> 1 `i `ui ]
-"523
-[; ;Modbus.c: 523:         }
-}
-[e :U 1618 ]
-"524
-[; ;Modbus.c: 524:       }
-}
-[e -- _j -> 1 `i ]
-[e $ != _j -> 0 `i 1614  ]
-[e :U 1615 ]
-}
-"525
-[; ;Modbus.c: 525:     }
-}
-[e ++ _i -> 1 `i ]
-[e :U 1613 ]
-[e $ < _i _MessCnt 1610  ]
-[e :U 1611 ]
-}
-"527
-[; ;Modbus.c: 527:     crcHigh = (crc & 0x00FF);
-[e = _crcHigh & _crc -> -> 255 `i `ui ]
-"528
-[; ;Modbus.c: 528:     crcLow = (crc & 0xFF00) >>8;
-[e = _crcLow >> & _crc -> 65280 `ui -> 8 `i ]
-"530
-[; ;Modbus.c: 530:     if(HiOrLo == 1){
-[e $ ! == -> _HiOrLo `i -> 1 `i 1619  ]
-{
-"531
-[; ;Modbus.c: 531:         return crcHigh;
-[e ) _crcHigh ]
-[e $UE 1609  ]
-"532
-[; ;Modbus.c: 532:     }else{
-}
+[e $ != _j -> 0 `i 1619  ]
 [e $U 1620  ]
 [e :U 1619 ]
 {
-"533
-[; ;Modbus.c: 533:         return crcLow;
-[e ) _crcLow ]
-[e $UE 1609  ]
-"534
-[; ;Modbus.c: 534:     }
+"557
+[; ;Modbus.c: 557:         if((crc & 0x0001) != 0){
+[e $ ! != & _crc -> -> 1 `i `ui -> -> 0 `i `ui 1622  ]
+{
+"558
+[; ;Modbus.c: 558:           crc >>= 1;
+[e =>> _crc -> -> 1 `i `ui ]
+"559
+[; ;Modbus.c: 559:           crc ^= 0xA001;
+[e =^ _crc -> 40961 `ui ]
+"560
+[; ;Modbus.c: 560:         }
 }
+[e $U 1623  ]
+"561
+[; ;Modbus.c: 561:         else{
+[e :U 1622 ]
+{
+"562
+[; ;Modbus.c: 562:           crc >>= 1;
+[e =>> _crc -> -> 1 `i `ui ]
+"563
+[; ;Modbus.c: 563:         }
+}
+[e :U 1623 ]
+"564
+[; ;Modbus.c: 564:       }
+}
+[e -- _j -> 1 `i ]
+[e $ != _j -> 0 `i 1619  ]
 [e :U 1620 ]
-"536
-[; ;Modbus.c: 536: }
-[e :UE 1609 ]
 }
-"538
-[; ;Modbus.c: 538: void UART1_Write_string(unsigned char * data, int data_len)
+"565
+[; ;Modbus.c: 565:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 1618 ]
+[e $ < _i _MessCnt 1615  ]
+[e :U 1616 ]
+}
+"567
+[; ;Modbus.c: 567:     crcHigh = (crc & 0x00FF);
+[e = _crcHigh & _crc -> -> 255 `i `ui ]
+"568
+[; ;Modbus.c: 568:     crcLow = (crc & 0xFF00) >>8;
+[e = _crcLow >> & _crc -> 65280 `ui -> 8 `i ]
+"570
+[; ;Modbus.c: 570:     if(HiOrLo == 1){
+[e $ ! == -> _HiOrLo `i -> 1 `i 1624  ]
+{
+"571
+[; ;Modbus.c: 571:         return crcHigh;
+[e ) _crcHigh ]
+[e $UE 1614  ]
+"572
+[; ;Modbus.c: 572:     }else{
+}
+[e $U 1625  ]
+[e :U 1624 ]
+{
+"573
+[; ;Modbus.c: 573:         return crcLow;
+[e ) _crcLow ]
+[e $UE 1614  ]
+"574
+[; ;Modbus.c: 574:     }
+}
+[e :U 1625 ]
+"576
+[; ;Modbus.c: 576: }
+[e :UE 1614 ]
+}
+"578
+[; ;Modbus.c: 578: void UART1_Write_string(unsigned char * data, int data_len)
 [v _UART1_Write_string `(v ~T0 @X0 1 ef2`*uc`i ]
-"539
-[; ;Modbus.c: 539: {
+"579
+[; ;Modbus.c: 579: {
 {
 [e :U _UART1_Write_string ]
-"538
-[; ;Modbus.c: 538: void UART1_Write_string(unsigned char * data, int data_len)
+"578
+[; ;Modbus.c: 578: void UART1_Write_string(unsigned char * data, int data_len)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _data_len `i ~T0 @X0 1 r2 ]
-"539
-[; ;Modbus.c: 539: {
+"579
+[; ;Modbus.c: 579: {
 [f ]
-"540
-[; ;Modbus.c: 540:     TXMode();
+"580
+[; ;Modbus.c: 580:     TXMode();
 [e ( _TXMode ..  ]
-"541
-[; ;Modbus.c: 541:     while(!EUSART1_is_tx_ready());
-[e $U 1622  ]
-[e :U 1623 ]
-[e :U 1622 ]
-[e $ ! != -> ( _EUSART1_is_tx_ready ..  `i -> 0 `i 1623  ]
-[e :U 1624 ]
-"542
-[; ;Modbus.c: 542:     for (int i = 0; i < data_len; i++) {
+"581
+[; ;Modbus.c: 581:     while(!EUSART1_is_tx_ready());
+[e $U 1627  ]
+[e :U 1628 ]
+[e :U 1627 ]
+[e $ ! != -> ( _EUSART1_is_tx_ready ..  `i -> 0 `i 1628  ]
+[e :U 1629 ]
+"582
+[; ;Modbus.c: 582:     for (int i = 0; i < data_len; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 1628  ]
-[e :U 1625 ]
-{
-"543
-[; ;Modbus.c: 543:         EUSART1_Write(data[i]);
-[e ( _EUSART1_Write (1 *U + _data * -> _i `x -> -> # *U _data `i `x ]
-"544
-[; ;Modbus.c: 544:         while(!EUSART1_is_tx_done());
-[e $U 1629  ]
+[e $U 1633  ]
 [e :U 1630 ]
-[e :U 1629 ]
-[e $ ! != -> ( _EUSART1_is_tx_done ..  `i -> 0 `i 1630  ]
-[e :U 1631 ]
-"545
-[; ;Modbus.c: 545:     }
+{
+"583
+[; ;Modbus.c: 583:         EUSART1_Write(data[i]);
+[e ( _EUSART1_Write (1 *U + _data * -> _i `x -> -> # *U _data `i `x ]
+"584
+[; ;Modbus.c: 584:         while(!EUSART1_is_tx_done());
+[e $U 1634  ]
+[e :U 1635 ]
+[e :U 1634 ]
+[e $ ! != -> ( _EUSART1_is_tx_done ..  `i -> 0 `i 1635  ]
+[e :U 1636 ]
+"585
+[; ;Modbus.c: 585:     }
 }
 [e ++ _i -> 1 `i ]
-[e :U 1628 ]
-[e $ < _i _data_len 1625  ]
-[e :U 1626 ]
+[e :U 1633 ]
+[e $ < _i _data_len 1630  ]
+[e :U 1631 ]
 }
-"547
-[; ;Modbus.c: 547: }
-[e :UE 1621 ]
+"587
+[; ;Modbus.c: 587: }
+[e :UE 1626 ]
 }
-"550
-[; ;Modbus.c: 550: void PrintModRespon(){
+"590
+[; ;Modbus.c: 590: void PrintModRespon(){
 [v _PrintModRespon `(v ~T0 @X0 1 ef ]
 {
 [e :U _PrintModRespon ]
 [f ]
-"552
-[; ;Modbus.c: 552:     int i=0;
+"592
+[; ;Modbus.c: 592:     int i=0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"554
-[; ;Modbus.c: 554:     printf("Modbus Response:\r\n");
-[e ( _printf :s 54C ]
-"557
-[; ;Modbus.c: 557:     if(MBRespon[1] == 0x03 || MBRespon[1] == 0x04){
-[e $ ! || == -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i -> 3 `i == -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i -> 4 `i 1633  ]
+"594
+[; ;Modbus.c: 594:     printf("Modbus Response:\r\n");
+[e ( _printf :s 60C ]
+"597
+[; ;Modbus.c: 597:     if(MBRespon[1] == 0x03 || MBRespon[1] == 0x04){
+[e $ ! || == -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i -> 3 `i == -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i -> 4 `i 1638  ]
 {
-"560
-[; ;Modbus.c: 560:         printf("   Byte 00: 0x%02x - Card Address\r\n", MBRespon[0]);
-[e ( _printf , (. :s 55C -> *U + &U _MBRespon * -> -> -> 0 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"561
-[; ;Modbus.c: 561:         printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n", MBRespon[1]);
-[e ( _printf , (. :s 56C -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"562
-[; ;Modbus.c: 562:         printf("   Byte 02: 0x%02x - Num Bytes More\r\n", MBRespon[2]);
-[e ( _printf , (. :s 57C -> *U + &U _MBRespon * -> -> -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"566
-[; ;Modbus.c: 566:         int j = 1;
+"600
+[; ;Modbus.c: 600:         printf("   Byte 00: 0x%02x - Card Address\r\n", MBRespon[0]);
+[e ( _printf , (. :s 61C -> *U + &U _MBRespon * -> -> -> 0 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"601
+[; ;Modbus.c: 601:         printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n", MBRespon[1]);
+[e ( _printf , (. :s 62C -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"602
+[; ;Modbus.c: 602:         printf("   Byte 02: 0x%02x - Num Bytes More\r\n", MBRespon[2]);
+[e ( _printf , (. :s 63C -> *U + &U _MBRespon * -> -> -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"606
+[; ;Modbus.c: 606:         int j = 1;
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 1 `i ]
-"567
-[; ;Modbus.c: 567:         for(i=0; i< MBRespon[2] ; i++ ){
+"607
+[; ;Modbus.c: 607:         for(i=0; i< MBRespon[2] ; i++ ){
 {
 [e = _i -> 0 `i ]
-[e $U 1637  ]
-[e :U 1634 ]
-{
-"568
-[; ;Modbus.c: 568:             printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x %02x)\r\n", i+1, MBRespon[i+3],j-1, ModbusData[2], ModbusData[3] +j-1);
-[e ( _printf , , , , , (. :s 58C + _i -> 1 `i -> *U + &U _MBRespon * -> -> + _i -> 3 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i - _j -> 1 `i -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _j -> 1 `i ]
-"569
-[; ;Modbus.c: 569:             i++;
-[e ++ _i -> 1 `i ]
-"570
-[; ;Modbus.c: 570:             printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i+1, MBRespon[i+3],j);
-[e ( _printf , , , (. :s 59C + _i -> 1 `i -> *U + &U _MBRespon * -> -> + _i -> 3 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i _j ]
-"571
-[; ;Modbus.c: 571:             j++;
-[e ++ _j -> 1 `i ]
-"572
-[; ;Modbus.c: 572:         }
-}
-[e ++ _i -> 1 `i ]
-[e :U 1637 ]
-[e $ < _i -> *U + &U _MBRespon * -> -> -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i 1634  ]
-[e :U 1635 ]
-}
-"575
-[; ;Modbus.c: 575:         printf("   Byte %02i: 0x%02x - CRC Hi\r\n", i +1 , MBRespon[i + 2 + 1] );
-[e ( _printf , , (. :s 60C + _i -> 1 `i -> *U + &U _MBRespon * -> -> + + _i -> 2 `i -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"576
-[; ;Modbus.c: 576:         printf("   Byte %02i: 0x%02x - CRC Lo\r\n", i +2 , MBRespon[i + 2 + 2] );
-[e ( _printf , , (. :s 61C + _i -> 2 `i -> *U + &U _MBRespon * -> -> + + _i -> 2 `i -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"578
-[; ;Modbus.c: 578:     }else if(MBRespon[1] == 0x10){
-}
-[e $U 1638  ]
-[e :U 1633 ]
-[e $ ! == -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i -> 16 `i 1639  ]
-{
-"581
-[; ;Modbus.c: 581:         printf("   Byte 00: 0x%02x - Card Address\r\n", MBRespon[0]);
-[e ( _printf , (. :s 62C -> *U + &U _MBRespon * -> -> -> 0 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"582
-[; ;Modbus.c: 582:         printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n", MBRespon[1]);
-[e ( _printf , (. :s 63C -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"583
-[; ;Modbus.c: 583:         printf("   Byte 02: 0x%02x - 1st Reg Add Hi\r\n", MBRespon[2]);
-[e ( _printf , (. :s 64C -> *U + &U _MBRespon * -> -> -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"584
-[; ;Modbus.c: 584:         printf("   Byte 03: 0x%02x - 1st Reg Add Lo\r\n", MBRespon[3]);
-[e ( _printf , (. :s 65C -> *U + &U _MBRespon * -> -> -> 3 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"585
-[; ;Modbus.c: 585:         printf("   Byte 04: 0x%02x - Num of Reg Hi\r\n", MBRespon[4]);
-[e ( _printf , (. :s 66C -> *U + &U _MBRespon * -> -> -> 4 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"586
-[; ;Modbus.c: 586:         printf("   Byte 05: 0x%02x - Num of Reg Lo\r\n", MBRespon[5]);
-[e ( _printf , (. :s 67C -> *U + &U _MBRespon * -> -> -> 5 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"590
-[; ;Modbus.c: 590:         printf("   Byte 06: 0x%02x - CRC Hi\r\n", MBRespon[6]);
-[e ( _printf , (. :s 68C -> *U + &U _MBRespon * -> -> -> 6 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"591
-[; ;Modbus.c: 591:         printf("   Byte 07: 0x%02x - CRC Hi\r\n", MBRespon[7]);
-[e ( _printf , (. :s 69C -> *U + &U _MBRespon * -> -> -> 7 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"593
-[; ;Modbus.c: 593:     }else{
-}
-[e $U 1640  ]
+[e $U 1642  ]
 [e :U 1639 ]
 {
-"594
-[; ;Modbus.c: 594:         for(i=0; i< MBResCnt ; i++ ){
-{
-[e = _i -> 0 `i ]
-[e $U 1644  ]
-[e :U 1641 ]
-{
-"595
-[; ;Modbus.c: 595:             while(!EUSART2_is_tx_ready());
-[e $U 1645  ]
-[e :U 1646 ]
-[e :U 1645 ]
-[e $ ! != -> ( _EUSART2_is_tx_ready ..  `i -> 0 `i 1646  ]
-[e :U 1647 ]
-"596
-[; ;Modbus.c: 596:             printf("   Byte %02i: 0x%02x \r\n", i, MBRespon[i]);
-[e ( _printf , , (. :s 70C _i -> *U + &U _MBRespon * -> -> _i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
-"597
-[; ;Modbus.c: 597:             while(!EUSART2_is_tx_done());
-[e $U 1648  ]
-[e :U 1649 ]
-[e :U 1648 ]
-[e $ ! != -> ( _EUSART2_is_tx_done ..  `i -> 0 `i 1649  ]
-[e :U 1650 ]
-"598
-[; ;Modbus.c: 598:         }
+"608
+[; ;Modbus.c: 608:             printf("   Byte %02i: 0x%02x - Reg %i Hi (Add. 0x%02x %02x)\r\n", i+1, MBRespon[i+3],j, ModbusData[2], ModbusData[3] +j-1);
+[e ( _printf , , , , , (. :s 64C + _i -> 1 `i -> *U + &U _MBRespon * -> -> + _i -> 3 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i _j -> *U + &U _ModbusData * -> -> -> 2 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i - + -> *U + &U _ModbusData * -> -> -> 3 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i _j -> 1 `i ]
+"609
+[; ;Modbus.c: 609:             i++;
+[e ++ _i -> 1 `i ]
+"610
+[; ;Modbus.c: 610:             printf("   Byte %02i: 0x%02x - Reg %i Lo\r\n", i+1, MBRespon[i+3],j);
+[e ( _printf , , , (. :s 65C + _i -> 1 `i -> *U + &U _MBRespon * -> -> + _i -> 3 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i _j ]
+"611
+[; ;Modbus.c: 611:             j++;
+[e ++ _j -> 1 `i ]
+"612
+[; ;Modbus.c: 612:         }
 }
 [e ++ _i -> 1 `i ]
-[e :U 1644 ]
-[e $ < _i _MBResCnt 1641  ]
 [e :U 1642 ]
-}
-"599
-[; ;Modbus.c: 599:     }
-}
+[e $ < _i -> *U + &U _MBRespon * -> -> -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i 1639  ]
 [e :U 1640 ]
-[e :U 1638 ]
-"600
-[; ;Modbus.c: 600:     printf("\r\n\n");
-[e ( _printf :s 71C ]
-"602
-[; ;Modbus.c: 602: }
-[e :UE 1632 ]
 }
-"606
-[; ;Modbus.c: 606: void ClearModbusRespon(){
+"615
+[; ;Modbus.c: 615:         printf("   Byte %02i: 0x%02x - CRC Hi\r\n", i +1 , MBRespon[i + 2 + 1] );
+[e ( _printf , , (. :s 66C + _i -> 1 `i -> *U + &U _MBRespon * -> -> + + _i -> 2 `i -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"616
+[; ;Modbus.c: 616:         printf("   Byte %02i: 0x%02x - CRC Lo\r\n", i +2 , MBRespon[i + 2 + 2] );
+[e ( _printf , , (. :s 67C + _i -> 2 `i -> *U + &U _MBRespon * -> -> + + _i -> 2 `i -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"618
+[; ;Modbus.c: 618:     }else if(MBRespon[1] == 0x10){
+}
+[e $U 1643  ]
+[e :U 1638 ]
+[e $ ! == -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i -> 16 `i 1644  ]
+{
+"621
+[; ;Modbus.c: 621:         printf("   Byte 00: 0x%02x - Card Address\r\n", MBRespon[0]);
+[e ( _printf , (. :s 68C -> *U + &U _MBRespon * -> -> -> 0 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"622
+[; ;Modbus.c: 622:         printf("   Byte 01: 0x%02x - Function Code (Read Multi Reg)\r\n", MBRespon[1]);
+[e ( _printf , (. :s 69C -> *U + &U _MBRespon * -> -> -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"623
+[; ;Modbus.c: 623:         printf("   Byte 02: 0x%02x - 1st Reg Add Hi\r\n", MBRespon[2]);
+[e ( _printf , (. :s 70C -> *U + &U _MBRespon * -> -> -> 2 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"624
+[; ;Modbus.c: 624:         printf("   Byte 03: 0x%02x - 1st Reg Add Lo\r\n", MBRespon[3]);
+[e ( _printf , (. :s 71C -> *U + &U _MBRespon * -> -> -> 3 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"625
+[; ;Modbus.c: 625:         printf("   Byte 04: 0x%02x - Num of Reg Hi\r\n", MBRespon[4]);
+[e ( _printf , (. :s 72C -> *U + &U _MBRespon * -> -> -> 4 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"626
+[; ;Modbus.c: 626:         printf("   Byte 05: 0x%02x - Num of Reg Lo\r\n", MBRespon[5]);
+[e ( _printf , (. :s 73C -> *U + &U _MBRespon * -> -> -> 5 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"630
+[; ;Modbus.c: 630:         printf("   Byte 06: 0x%02x - CRC Hi\r\n", MBRespon[6]);
+[e ( _printf , (. :s 74C -> *U + &U _MBRespon * -> -> -> 6 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"631
+[; ;Modbus.c: 631:         printf("   Byte 07: 0x%02x - CRC Hi\r\n", MBRespon[7]);
+[e ( _printf , (. :s 75C -> *U + &U _MBRespon * -> -> -> 7 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"633
+[; ;Modbus.c: 633:     }else{
+}
+[e $U 1645  ]
+[e :U 1644 ]
+{
+"634
+[; ;Modbus.c: 634:         for(i=0; i< MBResCnt ; i++ ){
+{
+[e = _i -> 0 `i ]
+[e $U 1649  ]
+[e :U 1646 ]
+{
+"635
+[; ;Modbus.c: 635:             while(!EUSART2_is_tx_ready());
+[e $U 1650  ]
+[e :U 1651 ]
+[e :U 1650 ]
+[e $ ! != -> ( _EUSART2_is_tx_ready ..  `i -> 0 `i 1651  ]
+[e :U 1652 ]
+"636
+[; ;Modbus.c: 636:             printf("   Byte %02i: 0x%02x \r\n", i, MBRespon[i]);
+[e ( _printf , , (. :s 76C _i -> *U + &U _MBRespon * -> -> _i `ui `ux -> -> # *U &U _MBRespon `ui `ux `i ]
+"637
+[; ;Modbus.c: 637:             while(!EUSART2_is_tx_done());
+[e $U 1653  ]
+[e :U 1654 ]
+[e :U 1653 ]
+[e $ ! != -> ( _EUSART2_is_tx_done ..  `i -> 0 `i 1654  ]
+[e :U 1655 ]
+"638
+[; ;Modbus.c: 638:         }
+}
+[e ++ _i -> 1 `i ]
+[e :U 1649 ]
+[e $ < _i _MBResCnt 1646  ]
+[e :U 1647 ]
+}
+"639
+[; ;Modbus.c: 639:     }
+}
+[e :U 1645 ]
+[e :U 1643 ]
+"640
+[; ;Modbus.c: 640:     printf("\r\n\n");
+[e ( _printf :s 77C ]
+"642
+[; ;Modbus.c: 642: }
+[e :UE 1637 ]
+}
+"646
+[; ;Modbus.c: 646: void ClearModbusRespon(){
 [v _ClearModbusRespon `(v ~T0 @X0 1 ef ]
 {
 [e :U _ClearModbusRespon ]
 [f ]
-"607
-[; ;Modbus.c: 607:     int i = 0;
+"647
+[; ;Modbus.c: 647:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"608
-[; ;Modbus.c: 608:     for(i=0; i<32; i++ ){
+"648
+[; ;Modbus.c: 648:     for(i=0; i<32; i++ ){
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 32 `i 1652  ]
-[e $U 1653  ]
-[e :U 1652 ]
+[e $ < _i -> 32 `i 1657  ]
+[e $U 1658  ]
+[e :U 1657 ]
 {
-"609
-[; ;Modbus.c: 609:         MBRespon[i] = 0xFF;
+"649
+[; ;Modbus.c: 649:         MBRespon[i] = 0xFF;
 [e = *U + &U _MBRespon * -> -> _i `ui `ux -> -> # *U &U _MBRespon `ui `ux -> -> 255 `i `uc ]
-"610
-[; ;Modbus.c: 610:     }
+"650
+[; ;Modbus.c: 650:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 32 `i 1652  ]
-[e :U 1653 ]
+[e $ < _i -> 32 `i 1657  ]
+[e :U 1658 ]
 }
-"611
-[; ;Modbus.c: 611: }
-[e :UE 1651 ]
+"651
+[; ;Modbus.c: 651: }
+[e :UE 1656 ]
 }
-"616
-[; ;Modbus.c: 616: void ModbusError(int ErrorCode){
+"656
+[; ;Modbus.c: 656: void ModbusError(int ErrorCode){
 [v _ModbusError `(v ~T0 @X0 1 ef1`i ]
 {
 [e :U _ModbusError ]
 [v _ErrorCode `i ~T0 @X0 1 r1 ]
 [f ]
-"619
-[; ;Modbus.c: 619:     int i = 0;
+"659
+[; ;Modbus.c: 659:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"621
-[; ;Modbus.c: 621:     MBResCnt = 0;
+"661
+[; ;Modbus.c: 661:     MBResCnt = 0;
 [e = _MBResCnt -> 0 `i ]
-"622
-[; ;Modbus.c: 622:     MBRespon[MBResCnt] = ModbusData[0];
+"662
+[; ;Modbus.c: 662:     MBRespon[MBResCnt] = ModbusData[0];
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux ]
-"623
-[; ;Modbus.c: 623:     MBResCnt++;
+"663
+[; ;Modbus.c: 663:     MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"624
-[; ;Modbus.c: 624:     MBRespon[MBResCnt] = ModbusData[1] + 128;
+"664
+[; ;Modbus.c: 664:     MBRespon[MBResCnt] = ModbusData[1] + 128;
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> + -> *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 128 `i `uc ]
-"625
-[; ;Modbus.c: 625:     MBResCnt++;
+"665
+[; ;Modbus.c: 665:     MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"626
-[; ;Modbus.c: 626:     MBRespon[MBResCnt] = ErrorCode;
+"666
+[; ;Modbus.c: 666:     MBRespon[MBResCnt] = ErrorCode;
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ErrorCode `uc ]
-"627
-[; ;Modbus.c: 627:     MBResCnt++;
+"667
+[; ;Modbus.c: 667:     MBResCnt++;
 [e ++ _MBResCnt -> 1 `i ]
-"629
-[; ;Modbus.c: 629:     ByteHi = generateCRC(MBResCnt, 1);
+"669
+[; ;Modbus.c: 669:     ByteHi = generateCRC(MBResCnt, 1);
 [e = _ByteHi -> ( _generateCRC (2 , _MBResCnt -> -> 1 `i `a `i ]
-"630
-[; ;Modbus.c: 630:     ByteLo = generateCRC(MBResCnt, 0);
+"670
+[; ;Modbus.c: 670:     ByteLo = generateCRC(MBResCnt, 0);
 [e = _ByteLo -> ( _generateCRC (2 , _MBResCnt -> -> 0 `i `a `i ]
-"632
-[; ;Modbus.c: 632:     MBRespon[MBResCnt] = ByteHi;
+"672
+[; ;Modbus.c: 672:     MBRespon[MBResCnt] = ByteHi;
 [e = *U + &U _MBRespon * -> -> _MBResCnt `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteHi `uc ]
-"633
-[; ;Modbus.c: 633:     MBRespon[MBResCnt +1] = ByteLo;
+"673
+[; ;Modbus.c: 673:     MBRespon[MBResCnt +1] = ByteLo;
 [e = *U + &U _MBRespon * -> -> + _MBResCnt -> 1 `i `ui `ux -> -> # *U &U _MBRespon `ui `ux -> _ByteLo `uc ]
-"634
-[; ;Modbus.c: 634:     MBResCnt = MBResCnt +2;
+"674
+[; ;Modbus.c: 674:     MBResCnt = MBResCnt +2;
 [e = _MBResCnt + _MBResCnt -> 2 `i ]
-"636
-[; ;Modbus.c: 636:     UART1_Write_string(MBRespon,MBResCnt);
+"676
+[; ;Modbus.c: 676:     UART1_Write_string(MBRespon,MBResCnt);
 [e ( _UART1_Write_string (2 , &U _MBRespon _MBResCnt ]
-"638
-[; ;Modbus.c: 638: }
-[e :UE 1655 ]
+"678
+[; ;Modbus.c: 678: }
+[e :UE 1660 ]
 }
-"642
-[; ;Modbus.c: 642: _Bool ModbusRx(){
+"682
+[; ;Modbus.c: 682: _Bool ModbusRx(){
 [v _ModbusRx `(a ~T0 @X0 1 ef ]
 {
 [e :U _ModbusRx ]
 [f ]
-"643
-[; ;Modbus.c: 643:     RXMode();
+"683
+[; ;Modbus.c: 683:     RXMode();
 [e ( _RXMode ..  ]
-"644
-[; ;Modbus.c: 644:     if(EUSART1_is_rx_ready()){
-[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1657  ]
-{
-"645
-[; ;Modbus.c: 645:         if(Debug ==1){
-[e $ ! == -> _Debug `i -> 1 `i 1658  ]
-{
-"646
-[; ;Modbus.c: 646:             printf("\r\nSomething in ESUART1 \r\n");
-[e ( _printf :s 72C ]
-"647
-[; ;Modbus.c: 647:         }
-}
-[e :U 1658 ]
-"648
-[; ;Modbus.c: 648:         do{
-[e :U 1661 ]
-{
-"649
-[; ;Modbus.c: 649:             if(EUSART1_is_rx_ready()){
+"684
+[; ;Modbus.c: 684:     if(EUSART1_is_rx_ready()){
 [e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1662  ]
 {
-"651
-[; ;Modbus.c: 651:                 while(EUSART1_is_rx_ready()){
-[e $U 1663  ]
-[e :U 1664 ]
+"685
+[; ;Modbus.c: 685:         if(Debug ==1){
+[e $ ! == -> _Debug `i -> 1 `i 1663  ]
 {
-"653
-[; ;Modbus.c: 653:                     rxData[ByteNum] = EUSART1_Read();
-[e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
-"654
-[; ;Modbus.c: 654:                     ByteNum++;
-[e ++ _ByteNum -> 1 `i ]
-"655
-[; ;Modbus.c: 655:                 }
+"686
+[; ;Modbus.c: 686:             printf("\r\nSomething in ESUART1 \r\n");
+[e ( _printf :s 78C ]
+"687
+[; ;Modbus.c: 687:         }
 }
 [e :U 1663 ]
-"651
-[; ;Modbus.c: 651:                 while(EUSART1_is_rx_ready()){
-[e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1664  ]
-[e :U 1665 ]
-"657
-[; ;Modbus.c: 657:                 RXStat = 1;
-[e = _RXStat -> -> 1 `i `a ]
-"658
-[; ;Modbus.c: 658:             }
-}
-[e :U 1662 ]
-"660
-[; ;Modbus.c: 660:             if(RXStat ==1){
-[e $ ! == -> _RXStat `i -> 1 `i 1666  ]
+"688
+[; ;Modbus.c: 688:         do{
+[e :U 1666 ]
 {
-"663
-[; ;Modbus.c: 663:                 AddRxBuffToModBus();
-[e ( _AddRxBuffToModBus ..  ]
-"664
-[; ;Modbus.c: 664:                 ClearRxBuff();
-[e ( _ClearRxBuff ..  ]
-"665
-[; ;Modbus.c: 665:                 RXStat = 0;
-[e = _RXStat -> -> 0 `i `a ]
-"666
-[; ;Modbus.c: 666:                 ByteNum = 0;
-[e = _ByteNum -> 0 `i ]
-"667
-[; ;Modbus.c: 667:                 do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+"689
+[; ;Modbus.c: 689:             if(EUSART1_is_rx_ready()){
+[e $ ! != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1667  ]
+{
+"691
+[; ;Modbus.c: 691:                 while(EUSART1_is_rx_ready()){
+[e $U 1668  ]
 [e :U 1669 ]
+{
+"693
+[; ;Modbus.c: 693:                     rxData[ByteNum] = EUSART1_Read();
+[e = *U + &U _rxData * -> -> _ByteNum `ui `ux -> -> # *U &U _rxData `ui `ux ( _EUSART1_Read ..  ]
+"694
+[; ;Modbus.c: 694:                     ByteNum++;
+[e ++ _ByteNum -> 1 `i ]
+"695
+[; ;Modbus.c: 695:                 }
+}
+[e :U 1668 ]
+"691
+[; ;Modbus.c: 691:                 while(EUSART1_is_rx_ready()){
+[e $ != -> ( _EUSART1_is_rx_ready ..  `i -> 0 `i 1669  ]
+[e :U 1670 ]
+"697
+[; ;Modbus.c: 697:                 RXStat = 1;
+[e = _RXStat -> -> 1 `i `a ]
+"698
+[; ;Modbus.c: 698:             }
+}
+[e :U 1667 ]
+"700
+[; ;Modbus.c: 700:             if(RXStat ==1){
+[e $ ! == -> _RXStat `i -> 1 `i 1671  ]
+{
+"703
+[; ;Modbus.c: 703:                 AddRxBuffToModBus();
+[e ( _AddRxBuffToModBus ..  ]
+"704
+[; ;Modbus.c: 704:                 ClearRxBuff();
+[e ( _ClearRxBuff ..  ]
+"705
+[; ;Modbus.c: 705:                 RXStat = 0;
+[e = _RXStat -> -> 0 `i `a ]
+"706
+[; ;Modbus.c: 706:                 ByteNum = 0;
+[e = _ByteNum -> 0 `i ]
+"707
+[; ;Modbus.c: 707:                 do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+[e :U 1674 ]
 {
 [e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
 }
-[e :U 1668 ]
-"668
-[; ;Modbus.c: 668:             }
+[e :U 1673 ]
+"708
+[; ;Modbus.c: 708:             }
 }
-[e :U 1666 ]
-"671
-[; ;Modbus.c: 671:         }while(ModDataCnt != ExpectedBytes);
+[e :U 1671 ]
+"711
+[; ;Modbus.c: 711:         }while(ModDataCnt != ExpectedBytes);
 }
-[e $ != _ModDataCnt _ExpectedBytes 1661  ]
-[e :U 1660 ]
-"673
-[; ;Modbus.c: 673:         do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
-[e :U 1672 ]
+[e $ != _ModDataCnt _ExpectedBytes 1666  ]
+[e :U 1665 ]
+"713
+[; ;Modbus.c: 713:         do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+[e :U 1677 ]
 {
 [e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
 }
-[e :U 1671 ]
-"676
-[; ;Modbus.c: 676:         if(checkCRC() == 1)
-[e $ ! == -> ( _checkCRC ..  `i -> 1 `i 1673  ]
-"677
-[; ;Modbus.c: 677:         {
-{
-"678
-[; ;Modbus.c: 678:             if(Address == ModbusData[0] || ModbusData[0] == 0x00){
-[e $ ! || == _Address -> *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui == -> *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i 1674  ]
-{
-"679
-[; ;Modbus.c: 679:                 printf("\r\nReceived Modbus CRC Good and Address IS for me.\r\n");
-[e ( _printf :s 73C ]
-"680
-[; ;Modbus.c: 680:                 return 1;
-[e ) -> -> 1 `i `a ]
-[e $UE 1656  ]
-"681
-[; ;Modbus.c: 681:             }else{
-}
-[e $U 1675  ]
-[e :U 1674 ]
-{
-"682
-[; ;Modbus.c: 682:                 printf("\r\nReceived Modbus CRC Good but Address NOT for me.\r\n");
-[e ( _printf :s 74C ]
-"683
-[; ;Modbus.c: 683:                 ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"684
-[; ;Modbus.c: 684:                 return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 1656  ]
-"685
-[; ;Modbus.c: 685:             }
-}
-[e :U 1675 ]
-"686
-[; ;Modbus.c: 686:         }else{
-}
-[e $U 1676  ]
-[e :U 1673 ]
-{
-"687
-[; ;Modbus.c: 687:             printf("\r\nReceived Modbus CRC is bad.\r\n\n");
-[e ( _printf :s 75C ]
-"688
-[; ;Modbus.c: 688:             return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 1656  ]
-"689
-[; ;Modbus.c: 689:         }
-}
 [e :U 1676 ]
-"691
-[; ;Modbus.c: 691:     }
+"716
+[; ;Modbus.c: 716:         if(checkCRC() == 1)
+[e $ ! == -> ( _checkCRC ..  `i -> 1 `i 1678  ]
+"717
+[; ;Modbus.c: 717:         {
+{
+"718
+[; ;Modbus.c: 718:             if(Address == ModbusData[0] || ModbusData[0] == 0x00){
+[e $ ! || == _Address -> *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `ui == -> *U + &U _ModbusData * -> -> -> 0 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i -> 0 `i 1679  ]
+{
+"719
+[; ;Modbus.c: 719:                 printf("\r\nReceived Modbus CRC Good and Address IS for me.\r\n");
+[e ( _printf :s 79C ]
+"720
+[; ;Modbus.c: 720:                 return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 1661  ]
+"721
+[; ;Modbus.c: 721:             }else{
 }
-[e :U 1657 ]
-"692
-[; ;Modbus.c: 692:     return 0;
+[e $U 1680  ]
+[e :U 1679 ]
+{
+"722
+[; ;Modbus.c: 722:                 printf("\r\nReceived Modbus CRC Good but Address NOT for me.\r\n");
+[e ( _printf :s 80C ]
+"723
+[; ;Modbus.c: 723:                 ClearModbusData();
+[e ( _ClearModbusData ..  ]
+"724
+[; ;Modbus.c: 724:                 return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 1656  ]
-"694
-[; ;Modbus.c: 694: }
-[e :UE 1656 ]
+[e $UE 1661  ]
+"725
+[; ;Modbus.c: 725:             }
+}
+[e :U 1680 ]
+"726
+[; ;Modbus.c: 726:         }else{
+}
+[e $U 1681  ]
+[e :U 1678 ]
+{
+"727
+[; ;Modbus.c: 727:             printf("\r\nReceived Modbus CRC is bad.\r\n\n");
+[e ( _printf :s 81C ]
+"728
+[; ;Modbus.c: 728:             return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 1661  ]
+"729
+[; ;Modbus.c: 729:         }
+}
+[e :U 1681 ]
+"731
+[; ;Modbus.c: 731:     }
+}
+[e :U 1662 ]
+"732
+[; ;Modbus.c: 732:     return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 1661  ]
+"734
+[; ;Modbus.c: 734: }
+[e :UE 1661 ]
 }
 [p f _printf 12615812 ]
 [a 24C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 29C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 32C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 35C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 38C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 41C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 44C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 47C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
-[a 45C 82 101 113 117 101 115 116 101 100 32 65 110 97 108 111 103 117 101 32 73 110 112 117 116 115 13 10 0 ]
+[a 26C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 31C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 34C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 37C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 40C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 43C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 46C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 49C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 52C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 57C 82 101 113 117 101 115 116 101 100 58 32 48 120 37 48 52 120 32 116 111 32 48 120 37 48 52 120 13 10 0 ]
+[a 50C 82 101 113 117 101 115 116 101 100 32 65 110 97 108 111 103 117 101 32 73 110 112 117 116 115 13 10 0 ]
 [a 3C 32 32 32 66 121 116 101 32 48 48 58 32 48 120 37 48 50 120 32 45 32 67 97 114 100 32 65 100 100 114 101 115 115 13 10 0 ]
 [a 11C 32 32 32 66 121 116 101 32 48 48 58 32 48 120 37 48 50 120 32 45 32 67 97 114 100 32 65 100 100 114 101 115 115 13 10 0 ]
-[a 55C 32 32 32 66 121 116 101 32 48 48 58 32 48 120 37 48 50 120 32 45 32 67 97 114 100 32 65 100 100 114 101 115 115 13 10 0 ]
-[a 62C 32 32 32 66 121 116 101 32 48 48 58 32 48 120 37 48 50 120 32 45 32 67 97 114 100 32 65 100 100 114 101 115 115 13 10 0 ]
+[a 61C 32 32 32 66 121 116 101 32 48 48 58 32 48 120 37 48 50 120 32 45 32 67 97 114 100 32 65 100 100 114 101 115 115 13 10 0 ]
+[a 68C 32 32 32 66 121 116 101 32 48 48 58 32 48 120 37 48 50 120 32 45 32 67 97 114 100 32 65 100 100 114 101 115 115 13 10 0 ]
 [a 19C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 82 101 103 32 37 105 32 76 111 13 10 0 ]
-[a 59C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 82 101 103 32 37 105 32 76 111 13 10 0 ]
+[a 65C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 82 101 103 32 37 105 32 76 111 13 10 0 ]
 [a 8C 32 32 32 66 121 116 101 32 48 53 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 76 111 13 10 0 ]
 [a 16C 32 32 32 66 121 116 101 32 48 53 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 76 111 13 10 0 ]
-[a 67C 32 32 32 66 121 116 101 32 48 53 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 76 111 13 10 0 ]
+[a 73C 32 32 32 66 121 116 101 32 48 53 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 76 111 13 10 0 ]
 [a 6C 32 32 32 66 121 116 101 32 48 51 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 76 111 13 10 0 ]
 [a 14C 32 32 32 66 121 116 101 32 48 51 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 76 111 13 10 0 ]
-[a 65C 32 32 32 66 121 116 101 32 48 51 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 76 111 13 10 0 ]
+[a 71C 32 32 32 66 121 116 101 32 48 51 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 76 111 13 10 0 ]
 [a 21C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 76 111 13 10 0 ]
-[a 61C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 76 111 13 10 0 ]
+[a 67C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 76 111 13 10 0 ]
 [a 10C 32 32 32 66 121 116 101 32 48 55 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 76 111 13 10 0 ]
-[a 33C 82 101 113 117 101 115 116 101 100 32 82 101 118 105 115 105 111 110 13 10 0 ]
+[a 35C 82 101 113 117 101 115 116 101 100 32 82 101 118 105 115 105 111 110 13 10 0 ]
 [a 7C 32 32 32 66 121 116 101 32 48 52 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 72 105 13 10 0 ]
 [a 15C 32 32 32 66 121 116 101 32 48 52 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 72 105 13 10 0 ]
-[a 66C 32 32 32 66 121 116 101 32 48 52 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 72 105 13 10 0 ]
+[a 72C 32 32 32 66 121 116 101 32 48 52 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 111 102 32 82 101 103 32 72 105 13 10 0 ]
 [a 5C 32 32 32 66 121 116 101 32 48 50 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 72 105 13 10 0 ]
 [a 13C 32 32 32 66 121 116 101 32 48 50 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 72 105 13 10 0 ]
-[a 64C 32 32 32 66 121 116 101 32 48 50 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 72 105 13 10 0 ]
+[a 70C 32 32 32 66 121 116 101 32 48 50 58 32 48 120 37 48 50 120 32 45 32 49 115 116 32 82 101 103 32 65 100 100 32 72 105 13 10 0 ]
 [a 20C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
-[a 60C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
-[a 69C 32 32 32 66 121 116 101 32 48 55 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
+[a 66C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
+[a 75C 32 32 32 66 121 116 101 32 48 55 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
 [a 9C 32 32 32 66 121 116 101 32 48 54 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
-[a 68C 32 32 32 66 121 116 101 32 48 54 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
-[a 39C 82 101 113 117 101 115 116 101 100 32 67 111 109 112 105 108 101 32 68 97 116 101 13 10 0 ]
+[a 74C 32 32 32 66 121 116 101 32 48 54 58 32 48 120 37 48 50 120 32 45 32 67 82 67 32 72 105 13 10 0 ]
+[a 47C 82 101 113 117 101 115 116 101 100 32 71 80 73 79 32 67 111 117 110 116 32 67 111 110 102 105 103 13 10 0 ]
+[a 41C 82 101 113 117 101 115 116 101 100 32 67 111 109 112 105 108 101 32 68 97 116 101 13 10 0 ]
 [a 17C 32 32 32 66 121 116 101 32 48 54 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 66 121 116 101 115 32 77 111 114 101 13 10 0 ]
-[a 57C 32 32 32 66 121 116 101 32 48 50 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 66 121 116 101 115 32 77 111 114 101 13 10 0 ]
-[a 42C 82 101 113 117 101 115 116 101 100 32 67 111 109 112 105 108 101 32 84 105 109 101 13 10 0 ]
-[a 27C 82 101 113 117 101 115 116 101 100 32 67 105 114 99 117 105 116 32 68 97 116 97 13 10 0 ]
-[a 54C 77 111 100 98 117 115 32 82 101 115 112 111 110 115 101 58 13 10 0 ]
+[a 63C 32 32 32 66 121 116 101 32 48 50 58 32 48 120 37 48 50 120 32 45 32 78 117 109 32 66 121 116 101 115 32 77 111 114 101 13 10 0 ]
+[a 44C 82 101 113 117 101 115 116 101 100 32 67 111 109 112 105 108 101 32 84 105 109 101 13 10 0 ]
+[a 29C 82 101 113 117 101 115 116 101 100 32 67 105 114 99 117 105 116 32 68 97 116 97 13 10 0 ]
+[a 60C 77 111 100 98 117 115 32 82 101 115 112 111 110 115 101 58 13 10 0 ]
 [a 2C 13 10 77 111 100 98 117 115 32 82 101 99 101 105 118 101 100 58 13 10 0 ]
-[a 30C 82 101 113 117 101 115 116 101 100 32 80 97 114 116 32 78 111 46 13 10 0 ]
-[a 36C 82 101 113 117 101 115 116 101 100 32 83 101 114 105 97 108 32 78 111 46 13 10 0 ]
-[a 74C 13 10 82 101 99 101 105 118 101 100 32 77 111 100 98 117 115 32 67 82 67 32 71 111 111 100 32 98 117 116 32 65 100 100 114 101 115 115 32 78 79 84 32 102 111 114 32 109 101 46 13 10 0 ]
-[a 73C 13 10 82 101 99 101 105 118 101 100 32 77 111 100 98 117 115 32 67 82 67 32 71 111 111 100 32 97 110 100 32 65 100 100 114 101 115 115 32 73 83 32 102 111 114 32 109 101 46 13 10 0 ]
-[a 31C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 49 48 48 32 116 111 32 48 120 48 49 48 56 46 13 10 0 ]
-[a 40C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 52 48 48 32 116 111 32 48 120 48 52 48 53 46 13 10 0 ]
-[a 37C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 51 48 48 32 116 111 32 48 120 48 51 48 52 46 13 10 0 ]
-[a 43C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 53 48 48 32 116 111 32 48 120 48 53 48 51 46 13 10 0 ]
-[a 34C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 53 49 50 46 13 10 0 ]
-[a 46C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 54 48 48 32 116 111 32 48 120 48 54 48 50 46 13 10 0 ]
-[a 23C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 48 48 48 32 116 111 32 48 120 48 48 51 49 46 13 10 0 ]
-[a 28C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 48 48 48 32 116 111 32 48 120 48 48 51 49 46 13 10 0 ]
-[a 51C 82 101 113 117 101 115 116 101 100 32 114 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 32 32 48 120 48 48 48 48 32 116 111 32 48 120 48 50 48 46 13 10 0 ]
-[a 58C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 82 101 103 32 37 105 32 72 105 32 40 65 100 100 46 32 48 120 37 48 50 120 32 37 48 50 120 41 13 10 0 ]
+[a 23C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 48 48 48 32 116 111 32 48 120 37 48 52 120 46 13 10 0 ]
+[a 30C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 48 48 48 32 116 111 32 48 120 37 48 52 120 46 13 10 0 ]
+[a 56C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 48 48 48 32 116 111 32 48 120 37 48 52 120 46 13 10 0 ]
+[a 32C 82 101 113 117 101 115 116 101 100 32 80 97 114 116 32 78 111 46 13 10 0 ]
+[a 38C 82 101 113 117 101 115 116 101 100 32 83 101 114 105 97 108 32 78 111 46 13 10 0 ]
+[a 80C 13 10 82 101 99 101 105 118 101 100 32 77 111 100 98 117 115 32 67 82 67 32 71 111 111 100 32 98 117 116 32 65 100 100 114 101 115 115 32 78 79 84 32 102 111 114 32 109 101 46 13 10 0 ]
+[a 79C 13 10 82 101 99 101 105 118 101 100 32 77 111 100 98 117 115 32 67 82 67 32 71 111 111 100 32 97 110 100 32 65 100 100 114 101 115 115 32 73 83 32 102 111 114 32 109 101 46 13 10 0 ]
+[a 33C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 49 48 48 32 116 111 32 48 120 48 49 48 56 46 13 10 0 ]
+[a 42C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 52 48 48 32 116 111 32 48 120 48 52 48 53 46 13 10 0 ]
+[a 51C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 55 48 48 32 116 111 32 48 120 48 55 48 52 46 13 10 0 ]
+[a 39C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 51 48 48 32 116 111 32 48 120 48 51 48 52 46 13 10 0 ]
+[a 45C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 53 48 48 32 116 111 32 48 120 48 53 48 51 46 13 10 0 ]
+[a 36C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 53 49 50 46 13 10 0 ]
+[a 25C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 48 48 48 32 116 111 32 48 120 48 48 51 49 46 13 10 0 ]
+[a 48C 82 101 103 105 115 116 101 114 115 32 111 117 116 32 111 102 32 114 97 110 103 101 46 13 10 86 97 108 105 100 58 32 48 120 48 54 48 48 32 116 111 32 48 120 48 54 48 49 46 13 10 0 ]
+[a 64C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 82 101 103 32 37 105 32 72 105 32 40 65 100 100 46 32 48 120 37 48 50 120 32 37 48 50 120 41 13 10 0 ]
 [a 18C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 45 32 82 101 103 32 37 105 32 72 105 32 40 65 100 100 46 32 48 120 37 48 50 120 37 48 50 120 32 47 32 67 105 114 99 117 105 116 32 37 105 41 13 10 0 ]
 [a 12C 32 32 32 66 121 116 101 32 48 49 58 32 48 120 37 48 50 120 32 45 32 70 117 110 99 116 105 111 110 32 67 111 100 101 32 40 87 114 105 116 101 32 77 117 108 116 105 32 82 101 103 41 13 10 0 ]
 [a 4C 32 32 32 66 121 116 101 32 48 49 58 32 48 120 37 48 50 120 32 45 32 70 117 110 99 116 105 111 110 32 67 111 100 101 32 40 82 101 97 100 32 77 117 108 116 105 32 82 101 103 41 13 10 0 ]
-[a 56C 32 32 32 66 121 116 101 32 48 49 58 32 48 120 37 48 50 120 32 45 32 70 117 110 99 116 105 111 110 32 67 111 100 101 32 40 82 101 97 100 32 77 117 108 116 105 32 82 101 103 41 13 10 0 ]
-[a 63C 32 32 32 66 121 116 101 32 48 49 58 32 48 120 37 48 50 120 32 45 32 70 117 110 99 116 105 111 110 32 67 111 100 101 32 40 82 101 97 100 32 77 117 108 116 105 32 82 101 103 41 13 10 0 ]
+[a 62C 32 32 32 66 121 116 101 32 48 49 58 32 48 120 37 48 50 120 32 45 32 70 117 110 99 116 105 111 110 32 67 111 100 101 32 40 82 101 97 100 32 77 117 108 116 105 32 82 101 103 41 13 10 0 ]
+[a 69C 32 32 32 66 121 116 101 32 48 49 58 32 48 120 37 48 50 120 32 45 32 70 117 110 99 116 105 111 110 32 67 111 100 101 32 40 82 101 97 100 32 77 117 108 116 105 32 82 101 103 41 13 10 0 ]
 [a 1C 32 32 32 82 101 103 58 32 37 105 32 68 97 116 97 58 32 48 120 37 48 52 120 32 13 10 0 ]
-[a 48C 65 68 67 58 32 48 120 37 48 52 120 32 13 10 0 ]
-[a 70C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 13 10 0 ]
-[a 72C 13 10 83 111 109 101 116 104 105 110 103 32 105 110 32 69 83 85 65 82 84 49 32 13 10 0 ]
+[a 53C 65 68 67 58 32 48 120 37 48 52 120 32 13 10 0 ]
+[a 76C 32 32 32 66 121 116 101 32 37 48 50 105 58 32 48 120 37 48 50 120 32 13 10 0 ]
+[a 78C 13 10 83 111 109 101 116 104 105 110 103 32 105 110 32 69 83 85 65 82 84 49 32 13 10 0 ]
 [a 22C 13 10 0 ]
-[a 75C 13 10 82 101 99 101 105 118 101 100 32 77 111 100 98 117 115 32 67 82 67 32 105 115 32 98 97 100 46 13 10 10 0 ]
-[a 25C 79 112 101 114 97 116 105 111 110 32 83 117 99 99 101 115 115 102 117 108 32 13 10 10 0 ]
-[a 49C 79 112 101 114 97 116 105 111 110 32 83 117 99 99 101 115 115 102 117 108 32 13 10 10 0 ]
-[a 52C 79 112 101 114 97 116 105 111 110 32 83 117 99 99 101 115 115 102 117 108 32 13 10 10 0 ]
-[a 26C 79 112 101 114 97 116 105 111 110 32 70 97 105 108 101 100 32 13 10 10 0 ]
-[a 50C 79 112 101 114 97 116 105 111 110 32 70 97 105 108 101 100 32 13 10 10 0 ]
-[a 53C 79 112 101 114 97 116 105 111 110 32 70 97 105 108 101 100 32 13 10 10 0 ]
-[a 71C 13 10 10 0 ]
+[a 81C 13 10 82 101 99 101 105 118 101 100 32 77 111 100 98 117 115 32 67 82 67 32 105 115 32 98 97 100 46 13 10 10 0 ]
+[a 27C 79 112 101 114 97 116 105 111 110 32 83 117 99 99 101 115 115 102 117 108 32 13 10 10 0 ]
+[a 54C 79 112 101 114 97 116 105 111 110 32 83 117 99 99 101 115 115 102 117 108 32 13 10 10 0 ]
+[a 58C 79 112 101 114 97 116 105 111 110 32 83 117 99 99 101 115 115 102 117 108 32 13 10 10 0 ]
+[a 28C 79 112 101 114 97 116 105 111 110 32 70 97 105 108 101 100 32 13 10 10 0 ]
+[a 55C 79 112 101 114 97 116 105 111 110 32 70 97 105 108 101 100 32 13 10 10 0 ]
+[a 59C 79 112 101 114 97 116 105 111 110 32 70 97 105 108 101 100 32 13 10 10 0 ]
+[a 77C 13 10 10 0 ]
