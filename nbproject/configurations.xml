@@ -42,6 +42,8 @@
       <itemPath>main.c</itemPath>
       <itemPath>Modbus.c</itemPath>
       <itemPath>RS232.c</itemPath>
+      <itemPath>shift.c</itemPath>
+      <itemPath>shift.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

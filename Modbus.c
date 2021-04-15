@@ -704,13 +704,13 @@ bool ModbusRx(){
                 ClearRxBuff();  // Emptry rxData ready for next load
                 RXStat = 0;     // rxData has everything flag
                 ByteNum = 0;    // Reset num bytes in buffer to 0
-                D2LED_Toggle();
+                // D2LED_Toggle();
             }
             
             
         }while(ModDataCnt != ExpectedBytes);
 
-        D3LED_Toggle();
+        // D3LED_Toggle();
         
         // generateCRC(ModDataCnt);
         if(checkCRC() == 1)

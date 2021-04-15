@@ -5,6 +5,7 @@
 #include "Modbus.h"
 #include "RS232.h"
 #include "main.h"
+#include "shift.h"
 
 /*
  
@@ -51,7 +52,8 @@ void main(void)
 
     RXMode();
     ClearRxBuff();
-    ClearModbusRespon(); 
+    ClearModbusRespon();
+    SIPOReset();
     
     bool RXStat = 0;
     
@@ -80,7 +82,7 @@ void main(void)
                         PrintMB400();   // Print Write Register
                     }
                     ModbusFC10();   // Perform Modbus Update of Write register.
-                    // ShiftWrite();    // Sam's function to write to shift reg 
+                    ShiftWrite();    // Sam's function to write to shift reg 
                     if(Debug ==1){
                         printf("Modbus Register After Update: \r\n");
                         PrintMB400();   // Print Write Register

@@ -10,4 +10,5 @@ mcc_generated_files/eusart2.h  \
 mcc_generated_files/adcc.h  \
 Modbus.h  \
 RS232.h  \
-main.h 
+main.h  \
+shift.h 

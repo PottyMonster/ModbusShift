@@ -209,6 +209,86 @@
 #define RB1_SetAnalogMode()         do { ANSELBbits.ANSELB1 = 1; } while(0)
 #define RB1_SetDigitalMode()        do { ANSELBbits.ANSELB1 = 0; } while(0)
 
+// get/set SIPO_DS aliases
+#define SIPO_DS_TRIS                 TRISCbits.TRISC0
+#define SIPO_DS_LAT                  LATCbits.LATC0
+#define SIPO_DS_PORT                 PORTCbits.RC0
+#define SIPO_DS_WPU                  WPUCbits.WPUC0
+#define SIPO_DS_OD                   ODCONCbits.ODCC0
+#define SIPO_DS_ANS                  ANSELCbits.ANSELC0
+#define SIPO_DS_SetHigh()            do { LATCbits.LATC0 = 1; } while(0)
+#define SIPO_DS_SetLow()             do { LATCbits.LATC0 = 0; } while(0)
+#define SIPO_DS_Toggle()             do { LATCbits.LATC0 = ~LATCbits.LATC0; } while(0)
+#define SIPO_DS_GetValue()           PORTCbits.RC0
+#define SIPO_DS_SetDigitalInput()    do { TRISCbits.TRISC0 = 1; } while(0)
+#define SIPO_DS_SetDigitalOutput()   do { TRISCbits.TRISC0 = 0; } while(0)
+#define SIPO_DS_SetPullup()          do { WPUCbits.WPUC0 = 1; } while(0)
+#define SIPO_DS_ResetPullup()        do { WPUCbits.WPUC0 = 0; } while(0)
+#define SIPO_DS_SetPushPull()        do { ODCONCbits.ODCC0 = 0; } while(0)
+#define SIPO_DS_SetOpenDrain()       do { ODCONCbits.ODCC0 = 1; } while(0)
+#define SIPO_DS_SetAnalogMode()      do { ANSELCbits.ANSELC0 = 1; } while(0)
+#define SIPO_DS_SetDigitalMode()     do { ANSELCbits.ANSELC0 = 0; } while(0)
+
+// get/set SIPO_SHCP aliases
+#define SIPO_SHCP_TRIS                 TRISCbits.TRISC1
+#define SIPO_SHCP_LAT                  LATCbits.LATC1
+#define SIPO_SHCP_PORT                 PORTCbits.RC1
+#define SIPO_SHCP_WPU                  WPUCbits.WPUC1
+#define SIPO_SHCP_OD                   ODCONCbits.ODCC1
+#define SIPO_SHCP_ANS                  ANSELCbits.ANSELC1
+#define SIPO_SHCP_SetHigh()            do { LATCbits.LATC1 = 1; } while(0)
+#define SIPO_SHCP_SetLow()             do { LATCbits.LATC1 = 0; } while(0)
+#define SIPO_SHCP_Toggle()             do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0)
+#define SIPO_SHCP_GetValue()           PORTCbits.RC1
+#define SIPO_SHCP_SetDigitalInput()    do { TRISCbits.TRISC1 = 1; } while(0)
+#define SIPO_SHCP_SetDigitalOutput()   do { TRISCbits.TRISC1 = 0; } while(0)
+#define SIPO_SHCP_SetPullup()          do { WPUCbits.WPUC1 = 1; } while(0)
+#define SIPO_SHCP_ResetPullup()        do { WPUCbits.WPUC1 = 0; } while(0)
+#define SIPO_SHCP_SetPushPull()        do { ODCONCbits.ODCC1 = 0; } while(0)
+#define SIPO_SHCP_SetOpenDrain()       do { ODCONCbits.ODCC1 = 1; } while(0)
+#define SIPO_SHCP_SetAnalogMode()      do { ANSELCbits.ANSELC1 = 1; } while(0)
+#define SIPO_SHCP_SetDigitalMode()     do { ANSELCbits.ANSELC1 = 0; } while(0)
+
+// get/set SIPO_STCP aliases
+#define SIPO_STCP_TRIS                 TRISCbits.TRISC2
+#define SIPO_STCP_LAT                  LATCbits.LATC2
+#define SIPO_STCP_PORT                 PORTCbits.RC2
+#define SIPO_STCP_WPU                  WPUCbits.WPUC2
+#define SIPO_STCP_OD                   ODCONCbits.ODCC2
+#define SIPO_STCP_ANS                  ANSELCbits.ANSELC2
+#define SIPO_STCP_SetHigh()            do { LATCbits.LATC2 = 1; } while(0)
+#define SIPO_STCP_SetLow()             do { LATCbits.LATC2 = 0; } while(0)
+#define SIPO_STCP_Toggle()             do { LATCbits.LATC2 = ~LATCbits.LATC2; } while(0)
+#define SIPO_STCP_GetValue()           PORTCbits.RC2
+#define SIPO_STCP_SetDigitalInput()    do { TRISCbits.TRISC2 = 1; } while(0)
+#define SIPO_STCP_SetDigitalOutput()   do { TRISCbits.TRISC2 = 0; } while(0)
+#define SIPO_STCP_SetPullup()          do { WPUCbits.WPUC2 = 1; } while(0)
+#define SIPO_STCP_ResetPullup()        do { WPUCbits.WPUC2 = 0; } while(0)
+#define SIPO_STCP_SetPushPull()        do { ODCONCbits.ODCC2 = 0; } while(0)
+#define SIPO_STCP_SetOpenDrain()       do { ODCONCbits.ODCC2 = 1; } while(0)
+#define SIPO_STCP_SetAnalogMode()      do { ANSELCbits.ANSELC2 = 1; } while(0)
+#define SIPO_STCP_SetDigitalMode()     do { ANSELCbits.ANSELC2 = 0; } while(0)
+
+// get/set SIPO_Reset aliases
+#define SIPO_Reset_TRIS                 TRISCbits.TRISC3
+#define SIPO_Reset_LAT                  LATCbits.LATC3
+#define SIPO_Reset_PORT                 PORTCbits.RC3
+#define SIPO_Reset_WPU                  WPUCbits.WPUC3
+#define SIPO_Reset_OD                   ODCONCbits.ODCC3
+#define SIPO_Reset_ANS                  ANSELCbits.ANSELC3
+#define SIPO_Reset_SetHigh()            do { LATCbits.LATC3 = 1; } while(0)
+#define SIPO_Reset_SetLow()             do { LATCbits.LATC3 = 0; } while(0)
+#define SIPO_Reset_Toggle()             do { LATCbits.LATC3 = ~LATCbits.LATC3; } while(0)
+#define SIPO_Reset_GetValue()           PORTCbits.RC3
+#define SIPO_Reset_SetDigitalInput()    do { TRISCbits.TRISC3 = 1; } while(0)
+#define SIPO_Reset_SetDigitalOutput()   do { TRISCbits.TRISC3 = 0; } while(0)
+#define SIPO_Reset_SetPullup()          do { WPUCbits.WPUC3 = 1; } while(0)
+#define SIPO_Reset_ResetPullup()        do { WPUCbits.WPUC3 = 0; } while(0)
+#define SIPO_Reset_SetPushPull()        do { ODCONCbits.ODCC3 = 0; } while(0)
+#define SIPO_Reset_SetOpenDrain()       do { ODCONCbits.ODCC3 = 1; } while(0)
+#define SIPO_Reset_SetAnalogMode()      do { ANSELCbits.ANSELC3 = 1; } while(0)
+#define SIPO_Reset_SetDigitalMode()     do { ANSELCbits.ANSELC3 = 0; } while(0)
+
 // get/set RC6 procedures
 #define RC6_SetHigh()            do { LATCbits.LATC6 = 1; } while(0)
 #define RC6_SetLow()             do { LATCbits.LATC6 = 0; } while(0)
