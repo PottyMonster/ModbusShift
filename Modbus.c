@@ -371,9 +371,9 @@ void ModbusFC04(){
             printf("Requested GPIO Count Config\r\n");
             if(
                 (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 1536) ||  
-                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1537)){
+                (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 1539)){
                 
-                printf("Registers out of range.\r\nValid: 0x0600 to 0x0601.\r\n");
+                printf("Registers out of range.\r\nValid: 0x0600 to 0x0603.\r\n");
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
                     ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3])); 
                 error = 1;

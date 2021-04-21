@@ -29,12 +29,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16414
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16414: extern volatile LATAbits_t LATAbits __attribute__((address(0xF83)));
 [v _LATAbits `VS823 ~T0 @X0 0 e@3971 ]
-[v F10007 `(v ~T0 @X0 1 tf1`ul ]
-"187 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18.h
-[v __delay `JF10007 ~T0 @X0 0 e ]
-[p i __delay ]
-"111 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 54: __asm("RX2PPS equ 0E8Dh");
 [; <" RX2PPS equ 0E8Dh ;# ">
@@ -1569,12 +1563,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "47
-[; ;./Modbus.h: 47: unsigned int MB306xx[2] = { 0x000c, 0x000f };
-[v _MB306xx `ui ~T0 @X0 -> 2 `i e ]
+[; ;./Modbus.h: 47: unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
+[v _MB306xx `ui ~T0 @X0 -> 4 `i e ]
 [i _MB306xx
 :U ..
 -> -> 12 `i `ui
 -> -> 15 `i `ui
+-> -> 8 `i `ui
+-> -> 16 `i `ui
 ..
 ]
 "50
@@ -1634,9 +1630,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;shift.c: 18:     }
 }
 [e :U 1505 ]
-"19
-[; ;shift.c: 19:     _delay((unsigned long)((250)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 "20
 [; ;shift.c: 20:     do { LATCbits.LATC1 = 1; } while(0);
 [e :U 1514 ]
@@ -1651,9 +1644,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
 }
 [e :U 1516 ]
-"22
-[; ;shift.c: 22:     _delay((unsigned long)((250)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 "23
 [; ;shift.c: 23:     do { LATCbits.LATC1 = 0; } while(0);
 [e :U 1520 ]
@@ -1668,186 +1658,175 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
 [e :U 1522 ]
-"25
-[; ;shift.c: 25: }
+"26
+[; ;shift.c: 26: }
 [e :UE 1497 ]
 }
-"27
-[; ;shift.c: 27: void STCPClock(){
+"28
+[; ;shift.c: 28: void STCPClock(){
 [v _STCPClock `(v ~T0 @X0 1 ef ]
 {
 [e :U _STCPClock ]
 [f ]
-"29
-[; ;shift.c: 29:     do { LATCbits.LATC2 = 1; } while(0);
+"30
+[; ;shift.c: 30:     do { LATCbits.LATC2 = 1; } while(0);
 [e :U 1527 ]
 {
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 }
 [e :U 1526 ]
-"30
-[; ;shift.c: 30:     do { LATAbits.LATA6 = 1; } while(0);
+"31
+[; ;shift.c: 31:     do { LATAbits.LATA6 = 1; } while(0);
 [e :U 1530 ]
 {
 [e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
 }
 [e :U 1529 ]
-"31
-[; ;shift.c: 31:     _delay((unsigned long)((500)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"32
-[; ;shift.c: 32:     do { LATCbits.LATC2 = 0; } while(0);
+"34
+[; ;shift.c: 34:     do { LATCbits.LATC2 = 0; } while(0);
 [e :U 1533 ]
 {
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 }
 [e :U 1532 ]
-"33
-[; ;shift.c: 33:     do { LATAbits.LATA6 = 0; } while(0);
+"35
+[; ;shift.c: 35:     do { LATAbits.LATA6 = 0; } while(0);
 [e :U 1536 ]
 {
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
 [e :U 1535 ]
-"34
-[; ;shift.c: 34: }
+"36
+[; ;shift.c: 36: }
 [e :UE 1524 ]
 }
-"36
-[; ;shift.c: 36: void SIPOReset(){
+"38
+[; ;shift.c: 38: void SIPOReset(){
 [v _SIPOReset `(v ~T0 @X0 1 ef ]
 {
 [e :U _SIPOReset ]
 [f ]
-"38
-[; ;shift.c: 38:     do { LATCbits.LATC3 = 0; } while(0);
+"41
+[; ;shift.c: 41:     do { LATCbits.LATC3 = 0; } while(0);
 [e :U 1540 ]
 {
 [e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
 }
 [e :U 1539 ]
-"39
-[; ;shift.c: 39:     do { LATAbits.LATA7 = 0; } while(0);
+"42
+[; ;shift.c: 42:     do { LATAbits.LATA7 = 0; } while(0);
 [e :U 1543 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
 [e :U 1542 ]
-"40
-[; ;shift.c: 40:     _delay((unsigned long)((500)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"41
-[; ;shift.c: 41:     do { LATCbits.LATC3 = 1; } while(0);
+"43
+[; ;shift.c: 43:     STCPClock();
+[e ( _STCPClock ..  ]
+"45
+[; ;shift.c: 45:     do { LATCbits.LATC3 = 1; } while(0);
 [e :U 1546 ]
 {
 [e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
 }
 [e :U 1545 ]
-"42
-[; ;shift.c: 42:     do { LATAbits.LATA7 = 1; } while(0);
+"46
+[; ;shift.c: 46:     do { LATAbits.LATA7 = 1; } while(0);
 [e :U 1549 ]
 {
 [e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
 }
 [e :U 1548 ]
-"43
-[; ;shift.c: 43: }
+"49
+[; ;shift.c: 49: }
 [e :UE 1537 ]
 }
-"45
-[; ;shift.c: 45: void ShiftByte(unsigned int i){
+"51
+[; ;shift.c: 51: void ShiftByte(unsigned int i){
 [v _ShiftByte `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _ShiftByte ]
 [v _i `ui ~T0 @X0 1 r1 ]
 [f ]
-"48
-[; ;shift.c: 48:     unsigned int TempRead = MB400xx[i];
+"54
+[; ;shift.c: 54:     unsigned int TempRead = MB400xx[i];
 [v _TempRead `ui ~T0 @X0 1 a ]
 [e = _TempRead *U + &U _MB400xx * -> _i `ux -> -> # *U &U _MB400xx `ui `ux ]
-"50
-[; ;shift.c: 50:     printf("TempRead: %x \r\n", MB400xx[i]);
-[e ( _printf , (. :s 1C *U + &U _MB400xx * -> _i `ux -> -> # *U &U _MB400xx `ui `ux ]
-"52
-[; ;shift.c: 52:     for(int j = 0; j< 8 ; j++){
+"68
+[; ;shift.c: 68:     for(int j = 0; j< MB306xx[2] ; j++){
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-[e $ < _j -> 8 `i 1551  ]
-[e $U 1552  ]
+[e $U 1554  ]
 [e :U 1551 ]
 {
-"54
-[; ;shift.c: 54:         if((TempRead & 0x0001) == 0x0001){
-[e $ ! == & _TempRead -> -> 1 `i `ui -> -> 1 `i `ui 1554  ]
+"70
+[; ;shift.c: 70:         if((TempRead & 0x0001) == 0x0001){
+[e $ ! == & _TempRead -> -> 1 `i `ui -> -> 1 `i `ui 1555  ]
 {
-"55
-[; ;shift.c: 55:             DSWrite(1);
+"71
+[; ;shift.c: 71:             DSWrite(1);
 [e ( _DSWrite (1 -> -> 1 `i `a ]
-"56
-[; ;shift.c: 56:         }else{
+"72
+[; ;shift.c: 72:         }else{
 }
-[e $U 1555  ]
-[e :U 1554 ]
-{
-"57
-[; ;shift.c: 57:             DSWrite(0);
-[e ( _DSWrite (1 -> -> 0 `i `a ]
-"58
-[; ;shift.c: 58:         }
-}
+[e $U 1556  ]
 [e :U 1555 ]
-"60
-[; ;shift.c: 60:         TempRead >>= 1;
+{
+"73
+[; ;shift.c: 73:             DSWrite(0);
+[e ( _DSWrite (1 -> -> 0 `i `a ]
+"74
+[; ;shift.c: 74:         }
+}
+[e :U 1556 ]
+"76
+[; ;shift.c: 76:         TempRead >>= 1;
 [e =>> _TempRead -> -> 1 `i `ui ]
-"61
-[; ;shift.c: 61:     }
+"77
+[; ;shift.c: 77:     }
 }
 [e ++ _j -> 1 `i ]
-[e $ < _j -> 8 `i 1551  ]
+[e :U 1554 ]
+[e $ < -> _j `ui *U + &U _MB306xx * -> -> -> 2 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux 1551  ]
 [e :U 1552 ]
 }
-"62
-[; ;shift.c: 62: }
+"78
+[; ;shift.c: 78: }
 [e :UE 1550 ]
 }
-"64
-[; ;shift.c: 64: void ShiftWrite(void){
+"80
+[; ;shift.c: 80: void ShiftWrite(void){
 [v _ShiftWrite `(v ~T0 @X0 1 ef ]
 {
 [e :U _ShiftWrite ]
 [f ]
-"67
-[; ;shift.c: 67:     SIPOReset();
+"83
+[; ;shift.c: 83:     SIPOReset();
 [e ( _SIPOReset ..  ]
-"68
-[; ;shift.c: 68:     _delay((unsigned long)((500)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"70
-[; ;shift.c: 70:     for(int i = 0; i< MB306xx[0]; i++){
+"86
+[; ;shift.c: 86:     for(int i = 0; i< MB306xx[0]; i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 1560  ]
-[e :U 1557 ]
+[e $U 1561  ]
+[e :U 1558 ]
 {
-"71
-[; ;shift.c: 71:         ShiftByte(i);
+"87
+[; ;shift.c: 87:         ShiftByte(i);
 [e ( _ShiftByte (1 -> _i `ui ]
-"72
-[; ;shift.c: 72:     }
+"88
+[; ;shift.c: 88:     }
 }
 [e ++ _i -> 1 `i ]
-[e :U 1560 ]
-[e $ < -> _i `ui *U + &U _MB306xx * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux 1557  ]
-[e :U 1558 ]
+[e :U 1561 ]
+[e $ < -> _i `ui *U + &U _MB306xx * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux 1558  ]
+[e :U 1559 ]
 }
-"74
-[; ;shift.c: 74:     STCPClock();
+"91
+[; ;shift.c: 91:     STCPClock();
 [e ( _STCPClock ..  ]
-"75
-[; ;shift.c: 75: }
-[e :UE 1556 ]
+"92
+[; ;shift.c: 92: }
+[e :UE 1557 ]
 }
-[p f _printf 12582912 ]
-[a 1C 84 101 109 112 82 101 97 100 58 32 37 120 32 13 10 0 ]

@@ -17420,7 +17420,7 @@ unsigned int MB304xx[6] = { 0xFFFF };
 unsigned int MB305xx[4] = { 0xFFFF };
 
 
-unsigned int MB306xx[2] = { 0x000c, 0x000f };
+unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
 
 
 unsigned int MB307xx[5] = { 0xFFFF };
@@ -17453,6 +17453,45 @@ void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
 # 8 "RS232.c" 2
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 1 3
+# 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 3
+int isalnum(int);
+int isalpha(int);
+int isblank(int);
+int iscntrl(int);
+int isdigit(int);
+int isgraph(int);
+int islower(int);
+int isprint(int);
+int ispunct(int);
+int isspace(int);
+int isupper(int);
+int isxdigit(int);
+int tolower(int);
+int toupper(int);
+# 41 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 3
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 41 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 2 3
+
+
+int isalnum_l(int, locale_t);
+int isalpha_l(int, locale_t);
+int isblank_l(int, locale_t);
+int iscntrl_l(int, locale_t);
+int isdigit_l(int, locale_t);
+int isgraph_l(int, locale_t);
+int islower_l(int, locale_t);
+int isprint_l(int, locale_t);
+int ispunct_l(int, locale_t);
+int isspace_l(int, locale_t);
+int isupper_l(int, locale_t);
+int isxdigit_l(int, locale_t);
+int tolower_l(int, locale_t);
+int toupper_l(int, locale_t);
+
+int isascii(int);
+int toascii(int);
+# 9 "RS232.c" 2
 
 
 void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumBytes){
@@ -17498,10 +17537,14 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
             MB301xx[i] = readDataOdd *256 + readDataEven;
         }else if(!strcmp("Rev",Name)){
             MB302xx[i] = readDataOdd *256 + readDataEven;
-        }else if(!strcmp("SIPO",Name)){
+        }else if(!strcmp("SIPOL",Name)){
             MB306xx[0] = readDataOdd *256 + readDataEven;
-        }else if(!strcmp("PISO",Name)){
+        }else if(!strcmp("PISOL",Name)){
             MB306xx[1] = readDataOdd *256 + readDataEven;
+        }else if(!strcmp("SIPOW",Name)){
+            MB306xx[2] = readDataOdd *256 + readDataEven;
+        }else if(!strcmp("PISOW",Name)){
+            MB306xx[3] = readDataOdd *256 + readDataEven;
         }
 
 
@@ -17518,7 +17561,6 @@ void InitialiseString(_Bool Partial){
     char readDataOdd, readDataEven;
 
     char SerialNum[11] = { '\0' };
-
     CardConfigIni("Serial", SerialNum,0x0120,5);
 
     char PartNum[19] = { '\0' };
@@ -17527,12 +17569,17 @@ void InitialiseString(_Bool Partial){
     char RevNum[3] = { '\0' };
     CardConfigIni("Rev", RevNum,0x0110,1);
 
-    char SIPO[3] = { '\0' };
-    CardConfigIni("SIPO", SIPO,0x0130,1);
+    char SIPOL[3] = { '\0' };
+    CardConfigIni("SIPOL", SIPOL,0x0130,1);
 
+    char PISOL[3] = { '\0' };
+    CardConfigIni("PISOL", PISOL,0x0132,1);
 
-    char PISO[3] = { '\0' };
-    CardConfigIni("PISO", PISO,0x0132,1);
+    char SIPOW[3] = { '\0' };
+    CardConfigIni("SIPOW", SIPOW,0x0134,1);
+
+    char PISOW[3] = { '\0' };
+    CardConfigIni("PISOW", PISOW,0x0136,1);
 
 
 
@@ -17546,16 +17593,17 @@ void InitialiseString(_Bool Partial){
     printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Apr 15 2021", "22:11:51", 2100);
-    printf("SIPO Count Config: %d \r\n", MB306xx[0]);
-    printf("PISO Count Config: %d \r\n\n", MB306xx[1]);
-
+            "Apr 21 2021", "22:02:32", 2100);
+    printf("SIPO Count: %d \r\n", MB306xx[0]);
+    printf("SIPO Bits per SIPO: %d \r\n", MB306xx[2]);
+    printf("PISO Count: %d \r\n", MB306xx[1]);
+    printf("PISO Bits PISO: %d \r\n\n", MB306xx[3]);
 
 
     int j = 0;
 
 
-    char Date[11] = "Apr 15 2021";
+    char Date[11] = "Apr 21 2021";
     for(int i=0; i<12; i = i+2){
         readDataOdd = Date[i];
         readDataEven = Date[i +1];
@@ -17565,7 +17613,7 @@ void InitialiseString(_Bool Partial){
 
 
     j = 0;
-    char Time[8] = "22:11:51";
+    char Time[8] = "22:02:32";
     for(int i=0; i<8; i = i+2){
         readDataOdd = Time[i];
         readDataEven = Time[i +1];
@@ -17575,7 +17623,6 @@ void InitialiseString(_Bool Partial){
 
 
     if(Partial != 1){
-        printf("Initalisation Complete - Ready\r\n\n");
         printf("Modbus Function Codes Supported:\r\n\n");
         printf("   0x04 - Read Multiple 16bit Registers\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Get Status (lower 8bits only)\r\n");
@@ -17584,8 +17631,10 @@ void InitialiseString(_Bool Partial){
         printf("      Add 0x0300 to 0x0304 - Serial Number (ASCII)\r\n");
         printf("      Add 0x0400 to 0x0405 - Compile Date (ASCII)\r\n");
         printf("      Add 0x0500 to 0x0504 - Compile Time - (ASCII)\r\n");
-        printf("      Add 0x0600 - Serial In Parallel Out Count (SIPO) Config \r\n");
-        printf("      Add 0x0601 - Parallel In Serial Out Count (PISO) Config \r\n");
+        printf("      Add 0x0600 - Serial In Parallel Out Count (SIPO) \r\n");
+        printf("      Add 0x0601 - Parallel In Serial Out Count (PISO) \r\n");
+        printf("      Add 0x0602 - Serial In Parallel Out Num of Bits (SIPO) \r\n");
+        printf("      Add 0x0603 - Parallel In Serial Out Num of Bits (PISO) \r\n");
         printf("      Add 0x0700 to 0x0704 - 5x Analogue Inputs (0x000 to 0x03ff)\r\n\n");
         printf("   0x10 - Write Multiple Output Holding Registers (Max 32x 16bit)\r\n");
         printf("      Add 0x0000 to 0x0031 - 32x Circuit Set Status  (lower 8bits only)\r\n\n");
@@ -17598,11 +17647,17 @@ void InitialiseString(_Bool Partial){
         printf("   serial - Set card serial number\r\n");
         printf("   part - Set card part number\r\n");
         printf("   rev - Set card part number\r\n");
+        printf("   sipo l - Length of SIPO chain\r\n");
+        printf("   sipo w - SIPO Number of bBits (8 or 16)\r\n");
+        printf("   piso l - Length of PISO chain\r\n");
+        printf("   piso w - PISO Number of bits (8 or 16)\r\n");
         printf("   debug - Toggles trace outputs. Slows down time device can respond between commands. DEFAULT ON!\r\n\n");
 
         uint16_t convertedValue;
         convertedValue = ADCC_GetSingleConversion(AIP_0);
-        printf("ADC0: 0x%04x \r\n", convertedValue);
+        printf("ADC0: 0x%04x \r\n\n", convertedValue);
+
+        printf("Initalisation Complete - Ready\r\n\n");
 
     };
 }
@@ -17651,10 +17706,10 @@ int ReadRX232(int NumChars)
         }while( temp[0] !='\r' );
 
         Command[strlen(Command)-1] = '\0';
-
+        int CommandLength = strlen(Command);
         printf("\r\n\n");
+        return CommandLength;
 
-        strlen(Command);
     }
 
     return 0;
@@ -17679,7 +17734,7 @@ void TogDebug(void){
 void ClearEEAddRange(unsigned int StartAdd, unsigned int NumBytes){
 
 
-    printf("Clearing EEPROM from Address: 0x%04x for num bytes: %i \r\n", StartAdd, NumBytes);
+
 
     for(int i = 0; i<NumBytes; i++){
         DATAEE_WriteByte(StartAdd +i, 0xFF);
@@ -17691,7 +17746,7 @@ void ClearEEAddRange(unsigned int StartAdd, unsigned int NumBytes){
 
 void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int NumBytes){
 
-    printf("\r\n SaveCardDat Name: %s MBAddress: 0x%04x dataeeAddr: 0x%04x NumBytes: %i \r\n", Name, MBAddress, dataeeAddr, NumBytes);
+
 
     int i = 0;
     unsigned char Conf, readData;
@@ -17720,7 +17775,11 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
         ClearEEAddRange(dataeeAddr,NumBytes);
 
 
-        if((!strcmp("SIPO",Name)) || (!strcmp("PISO",Name))){
+        if(( !strcmp("SIPO Length",Name))
+                || (!strcmp("PISO Length",Name))
+                || (!strcmp("SIPO Width",Name))
+                || (!strcmp("PISO Width",Name))
+            ){
 
             int num = atoi(Command);
 
@@ -17784,18 +17843,32 @@ _Bool ValidateCmd(void){
         SaveCardDat(ConfName,0x0200,0x0110,MaxChars);
         InitialiseString(1);
         return 1;
-    }else if((!strcmp(Command,"SIPO")) || (!strcmp(Command,"sipo"))){
-        char ConfName[20] = "SIPO";
+    }else if((!strcmp(Command,"SIPO L")) || (!strcmp(Command,"sipo l"))){
+        char ConfName[20] = "SIPO Length";
         int MaxChars = 2;
 
         SaveCardDat(ConfName,0x0600,0x0130,MaxChars);
         InitialiseString(1);
         return 1;
-    }else if((!strcmp(Command,"PISO")) || (!strcmp(Command,"piso"))){
-        char ConfName[20] = "PISO";
+    }else if((!strcmp(Command,"PISO L")) || (!strcmp(Command,"piso l"))){
+        char ConfName[20] = "PISO Length";
         int MaxChars = 2;
 
         SaveCardDat(ConfName,0x0601,0x0132,MaxChars);
+        InitialiseString(1);
+        return 1;
+    }else if((!strcmp(Command,"SIPO W")) || (!strcmp(Command,"sipo w"))){
+        char ConfName[20] = "SIPO Width";
+        int MaxChars = 2;
+
+        SaveCardDat(ConfName,0x0602,0x0134,MaxChars);
+        InitialiseString(1);
+        return 1;
+    }else if((!strcmp(Command,"PISO W")) || (!strcmp(Command,"piso w"))){
+        char ConfName[20] = "PISO Width";
+        int MaxChars = 2;
+
+        SaveCardDat(ConfName,0x0603,0x0136,MaxChars);
         InitialiseString(1);
         return 1;
     }

@@ -53,7 +53,9 @@ void main(void)
     RXMode();
     ClearRxBuff();
     ClearModbusRespon();
+    
     SIPOReset();
+    
     
     bool RXStat = 0;
     

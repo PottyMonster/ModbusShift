@@ -17392,7 +17392,7 @@ unsigned int MB304xx[6] = { 0xFFFF };
 unsigned int MB305xx[4] = { 0xFFFF };
 
 
-unsigned int MB306xx[2] = { 0x000c, 0x000f };
+unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
 
 
 unsigned int MB307xx[5] = { 0xFFFF };
@@ -17497,7 +17497,9 @@ void main(void)
     RXMode();
     ClearRxBuff();
     ClearModbusRespon();
+
     SIPOReset();
+
 
     _Bool RXStat = 0;
 

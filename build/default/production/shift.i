@@ -17425,7 +17425,7 @@ unsigned int MB304xx[6] = { 0xFFFF };
 unsigned int MB305xx[4] = { 0xFFFF };
 
 
-unsigned int MB306xx[2] = { 0x000c, 0x000f };
+unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
 
 
 unsigned int MB307xx[5] = { 0xFFFF };
@@ -17470,40 +17470,44 @@ void DSWrite(_Bool Dat){
         do { LATCbits.LATC0 = 0; } while(0);
         do { LATAbits.LATA4 = 0; } while(0);
     }
-    _delay((unsigned long)((250)*(32000000/4000.0)));
+
     do { LATCbits.LATC1 = 1; } while(0);
     do { LATAbits.LATA5 = 1; } while(0);
-    _delay((unsigned long)((250)*(32000000/4000.0)));
+
     do { LATCbits.LATC1 = 0; } while(0);
     do { LATAbits.LATA5 = 0; } while(0);
+
 }
 
 void STCPClock(){
 
     do { LATCbits.LATC2 = 1; } while(0);
     do { LATAbits.LATA6 = 1; } while(0);
-    _delay((unsigned long)((500)*(32000000/4000.0)));
+
+
     do { LATCbits.LATC2 = 0; } while(0);
     do { LATAbits.LATA6 = 0; } while(0);
 }
 
 void SIPOReset(){
 
+
     do { LATCbits.LATC3 = 0; } while(0);
     do { LATAbits.LATA7 = 0; } while(0);
-    _delay((unsigned long)((500)*(32000000/4000.0)));
+    STCPClock();
+
     do { LATCbits.LATC3 = 1; } while(0);
     do { LATAbits.LATA7 = 1; } while(0);
+
+
 }
 
 void ShiftByte(unsigned int i){
 
 
     unsigned int TempRead = MB400xx[i];
-
-    printf("TempRead: %x \r\n", MB400xx[i]);
-
-    for(int j = 0; j< 8 ; j++){
+# 68 "shift.c"
+    for(int j = 0; j< MB306xx[2] ; j++){
 
         if((TempRead & 0x0001) == 0x0001){
             DSWrite(1);
@@ -17519,11 +17523,12 @@ void ShiftWrite(void){
 
 
     SIPOReset();
-    _delay((unsigned long)((500)*(32000000/4000.0)));
+
 
     for(int i = 0; i< MB306xx[0]; i++){
         ShiftByte(i);
     }
+
 
     STCPClock();
 }

@@ -43,8 +43,8 @@ unsigned int MB304xx[6] = { 0xFFFF };
 // Time
 unsigned int MB305xx[4] = { 0xFFFF };
 
-// GPIO Count, Element 0 = SIPO Count, Element 1 = PISO Count
-unsigned int MB306xx[2] = { 0x000c, 0x000f };
+// GPIO Count, 0 = SIPO Count, 1 = PISO Count, 2 = SIPO Num Bits, 3 = PISO Num Bitssw
+unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
 
 // Analogue Inputs
 unsigned int MB307xx[5] = { 0xFFFF };
