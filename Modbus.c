@@ -32,16 +32,36 @@ void PrintMB400(void){
 }
 */
 
-// *********** THIS NEEDS FIXING ************* //
+
+void PrintHolding(void){
+    // This is just used for debuging to print out the circuit holding registers.
+    // Can be used before and after Modbus writes to check it's been updated. 
+    
+    printf("\r\nModbus Holding Registers: \r\n");
+    for(int i = 0; i < MB306xx[0] ; i++ ){
+        printf("   Reg: %i Data: 0x%04x \r\n", i , MB400xx[i]);
+    }
+    
+}
+
+void PrintInput(void){
+    // This is just used for debuging to print out the circuit input registers.
+    // Can be used before and after Modbus writes to check it's been updated. 
+    
+    printf("\r\nModbus Input Registers: \r\n");
+    for(int i = 0; i < MB306xx[1] ; i++ ){
+        printf("   Reg: %i Data: 0x%04x \r\n", i , MB300xx[i]);
+    }
+    
+}
+
 void PrintMB400(void){
-    // This is just used for debuging to print out the circuit receive registers.
-    // Can be used before and after Modbus writes to check it's been updated.
- 
+    // This is just used for debuging to print out the circuit holding registers.
+    // Can be used before and after Modbus writes to check it's been updated. 
     
     for(int i = ModbusData[3]; i<ModbusData[6] /2; i++ ){
         printf("   Reg: %i Data: 0x%04x \r\n", i , MB400xx[i]);
     }
-    
     
 }
 

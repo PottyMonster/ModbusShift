@@ -17457,6 +17457,8 @@ _Bool checkCRC(void);
 void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
+void PrintHolding(void);
+void PrintInput(void);
 # 7 "shift.c" 2
 
 

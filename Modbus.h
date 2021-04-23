@@ -277,6 +277,9 @@ bool checkCRC(void);
 void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
+void PrintHolding(void);
+void PrintInput(void);
+
 
 
 #ifndef MODBUS_H

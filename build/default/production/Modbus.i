@@ -17367,6 +17367,8 @@ _Bool checkCRC(void);
 void ModbusError(int ErrorCode);
 void ModbusFC10(void);
 void PrintMB400(void);
+void PrintHolding(void);
+void PrintInput(void);
 # 4 "Modbus.c" 2
 
 # 1 "./main.h" 1
@@ -17395,15 +17397,35 @@ unsigned char MBRespon[75] = { 0xFF };
 unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
 # 36 "Modbus.c"
-void PrintMB400(void){
+void PrintHolding(void){
 
+
+
+    printf("\r\nModbus Holding Registers: \r\n");
+    for(int i = 0; i < MB306xx[0] ; i++ ){
+        printf("   Reg: %i Data: 0x%04x \r\n", i , MB400xx[i]);
+    }
+
+}
+
+void PrintInput(void){
+
+
+
+    printf("\r\nModbus Input Registers: \r\n");
+    for(int i = 0; i < MB306xx[1] ; i++ ){
+        printf("   Reg: %i Data: 0x%04x \r\n", i , MB300xx[i]);
+    }
+
+}
+
+void PrintMB400(void){
 
 
 
     for(int i = ModbusData[3]; i<ModbusData[6] /2; i++ ){
         printf("   Reg: %i Data: 0x%04x \r\n", i , MB400xx[i]);
     }
-
 
 }
 
@@ -17841,7 +17863,7 @@ void ModbusFC10(void){
     int j = 0;
     unsigned int TempData = 0x0000;
     _Bool error = 0;
-# 490 "Modbus.c"
+# 510 "Modbus.c"
     if(
         (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 0) ||
 

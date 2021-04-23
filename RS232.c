@@ -108,10 +108,10 @@ void InitialiseString(bool Partial){
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
             __DATE__, __TIME__, __XC8_VERSION);
-    printf("SIPO Count: %d \r\n", MB306xx[0]);
-    printf("SIPO Bits per SIPO: %d \r\n", MB306xx[2]);
-    printf("PISO Count: %d \r\n", MB306xx[1]);
-    printf("PISO Bits PISO: %d \r\n\n", MB306xx[3]);
+    printf("SIPO Length: %d \r\n", MB306xx[0]);
+    printf("SIPO Bits: %d \r\n", MB306xx[2]);
+    printf("PISO Length: %d \r\n", MB306xx[1]);
+    printf("PISO Bits: %d \r\n\n", MB306xx[3]);
        
     
     int j = 0;
@@ -161,10 +161,12 @@ void InitialiseString(bool Partial){
         printf("   serial - Set card serial number\r\n");
         printf("   part - Set card part number\r\n");
         printf("   rev - Set card part number\r\n");
-        printf("   sipo l - Length of SIPO chain\r\n");
-        printf("   sipo w - SIPO Number of bBits (8 or 16)\r\n");
-        printf("   piso l - Length of PISO chain\r\n");
-        printf("   piso w - PISO Number of bits (8 or 16)\r\n");
+        printf("   sipo l - Length of SIPO chain (1 - 32)\r\n");
+        printf("   sipo b - SIPO Number of bits (8 or 16)\r\n");
+        printf("   piso l - Length of PISO chain (1 - 32)\r\n");
+        printf("   piso b - PISO Number of bits (8 or 16)\r\n");
+        printf("   mod h - Print Modbus Circuit Holding Registers\r\n");
+        printf("   mod i - Print Modbus Circuit Input Registers\r\n");        
         printf("   debug - Toggles trace outputs. Slows down time device can respond between commands. DEFAULT ON!\r\n\n");
  
         uint16_t convertedValue;
@@ -266,7 +268,17 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
     unsigned char Conf, readData;
     uint16_t dataeeAddrWrk = dataeeAddr;
     
-    printf("\r\nEnter card %s (max %i characters): ", Name, NumBytes);
+    if(!strcmp("PISO Length",Name)){
+        printf("\r\nEnter number of PISO registers (1 - 32) : ");
+    }else if(!strcmp("PISO Bits",Name)){
+        printf("\r\nPISO 8 or 16 bits? : ");
+    }else if(!strcmp("SIPO Length",Name)){
+        printf("\r\nEnter number of SIPO registers (1 - 32) : ");
+    }else if(!strcmp("SIPO Bits",Name)){
+        printf("\r\nSIPO 8 or 16 bits? : ");
+    }else{
+        printf("\r\nEnter card %s (max %i characters): ", Name, NumBytes);
+    }
     
     strcpy(Command, "");
     
@@ -291,8 +303,8 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
    
         if((    !strcmp("SIPO Length",Name)) 
                 || (!strcmp("PISO Length",Name)) 
-                || (!strcmp("SIPO Width",Name)) 
-                || (!strcmp("PISO Width",Name))
+                || (!strcmp("SIPO Bits",Name)) 
+                || (!strcmp("PISO Bits",Name))
             ){
             // Convert ASCII input from RS232 to integer for saving.
             int num = atoi(Command);
@@ -371,21 +383,27 @@ bool ValidateCmd(void){
         SaveCardDat(ConfName,0x0601,0x0132,MaxChars);
         InitialiseString(1);
         return 1;
-    }else if((!strcmp(Command,"SIPO W")) || (!strcmp(Command,"sipo w"))){
-        char ConfName[20] = "SIPO Width";
+    }else if((!strcmp(Command,"SIPO B")) || (!strcmp(Command,"sipo b"))){
+        char ConfName[20] = "SIPO Bits";
         int MaxChars = 2;
         // Parameter, MB ADdress, EEProm Address, Max Chars
         SaveCardDat(ConfName,0x0602,0x0134,MaxChars);
         InitialiseString(1);
         return 1;
-    }else if((!strcmp(Command,"PISO W")) || (!strcmp(Command,"piso w"))){
-        char ConfName[20] = "PISO Width";
+    }else if((!strcmp(Command,"PISO B")) || (!strcmp(Command,"piso b"))){
+        char ConfName[20] = "PISO Bits";
         int MaxChars = 2;
         // Parameter, MB ADdress, EEProm Address, Max Chars
         SaveCardDat(ConfName,0x0603,0x0136,MaxChars);
         InitialiseString(1);
         return 1;
-    }     
+    }else if((!strcmp(Command,"MOD H")) || (!strcmp(Command,"mod h"))){
+        PrintHolding();
+        return 1;
+    }else if((!strcmp(Command,"MOD I")) || (!strcmp(Command,"mod i"))){
+        PrintInput();
+        return 1;
+    } 
     else{
         return 0;
     }
