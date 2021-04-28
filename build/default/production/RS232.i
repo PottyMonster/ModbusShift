@@ -16831,9 +16831,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 346 "./mcc_generated_files/pin_manager.h"
+# 446 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 358 "./mcc_generated_files/pin_manager.h"
+# 458 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
@@ -17454,6 +17454,7 @@ void ModbusFC10(void);
 void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
+void ClearMBInputReg(void);
 # 8 "RS232.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 1 3
 # 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 3
@@ -17595,7 +17596,7 @@ void InitialiseString(_Bool Partial){
     printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Apr 23 2021", "16:59:10", 2100);
+            "Apr 28 2021", "17:26:21", 2100);
     printf("SIPO Length: %d \r\n", MB306xx[0]);
     printf("SIPO Bits: %d \r\n", MB306xx[2]);
     printf("PISO Length: %d \r\n", MB306xx[1]);
@@ -17605,7 +17606,7 @@ void InitialiseString(_Bool Partial){
     int j = 0;
 
 
-    char Date[11] = "Apr 23 2021";
+    char Date[11] = "Apr 28 2021";
     for(int i=0; i<12; i = i+2){
         readDataOdd = Date[i];
         readDataEven = Date[i +1];
@@ -17615,7 +17616,7 @@ void InitialiseString(_Bool Partial){
 
 
     j = 0;
-    char Time[8] = "16:59:10";
+    char Time[8] = "17:26:21";
     for(int i=0; i<8; i = i+2){
         readDataOdd = Time[i];
         readDataEven = Time[i +1];

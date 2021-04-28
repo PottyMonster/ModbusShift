@@ -53,8 +53,11 @@ void main(void)
     RXMode();
     ClearRxBuff();
     ClearModbusRespon();
+    // ClearMBInputReg(void);   // Empties input registers.
+
     
-    SIPOReset();
+    SIPO_Reset();
+    PISO_Reset();
     
     
     bool RXStat = 0;
@@ -84,7 +87,7 @@ void main(void)
                         PrintMB400();   // Print Write Register
                     }
                     ModbusFC10();   // Perform Modbus Update of Write register.
-                    ShiftWrite();    // Sam's function to write to shift reg 
+                    SIPO_ShiftWrite();
                     if(Debug ==1){
                         printf("Modbus Register After Update: \r\n");
                         PrintMB400();   // Print Write Register
@@ -95,7 +98,6 @@ void main(void)
                 {
                     printf("Function Code 0x04 - Read Input Registers\r\n");
                     // Reads Multiple Input Registers
-                    // ShiftRead();     // Sam's function to read in shift reg
                     ModbusFC04();
                     break;
                 }            

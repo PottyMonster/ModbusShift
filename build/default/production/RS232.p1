@@ -1779,8 +1779,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;RS232.c: 75:     char readDataOdd, readDataEven;
 [v _readDataOdd `uc ~T0 @X0 1 a ]
 [v _readDataEven `uc ~T0 @X0 1 a ]
-[v F10835 `uc ~T0 @X0 -> 11 `i s ]
-[i F10835
+[v F10836 `uc ~T0 @X0 -> 11 `i s ]
+[i F10836
 :U ..
 "77
 [; ;RS232.c: 77:     char SerialNum[11] = { '\0' };
@@ -1788,12 +1788,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _SerialNum `uc ~T0 @X0 -> 11 `i a ]
-[e = _SerialNum F10835 ]
+[e = _SerialNum F10836 ]
 "78
 [; ;RS232.c: 78:     CardConfigIni("Serial", SerialNum,0x0120,5);
 [e ( _CardConfigIni (4 , , , :s 15C &U _SerialNum -> -> 288 `i `us -> 5 `i ]
-[v F10837 `uc ~T0 @X0 -> 19 `i s ]
-[i F10837
+[v F10838 `uc ~T0 @X0 -> 19 `i s ]
+[i F10838
 :U ..
 "80
 [; ;RS232.c: 80:     char PartNum[19] = { '\0' };
@@ -1801,12 +1801,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _PartNum `uc ~T0 @X0 -> 19 `i a ]
-[e = _PartNum F10837 ]
+[e = _PartNum F10838 ]
 "81
 [; ;RS232.c: 81:     CardConfigIni("Part", PartNum,0x0100,8);
 [e ( _CardConfigIni (4 , , , :s 16C &U _PartNum -> -> 256 `i `us -> 8 `i ]
-[v F10839 `uc ~T0 @X0 -> 3 `i s ]
-[i F10839
+[v F10840 `uc ~T0 @X0 -> 3 `i s ]
+[i F10840
 :U ..
 "83
 [; ;RS232.c: 83:     char RevNum[3] = { '\0' };
@@ -1814,12 +1814,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _RevNum `uc ~T0 @X0 -> 3 `i a ]
-[e = _RevNum F10839 ]
+[e = _RevNum F10840 ]
 "84
 [; ;RS232.c: 84:     CardConfigIni("Rev", RevNum,0x0110,1);
 [e ( _CardConfigIni (4 , , , :s 17C &U _RevNum -> -> 272 `i `us -> 1 `i ]
-[v F10841 `uc ~T0 @X0 -> 3 `i s ]
-[i F10841
+[v F10842 `uc ~T0 @X0 -> 3 `i s ]
+[i F10842
 :U ..
 "86
 [; ;RS232.c: 86:     char SIPOL[3] = { '\0' };
@@ -1827,12 +1827,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _SIPOL `uc ~T0 @X0 -> 3 `i a ]
-[e = _SIPOL F10841 ]
+[e = _SIPOL F10842 ]
 "87
 [; ;RS232.c: 87:     CardConfigIni("SIPOL", SIPOL,0x0130,1);
 [e ( _CardConfigIni (4 , , , :s 18C &U _SIPOL -> -> 304 `i `us -> 1 `i ]
-[v F10843 `uc ~T0 @X0 -> 3 `i s ]
-[i F10843
+[v F10844 `uc ~T0 @X0 -> 3 `i s ]
+[i F10844
 :U ..
 "89
 [; ;RS232.c: 89:     char PISOL[3] = { '\0' };
@@ -1840,12 +1840,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _PISOL `uc ~T0 @X0 -> 3 `i a ]
-[e = _PISOL F10843 ]
+[e = _PISOL F10844 ]
 "90
 [; ;RS232.c: 90:     CardConfigIni("PISOL", PISOL,0x0132,1);
 [e ( _CardConfigIni (4 , , , :s 19C &U _PISOL -> -> 306 `i `us -> 1 `i ]
-[v F10845 `uc ~T0 @X0 -> 3 `i s ]
-[i F10845
+[v F10846 `uc ~T0 @X0 -> 3 `i s ]
+[i F10846
 :U ..
 "92
 [; ;RS232.c: 92:     char SIPOW[3] = { '\0' };
@@ -1853,12 +1853,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _SIPOW `uc ~T0 @X0 -> 3 `i a ]
-[e = _SIPOW F10845 ]
+[e = _SIPOW F10846 ]
 "93
 [; ;RS232.c: 93:     CardConfigIni("SIPOW", SIPOW,0x0134,1);
 [e ( _CardConfigIni (4 , , , :s 20C &U _SIPOW -> -> 308 `i `us -> 1 `i ]
-[v F10847 `uc ~T0 @X0 -> 3 `i s ]
-[i F10847
+[v F10848 `uc ~T0 @X0 -> 3 `i s ]
+[i F10848
 :U ..
 "95
 [; ;RS232.c: 95:     char PISOW[3] = { '\0' };
@@ -1866,7 +1866,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _PISOW `uc ~T0 @X0 -> 3 `i a ]
-[e = _PISOW F10847 ]
+[e = _PISOW F10848 ]
 "96
 [; ;RS232.c: 96:     CardConfigIni("PISOW", PISOW,0x0136,1);
 [e ( _CardConfigIni (4 , , , :s 21C &U _PISOW -> -> 310 `i `us -> 1 `i ]
@@ -1904,17 +1904,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;RS232.c: 117:     int j = 0;
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-[v F10850 `uc ~T0 @X0 -> 11 `i s ]
-[i F10850
+[v F10851 `uc ~T0 @X0 -> 11 `i s ]
+[i F10851
 :U ..
 "120
-[; ;RS232.c: 120:     char Date[11] = "Apr 23 2021";
+[; ;RS232.c: 120:     char Date[11] = "Apr 28 2021";
 -> 65 `c
 -> 112 `c
 -> 114 `c
 -> 32 `c
 -> 50 `c
--> 51 `c
+-> 56 `c
 -> 32 `c
 -> 50 `c
 -> 48 `c
@@ -1923,7 +1923,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _Date `uc ~T0 @X0 -> 11 `i a ]
-[e = _Date F10850 ]
+[e = _Date F10851 ]
 "121
 [; ;RS232.c: 121:     for(int i=0; i<12; i = i+2){
 {
@@ -1955,23 +1955,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 "129
 [; ;RS232.c: 129:     j = 0;
 [e = _j -> 0 `i ]
-[v F10853 `uc ~T0 @X0 -> 8 `i s ]
-[i F10853
+[v F10854 `uc ~T0 @X0 -> 8 `i s ]
+[i F10854
 :U ..
 "130
-[; ;RS232.c: 130:     char Time[8] = "16:59:10";
+[; ;RS232.c: 130:     char Time[8] = "17:26:21";
 -> 49 `c
+-> 55 `c
+-> 58 `c
+-> 50 `c
 -> 54 `c
 -> 58 `c
--> 53 `c
--> 57 `c
--> 58 `c
--> 49 `c
--> 48 `c
+-> 50 `c
+-> 50 `c
 ..
 ]
 [v _Time `uc ~T0 @X0 -> 8 `i a ]
-[e = _Time F10853 ]
+[e = _Time F10854 ]
 "131
 [; ;RS232.c: 131:     for(int i=0; i<8; i = i+2){
 {
@@ -2124,8 +2124,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "183
 [; ;RS232.c: 183: {
 [f ]
-[v F10859 `uc ~T0 @X0 -> 2 `i s ]
-[i F10859
+[v F10860 `uc ~T0 @X0 -> 2 `i s ]
+[i F10860
 :U ..
 "188
 [; ;RS232.c: 188:     char temp[2] = {'Z','\0'};
@@ -2134,7 +2134,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _temp `uc ~T0 @X0 -> 2 `i a ]
-[e = _temp F10859 ]
+[e = _temp F10860 ]
 "191
 [; ;RS232.c: 191:     if(EUSART2_is_rx_ready())
 [e $ ! != -> ( _EUSART2_is_rx_ready ..  `i -> 0 `i 1526  ]
@@ -2531,8 +2531,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1569 ]
 [e $ ! ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 100C -> 0 `i 1571  ]
 {
-[v F10879 `uc ~T0 @X0 -> 20 `i s ]
-[i F10879
+[v F10880 `uc ~T0 @X0 -> 20 `i s ]
+[i F10880
 :U ..
 "353
 [; ;RS232.c: 353:         char ConfName[20] = "Serial Number";
@@ -2553,7 +2553,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ConfName `uc ~T0 @X0 -> 20 `i a ]
-[e = _ConfName F10879 ]
+[e = _ConfName F10880 ]
 "354
 [; ;RS232.c: 354:         int MaxChars = 10;
 [v _MaxChars `i ~T0 @X0 1 a ]
@@ -2575,8 +2575,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1571 ]
 [e $ ! ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 102C -> 0 `i 1573  ]
 {
-[v F10882 `uc ~T0 @X0 -> 20 `i s ]
-[i F10882
+[v F10883 `uc ~T0 @X0 -> 20 `i s ]
+[i F10883
 :U ..
 "360
 [; ;RS232.c: 360:         char ConfName[20] = "Part Number";
@@ -2595,7 +2595,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ConfName `uc ~T0 @X0 -> 20 `i a ]
-[e = _ConfName F10882 ]
+[e = _ConfName F10883 ]
 "361
 [; ;RS232.c: 361:         int MaxChars = 16;
 [v _MaxChars `i ~T0 @X0 1 a ]
@@ -2617,8 +2617,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1573 ]
 [e $ ! ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 104C -> 0 `i 1575  ]
 {
-[v F10885 `uc ~T0 @X0 -> 20 `i s ]
-[i F10885
+[v F10886 `uc ~T0 @X0 -> 20 `i s ]
+[i F10886
 :U ..
 "366
 [; ;RS232.c: 366:         char ConfName[20] = "Revision";
@@ -2634,7 +2634,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ConfName `uc ~T0 @X0 -> 20 `i a ]
-[e = _ConfName F10885 ]
+[e = _ConfName F10886 ]
 "367
 [; ;RS232.c: 367:         int MaxChars = 2;
 [v _MaxChars `i ~T0 @X0 1 a ]
@@ -2656,8 +2656,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1575 ]
 [e $ ! || ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 106C -> 0 `i ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 108C -> 0 `i 1577  ]
 {
-[v F10888 `uc ~T0 @X0 -> 20 `i s ]
-[i F10888
+[v F10889 `uc ~T0 @X0 -> 20 `i s ]
+[i F10889
 :U ..
 "373
 [; ;RS232.c: 373:         char ConfName[20] = "SIPO Length";
@@ -2676,7 +2676,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ConfName `uc ~T0 @X0 -> 20 `i a ]
-[e = _ConfName F10888 ]
+[e = _ConfName F10889 ]
 "374
 [; ;RS232.c: 374:         int MaxChars = 2;
 [v _MaxChars `i ~T0 @X0 1 a ]
@@ -2698,8 +2698,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1577 ]
 [e $ ! || ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 110C -> 0 `i ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 112C -> 0 `i 1579  ]
 {
-[v F10891 `uc ~T0 @X0 -> 20 `i s ]
-[i F10891
+[v F10892 `uc ~T0 @X0 -> 20 `i s ]
+[i F10892
 :U ..
 "380
 [; ;RS232.c: 380:         char ConfName[20] = "PISO Length";
@@ -2718,7 +2718,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ConfName `uc ~T0 @X0 -> 20 `i a ]
-[e = _ConfName F10891 ]
+[e = _ConfName F10892 ]
 "381
 [; ;RS232.c: 381:         int MaxChars = 2;
 [v _MaxChars `i ~T0 @X0 1 a ]
@@ -2740,8 +2740,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1579 ]
 [e $ ! || ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 114C -> 0 `i ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 116C -> 0 `i 1581  ]
 {
-[v F10894 `uc ~T0 @X0 -> 20 `i s ]
-[i F10894
+[v F10895 `uc ~T0 @X0 -> 20 `i s ]
+[i F10895
 :U ..
 "387
 [; ;RS232.c: 387:         char ConfName[20] = "SIPO Bits";
@@ -2758,7 +2758,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ConfName `uc ~T0 @X0 -> 20 `i a ]
-[e = _ConfName F10894 ]
+[e = _ConfName F10895 ]
 "388
 [; ;RS232.c: 388:         int MaxChars = 2;
 [v _MaxChars `i ~T0 @X0 1 a ]
@@ -2780,8 +2780,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1581 ]
 [e $ ! || ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 118C -> 0 `i ! != ( _strcmp (2 , -> &U _Command `*Cuc :s 120C -> 0 `i 1583  ]
 {
-[v F10897 `uc ~T0 @X0 -> 20 `i s ]
-[i F10897
+[v F10898 `uc ~T0 @X0 -> 20 `i s ]
+[i F10898
 :U ..
 "394
 [; ;RS232.c: 394:         char ConfName[20] = "PISO Bits";
@@ -2798,7 +2798,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ConfName `uc ~T0 @X0 -> 20 `i a ]
-[e = _ConfName F10897 ]
+[e = _ConfName F10898 ]
 "395
 [; ;RS232.c: 395:         int MaxChars = 2;
 [v _MaxChars `i ~T0 @X0 1 a ]
@@ -2947,8 +2947,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 114C 83 73 80 79 32 66 0 ]
 [a 97C 63 0 ]
 [a 98C 63 0 ]
-[a 28C 65 112 114 32 50 51 32 50 48 50 49 0 ]
-[a 29C 49 54 58 53 57 58 49 48 0 ]
+[a 29C 49 55 58 50 54 58 50 50 0 ]
+[a 28C 65 112 114 32 50 56 32 50 48 50 49 0 ]
 [a 82C 13 10 69 110 116 101 114 101 100 58 32 37 115 32 13 10 32 67 111 110 102 105 114 109 32 32 89 124 78 63 58 32 0 ]
 [a 80C 13 10 69 110 116 101 114 32 99 97 114 100 32 37 115 32 40 109 97 120 32 37 105 32 99 104 97 114 97 99 116 101 114 115 41 58 32 0 ]
 [a 73C 13 10 80 73 83 79 32 56 32 111 114 32 49 54 32 98 105 116 115 63 32 58 32 0 ]

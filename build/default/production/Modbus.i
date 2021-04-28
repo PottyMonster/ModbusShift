@@ -16831,9 +16831,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 346 "./mcc_generated_files/pin_manager.h"
+# 446 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 358 "./mcc_generated_files/pin_manager.h"
+# 458 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
@@ -17369,6 +17369,7 @@ void ModbusFC10(void);
 void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
+void ClearMBInputReg(void);
 # 4 "Modbus.c" 2
 
 # 1 "./main.h" 1
@@ -17382,6 +17383,19 @@ void PrintInput(void);
 _Bool Debug = 1;
 unsigned int Address = 0x05;
 # 6 "Modbus.c" 2
+# 1 "./shift.h" 1
+
+
+
+
+
+
+
+void SIPO_ShiftWrite(void);
+void SIPO_Reset(void);
+void PISO_ShiftRead(void);
+void PISO_Reset(void);
+# 7 "Modbus.c" 2
 
 
 
@@ -17396,7 +17410,7 @@ unsigned char MBRespon[75] = { 0xFF };
 
 unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
-# 36 "Modbus.c"
+# 37 "Modbus.c"
 void PrintHolding(void){
 
 
@@ -17441,6 +17455,13 @@ void RXMode(){
     do { LATAbits.LATA3 = 0; } while(0);
 }
 
+
+void ClearMBInputReg(void){
+
+    for(int i = 0; i<32; i++){
+        MB300xx[i] = 0x0000;
+    }
+}
 
 void ClearModbusData(){
     int i = 0;
@@ -17672,6 +17693,8 @@ void ModbusFC04(){
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3],
                     ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
+            }else{
+                PISO_ShiftRead();
             }
             break;
         }
@@ -17813,6 +17836,9 @@ void ModbusFC04(){
             }
             else if(ModbusData[2] == 0x00){
 
+
+
+
                 ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
                 ByteHi = MB300xx[ModbusData[3] +i] >> 8;
 
@@ -17863,7 +17889,7 @@ void ModbusFC10(void){
     int j = 0;
     unsigned int TempData = 0x0000;
     _Bool error = 0;
-# 510 "Modbus.c"
+# 523 "Modbus.c"
     if(
         (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 0) ||
 

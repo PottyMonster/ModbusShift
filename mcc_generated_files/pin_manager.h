@@ -209,6 +209,86 @@
 #define RB1_SetAnalogMode()         do { ANSELBbits.ANSELB1 = 1; } while(0)
 #define RB1_SetDigitalMode()        do { ANSELBbits.ANSELB1 = 0; } while(0)
 
+// get/set PISO_Reset aliases
+#define PISO_Reset_TRIS                 TRISBbits.TRISB2
+#define PISO_Reset_LAT                  LATBbits.LATB2
+#define PISO_Reset_PORT                 PORTBbits.RB2
+#define PISO_Reset_WPU                  WPUBbits.WPUB2
+#define PISO_Reset_OD                   ODCONBbits.ODCB2
+#define PISO_Reset_ANS                  ANSELBbits.ANSELB2
+#define PISO_Reset_SetHigh()            do { LATBbits.LATB2 = 1; } while(0)
+#define PISO_Reset_SetLow()             do { LATBbits.LATB2 = 0; } while(0)
+#define PISO_Reset_Toggle()             do { LATBbits.LATB2 = ~LATBbits.LATB2; } while(0)
+#define PISO_Reset_GetValue()           PORTBbits.RB2
+#define PISO_Reset_SetDigitalInput()    do { TRISBbits.TRISB2 = 1; } while(0)
+#define PISO_Reset_SetDigitalOutput()   do { TRISBbits.TRISB2 = 0; } while(0)
+#define PISO_Reset_SetPullup()          do { WPUBbits.WPUB2 = 1; } while(0)
+#define PISO_Reset_ResetPullup()        do { WPUBbits.WPUB2 = 0; } while(0)
+#define PISO_Reset_SetPushPull()        do { ODCONBbits.ODCB2 = 0; } while(0)
+#define PISO_Reset_SetOpenDrain()       do { ODCONBbits.ODCB2 = 1; } while(0)
+#define PISO_Reset_SetAnalogMode()      do { ANSELBbits.ANSELB2 = 1; } while(0)
+#define PISO_Reset_SetDigitalMode()     do { ANSELBbits.ANSELB2 = 0; } while(0)
+
+// get/set PISO_SHCP aliases
+#define PISO_SHCP_TRIS                 TRISBbits.TRISB3
+#define PISO_SHCP_LAT                  LATBbits.LATB3
+#define PISO_SHCP_PORT                 PORTBbits.RB3
+#define PISO_SHCP_WPU                  WPUBbits.WPUB3
+#define PISO_SHCP_OD                   ODCONBbits.ODCB3
+#define PISO_SHCP_ANS                  ANSELBbits.ANSELB3
+#define PISO_SHCP_SetHigh()            do { LATBbits.LATB3 = 1; } while(0)
+#define PISO_SHCP_SetLow()             do { LATBbits.LATB3 = 0; } while(0)
+#define PISO_SHCP_Toggle()             do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0)
+#define PISO_SHCP_GetValue()           PORTBbits.RB3
+#define PISO_SHCP_SetDigitalInput()    do { TRISBbits.TRISB3 = 1; } while(0)
+#define PISO_SHCP_SetDigitalOutput()   do { TRISBbits.TRISB3 = 0; } while(0)
+#define PISO_SHCP_SetPullup()          do { WPUBbits.WPUB3 = 1; } while(0)
+#define PISO_SHCP_ResetPullup()        do { WPUBbits.WPUB3 = 0; } while(0)
+#define PISO_SHCP_SetPushPull()        do { ODCONBbits.ODCB3 = 0; } while(0)
+#define PISO_SHCP_SetOpenDrain()       do { ODCONBbits.ODCB3 = 1; } while(0)
+#define PISO_SHCP_SetAnalogMode()      do { ANSELBbits.ANSELB3 = 1; } while(0)
+#define PISO_SHCP_SetDigitalMode()     do { ANSELBbits.ANSELB3 = 0; } while(0)
+
+// get/set PISO_Q aliases
+#define PISO_Q_TRIS                 TRISBbits.TRISB4
+#define PISO_Q_LAT                  LATBbits.LATB4
+#define PISO_Q_PORT                 PORTBbits.RB4
+#define PISO_Q_WPU                  WPUBbits.WPUB4
+#define PISO_Q_OD                   ODCONBbits.ODCB4
+#define PISO_Q_ANS                  ANSELBbits.ANSELB4
+#define PISO_Q_SetHigh()            do { LATBbits.LATB4 = 1; } while(0)
+#define PISO_Q_SetLow()             do { LATBbits.LATB4 = 0; } while(0)
+#define PISO_Q_Toggle()             do { LATBbits.LATB4 = ~LATBbits.LATB4; } while(0)
+#define PISO_Q_GetValue()           PORTBbits.RB4
+#define PISO_Q_SetDigitalInput()    do { TRISBbits.TRISB4 = 1; } while(0)
+#define PISO_Q_SetDigitalOutput()   do { TRISBbits.TRISB4 = 0; } while(0)
+#define PISO_Q_SetPullup()          do { WPUBbits.WPUB4 = 1; } while(0)
+#define PISO_Q_ResetPullup()        do { WPUBbits.WPUB4 = 0; } while(0)
+#define PISO_Q_SetPushPull()        do { ODCONBbits.ODCB4 = 0; } while(0)
+#define PISO_Q_SetOpenDrain()       do { ODCONBbits.ODCB4 = 1; } while(0)
+#define PISO_Q_SetAnalogMode()      do { ANSELBbits.ANSELB4 = 1; } while(0)
+#define PISO_Q_SetDigitalMode()     do { ANSELBbits.ANSELB4 = 0; } while(0)
+
+// get/set PISO_STCP aliases
+#define PISO_STCP_TRIS                 TRISBbits.TRISB5
+#define PISO_STCP_LAT                  LATBbits.LATB5
+#define PISO_STCP_PORT                 PORTBbits.RB5
+#define PISO_STCP_WPU                  WPUBbits.WPUB5
+#define PISO_STCP_OD                   ODCONBbits.ODCB5
+#define PISO_STCP_ANS                  ANSELBbits.ANSELB5
+#define PISO_STCP_SetHigh()            do { LATBbits.LATB5 = 1; } while(0)
+#define PISO_STCP_SetLow()             do { LATBbits.LATB5 = 0; } while(0)
+#define PISO_STCP_Toggle()             do { LATBbits.LATB5 = ~LATBbits.LATB5; } while(0)
+#define PISO_STCP_GetValue()           PORTBbits.RB5
+#define PISO_STCP_SetDigitalInput()    do { TRISBbits.TRISB5 = 1; } while(0)
+#define PISO_STCP_SetDigitalOutput()   do { TRISBbits.TRISB5 = 0; } while(0)
+#define PISO_STCP_SetPullup()          do { WPUBbits.WPUB5 = 1; } while(0)
+#define PISO_STCP_ResetPullup()        do { WPUBbits.WPUB5 = 0; } while(0)
+#define PISO_STCP_SetPushPull()        do { ODCONBbits.ODCB5 = 0; } while(0)
+#define PISO_STCP_SetOpenDrain()       do { ODCONBbits.ODCB5 = 1; } while(0)
+#define PISO_STCP_SetAnalogMode()      do { ANSELBbits.ANSELB5 = 1; } while(0)
+#define PISO_STCP_SetDigitalMode()     do { ANSELBbits.ANSELB5 = 0; } while(0)
+
 // get/set SIPO_DS aliases
 #define SIPO_DS_TRIS                 TRISCbits.TRISC0
 #define SIPO_DS_LAT                  LATCbits.LATC0
@@ -332,6 +412,26 @@
 #define TX_ENA_SetOpenDrain()       do { ODCONDbits.ODCD0 = 1; } while(0)
 #define TX_ENA_SetAnalogMode()      do { ANSELDbits.ANSELD0 = 1; } while(0)
 #define TX_ENA_SetDigitalMode()     do { ANSELDbits.ANSELD0 = 0; } while(0)
+
+// get/set PISO_PL aliases
+#define PISO_PL_TRIS                 TRISDbits.TRISD7
+#define PISO_PL_LAT                  LATDbits.LATD7
+#define PISO_PL_PORT                 PORTDbits.RD7
+#define PISO_PL_WPU                  WPUDbits.WPUD7
+#define PISO_PL_OD                   ODCONDbits.ODCD7
+#define PISO_PL_ANS                  ANSELDbits.ANSELD7
+#define PISO_PL_SetHigh()            do { LATDbits.LATD7 = 1; } while(0)
+#define PISO_PL_SetLow()             do { LATDbits.LATD7 = 0; } while(0)
+#define PISO_PL_Toggle()             do { LATDbits.LATD7 = ~LATDbits.LATD7; } while(0)
+#define PISO_PL_GetValue()           PORTDbits.RD7
+#define PISO_PL_SetDigitalInput()    do { TRISDbits.TRISD7 = 1; } while(0)
+#define PISO_PL_SetDigitalOutput()   do { TRISDbits.TRISD7 = 0; } while(0)
+#define PISO_PL_SetPullup()          do { WPUDbits.WPUD7 = 1; } while(0)
+#define PISO_PL_ResetPullup()        do { WPUDbits.WPUD7 = 0; } while(0)
+#define PISO_PL_SetPushPull()        do { ODCONDbits.ODCD7 = 0; } while(0)
+#define PISO_PL_SetOpenDrain()       do { ODCONDbits.ODCD7 = 1; } while(0)
+#define PISO_PL_SetAnalogMode()      do { ANSELDbits.ANSELD7 = 1; } while(0)
+#define PISO_PL_SetDigitalMode()     do { ANSELDbits.ANSELD7 = 0; } while(0)
 
 /**
    @Param

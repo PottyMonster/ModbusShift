@@ -16831,9 +16831,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 346 "./mcc_generated_files/pin_manager.h"
+# 446 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 358 "./mcc_generated_files/pin_manager.h"
+# 458 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
@@ -17426,6 +17426,7 @@ void ModbusFC10(void);
 void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
+void ClearMBInputReg(void);
 # 6 "main.c" 2
 # 1 "./RS232.h" 1
 
@@ -17463,8 +17464,10 @@ unsigned int Address = 0x05;
 
 
 
-void ShiftWrite(void);
-void SIPOReset(void);
+void SIPO_ShiftWrite(void);
+void SIPO_Reset(void);
+void PISO_ShiftRead(void);
+void PISO_Reset(void);
 # 9 "main.c" 2
 # 24 "main.c"
 void main(void)
@@ -17500,7 +17503,10 @@ void main(void)
     ClearRxBuff();
     ClearModbusRespon();
 
-    SIPOReset();
+
+
+    SIPO_Reset();
+    PISO_Reset();
 
 
     _Bool RXStat = 0;
@@ -17530,7 +17536,7 @@ void main(void)
                         PrintMB400();
                     }
                     ModbusFC10();
-                    ShiftWrite();
+                    SIPO_ShiftWrite();
                     if(Debug ==1){
                         printf("Modbus Register After Update: \r\n");
                         PrintMB400();
@@ -17540,7 +17546,6 @@ void main(void)
             case 0x04:
                 {
                     printf("Function Code 0x04 - Read Input Registers\r\n");
-
 
                     ModbusFC04();
                     break;

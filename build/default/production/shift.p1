@@ -29,6 +29,51 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16414
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16414: extern volatile LATAbits_t LATAbits __attribute__((address(0xF83)));
 [v _LATAbits `VS823 ~T0 @X0 0 e@3971 ]
+"16505
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16505:     struct {
+[s S827 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S827 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+"16515
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16515:     struct {
+[s S828 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S828 . LB0 LB1 LB2 LB3 LB4 LB5 LB6 LB7 ]
+"16504
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16504: typedef union {
+[u S826 `S827 1 `S828 1 ]
+[n S826 . . . ]
+"16526
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16526: extern volatile LATBbits_t LATBbits __attribute__((address(0xF84)));
+[v _LATBbits `VS826 ~T0 @X0 0 e@3972 ]
+"16729
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16729:     struct {
+[s S833 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S833 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"16739
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16739:     struct {
+[s S834 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S834 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"16728
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16728: typedef union {
+[u S832 `S833 1 `S834 1 ]
+[n S832 . . . ]
+"16750
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16750: extern volatile LATDbits_t LATDbits __attribute__((address(0xF86)));
+[v _LATDbits `VS832 ~T0 @X0 0 e@3974 ]
+"17572
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 17572:     struct {
+[s S867 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S867 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"17582
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 17582:     struct {
+[s S868 :3 `uc 1 :1 `uc 1 ]
+[n S868 . . CCP2_PA2 ]
+"17571
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 17571: typedef union {
+[u S866 `S867 1 `S868 1 ]
+[n S866 . . . ]
+"17587
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 17587: extern volatile PORTBbits_t PORTBbits __attribute__((address(0xF8E)));
+[v _PORTBbits `VS866 ~T0 @X0 0 e@3982 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 54: __asm("RX2PPS equ 0E8Dh");
 [; <" RX2PPS equ 0E8Dh ;# ">
@@ -1582,10 +1627,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "10 shift.c
-[; ;shift.c: 10: void DSWrite(_Bool Dat){
-[v _DSWrite `(v ~T0 @X0 1 ef1`a ]
+[; ;shift.c: 10: void SIPO_DSWrite(_Bool Dat){
+[v _SIPO_DSWrite `(v ~T0 @X0 1 ef1`a ]
 {
-[e :U _DSWrite ]
+[e :U _SIPO_DSWrite ]
 [v _Dat `a ~T0 @X0 1 r1 ]
 [f ]
 "12
@@ -1663,10 +1708,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 1497 ]
 }
 "28
-[; ;shift.c: 28: void STCPClock(){
-[v _STCPClock `(v ~T0 @X0 1 ef ]
+[; ;shift.c: 28: void SIPO_STCPClock(){
+[v _SIPO_STCPClock `(v ~T0 @X0 1 ef ]
 {
-[e :U _STCPClock ]
+[e :U _SIPO_STCPClock ]
 [f ]
 "30
 [; ;shift.c: 30:     do { LATCbits.LATC2 = 1; } while(0);
@@ -1701,10 +1746,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 1524 ]
 }
 "38
-[; ;shift.c: 38: void SIPOReset(){
-[v _SIPOReset `(v ~T0 @X0 1 ef ]
+[; ;shift.c: 38: void SIPO_Reset(){
+[v _SIPO_Reset `(v ~T0 @X0 1 ef ]
 {
-[e :U _SIPOReset ]
+[e :U _SIPO_Reset ]
 [f ]
 "41
 [; ;shift.c: 41:     do { LATCbits.LATC3 = 0; } while(0);
@@ -1721,8 +1766,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 1542 ]
 "43
-[; ;shift.c: 43:     STCPClock();
-[e ( _STCPClock ..  ]
+[; ;shift.c: 43:     SIPO_STCPClock();
+[e ( _SIPO_STCPClock ..  ]
 "45
 [; ;shift.c: 45:     do { LATCbits.LATC3 = 1; } while(0);
 [e :U 1546 ]
@@ -1742,10 +1787,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 1537 ]
 }
 "51
-[; ;shift.c: 51: void ShiftByte(unsigned int i){
-[v _ShiftByte `(v ~T0 @X0 1 ef1`ui ]
+[; ;shift.c: 51: void SIPO_ShiftByte(unsigned int i){
+[v _SIPO_ShiftByte `(v ~T0 @X0 1 ef1`ui ]
 {
-[e :U _ShiftByte ]
+[e :U _SIPO_ShiftByte ]
 [v _i `ui ~T0 @X0 1 r1 ]
 [f ]
 "54
@@ -1765,8 +1810,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == & _TempRead -> -> 1 `i `ui -> -> 1 `i `ui 1555  ]
 {
 "71
-[; ;shift.c: 71:             DSWrite(1);
-[e ( _DSWrite (1 -> -> 1 `i `a ]
+[; ;shift.c: 71:             SIPO_DSWrite(1);
+[e ( _SIPO_DSWrite (1 -> -> 1 `i `a ]
 "72
 [; ;shift.c: 72:         }else{
 }
@@ -1774,8 +1819,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1555 ]
 {
 "73
-[; ;shift.c: 73:             DSWrite(0);
-[e ( _DSWrite (1 -> -> 0 `i `a ]
+[; ;shift.c: 73:             SIPO_DSWrite(0);
+[e ( _SIPO_DSWrite (1 -> -> 0 `i `a ]
 "74
 [; ;shift.c: 74:         }
 }
@@ -1796,14 +1841,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 1550 ]
 }
 "80
-[; ;shift.c: 80: void ShiftWrite(void){
-[v _ShiftWrite `(v ~T0 @X0 1 ef ]
+[; ;shift.c: 80: void SIPO_ShiftWrite(void){
+[v _SIPO_ShiftWrite `(v ~T0 @X0 1 ef ]
 {
-[e :U _ShiftWrite ]
+[e :U _SIPO_ShiftWrite ]
 [f ]
 "83
-[; ;shift.c: 83:     SIPOReset();
-[e ( _SIPOReset ..  ]
+[; ;shift.c: 83:     SIPO_Reset();
+[e ( _SIPO_Reset ..  ]
 "86
 [; ;shift.c: 86:     for(int i = 0; i< MB306xx[0]; i++){
 {
@@ -1813,8 +1858,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1558 ]
 {
 "87
-[; ;shift.c: 87:         ShiftByte(i);
-[e ( _ShiftByte (1 -> _i `ui ]
+[; ;shift.c: 87:         SIPO_ShiftByte(i);
+[e ( _SIPO_ShiftByte (1 -> _i `ui ]
 "88
 [; ;shift.c: 88:     }
 }
@@ -1824,9 +1869,263 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1559 ]
 }
 "91
-[; ;shift.c: 91:     STCPClock();
-[e ( _STCPClock ..  ]
+[; ;shift.c: 91:     SIPO_STCPClock();
+[e ( _SIPO_STCPClock ..  ]
 "92
 [; ;shift.c: 92: }
 [e :UE 1557 ]
+}
+"95
+[; ;shift.c: 95: void PISO_STCPClock(void){
+[v _PISO_STCPClock `(v ~T0 @X0 1 ef ]
+{
+[e :U _PISO_STCPClock ]
+[f ]
+"100
+[; ;shift.c: 100:     do { LATBbits.LATB5 = 1; } while(0);
+[e :U 1565 ]
+{
+[e = . . _LATBbits 0 5 -> -> 1 `i `uc ]
+}
+[e :U 1564 ]
+"101
+[; ;shift.c: 101:     do { LATAbits.LATA5 = 1; } while(0);
+[e :U 1568 ]
+{
+[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+}
+[e :U 1567 ]
+"104
+[; ;shift.c: 104:     do { LATBbits.LATB5 = 0; } while(0);
+[e :U 1571 ]
+{
+[e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 1570 ]
+"105
+[; ;shift.c: 105:     do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1574 ]
+{
+[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 1573 ]
+"106
+[; ;shift.c: 106: }
+[e :UE 1562 ]
+}
+"108
+[; ;shift.c: 108: void PISO_Reset(void){
+[v _PISO_Reset `(v ~T0 @X0 1 ef ]
+{
+[e :U _PISO_Reset ]
+[f ]
+"110
+[; ;shift.c: 110:     do { LATBbits.LATB2 = 0; } while(0);
+[e :U 1578 ]
+{
+[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
+}
+[e :U 1577 ]
+"111
+[; ;shift.c: 111:     do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1581 ]
+{
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+}
+[e :U 1580 ]
+"112
+[; ;shift.c: 112:     PISO_STCPClock();
+[e ( _PISO_STCPClock ..  ]
+"114
+[; ;shift.c: 114:     do { LATBbits.LATB2 = 1; } while(0);
+[e :U 1584 ]
+{
+[e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
+}
+[e :U 1583 ]
+"115
+[; ;shift.c: 115:     do { LATAbits.LATA4 = 1; } while(0);
+[e :U 1587 ]
+{
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+}
+[e :U 1586 ]
+"117
+[; ;shift.c: 117: }
+[e :UE 1575 ]
+}
+"120
+[; ;shift.c: 120: void PISO_PL(void){
+[v _PISO_PL `(v ~T0 @X0 1 ef ]
+{
+[e :U _PISO_PL ]
+[f ]
+"123
+[; ;shift.c: 123:     do { LATDbits.LATD7 = 0; } while(0);
+[e :U 1591 ]
+{
+[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 1590 ]
+"124
+[; ;shift.c: 124:     do { LATAbits.LATA6 = 1; } while(0);
+[e :U 1594 ]
+{
+[e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
+}
+[e :U 1593 ]
+"127
+[; ;shift.c: 127:     do { LATDbits.LATD7 = 1; } while(0);
+[e :U 1597 ]
+{
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1596 ]
+"128
+[; ;shift.c: 128:     do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1600 ]
+{
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 1599 ]
+"130
+[; ;shift.c: 130: }
+[e :UE 1588 ]
+}
+"134
+[; ;shift.c: 134: void PISO_SHCPClock(void){
+[v _PISO_SHCPClock `(v ~T0 @X0 1 ef ]
+{
+[e :U _PISO_SHCPClock ]
+[f ]
+"137
+[; ;shift.c: 137:     do { LATBbits.LATB3 = 1; } while(0);
+[e :U 1604 ]
+{
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+}
+[e :U 1603 ]
+"138
+[; ;shift.c: 138:     do { LATAbits.LATA7 = 1; } while(0);
+[e :U 1607 ]
+{
+[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1606 ]
+"141
+[; ;shift.c: 141:     do { LATBbits.LATB3 = 0; } while(0);
+[e :U 1610 ]
+{
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+}
+[e :U 1609 ]
+"142
+[; ;shift.c: 142:     do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1613 ]
+{
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 1612 ]
+"143
+[; ;shift.c: 143: }
+[e :UE 1601 ]
+}
+"146
+[; ;shift.c: 146: void PISO_ReadByte(unsigned int i){
+[v _PISO_ReadByte `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _PISO_ReadByte ]
+[v _i `ui ~T0 @X0 1 r1 ]
+[f ]
+"159
+[; ;shift.c: 159:     MB300xx[i] = 0x0000;
+[e = *U + &U _MB300xx * -> _i `ux -> -> # *U &U _MB300xx `ui `ux -> -> 0 `i `ui ]
+"162
+[; ;shift.c: 162:     for(int j = 0; j< MB306xx[3]; j++){
+{
+[v _j `i ~T0 @X0 1 a ]
+[e = _j -> 0 `i ]
+[e $U 1618  ]
+[e :U 1615 ]
+{
+"164
+[; ;shift.c: 164:         if (j != 0){
+[e $ ! != _j -> 0 `i 1619  ]
+{
+"165
+[; ;shift.c: 165:             MB300xx[i] <<= 1;
+[e =<< *U + &U _MB300xx * -> _i `ux -> -> # *U &U _MB300xx `ui `ux -> -> 1 `i `ui ]
+"166
+[; ;shift.c: 166:         }
+}
+[e :U 1619 ]
+"168
+[; ;shift.c: 168:         if(PORTBbits.RB4 == 1){
+[e $ ! == -> . . _PORTBbits 0 4 `i -> 1 `i 1620  ]
+{
+"169
+[; ;shift.c: 169:             MB300xx[i] = MB300xx[i] + 1;
+[e = *U + &U _MB300xx * -> _i `ux -> -> # *U &U _MB300xx `ui `ux + *U + &U _MB300xx * -> _i `ux -> -> # *U &U _MB300xx `ui `ux -> -> 1 `i `ui ]
+"171
+[; ;shift.c: 171:         }else{
+}
+[e $U 1621  ]
+[e :U 1620 ]
+{
+"173
+[; ;shift.c: 173:         }
+}
+[e :U 1621 ]
+"176
+[; ;shift.c: 176:         PISO_SHCPClock();
+[e ( _PISO_SHCPClock ..  ]
+"178
+[; ;shift.c: 178:     }
+}
+[e ++ _j -> 1 `i ]
+[e :U 1618 ]
+[e $ < -> _j `ui *U + &U _MB306xx * -> -> -> 3 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux 1615  ]
+[e :U 1616 ]
+}
+"180
+[; ;shift.c: 180: }
+[e :UE 1614 ]
+}
+"183
+[; ;shift.c: 183: void PISO_ShiftRead(void){
+[v _PISO_ShiftRead `(v ~T0 @X0 1 ef ]
+{
+[e :U _PISO_ShiftRead ]
+[f ]
+"186
+[; ;shift.c: 186:     PISO_Reset();
+[e ( _PISO_Reset ..  ]
+"189
+[; ;shift.c: 189:     PISO_STCPClock();
+[e ( _PISO_STCPClock ..  ]
+"190
+[; ;shift.c: 190:     PISO_PL();
+[e ( _PISO_PL ..  ]
+"193
+[; ;shift.c: 193:     for(int i = 0; i< MB306xx[1]; i++){
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 1626  ]
+[e :U 1623 ]
+{
+"194
+[; ;shift.c: 194:         PISO_ReadByte(i);
+[e ( _PISO_ReadByte (1 -> _i `ui ]
+"195
+[; ;shift.c: 195:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 1626 ]
+[e $ < -> _i `ui *U + &U _MB306xx * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB306xx `ui `ux 1623  ]
+[e :U 1624 ]
+}
+"198
+[; ;shift.c: 198: }
+[e :UE 1622 ]
 }

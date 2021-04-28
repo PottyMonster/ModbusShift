@@ -3,6 +3,7 @@
 #include "Modbus.h"
 #include "stdio.h"
 #include "main.h"
+#include "shift.h"
 
 
 
@@ -77,6 +78,13 @@ void RXMode(){
     RX_ENA_SetLow();
 }
 
+
+void ClearMBInputReg(void){
+    // Clears all contents of MB300xx
+    for(int i = 0; i<32; i++){
+        MB300xx[i] = 0x0000;
+    }
+}
 
 void ClearModbusData(){
     int i = 0;    
@@ -308,6 +316,8 @@ void ModbusFC04(){
                 printf("Requested: 0x%04x to 0x%04x\r\n", ModbusData[2] * 256 + ModbusData[3], 
                     ((ModbusData[4] * 256) + ModbusData[5] -1) + (ModbusData[2] * 256 + ModbusData[3]));
                 error = 1;
+            }else{
+                PISO_ShiftRead();   // Read in the shift registers
             }
             break;
         }
@@ -448,6 +458,9 @@ void ModbusFC04(){
 
             }
             else if(ModbusData[2] == 0x00){
+                
+                // PISO_ShiftRead();   // Read Inputs   // ***THIS IS A PROBLEM ***
+                
                 // Circuit Registers
                 ByteLo = MB300xx[ModbusData[3] +i] & 0x00FF;
                 ByteHi = MB300xx[ModbusData[3] +i] >> 8;

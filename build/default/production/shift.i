@@ -16832,9 +16832,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 346 "./mcc_generated_files/pin_manager.h"
+# 446 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 358 "./mcc_generated_files/pin_manager.h"
+# 458 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
@@ -17459,11 +17459,12 @@ void ModbusFC10(void);
 void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
+void ClearMBInputReg(void);
 # 7 "shift.c" 2
 
 
 
-void DSWrite(_Bool Dat){
+void SIPO_DSWrite(_Bool Dat){
 
     if(Dat == 1){
         do { LATCbits.LATC0 = 1; } while(0);
@@ -17481,7 +17482,7 @@ void DSWrite(_Bool Dat){
 
 }
 
-void STCPClock(){
+void SIPO_STCPClock(){
 
     do { LATCbits.LATC2 = 1; } while(0);
     do { LATAbits.LATA6 = 1; } while(0);
@@ -17491,12 +17492,12 @@ void STCPClock(){
     do { LATAbits.LATA6 = 0; } while(0);
 }
 
-void SIPOReset(){
+void SIPO_Reset(){
 
 
     do { LATCbits.LATC3 = 0; } while(0);
     do { LATAbits.LATA7 = 0; } while(0);
-    STCPClock();
+    SIPO_STCPClock();
 
     do { LATCbits.LATC3 = 1; } while(0);
     do { LATAbits.LATA7 = 1; } while(0);
@@ -17504,7 +17505,7 @@ void SIPOReset(){
 
 }
 
-void ShiftByte(unsigned int i){
+void SIPO_ShiftByte(unsigned int i){
 
 
     unsigned int TempRead = MB400xx[i];
@@ -17512,25 +17513,120 @@ void ShiftByte(unsigned int i){
     for(int j = 0; j< MB306xx[2] ; j++){
 
         if((TempRead & 0x0001) == 0x0001){
-            DSWrite(1);
+            SIPO_DSWrite(1);
         }else{
-            DSWrite(0);
+            SIPO_DSWrite(0);
         }
 
         TempRead >>= 1;
     }
 }
 
-void ShiftWrite(void){
+void SIPO_ShiftWrite(void){
 
 
-    SIPOReset();
+    SIPO_Reset();
 
 
     for(int i = 0; i< MB306xx[0]; i++){
-        ShiftByte(i);
+        SIPO_ShiftByte(i);
     }
 
 
-    STCPClock();
+    SIPO_STCPClock();
+}
+
+
+void PISO_STCPClock(void){
+
+
+
+
+    do { LATBbits.LATB5 = 1; } while(0);
+    do { LATAbits.LATA5 = 1; } while(0);
+
+
+    do { LATBbits.LATB5 = 0; } while(0);
+    do { LATAbits.LATA5 = 0; } while(0);
+}
+
+void PISO_Reset(void){
+
+    do { LATBbits.LATB2 = 0; } while(0);
+    do { LATAbits.LATA4 = 0; } while(0);
+    PISO_STCPClock();
+
+    do { LATBbits.LATB2 = 1; } while(0);
+    do { LATAbits.LATA4 = 1; } while(0);
+
+}
+
+
+void PISO_PL(void){
+
+
+    do { LATDbits.LATD7 = 0; } while(0);
+    do { LATAbits.LATA6 = 1; } while(0);
+
+
+    do { LATDbits.LATD7 = 1; } while(0);
+    do { LATAbits.LATA6 = 0; } while(0);
+
+}
+
+
+
+void PISO_SHCPClock(void){
+
+
+    do { LATBbits.LATB3 = 1; } while(0);
+    do { LATAbits.LATA7 = 1; } while(0);
+
+
+    do { LATBbits.LATB3 = 0; } while(0);
+    do { LATAbits.LATA7 = 0; } while(0);
+}
+
+
+void PISO_ReadByte(unsigned int i){
+# 159 "shift.c"
+    MB300xx[i] = 0x0000;
+
+
+    for(int j = 0; j< MB306xx[3]; j++){
+
+        if (j != 0){
+            MB300xx[i] <<= 1;
+        }
+
+        if(PORTBbits.RB4 == 1){
+            MB300xx[i] = MB300xx[i] + 1;
+
+        }else{
+
+        }
+
+
+        PISO_SHCPClock();
+
+    }
+
+}
+
+
+void PISO_ShiftRead(void){
+
+
+    PISO_Reset();
+
+
+    PISO_STCPClock();
+    PISO_PL();
+
+
+    for(int i = 0; i< MB306xx[1]; i++){
+        PISO_ReadByte(i);
+    }
+
+
 }

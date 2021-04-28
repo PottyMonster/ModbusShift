@@ -16836,9 +16836,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "mcc_generated_files/device_config.h" 1
 # 51 "mcc_generated_files/mcc.h" 2
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 346 "mcc_generated_files/pin_manager.h"
+# 446 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 358 "mcc_generated_files/pin_manager.h"
+# 458 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "mcc_generated_files/mcc.h" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3

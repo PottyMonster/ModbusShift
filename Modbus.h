@@ -279,8 +279,7 @@ void ModbusFC10(void);
 void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
-
-
+void ClearMBInputReg(void);
 
 #ifndef MODBUS_H
 #define	MODBUS_H
