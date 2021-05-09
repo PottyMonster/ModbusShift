@@ -11,41 +11,40 @@ void SIPO_DSWrite(bool Dat){
     // Sets output to 74 594 and pulses SHCP to shift it in
     if(Dat == 1){
         SIPO_DS_SetHigh();
-        D2LED_SetHigh();
+        LED_Good_SetHigh();
     }else{
         SIPO_DS_SetLow();
-        D2LED_SetLow();
+        LED_Good_SetLow();
     }
     // __delay_ms(5);
     SIPO_SHCP_SetHigh();
-    D3LED_SetHigh();
+    LED_Bad_SetHigh();
     // __delay_ms(5);
     SIPO_SHCP_SetLow();
-    D3LED_SetLow();
+    LED_Bad_SetLow();
     // __delay_ms(5);    
 }
 
 void SIPO_STCPClock(){   
     // __delay_ms(5);
     SIPO_STCP_SetHigh();
-    D4LED_SetHigh();   
+    LED_Action_SetHigh();   
     
     // __delay_ms(5);
     SIPO_STCP_SetLow();
-    D4LED_SetLow();
+    LED_Action_SetLow();
 }
 
 void SIPO_Reset(){
     // Pulses SHR and STR low for a period of time to reset
     
     SIPO_Reset_SetLow();
-    D5LED_SetLow();
+    LED_Ready_SetLow();
     SIPO_STCPClock();
     // __delay_ms(500);
     SIPO_Reset_SetHigh();
-    D5LED_SetHigh();
+    LED_Ready_SetHigh();   
     
-
 }
 
 void SIPO_ShiftByte(unsigned int i){
@@ -98,21 +97,21 @@ void PISO_STCPClock(void){
     
     // __delay_ms(500);
     PISO_STCP_SetHigh();
-    D3LED_SetHigh();   
+    LED_Good_SetHigh();   
     
     // __delay_ms(500);
     PISO_STCP_SetLow();
-    D3LED_SetLow(); 
+    LED_Good_SetLow(); 
 }
 
 void PISO_Reset(void){
 
     PISO_Reset_SetLow();
-    D2LED_SetLow();
+    LED_Ready_SetLow();
     PISO_STCPClock();
     // __delay_ms(500);
     PISO_Reset_SetHigh();
-    D2LED_SetHigh();
+    LED_Ready_SetHigh();
     
 }
 
@@ -121,11 +120,11 @@ void PISO_PL(void){
     // Loads input latches to output shift register
     
     PISO_PL_SetLow();
-    D4LED_SetHigh();   
+    LED_Bad_SetHigh();   
     
     // __delay_ms(5);
     PISO_PL_SetHigh();
-    D4LED_SetLow();     
+    LED_Bad_SetLow();     
     
 }
 
@@ -135,11 +134,11 @@ void PISO_SHCPClock(void){
     // Clocks the output shift register
     // __delay_ms(500);
     PISO_SHCP_SetHigh();
-    D5LED_SetHigh();   
+    LED_Ready_SetHigh();   
     
     // __delay_ms(500);
     PISO_SHCP_SetLow();
-    D5LED_SetLow(); 
+    LED_Ready_SetLow(); 
 }
 
 

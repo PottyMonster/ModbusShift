@@ -69,6 +69,30 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
 }
 
 
+void PrintAnIp(unsigned int i){
+    // --- NEEDS UPDATING WHEN MORE AN IP USED ---
+    uint16_t convertedValue;
+
+    if(i == 1){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);
+    }else if(i == 2){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);    // Currently 0    
+    }else if(i == 3){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);    // Currently 0    
+    }else if(i == 4){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);    // Currently 0    
+    }else if(i == 5){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);    // Currently 0    
+    }else{
+        convertedValue = 0xFFFF;
+    }
+
+
+    printf("\r\nADC%i: 0x%04x \r\n", i, convertedValue);    
+    
+}
+
+
 
 void InitialiseString(bool Partial){
 
@@ -98,7 +122,7 @@ void InitialiseString(bool Partial){
 
     // Send Initalisation String
 
-    printf("\r\nDan and Sam's Modbus GPIO Expansion\r\n"); 
+    printf("\r\nDan's Modbus GPIO Expansion\r\n"); 
     
     // Needs to read EEPROM and update Mdbus registers too.
     
@@ -158,6 +182,8 @@ void InitialiseString(bool Partial){
         
         printf("Commands Supported:\r\n"); 
         printf("   ? - Initalise and display card details\r\n"); 
+        printf("   an - Print all analogue inputs\r\n");
+        printf("   an1 - an5 - Print specific analogue input\r\n");
         printf("   serial - Set card serial number\r\n");
         printf("   part - Set card part number\r\n");
         printf("   rev - Set card part number\r\n");
@@ -169,11 +195,24 @@ void InitialiseString(bool Partial){
         printf("   mod i - Print Modbus Circuit Input Registers\r\n");        
         printf("   debug - Toggles trace outputs. Slows down time device can respond between commands. DEFAULT ON!\r\n\n");
  
+        /*
         uint16_t convertedValue;
         convertedValue = ADCC_GetSingleConversion(AIP_0);        
         printf("ADC0: 0x%04x \r\n\n", convertedValue);
+        */
         
-        printf("Initalisation Complete - Ready\r\n\n");   
+        PrintAnIp(1);
+        PrintAnIp(2);
+        PrintAnIp(3);
+        PrintAnIp(4);
+        PrintAnIp(5);
+        
+        if(CheckConfig() == 1){
+            ConfGood = 1;
+            printf("Initalisation Complete - Ready\r\n\n");   
+        }else{
+            printf("--- Configuration Required --- \r\n\n");
+        }
 
     };
 }
@@ -325,12 +364,32 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
         }       
 
         printf("%s Saved. \r\n",Name);
+        LED_Bad_SetHigh();
+        LED_Good_SetHigh();
+        LED_Ready_SetHigh();
+        LED_Action_SetHigh();
+        __delay_ms(200);
+        LED_Bad_SetLow();
+        LED_Good_SetLow();
+        LED_Ready_SetLow();
+        LED_Action_SetLow();
+        __delay_ms(100);
+        LED_Bad_SetHigh();
+        LED_Good_SetHigh();
+        LED_Ready_SetHigh();
+        LED_Action_SetHigh();
+        __delay_ms(200);
+        LED_Bad_SetLow();
+        LED_Good_SetLow();
+        LED_Ready_SetLow();
+        LED_Action_SetLow();
         
         // Clear RS232 Command 
         strcpy(Command, "");  
         
     }else if(Conf == 0x4e || Conf == 0x6e){
         printf("Not saved\r\n");
+        LED_Bad_SetHigh();
     }
 
     
@@ -403,8 +462,29 @@ bool ValidateCmd(void){
     }else if((!strcmp(Command,"MOD I")) || (!strcmp(Command,"mod i"))){
         PrintInput();
         return 1;
-    } 
-    else{
+    }else if((!strcmp(Command,"AN1")) || (!strcmp(Command,"an1"))){
+        PrintAnIp(1);
+        return 1;
+    }else if((!strcmp(Command,"AN2")) || (!strcmp(Command,"an2"))){
+        PrintAnIp(2);
+        return 1;
+    }else if((!strcmp(Command,"AN3")) || (!strcmp(Command,"an3"))){
+        PrintAnIp(3);
+        return 1;
+    }else if((!strcmp(Command,"AN4")) || (!strcmp(Command,"an4"))){
+        PrintAnIp(4);
+        return 1;
+    }else if((!strcmp(Command,"AN5")) || (!strcmp(Command,"an5"))){
+        PrintAnIp(5);
+        return 1;
+    }else if((!strcmp(Command,"AN")) || (!strcmp(Command,"an"))){
+        PrintAnIp(1);
+        PrintAnIp(2);
+        PrintAnIp(3);
+        PrintAnIp(4);
+        PrintAnIp(5);
+        return 1;
+    }else{
         return 0;
     }
     

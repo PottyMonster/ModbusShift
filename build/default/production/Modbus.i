@@ -16958,6 +16958,73 @@ extern void cputs(const char *);
 # 110 "./mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
 # 56 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/adcc.h" 1
+# 72 "./mcc_generated_files/adcc.h"
+typedef uint16_t adc_result_t;
+# 86 "./mcc_generated_files/adcc.h"
+typedef enum
+{
+    AIP_0 = 0x0,
+    channel_VSS = 0x3C,
+    channel_Temp = 0x3D,
+    channel_DAC1 = 0x3E,
+    channel_FVR_buf1 = 0x3F
+} adcc_channel_t;
+# 127 "./mcc_generated_files/adcc.h"
+void ADCC_Initialize(void);
+# 156 "./mcc_generated_files/adcc.h"
+void ADCC_StartConversion(adcc_channel_t channel);
+# 186 "./mcc_generated_files/adcc.h"
+_Bool ADCC_IsConversionDone(void);
+# 218 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetConversionResult(void);
+# 249 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+# 274 "./mcc_generated_files/adcc.h"
+void ADCC_StopConversion(void);
+# 301 "./mcc_generated_files/adcc.h"
+void ADCC_SetStopOnInterrupt(void);
+# 326 "./mcc_generated_files/adcc.h"
+void ADCC_DischargeSampleCapacitor(void);
+# 352 "./mcc_generated_files/adcc.h"
+void ADCC_LoadAcquisitionRegister(uint8_t);
+# 378 "./mcc_generated_files/adcc.h"
+void ADCC_SetPrechargeTime(uint8_t);
+# 403 "./mcc_generated_files/adcc.h"
+void ADCC_SetRepeatCount(uint8_t);
+# 431 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetCurrentCountofConversions(void);
+# 455 "./mcc_generated_files/adcc.h"
+void ADCC_ClearAccumulator(void);
+# 480 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetAccumulatorValue(void);
+# 508 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasAccumulatorOverflowed(void);
+# 533 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetFilterValue(void);
+# 561 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetPreviousResult(void);
+# 587 "./mcc_generated_files/adcc.h"
+void ADCC_DefineSetPoint(uint16_t);
+# 613 "./mcc_generated_files/adcc.h"
+void ADCC_SetUpperThreshold(uint16_t);
+# 639 "./mcc_generated_files/adcc.h"
+void ADCC_SetLowerThreshold(uint16_t);
+# 666 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetErrorCalculation(void);
+# 693 "./mcc_generated_files/adcc.h"
+void ADCC_EnableDoubleSampling(void);
+# 717 "./mcc_generated_files/adcc.h"
+void ADCC_EnableContinuousConversion(void);
+# 741 "./mcc_generated_files/adcc.h"
+void ADCC_DisableContinuousConversion(void);
+# 769 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedUpperThreshold(void);
+# 797 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedLowerThreshold(void);
+# 824 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetConversionStageStatus(void);
+# 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/memory.h" 1
 # 99 "./mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -16975,61 +17042,23 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
-# 57 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/eusart1.h" 1
-# 75 "./mcc_generated_files/eusart1.h"
-typedef union {
-    struct {
-        unsigned perr : 1;
-        unsigned ferr : 1;
-        unsigned oerr : 1;
-        unsigned reserved : 5;
-    };
-    uint8_t status;
-}eusart1_status_t;
-
-
-
-
-extern volatile uint8_t eusart1TxBufferRemaining;
-extern volatile uint8_t eusart1RxCount;
-
-
-
-
-extern void (*EUSART1_TxDefaultInterruptHandler)(void);
-extern void (*EUSART1_RxDefaultInterruptHandler)(void);
-# 117 "./mcc_generated_files/eusart1.h"
-void EUSART1_Initialize(void);
-# 165 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_tx_ready(void);
-# 213 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_rx_ready(void);
-# 260 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_tx_done(void);
-# 308 "./mcc_generated_files/eusart1.h"
-eusart1_status_t EUSART1_get_last_status(void);
-# 328 "./mcc_generated_files/eusart1.h"
-uint8_t EUSART1_Read(void);
-# 348 "./mcc_generated_files/eusart1.h"
-void EUSART1_Write(uint8_t txData);
-# 369 "./mcc_generated_files/eusart1.h"
-void EUSART1_Transmit_ISR(void);
-# 390 "./mcc_generated_files/eusart1.h"
-void EUSART1_Receive_ISR(void);
-# 411 "./mcc_generated_files/eusart1.h"
-void EUSART1_RxDataHandler(void);
-# 429 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 58 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/tmr0.h" 1
+# 100 "./mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "./mcc_generated_files/tmr0.h"
+void TMR0_StartTimer(void);
+# 161 "./mcc_generated_files/tmr0.h"
+void TMR0_StopTimer(void);
+# 197 "./mcc_generated_files/tmr0.h"
+uint16_t TMR0_ReadTimer(void);
+# 236 "./mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint16_t timerVal);
+# 272 "./mcc_generated_files/tmr0.h"
+void TMR0_Reload(void);
+# 310 "./mcc_generated_files/tmr0.h"
+_Bool TMR0_HasOverflowOccured(void);
+# 59 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/eusart2.h" 1
 # 57 "./mcc_generated_files/eusart2.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
@@ -17223,74 +17252,61 @@ void EUSART2_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "./mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 59 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/adcc.h" 1
-# 72 "./mcc_generated_files/adcc.h"
-typedef uint16_t adc_result_t;
-# 86 "./mcc_generated_files/adcc.h"
-typedef enum
-{
-    AIP_0 = 0x0,
-    channel_VSS = 0x3C,
-    channel_Temp = 0x3D,
-    channel_DAC1 = 0x3E,
-    channel_FVR_buf1 = 0x3F
-} adcc_channel_t;
-# 127 "./mcc_generated_files/adcc.h"
-void ADCC_Initialize(void);
-# 156 "./mcc_generated_files/adcc.h"
-void ADCC_StartConversion(adcc_channel_t channel);
-# 186 "./mcc_generated_files/adcc.h"
-_Bool ADCC_IsConversionDone(void);
-# 218 "./mcc_generated_files/adcc.h"
-adc_result_t ADCC_GetConversionResult(void);
-# 249 "./mcc_generated_files/adcc.h"
-adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-# 274 "./mcc_generated_files/adcc.h"
-void ADCC_StopConversion(void);
-# 301 "./mcc_generated_files/adcc.h"
-void ADCC_SetStopOnInterrupt(void);
-# 326 "./mcc_generated_files/adcc.h"
-void ADCC_DischargeSampleCapacitor(void);
-# 352 "./mcc_generated_files/adcc.h"
-void ADCC_LoadAcquisitionRegister(uint8_t);
-# 378 "./mcc_generated_files/adcc.h"
-void ADCC_SetPrechargeTime(uint8_t);
-# 403 "./mcc_generated_files/adcc.h"
-void ADCC_SetRepeatCount(uint8_t);
-# 431 "./mcc_generated_files/adcc.h"
-uint8_t ADCC_GetCurrentCountofConversions(void);
-# 455 "./mcc_generated_files/adcc.h"
-void ADCC_ClearAccumulator(void);
-# 480 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetAccumulatorValue(void);
-# 508 "./mcc_generated_files/adcc.h"
-_Bool ADCC_HasAccumulatorOverflowed(void);
-# 533 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetFilterValue(void);
-# 561 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetPreviousResult(void);
-# 587 "./mcc_generated_files/adcc.h"
-void ADCC_DefineSetPoint(uint16_t);
-# 613 "./mcc_generated_files/adcc.h"
-void ADCC_SetUpperThreshold(uint16_t);
-# 639 "./mcc_generated_files/adcc.h"
-void ADCC_SetLowerThreshold(uint16_t);
-# 666 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetErrorCalculation(void);
-# 693 "./mcc_generated_files/adcc.h"
-void ADCC_EnableDoubleSampling(void);
-# 717 "./mcc_generated_files/adcc.h"
-void ADCC_EnableContinuousConversion(void);
-# 741 "./mcc_generated_files/adcc.h"
-void ADCC_DisableContinuousConversion(void);
-# 769 "./mcc_generated_files/adcc.h"
-_Bool ADCC_HasErrorCrossedUpperThreshold(void);
-# 797 "./mcc_generated_files/adcc.h"
-_Bool ADCC_HasErrorCrossedLowerThreshold(void);
-# 824 "./mcc_generated_files/adcc.h"
-uint8_t ADCC_GetConversionStageStatus(void);
 # 60 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/eusart1.h" 1
+# 75 "./mcc_generated_files/eusart1.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}eusart1_status_t;
+
+
+
+
+extern volatile uint8_t eusart1TxBufferRemaining;
+extern volatile uint8_t eusart1RxCount;
+
+
+
+
+extern void (*EUSART1_TxDefaultInterruptHandler)(void);
+extern void (*EUSART1_RxDefaultInterruptHandler)(void);
+# 117 "./mcc_generated_files/eusart1.h"
+void EUSART1_Initialize(void);
+# 165 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_tx_ready(void);
+# 213 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_rx_ready(void);
+# 260 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_tx_done(void);
+# 308 "./mcc_generated_files/eusart1.h"
+eusart1_status_t EUSART1_get_last_status(void);
+# 328 "./mcc_generated_files/eusart1.h"
+uint8_t EUSART1_Read(void);
+# 348 "./mcc_generated_files/eusart1.h"
+void EUSART1_Write(uint8_t txData);
+# 369 "./mcc_generated_files/eusart1.h"
+void EUSART1_Transmit_ISR(void);
+# 390 "./mcc_generated_files/eusart1.h"
+void EUSART1_Receive_ISR(void);
+# 411 "./mcc_generated_files/eusart1.h"
+void EUSART1_RxDataHandler(void);
+# 429 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 447 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 465 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
+# 485 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
+# 505 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
+# 61 "./mcc_generated_files/mcc.h" 2
 # 75 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 # 88 "./mcc_generated_files/mcc.h"
@@ -17335,7 +17351,7 @@ unsigned int MB304xx[6] = { 0xFFFF };
 unsigned int MB305xx[4] = { 0xFFFF };
 
 
-unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
+unsigned int MB306xx[4] = { 0x0000, 0x0000, 0x0000, 0x0000 };
 
 
 unsigned int MB307xx[5] = { 0xFFFF };
@@ -17370,6 +17386,7 @@ void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
 void ClearMBInputReg(void);
+_Bool CheckConfig(void);
 # 4 "Modbus.c" 2
 
 # 1 "./main.h" 1
@@ -17381,7 +17398,11 @@ void ClearMBInputReg(void);
 
 
 _Bool Debug = 1;
+_Bool ConfGood = 0;
 unsigned int Address = 0x05;
+
+
+void ToggleStatusLEDs();
 # 6 "Modbus.c" 2
 # 1 "./shift.h" 1
 
@@ -17410,7 +17431,46 @@ unsigned char MBRespon[75] = { 0xFF };
 
 unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
-# 37 "Modbus.c"
+
+
+
+_Bool CheckConfig(){
+
+    unsigned int Error = 0;
+
+    if(MB306xx[0] > 32){
+
+        Error++;
+    }else{
+
+        if((MB306xx[2] != 8) && (MB306xx[2] !=16)){
+            Error++;
+        }
+    }
+
+    if(MB306xx[1] >32){
+        Error++;
+    }else{
+        if((MB306xx[3] != 8) && (MB306xx[3] !=16)){
+            Error++;
+        }
+     }
+
+
+
+
+    if(Error >0){
+
+        return 0;
+    }else{
+        return 1;
+    }
+
+}
+
+
+
+
 void PrintHolding(void){
 
 
@@ -17573,13 +17633,12 @@ _Bool checkCRC(void){
 
 
 
-  if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
-  {
-    return 1;
-  }
-  else{
-    return 0;
-  }
+    if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
+    {
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 
@@ -17657,9 +17716,11 @@ void ModbusFC03(){
 
         UART1_Write_string(MBRespon,MBResCnt);
         printf("Operation Successful \r\n\n");
+        do { LATAbits.LATA4 = 1; } while(0);
     }else{
         ModbusError(0x02);
         printf("Operation Failed \r\n\n");
+        do { LATAbits.LATA5 = 1; } while(0);
     }
 
 }
@@ -17874,9 +17935,11 @@ void ModbusFC04(){
 
         UART1_Write_string(MBRespon,MBResCnt);
         printf("Operation Successful \r\n\n");
+        do { LATAbits.LATA4 = 1; } while(0);
     }else{
         ModbusError(0x02);
         printf("Operation Failed \r\n\n");
+        do { LATAbits.LATA5 = 1; } while(0);
     }
 
 }
@@ -17889,7 +17952,7 @@ void ModbusFC10(void){
     int j = 0;
     unsigned int TempData = 0x0000;
     _Bool error = 0;
-# 523 "Modbus.c"
+
     if(
         (((ModbusData[2] * 256) + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 0) ||
 
@@ -17940,9 +18003,11 @@ void ModbusFC10(void){
 
         UART1_Write_string(MBRespon,MBResCnt);
         printf("Operation Successful \r\n\n");
+        do { LATAbits.LATA4 = 1; } while(0);
     }else{
         ModbusError(0x02);
         printf("Operation Failed \r\n\n");
+        do { LATAbits.LATA5 = 1; } while(0);
     }
 }
 
@@ -18046,7 +18111,7 @@ void PrintModRespon(){
 
 
 
-void ClearModbusRespon(){
+void ClearModbusRespon(void){
     int i = 0;
     for(i=0; i<32; i++ ){
         MBRespon[i] = 0xFF;
@@ -18078,6 +18143,8 @@ void ModbusError(int ErrorCode){
 
     UART1_Write_string(MBRespon,MBResCnt);
 
+    do { LATAbits.LATA5 = 1; } while(0);
+
 }
 
 
@@ -18086,7 +18153,7 @@ _Bool ModbusRx(){
     RXMode();
     if(EUSART1_is_rx_ready()){
         if(Debug ==1){
-            printf("\r\nSomething in ESUART1 \r\n");
+            printf("\r\n\nSomething in ESUART1 \r\n");
         }
         do{
             if(EUSART1_is_rx_ready()){
@@ -18128,6 +18195,7 @@ _Bool ModbusRx(){
             }
         }else{
             printf("\r\nReceived Modbus CRC is bad.\r\n\n");
+            do { LATAbits.LATA5 = 1; } while(0);
             return 0;
         }
 

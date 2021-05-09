@@ -44,7 +44,7 @@ unsigned int MB304xx[6] = { 0xFFFF };
 unsigned int MB305xx[4] = { 0xFFFF };
 
 // GPIO Count, 0 = SIPO Count, 1 = PISO Count, 2 = SIPO Num Bits, 3 = PISO Num Bitssw
-unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
+unsigned int MB306xx[4] = { 0x0000, 0x0000, 0x0000, 0x0000 };
 
 // Analogue Inputs
 unsigned int MB307xx[5] = { 0xFFFF };
@@ -280,6 +280,7 @@ void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
 void ClearMBInputReg(void);
+bool CheckConfig(void);
 
 #ifndef MODBUS_H
 #define	MODBUS_H

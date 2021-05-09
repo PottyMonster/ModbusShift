@@ -16958,6 +16958,73 @@ extern void cputs(const char *);
 # 110 "./mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
 # 56 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/adcc.h" 1
+# 72 "./mcc_generated_files/adcc.h"
+typedef uint16_t adc_result_t;
+# 86 "./mcc_generated_files/adcc.h"
+typedef enum
+{
+    AIP_0 = 0x0,
+    channel_VSS = 0x3C,
+    channel_Temp = 0x3D,
+    channel_DAC1 = 0x3E,
+    channel_FVR_buf1 = 0x3F
+} adcc_channel_t;
+# 127 "./mcc_generated_files/adcc.h"
+void ADCC_Initialize(void);
+# 156 "./mcc_generated_files/adcc.h"
+void ADCC_StartConversion(adcc_channel_t channel);
+# 186 "./mcc_generated_files/adcc.h"
+_Bool ADCC_IsConversionDone(void);
+# 218 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetConversionResult(void);
+# 249 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+# 274 "./mcc_generated_files/adcc.h"
+void ADCC_StopConversion(void);
+# 301 "./mcc_generated_files/adcc.h"
+void ADCC_SetStopOnInterrupt(void);
+# 326 "./mcc_generated_files/adcc.h"
+void ADCC_DischargeSampleCapacitor(void);
+# 352 "./mcc_generated_files/adcc.h"
+void ADCC_LoadAcquisitionRegister(uint8_t);
+# 378 "./mcc_generated_files/adcc.h"
+void ADCC_SetPrechargeTime(uint8_t);
+# 403 "./mcc_generated_files/adcc.h"
+void ADCC_SetRepeatCount(uint8_t);
+# 431 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetCurrentCountofConversions(void);
+# 455 "./mcc_generated_files/adcc.h"
+void ADCC_ClearAccumulator(void);
+# 480 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetAccumulatorValue(void);
+# 508 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasAccumulatorOverflowed(void);
+# 533 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetFilterValue(void);
+# 561 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetPreviousResult(void);
+# 587 "./mcc_generated_files/adcc.h"
+void ADCC_DefineSetPoint(uint16_t);
+# 613 "./mcc_generated_files/adcc.h"
+void ADCC_SetUpperThreshold(uint16_t);
+# 639 "./mcc_generated_files/adcc.h"
+void ADCC_SetLowerThreshold(uint16_t);
+# 666 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetErrorCalculation(void);
+# 693 "./mcc_generated_files/adcc.h"
+void ADCC_EnableDoubleSampling(void);
+# 717 "./mcc_generated_files/adcc.h"
+void ADCC_EnableContinuousConversion(void);
+# 741 "./mcc_generated_files/adcc.h"
+void ADCC_DisableContinuousConversion(void);
+# 769 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedUpperThreshold(void);
+# 797 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedLowerThreshold(void);
+# 824 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetConversionStageStatus(void);
+# 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/memory.h" 1
 # 99 "./mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -16975,61 +17042,23 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
-# 57 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/eusart1.h" 1
-# 75 "./mcc_generated_files/eusart1.h"
-typedef union {
-    struct {
-        unsigned perr : 1;
-        unsigned ferr : 1;
-        unsigned oerr : 1;
-        unsigned reserved : 5;
-    };
-    uint8_t status;
-}eusart1_status_t;
-
-
-
-
-extern volatile uint8_t eusart1TxBufferRemaining;
-extern volatile uint8_t eusart1RxCount;
-
-
-
-
-extern void (*EUSART1_TxDefaultInterruptHandler)(void);
-extern void (*EUSART1_RxDefaultInterruptHandler)(void);
-# 117 "./mcc_generated_files/eusart1.h"
-void EUSART1_Initialize(void);
-# 165 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_tx_ready(void);
-# 213 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_rx_ready(void);
-# 260 "./mcc_generated_files/eusart1.h"
-_Bool EUSART1_is_tx_done(void);
-# 308 "./mcc_generated_files/eusart1.h"
-eusart1_status_t EUSART1_get_last_status(void);
-# 328 "./mcc_generated_files/eusart1.h"
-uint8_t EUSART1_Read(void);
-# 348 "./mcc_generated_files/eusart1.h"
-void EUSART1_Write(uint8_t txData);
-# 369 "./mcc_generated_files/eusart1.h"
-void EUSART1_Transmit_ISR(void);
-# 390 "./mcc_generated_files/eusart1.h"
-void EUSART1_Receive_ISR(void);
-# 411 "./mcc_generated_files/eusart1.h"
-void EUSART1_RxDataHandler(void);
-# 429 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "./mcc_generated_files/eusart1.h"
-void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 58 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/tmr0.h" 1
+# 100 "./mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "./mcc_generated_files/tmr0.h"
+void TMR0_StartTimer(void);
+# 161 "./mcc_generated_files/tmr0.h"
+void TMR0_StopTimer(void);
+# 197 "./mcc_generated_files/tmr0.h"
+uint16_t TMR0_ReadTimer(void);
+# 236 "./mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint16_t timerVal);
+# 272 "./mcc_generated_files/tmr0.h"
+void TMR0_Reload(void);
+# 310 "./mcc_generated_files/tmr0.h"
+_Bool TMR0_HasOverflowOccured(void);
+# 59 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/eusart2.h" 1
 # 57 "./mcc_generated_files/eusart2.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
@@ -17223,74 +17252,61 @@ void EUSART2_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "./mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 59 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/adcc.h" 1
-# 72 "./mcc_generated_files/adcc.h"
-typedef uint16_t adc_result_t;
-# 86 "./mcc_generated_files/adcc.h"
-typedef enum
-{
-    AIP_0 = 0x0,
-    channel_VSS = 0x3C,
-    channel_Temp = 0x3D,
-    channel_DAC1 = 0x3E,
-    channel_FVR_buf1 = 0x3F
-} adcc_channel_t;
-# 127 "./mcc_generated_files/adcc.h"
-void ADCC_Initialize(void);
-# 156 "./mcc_generated_files/adcc.h"
-void ADCC_StartConversion(adcc_channel_t channel);
-# 186 "./mcc_generated_files/adcc.h"
-_Bool ADCC_IsConversionDone(void);
-# 218 "./mcc_generated_files/adcc.h"
-adc_result_t ADCC_GetConversionResult(void);
-# 249 "./mcc_generated_files/adcc.h"
-adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-# 274 "./mcc_generated_files/adcc.h"
-void ADCC_StopConversion(void);
-# 301 "./mcc_generated_files/adcc.h"
-void ADCC_SetStopOnInterrupt(void);
-# 326 "./mcc_generated_files/adcc.h"
-void ADCC_DischargeSampleCapacitor(void);
-# 352 "./mcc_generated_files/adcc.h"
-void ADCC_LoadAcquisitionRegister(uint8_t);
-# 378 "./mcc_generated_files/adcc.h"
-void ADCC_SetPrechargeTime(uint8_t);
-# 403 "./mcc_generated_files/adcc.h"
-void ADCC_SetRepeatCount(uint8_t);
-# 431 "./mcc_generated_files/adcc.h"
-uint8_t ADCC_GetCurrentCountofConversions(void);
-# 455 "./mcc_generated_files/adcc.h"
-void ADCC_ClearAccumulator(void);
-# 480 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetAccumulatorValue(void);
-# 508 "./mcc_generated_files/adcc.h"
-_Bool ADCC_HasAccumulatorOverflowed(void);
-# 533 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetFilterValue(void);
-# 561 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetPreviousResult(void);
-# 587 "./mcc_generated_files/adcc.h"
-void ADCC_DefineSetPoint(uint16_t);
-# 613 "./mcc_generated_files/adcc.h"
-void ADCC_SetUpperThreshold(uint16_t);
-# 639 "./mcc_generated_files/adcc.h"
-void ADCC_SetLowerThreshold(uint16_t);
-# 666 "./mcc_generated_files/adcc.h"
-uint16_t ADCC_GetErrorCalculation(void);
-# 693 "./mcc_generated_files/adcc.h"
-void ADCC_EnableDoubleSampling(void);
-# 717 "./mcc_generated_files/adcc.h"
-void ADCC_EnableContinuousConversion(void);
-# 741 "./mcc_generated_files/adcc.h"
-void ADCC_DisableContinuousConversion(void);
-# 769 "./mcc_generated_files/adcc.h"
-_Bool ADCC_HasErrorCrossedUpperThreshold(void);
-# 797 "./mcc_generated_files/adcc.h"
-_Bool ADCC_HasErrorCrossedLowerThreshold(void);
-# 824 "./mcc_generated_files/adcc.h"
-uint8_t ADCC_GetConversionStageStatus(void);
 # 60 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/eusart1.h" 1
+# 75 "./mcc_generated_files/eusart1.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}eusart1_status_t;
+
+
+
+
+extern volatile uint8_t eusart1TxBufferRemaining;
+extern volatile uint8_t eusart1RxCount;
+
+
+
+
+extern void (*EUSART1_TxDefaultInterruptHandler)(void);
+extern void (*EUSART1_RxDefaultInterruptHandler)(void);
+# 117 "./mcc_generated_files/eusart1.h"
+void EUSART1_Initialize(void);
+# 165 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_tx_ready(void);
+# 213 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_rx_ready(void);
+# 260 "./mcc_generated_files/eusart1.h"
+_Bool EUSART1_is_tx_done(void);
+# 308 "./mcc_generated_files/eusart1.h"
+eusart1_status_t EUSART1_get_last_status(void);
+# 328 "./mcc_generated_files/eusart1.h"
+uint8_t EUSART1_Read(void);
+# 348 "./mcc_generated_files/eusart1.h"
+void EUSART1_Write(uint8_t txData);
+# 369 "./mcc_generated_files/eusart1.h"
+void EUSART1_Transmit_ISR(void);
+# 390 "./mcc_generated_files/eusart1.h"
+void EUSART1_Receive_ISR(void);
+# 411 "./mcc_generated_files/eusart1.h"
+void EUSART1_RxDataHandler(void);
+# 429 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 447 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 465 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
+# 485 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
+# 505 "./mcc_generated_files/eusart1.h"
+void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
+# 61 "./mcc_generated_files/mcc.h" 2
 # 75 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 # 88 "./mcc_generated_files/mcc.h"
@@ -17381,7 +17397,11 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 
 
 _Bool Debug = 1;
+_Bool ConfGood = 0;
 unsigned int Address = 0x05;
+
+
+void ToggleStatusLEDs();
 # 7 "RS232.c" 2
 # 1 "./Modbus.h" 1
 # 12 "./Modbus.h"
@@ -17420,7 +17440,7 @@ unsigned int MB304xx[6] = { 0xFFFF };
 unsigned int MB305xx[4] = { 0xFFFF };
 
 
-unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
+unsigned int MB306xx[4] = { 0x0000, 0x0000, 0x0000, 0x0000 };
 
 
 unsigned int MB307xx[5] = { 0xFFFF };
@@ -17455,6 +17475,7 @@ void PrintMB400(void);
 void PrintHolding(void);
 void PrintInput(void);
 void ClearMBInputReg(void);
+_Bool CheckConfig(void);
 # 8 "RS232.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 1 3
 # 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\ctype.h" 3
@@ -17558,6 +17579,30 @@ void CardConfigIni(char Name[20], char* RetNum, uint16_t dataeeAddrWrk, int NumB
 }
 
 
+void PrintAnIp(unsigned int i){
+
+    uint16_t convertedValue;
+
+    if(i == 1){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);
+    }else if(i == 2){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);
+    }else if(i == 3){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);
+    }else if(i == 4){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);
+    }else if(i == 5){
+        convertedValue = ADCC_GetSingleConversion(AIP_0);
+    }else{
+        convertedValue = 0xFFFF;
+    }
+
+
+    printf("\r\nADC%i: 0x%04x \r\n", i, convertedValue);
+
+}
+
+
 
 void InitialiseString(_Bool Partial){
 
@@ -17587,7 +17632,7 @@ void InitialiseString(_Bool Partial){
 
 
 
-    printf("\r\nDan and Sam's Modbus GPIO Expansion\r\n");
+    printf("\r\nDan's Modbus GPIO Expansion\r\n");
 
 
 
@@ -17596,7 +17641,7 @@ void InitialiseString(_Bool Partial){
     printf("Card Revision. %s \r\n",RevNum);
     printf("Card Address. 0x05 \r\n");
     printf("Compiled on %s at %s by XC8 version %u\r\n\n",
-            "Apr 28 2021", "17:26:21", 2100);
+            "May  3 2021", "15:17:12", 2100);
     printf("SIPO Length: %d \r\n", MB306xx[0]);
     printf("SIPO Bits: %d \r\n", MB306xx[2]);
     printf("PISO Length: %d \r\n", MB306xx[1]);
@@ -17606,7 +17651,7 @@ void InitialiseString(_Bool Partial){
     int j = 0;
 
 
-    char Date[11] = "Apr 28 2021";
+    char Date[11] = "May  3 2021";
     for(int i=0; i<12; i = i+2){
         readDataOdd = Date[i];
         readDataEven = Date[i +1];
@@ -17616,7 +17661,7 @@ void InitialiseString(_Bool Partial){
 
 
     j = 0;
-    char Time[8] = "17:26:21";
+    char Time[8] = "15:17:12";
     for(int i=0; i<8; i = i+2){
         readDataOdd = Time[i];
         readDataEven = Time[i +1];
@@ -17647,6 +17692,8 @@ void InitialiseString(_Bool Partial){
 
         printf("Commands Supported:\r\n");
         printf("   ? - Initalise and display card details\r\n");
+        printf("   an - Print all analogue inputs\r\n");
+        printf("   an1 - an5 - Print specific analogue input\r\n");
         printf("   serial - Set card serial number\r\n");
         printf("   part - Set card part number\r\n");
         printf("   rev - Set card part number\r\n");
@@ -17658,11 +17705,24 @@ void InitialiseString(_Bool Partial){
         printf("   mod i - Print Modbus Circuit Input Registers\r\n");
         printf("   debug - Toggles trace outputs. Slows down time device can respond between commands. DEFAULT ON!\r\n\n");
 
-        uint16_t convertedValue;
-        convertedValue = ADCC_GetSingleConversion(AIP_0);
-        printf("ADC0: 0x%04x \r\n\n", convertedValue);
 
-        printf("Initalisation Complete - Ready\r\n\n");
+
+
+
+
+
+        PrintAnIp(1);
+        PrintAnIp(2);
+        PrintAnIp(3);
+        PrintAnIp(4);
+        PrintAnIp(5);
+
+        if(CheckConfig() == 1){
+            ConfGood = 1;
+            printf("Initalisation Complete - Ready\r\n\n");
+        }else{
+            printf("--- Configuration Required --- \r\n\n");
+        }
 
     };
 }
@@ -17814,12 +17874,32 @@ void SaveCardDat(char Name[20], unsigned int MBAddress, uint16_t dataeeAddr, int
         }
 
         printf("%s Saved. \r\n",Name);
+        do { LATAbits.LATA5 = 1; } while(0);
+        do { LATAbits.LATA4 = 1; } while(0);
+        do { LATAbits.LATA7 = 1; } while(0);
+        do { LATAbits.LATA6 = 1; } while(0);
+        _delay((unsigned long)((200)*(32000000/4000.0)));
+        do { LATAbits.LATA5 = 0; } while(0);
+        do { LATAbits.LATA4 = 0; } while(0);
+        do { LATAbits.LATA7 = 0; } while(0);
+        do { LATAbits.LATA6 = 0; } while(0);
+        _delay((unsigned long)((100)*(32000000/4000.0)));
+        do { LATAbits.LATA5 = 1; } while(0);
+        do { LATAbits.LATA4 = 1; } while(0);
+        do { LATAbits.LATA7 = 1; } while(0);
+        do { LATAbits.LATA6 = 1; } while(0);
+        _delay((unsigned long)((200)*(32000000/4000.0)));
+        do { LATAbits.LATA5 = 0; } while(0);
+        do { LATAbits.LATA4 = 0; } while(0);
+        do { LATAbits.LATA7 = 0; } while(0);
+        do { LATAbits.LATA6 = 0; } while(0);
 
 
         strcpy(Command, "");
 
     }else if(Conf == 0x4e || Conf == 0x6e){
         printf("Not saved\r\n");
+        do { LATAbits.LATA5 = 1; } while(0);
     }
 
 
@@ -17892,8 +17972,29 @@ _Bool ValidateCmd(void){
     }else if((!strcmp(Command,"MOD I")) || (!strcmp(Command,"mod i"))){
         PrintInput();
         return 1;
-    }
-    else{
+    }else if((!strcmp(Command,"AN1")) || (!strcmp(Command,"an1"))){
+        PrintAnIp(1);
+        return 1;
+    }else if((!strcmp(Command,"AN2")) || (!strcmp(Command,"an2"))){
+        PrintAnIp(2);
+        return 1;
+    }else if((!strcmp(Command,"AN3")) || (!strcmp(Command,"an3"))){
+        PrintAnIp(3);
+        return 1;
+    }else if((!strcmp(Command,"AN4")) || (!strcmp(Command,"an4"))){
+        PrintAnIp(4);
+        return 1;
+    }else if((!strcmp(Command,"AN5")) || (!strcmp(Command,"an5"))){
+        PrintAnIp(5);
+        return 1;
+    }else if((!strcmp(Command,"AN")) || (!strcmp(Command,"an"))){
+        PrintAnIp(1);
+        PrintAnIp(2);
+        PrintAnIp(3);
+        PrintAnIp(4);
+        PrintAnIp(5);
+        return 1;
+    }else{
         return 0;
     }
 

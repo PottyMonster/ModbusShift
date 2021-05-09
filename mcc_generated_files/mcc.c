@@ -53,10 +53,10 @@ void SYSTEM_Initialize(void)
     PMD_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    ADCC_Initialize();
+    TMR0_Initialize();
     EUSART1_Initialize();
     EUSART2_Initialize();
-    ADCC_Initialize();
-    ADCC_DisableContinuousConversion();
 }
 
 void OSCILLATOR_Initialize(void)

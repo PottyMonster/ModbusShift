@@ -20,18 +20,42 @@ unsigned int MBResCRC = 0xFFFF;
 int ByteHi, ByteLo = 0xFF;
 
 
-/*
-void PrintMB400(void){
-    // This is just used for debuging to print out the circuit receive registers.
-    // Can be used before and after Modbus writes to check it's been updated.
-    int i=0;
+
+bool CheckConfig(){
+    // Called periodically from Main to check configured ok.
+    unsigned int Error = 0;
     
-    for(i=0; i<32; i++ ){
-        printf("   Reg: %i Data: 0x%04x \r\n", i, MB400xx[i]);
+    if(MB306xx[0] > 32){
+        // If more than 32 SIPO
+        Error++;
+    }else{
+        // If valid number of SIPO then check bits
+        if((MB306xx[2] != 8) && (MB306xx[2] !=16)){
+            Error++;
+        }
+    }
+    
+    if(MB306xx[1] >32){
+        Error++;
+    }else{
+        if((MB306xx[3] != 8) && (MB306xx[3] !=16)){
+            Error++;
+        }
+     }
+    
+
+    // printf("Num Errors %d \r\n", Error);
+    
+    if(Error >0){
+        // ToggleStatusLEDs();
+        return 0;
+    }else{
+        return 1;
     }
     
 }
-*/
+
+
 
 
 void PrintHolding(void){
@@ -196,13 +220,12 @@ bool checkCRC(void){
 //  }
   
   
-  if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
-  {
-    return 1;
-  }
-  else{
-    return 0;
-  }
+    if((crcHigh == ModbusData[i])&&(crcLow == ModbusData[i+1]))
+    {
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 
@@ -280,9 +303,11 @@ void ModbusFC03(){
         // Send Modbus response back to Master.
         UART1_Write_string(MBRespon,MBResCnt);
         printf("Operation Successful \r\n\n");
+        LED_Good_SetHigh();
     }else{
         ModbusError(0x02);
-        printf("Operation Failed \r\n\n");        
+        printf("Operation Failed \r\n\n");
+        LED_Bad_SetHigh();
     }
     
 }
@@ -496,10 +521,12 @@ void ModbusFC04(){
 
         // Send Modbus response back to Master.
         UART1_Write_string(MBRespon,MBResCnt);
-        printf("Operation Successful \r\n\n");        
+        printf("Operation Successful \r\n\n");
+        LED_Good_SetHigh();
     }else{
         ModbusError(0x02);
         printf("Operation Failed \r\n\n");        
+        LED_Bad_SetHigh();
     }
     
 }
@@ -512,14 +539,7 @@ void ModbusFC10(void){
     int j = 0;
     unsigned int TempData = 0x0000;
     bool error = 0;
-    
-    /*
-    if(((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5]) > 32){
-         printf("Requested registers out of range.  0x0000 to 0x020.\r\n");
-         error = 1;
-     }
-     */
-    
+        
     if(
         (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) < 0) ||  
         // (((ModbusData[2] * 256)  + ModbusData[3]) + ((ModbusData[4] * 256) + ModbusData[5] -1) > 31)){
@@ -569,10 +589,12 @@ void ModbusFC10(void){
         MBResCnt = MBResCnt +2;
 
         UART1_Write_string(MBRespon,MBResCnt);
-        printf("Operation Successful \r\n\n");        
+        printf("Operation Successful \r\n\n");
+        LED_Good_SetHigh();
     }else{
         ModbusError(0x02);
-        printf("Operation Failed \r\n\n");        
+        printf("Operation Failed \r\n\n");
+        LED_Bad_SetHigh();
     }
 }
 
@@ -676,7 +698,7 @@ void PrintModRespon(){
 
 
 
-void ClearModbusRespon(){
+void ClearModbusRespon(void){
     int i = 0;    
     for(i=0; i<32; i++ ){
         MBRespon[i] = 0xFF;
@@ -706,7 +728,9 @@ void ModbusError(int ErrorCode){
     MBRespon[MBResCnt +1] = ByteLo;
     MBResCnt = MBResCnt +2;
          
-    UART1_Write_string(MBRespon,MBResCnt);    
+    UART1_Write_string(MBRespon,MBResCnt);
+    
+    LED_Bad_SetHigh();
     
 }
 
@@ -716,7 +740,7 @@ bool ModbusRx(){
     RXMode();
     if(EUSART1_is_rx_ready()){
         if(Debug ==1){
-            printf("\r\nSomething in ESUART1 \r\n");
+            printf("\r\n\nSomething in ESUART1 \r\n");
         }
         do{
             if(EUSART1_is_rx_ready()){
@@ -758,6 +782,7 @@ bool ModbusRx(){
             }
         }else{
             printf("\r\nReceived Modbus CRC is bad.\r\n\n");
+            LED_Bad_SetHigh();
             return 0;
         }
         // Complete Modbus String ready to process.     

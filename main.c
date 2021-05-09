@@ -7,14 +7,20 @@
 #include "main.h"
 #include "shift.h"
 
+
 /*
- 
- * Function Code 0x10 writes to 16 bit output holding registers (broadcast enabled)
- * Funciton Code 0x03 reads 16 bit output holding registers
- * Function Code 0x04 reads multiple 16 bit inputs
- * Function Code 0x08 Reset Slave
- 
+                        Sub Routines
  */
+
+void ToggleStatusLEDs(){
+    LED_Good_Toggle();
+    LED_Bad_Toggle();
+    LED_Action_Toggle();
+    LED_Ready_Toggle();
+}
+
+
+
 
 /*
                          Main application
@@ -38,14 +44,13 @@ void main(void)
 
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
+    
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-        
-    D2LED_SetLow();
-    D3LED_SetLow();
-    D4LED_SetLow();
-    D5LED_SetLow();
+
+    
+
 
     InitialiseString(0); // Sends initalisation string over RS232
     
@@ -59,8 +64,14 @@ void main(void)
     SIPO_Reset();
     PISO_Reset();
     
+    LED_Good_SetLow();
+    LED_Bad_SetLow();
+    LED_Ready_SetLow();
+    LED_Action_SetLow();    
+    
     
     bool RXStat = 0;
+    bool ConfGood = 0;  // 0 = Unconfigured, 1 = Configured
     
     printf("Enter Command : ");
     
@@ -68,6 +79,8 @@ void main(void)
     {
         if(ModbusRx() == 1){
             // RS485 Modbus data has been received and ready to process
+            
+            LED_Action_SetHigh();
             
             switch(ModbusData[1])    // check command  
             {
@@ -106,6 +119,7 @@ void main(void)
                     printf("Unsupported Function Code\r\n");
                     // Throw error code as function code not available
                     ModbusError(0x01);
+                    LED_Bad_SetHigh();
                     break;
                 }           
             }
@@ -118,10 +132,16 @@ void main(void)
             // PrintModRespon2();
             ClearModbusData();   // Needed when complete
             ClearModbusRespon();
+            LED_Action_SetLow();
             printf("Enter Command: ");
             
         }else if(ReadRX232(16) != 0){
             // RS232 Data has been received
+            
+            LED_Action_SetHigh();
+            LED_Ready_SetLow();
+            LED_Bad_SetLow();
+            
             if(ValidateCmd() ==1){
                 // Might change this to action successfull. I.E validates and
                 // executes at the same time.
@@ -132,8 +152,27 @@ void main(void)
             printf("\r\nEnter Command : ");
             strcpy(Command, "");   // Needed to clear RS232 command
             
-        }else{
-            // Nothing to do. No data to process.
+        }else if(TMR0_HasOverflowOccured()){
+            // This only happens every 100mS
+            // printf("TMR0\r\n");
+            ConfGood = CheckConfig();
+            
+            if(ConfGood == 1){
+                LED_Ready_Toggle();
+                LED_Good_SetLow();
+                LED_Bad_SetLow();
+                LED_Action_SetLow();
+            }else{
+                LED_Ready_SetLow();
+                LED_Good_SetLow();
+                LED_Action_SetLow();
+                LED_Bad_Toggle();
+            }
+            
+            TMR0_Initialize();
+            // __delay_ms(2000);
+            // printf("ConfGood %s \r\n", ConfGood ? "true" : "false");
+                        
         }
         
     }

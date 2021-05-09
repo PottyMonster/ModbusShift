@@ -105,85 +105,85 @@
 #define RX_ENA_SetAnalogMode()      do { ANSELAbits.ANSELA3 = 1; } while(0)
 #define RX_ENA_SetDigitalMode()     do { ANSELAbits.ANSELA3 = 0; } while(0)
 
-// get/set D2LED aliases
-#define D2LED_TRIS                 TRISAbits.TRISA4
-#define D2LED_LAT                  LATAbits.LATA4
-#define D2LED_PORT                 PORTAbits.RA4
-#define D2LED_WPU                  WPUAbits.WPUA4
-#define D2LED_OD                   ODCONAbits.ODCA4
-#define D2LED_ANS                  ANSELAbits.ANSELA4
-#define D2LED_SetHigh()            do { LATAbits.LATA4 = 1; } while(0)
-#define D2LED_SetLow()             do { LATAbits.LATA4 = 0; } while(0)
-#define D2LED_Toggle()             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0)
-#define D2LED_GetValue()           PORTAbits.RA4
-#define D2LED_SetDigitalInput()    do { TRISAbits.TRISA4 = 1; } while(0)
-#define D2LED_SetDigitalOutput()   do { TRISAbits.TRISA4 = 0; } while(0)
-#define D2LED_SetPullup()          do { WPUAbits.WPUA4 = 1; } while(0)
-#define D2LED_ResetPullup()        do { WPUAbits.WPUA4 = 0; } while(0)
-#define D2LED_SetPushPull()        do { ODCONAbits.ODCA4 = 0; } while(0)
-#define D2LED_SetOpenDrain()       do { ODCONAbits.ODCA4 = 1; } while(0)
-#define D2LED_SetAnalogMode()      do { ANSELAbits.ANSELA4 = 1; } while(0)
-#define D2LED_SetDigitalMode()     do { ANSELAbits.ANSELA4 = 0; } while(0)
+// get/set LED_Good aliases
+#define LED_Good_TRIS                 TRISAbits.TRISA4
+#define LED_Good_LAT                  LATAbits.LATA4
+#define LED_Good_PORT                 PORTAbits.RA4
+#define LED_Good_WPU                  WPUAbits.WPUA4
+#define LED_Good_OD                   ODCONAbits.ODCA4
+#define LED_Good_ANS                  ANSELAbits.ANSELA4
+#define LED_Good_SetHigh()            do { LATAbits.LATA4 = 1; } while(0)
+#define LED_Good_SetLow()             do { LATAbits.LATA4 = 0; } while(0)
+#define LED_Good_Toggle()             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0)
+#define LED_Good_GetValue()           PORTAbits.RA4
+#define LED_Good_SetDigitalInput()    do { TRISAbits.TRISA4 = 1; } while(0)
+#define LED_Good_SetDigitalOutput()   do { TRISAbits.TRISA4 = 0; } while(0)
+#define LED_Good_SetPullup()          do { WPUAbits.WPUA4 = 1; } while(0)
+#define LED_Good_ResetPullup()        do { WPUAbits.WPUA4 = 0; } while(0)
+#define LED_Good_SetPushPull()        do { ODCONAbits.ODCA4 = 0; } while(0)
+#define LED_Good_SetOpenDrain()       do { ODCONAbits.ODCA4 = 1; } while(0)
+#define LED_Good_SetAnalogMode()      do { ANSELAbits.ANSELA4 = 1; } while(0)
+#define LED_Good_SetDigitalMode()     do { ANSELAbits.ANSELA4 = 0; } while(0)
 
-// get/set D3LED aliases
-#define D3LED_TRIS                 TRISAbits.TRISA5
-#define D3LED_LAT                  LATAbits.LATA5
-#define D3LED_PORT                 PORTAbits.RA5
-#define D3LED_WPU                  WPUAbits.WPUA5
-#define D3LED_OD                   ODCONAbits.ODCA5
-#define D3LED_ANS                  ANSELAbits.ANSELA5
-#define D3LED_SetHigh()            do { LATAbits.LATA5 = 1; } while(0)
-#define D3LED_SetLow()             do { LATAbits.LATA5 = 0; } while(0)
-#define D3LED_Toggle()             do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0)
-#define D3LED_GetValue()           PORTAbits.RA5
-#define D3LED_SetDigitalInput()    do { TRISAbits.TRISA5 = 1; } while(0)
-#define D3LED_SetDigitalOutput()   do { TRISAbits.TRISA5 = 0; } while(0)
-#define D3LED_SetPullup()          do { WPUAbits.WPUA5 = 1; } while(0)
-#define D3LED_ResetPullup()        do { WPUAbits.WPUA5 = 0; } while(0)
-#define D3LED_SetPushPull()        do { ODCONAbits.ODCA5 = 0; } while(0)
-#define D3LED_SetOpenDrain()       do { ODCONAbits.ODCA5 = 1; } while(0)
-#define D3LED_SetAnalogMode()      do { ANSELAbits.ANSELA5 = 1; } while(0)
-#define D3LED_SetDigitalMode()     do { ANSELAbits.ANSELA5 = 0; } while(0)
+// get/set LED_Bad aliases
+#define LED_Bad_TRIS                 TRISAbits.TRISA5
+#define LED_Bad_LAT                  LATAbits.LATA5
+#define LED_Bad_PORT                 PORTAbits.RA5
+#define LED_Bad_WPU                  WPUAbits.WPUA5
+#define LED_Bad_OD                   ODCONAbits.ODCA5
+#define LED_Bad_ANS                  ANSELAbits.ANSELA5
+#define LED_Bad_SetHigh()            do { LATAbits.LATA5 = 1; } while(0)
+#define LED_Bad_SetLow()             do { LATAbits.LATA5 = 0; } while(0)
+#define LED_Bad_Toggle()             do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0)
+#define LED_Bad_GetValue()           PORTAbits.RA5
+#define LED_Bad_SetDigitalInput()    do { TRISAbits.TRISA5 = 1; } while(0)
+#define LED_Bad_SetDigitalOutput()   do { TRISAbits.TRISA5 = 0; } while(0)
+#define LED_Bad_SetPullup()          do { WPUAbits.WPUA5 = 1; } while(0)
+#define LED_Bad_ResetPullup()        do { WPUAbits.WPUA5 = 0; } while(0)
+#define LED_Bad_SetPushPull()        do { ODCONAbits.ODCA5 = 0; } while(0)
+#define LED_Bad_SetOpenDrain()       do { ODCONAbits.ODCA5 = 1; } while(0)
+#define LED_Bad_SetAnalogMode()      do { ANSELAbits.ANSELA5 = 1; } while(0)
+#define LED_Bad_SetDigitalMode()     do { ANSELAbits.ANSELA5 = 0; } while(0)
 
-// get/set D4LED aliases
-#define D4LED_TRIS                 TRISAbits.TRISA6
-#define D4LED_LAT                  LATAbits.LATA6
-#define D4LED_PORT                 PORTAbits.RA6
-#define D4LED_WPU                  WPUAbits.WPUA6
-#define D4LED_OD                   ODCONAbits.ODCA6
-#define D4LED_ANS                  ANSELAbits.ANSELA6
-#define D4LED_SetHigh()            do { LATAbits.LATA6 = 1; } while(0)
-#define D4LED_SetLow()             do { LATAbits.LATA6 = 0; } while(0)
-#define D4LED_Toggle()             do { LATAbits.LATA6 = ~LATAbits.LATA6; } while(0)
-#define D4LED_GetValue()           PORTAbits.RA6
-#define D4LED_SetDigitalInput()    do { TRISAbits.TRISA6 = 1; } while(0)
-#define D4LED_SetDigitalOutput()   do { TRISAbits.TRISA6 = 0; } while(0)
-#define D4LED_SetPullup()          do { WPUAbits.WPUA6 = 1; } while(0)
-#define D4LED_ResetPullup()        do { WPUAbits.WPUA6 = 0; } while(0)
-#define D4LED_SetPushPull()        do { ODCONAbits.ODCA6 = 0; } while(0)
-#define D4LED_SetOpenDrain()       do { ODCONAbits.ODCA6 = 1; } while(0)
-#define D4LED_SetAnalogMode()      do { ANSELAbits.ANSELA6 = 1; } while(0)
-#define D4LED_SetDigitalMode()     do { ANSELAbits.ANSELA6 = 0; } while(0)
+// get/set LED_Action aliases
+#define LED_Action_TRIS                 TRISAbits.TRISA6
+#define LED_Action_LAT                  LATAbits.LATA6
+#define LED_Action_PORT                 PORTAbits.RA6
+#define LED_Action_WPU                  WPUAbits.WPUA6
+#define LED_Action_OD                   ODCONAbits.ODCA6
+#define LED_Action_ANS                  ANSELAbits.ANSELA6
+#define LED_Action_SetHigh()            do { LATAbits.LATA6 = 1; } while(0)
+#define LED_Action_SetLow()             do { LATAbits.LATA6 = 0; } while(0)
+#define LED_Action_Toggle()             do { LATAbits.LATA6 = ~LATAbits.LATA6; } while(0)
+#define LED_Action_GetValue()           PORTAbits.RA6
+#define LED_Action_SetDigitalInput()    do { TRISAbits.TRISA6 = 1; } while(0)
+#define LED_Action_SetDigitalOutput()   do { TRISAbits.TRISA6 = 0; } while(0)
+#define LED_Action_SetPullup()          do { WPUAbits.WPUA6 = 1; } while(0)
+#define LED_Action_ResetPullup()        do { WPUAbits.WPUA6 = 0; } while(0)
+#define LED_Action_SetPushPull()        do { ODCONAbits.ODCA6 = 0; } while(0)
+#define LED_Action_SetOpenDrain()       do { ODCONAbits.ODCA6 = 1; } while(0)
+#define LED_Action_SetAnalogMode()      do { ANSELAbits.ANSELA6 = 1; } while(0)
+#define LED_Action_SetDigitalMode()     do { ANSELAbits.ANSELA6 = 0; } while(0)
 
-// get/set D5LED aliases
-#define D5LED_TRIS                 TRISAbits.TRISA7
-#define D5LED_LAT                  LATAbits.LATA7
-#define D5LED_PORT                 PORTAbits.RA7
-#define D5LED_WPU                  WPUAbits.WPUA7
-#define D5LED_OD                   ODCONAbits.ODCA7
-#define D5LED_ANS                  ANSELAbits.ANSELA7
-#define D5LED_SetHigh()            do { LATAbits.LATA7 = 1; } while(0)
-#define D5LED_SetLow()             do { LATAbits.LATA7 = 0; } while(0)
-#define D5LED_Toggle()             do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0)
-#define D5LED_GetValue()           PORTAbits.RA7
-#define D5LED_SetDigitalInput()    do { TRISAbits.TRISA7 = 1; } while(0)
-#define D5LED_SetDigitalOutput()   do { TRISAbits.TRISA7 = 0; } while(0)
-#define D5LED_SetPullup()          do { WPUAbits.WPUA7 = 1; } while(0)
-#define D5LED_ResetPullup()        do { WPUAbits.WPUA7 = 0; } while(0)
-#define D5LED_SetPushPull()        do { ODCONAbits.ODCA7 = 0; } while(0)
-#define D5LED_SetOpenDrain()       do { ODCONAbits.ODCA7 = 1; } while(0)
-#define D5LED_SetAnalogMode()      do { ANSELAbits.ANSELA7 = 1; } while(0)
-#define D5LED_SetDigitalMode()     do { ANSELAbits.ANSELA7 = 0; } while(0)
+// get/set LED_Ready aliases
+#define LED_Ready_TRIS                 TRISAbits.TRISA7
+#define LED_Ready_LAT                  LATAbits.LATA7
+#define LED_Ready_PORT                 PORTAbits.RA7
+#define LED_Ready_WPU                  WPUAbits.WPUA7
+#define LED_Ready_OD                   ODCONAbits.ODCA7
+#define LED_Ready_ANS                  ANSELAbits.ANSELA7
+#define LED_Ready_SetHigh()            do { LATAbits.LATA7 = 1; } while(0)
+#define LED_Ready_SetLow()             do { LATAbits.LATA7 = 0; } while(0)
+#define LED_Ready_Toggle()             do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0)
+#define LED_Ready_GetValue()           PORTAbits.RA7
+#define LED_Ready_SetDigitalInput()    do { TRISAbits.TRISA7 = 1; } while(0)
+#define LED_Ready_SetDigitalOutput()   do { TRISAbits.TRISA7 = 0; } while(0)
+#define LED_Ready_SetPullup()          do { WPUAbits.WPUA7 = 1; } while(0)
+#define LED_Ready_ResetPullup()        do { WPUAbits.WPUA7 = 0; } while(0)
+#define LED_Ready_SetPushPull()        do { ODCONAbits.ODCA7 = 0; } while(0)
+#define LED_Ready_SetOpenDrain()       do { ODCONAbits.ODCA7 = 1; } while(0)
+#define LED_Ready_SetAnalogMode()      do { ANSELAbits.ANSELA7 = 1; } while(0)
+#define LED_Ready_SetDigitalMode()     do { ANSELAbits.ANSELA7 = 0; } while(0)
 
 // get/set RB0 procedures
 #define RB0_SetHigh()            do { LATBbits.LATB0 = 1; } while(0)

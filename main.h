@@ -6,7 +6,12 @@
  */
 
 bool Debug = 1;
+bool ConfGood = 0;
 unsigned int Address = 0x05;
+
+
+void ToggleStatusLEDs();
+
 
 #ifndef MAIN_H
 #define	MAIN_H

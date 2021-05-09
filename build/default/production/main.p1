@@ -1,4 +1,19 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"16393 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16393:     struct {
+[s S824 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S824 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"16403
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16403:     struct {
+[s S825 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S825 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"16392
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16392: typedef union {
+[u S823 `S824 1 `S825 1 ]
+[n S823 . . . ]
+"16414
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16414: extern volatile LATAbits_t LATAbits __attribute__((address(0xF83)));
+[v _LATAbits `VS823 ~T0 @X0 0 e@3971 ]
 [p mainexit ]
 "75 ./mcc_generated_files/mcc.h
 [; ;./mcc_generated_files/mcc.h: 75: void SYSTEM_Initialize(void);
@@ -22,21 +37,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "27784
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 27784: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS1459 ~T0 @X0 0 e@4082 ]
-"16393
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16393:     struct {
-[s S824 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S824 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"16403
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16403:     struct {
-[s S825 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S825 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"16392
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16392: typedef union {
-[u S823 `S824 1 `S825 1 ]
-[n S823 . . . ]
-"16414
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 16414: extern volatile LATAbits_t LATAbits __attribute__((address(0xF83)));
-[v _LATAbits `VS823 ~T0 @X0 0 e@3971 ]
 "12 ./RS232.h
 [; ;./RS232.h: 12: void InitialiseString(_Bool Partial);
 [v _InitialiseString `(v ~T0 @X0 0 ef1`a ]
@@ -96,6 +96,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "33 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c99\string.h: 33: char *strcpy (char *restrict, const char *restrict);
 [v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"310 ./mcc_generated_files/tmr0.h
+[; ;./mcc_generated_files/tmr0.h: 310: _Bool TMR0_HasOverflowOccured(void);
+[v _TMR0_HasOverflowOccured `(a ~T0 @X0 0 ef ]
+"283 ./Modbus.h
+[; ;./Modbus.h: 283: _Bool CheckConfig(void);
+[v _CheckConfig `(a ~T0 @X0 0 ef ]
+"100 ./mcc_generated_files/tmr0.h
+[; ;./mcc_generated_files/tmr0.h: 100: void TMR0_Initialize(void);
+[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f46k40.h: 54: __asm("RX2PPS equ 0E8Dh");
 [; <" RX2PPS equ 0E8Dh ;# ">
@@ -1615,14 +1624,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "47
-[; ;./Modbus.h: 47: unsigned int MB306xx[4] = { 0x000c, 0x000f, 0x0008, 0x0010 };
+[; ;./Modbus.h: 47: unsigned int MB306xx[4] = { 0x0000, 0x0000, 0x0000, 0x0000 };
 [v _MB306xx `ui ~T0 @X0 -> 4 `i e ]
 [i _MB306xx
 :U ..
--> -> 12 `i `ui
--> -> 15 `i `ui
--> -> 8 `i `ui
--> -> 16 `i `ui
+-> -> 0 `i `ui
+-> -> 0 `i `ui
+-> -> 0 `i `ui
+-> -> 0 `i `ui
 ..
 ]
 "50
@@ -1643,281 +1652,449 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `a
 ]
 "9
-[; ;./main.h: 9: unsigned int Address = 0x05;
+[; ;./main.h: 9: _Bool ConfGood = 0;
+[v _ConfGood `a ~T0 @X0 1 e ]
+[i _ConfGood
+-> -> 0 `i `a
+]
+"10
+[; ;./main.h: 10: unsigned int Address = 0x05;
 [v _Address `ui ~T0 @X0 1 e ]
 [i _Address
 -> -> 5 `i `ui
 ]
+"15 main.c
+[; ;main.c: 15: void ToggleStatusLEDs(){
+[v _ToggleStatusLEDs `(v ~T0 @X0 1 ef ]
+{
+[e :U _ToggleStatusLEDs ]
+[f ]
+"16
+[; ;main.c: 16:     do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+[e :U 1500 ]
+{
+[e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
+}
+[e :U 1499 ]
+"17
+[; ;main.c: 17:     do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+[e :U 1503 ]
+{
+[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
+}
+[e :U 1502 ]
+"18
+[; ;main.c: 18:     do { LATAbits.LATA6 = ~LATAbits.LATA6; } while(0);
+[e :U 1506 ]
+{
+[e = . . _LATAbits 0 6 -> ~ -> . . _LATAbits 0 6 `i `uc ]
+}
+[e :U 1505 ]
+"19
+[; ;main.c: 19:     do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
+[e :U 1509 ]
+{
+[e = . . _LATAbits 0 7 -> ~ -> . . _LATAbits 0 7 `i `uc ]
+}
+[e :U 1508 ]
+"20
+[; ;main.c: 20: }
+[e :UE 1497 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"24 main.c
-[; ;main.c: 24: void main(void)
+"30
+[; ;main.c: 30: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"25
-[; ;main.c: 25: {
+"31
+[; ;main.c: 31: {
 {
 [e :U _main ]
 [f ]
-"27
-[; ;main.c: 27:     SYSTEM_Initialize();
+"33
+[; ;main.c: 33:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"34
-[; ;main.c: 34:     (INTCONbits.GIE = 1);
-[e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
 "40
-[; ;main.c: 40:     (INTCONbits.PEIE = 1);
+[; ;main.c: 40:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
+"46
+[; ;main.c: 46:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45:     do { LATAbits.LATA4 = 0; } while(0);
-[e :U 1500 ]
+"55
+[; ;main.c: 55:     InitialiseString(0);
+[e ( _InitialiseString (1 -> -> 0 `i `a ]
+"58
+[; ;main.c: 58:     RXMode();
+[e ( _RXMode ..  ]
+"59
+[; ;main.c: 59:     ClearRxBuff();
+[e ( _ClearRxBuff ..  ]
+"60
+[; ;main.c: 60:     ClearModbusRespon();
+[e ( _ClearModbusRespon ..  ]
+"64
+[; ;main.c: 64:     SIPO_Reset();
+[e ( _SIPO_Reset ..  ]
+"65
+[; ;main.c: 65:     PISO_Reset();
+[e ( _PISO_Reset ..  ]
+"67
+[; ;main.c: 67:     do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1513 ]
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 1499 ]
-"46
-[; ;main.c: 46:     do { LATAbits.LATA5 = 0; } while(0);
-[e :U 1503 ]
+[e :U 1512 ]
+"68
+[; ;main.c: 68:     do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1516 ]
 {
 [e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 1502 ]
-"47
-[; ;main.c: 47:     do { LATAbits.LATA6 = 0; } while(0);
-[e :U 1506 ]
-{
-[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
-}
-[e :U 1505 ]
-"48
-[; ;main.c: 48:     do { LATAbits.LATA7 = 0; } while(0);
-[e :U 1509 ]
+[e :U 1515 ]
+"69
+[; ;main.c: 69:     do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1519 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
-[e :U 1508 ]
-"50
-[; ;main.c: 50:     InitialiseString(0);
-[e ( _InitialiseString (1 -> -> 0 `i `a ]
-"53
-[; ;main.c: 53:     RXMode();
-[e ( _RXMode ..  ]
-"54
-[; ;main.c: 54:     ClearRxBuff();
-[e ( _ClearRxBuff ..  ]
-"55
-[; ;main.c: 55:     ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
-"59
-[; ;main.c: 59:     SIPO_Reset();
-[e ( _SIPO_Reset ..  ]
-"60
-[; ;main.c: 60:     PISO_Reset();
-[e ( _PISO_Reset ..  ]
-"63
-[; ;main.c: 63:     _Bool RXStat = 0;
+[e :U 1518 ]
+"70
+[; ;main.c: 70:     do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1522 ]
+{
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 1521 ]
+"73
+[; ;main.c: 73:     _Bool RXStat = 0;
 [v _RXStat `a ~T0 @X0 1 a ]
 [e = _RXStat -> -> 0 `i `a ]
-"65
-[; ;main.c: 65:     printf("Enter Command : ");
-[e ( _printf :s 1C ]
-"67
-[; ;main.c: 67:     while(1)
-[e :U 1511 ]
-"68
-[; ;main.c: 68:     {
-{
-"69
-[; ;main.c: 69:         if(ModbusRx() == 1){
-[e $ ! == -> ( _ModbusRx ..  `i -> 1 `i 1513  ]
-{
-"72
-[; ;main.c: 72:             switch(ModbusData[1])
-[e $U 1515  ]
-"73
-[; ;main.c: 73:             {
-{
 "74
-[; ;main.c: 74:             case 0x03:
-[e :U 1516 ]
-"75
-[; ;main.c: 75:                 {
-{
+[; ;main.c: 74:     _Bool ConfGood = 0;
+[v _ConfGood `a ~T0 @X0 1 a ]
+[e = _ConfGood -> -> 0 `i `a ]
 "76
-[; ;main.c: 76:                     printf("Function Code 0x03 - Read Output Holding Registers\r\n");
-[e ( _printf :s 2C ]
+[; ;main.c: 76:     printf("Enter Command : ");
+[e ( _printf :s 1C ]
 "78
-[; ;main.c: 78:                     ModbusFC03();
-[e ( _ModbusFC03 ..  ]
+[; ;main.c: 78:     while(1)
+[e :U 1524 ]
 "79
-[; ;main.c: 79:                     break;
-[e $U 1514  ]
+[; ;main.c: 79:     {
+{
 "80
-[; ;main.c: 80:                 }
-}
-"81
-[; ;main.c: 81:             case 0x10:
-[e :U 1517 ]
-"82
-[; ;main.c: 82:                 {
+[; ;main.c: 80:         if(ModbusRx() == 1){
+[e $ ! == -> ( _ModbusRx ..  `i -> 1 `i 1526  ]
 {
 "83
-[; ;main.c: 83:                     printf("Function Code 0x10 - Write to Output Holding Registers \r\n");
-[e ( _printf :s 3C ]
+[; ;main.c: 83:             do { LATAbits.LATA6 = 1; } while(0);
+[e :U 1529 ]
+{
+[e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
+}
+[e :U 1528 ]
 "85
-[; ;main.c: 85:                     if(Debug == 1){
-[e $ ! == -> _Debug `i -> 1 `i 1518  ]
-{
+[; ;main.c: 85:             switch(ModbusData[1])
+[e $U 1531  ]
 "86
-[; ;main.c: 86:                         printf("Modbus Register Before Update: \r\n");
-[e ( _printf :s 4C ]
-"87
-[; ;main.c: 87:                         PrintMB400();
-[e ( _PrintMB400 ..  ]
-"88
-[; ;main.c: 88:                     }
-}
-[e :U 1518 ]
-"89
-[; ;main.c: 89:                     ModbusFC10();
-[e ( _ModbusFC10 ..  ]
-"90
-[; ;main.c: 90:                     SIPO_ShiftWrite();
-[e ( _SIPO_ShiftWrite ..  ]
-"91
-[; ;main.c: 91:                     if(Debug ==1){
-[e $ ! == -> _Debug `i -> 1 `i 1519  ]
+[; ;main.c: 86:             {
 {
+"87
+[; ;main.c: 87:             case 0x03:
+[e :U 1532 ]
+"88
+[; ;main.c: 88:                 {
+{
+"89
+[; ;main.c: 89:                     printf("Function Code 0x03 - Read Output Holding Registers\r\n");
+[e ( _printf :s 2C ]
+"91
+[; ;main.c: 91:                     ModbusFC03();
+[e ( _ModbusFC03 ..  ]
 "92
-[; ;main.c: 92:                         printf("Modbus Register After Update: \r\n");
-[e ( _printf :s 5C ]
+[; ;main.c: 92:                     break;
+[e $U 1530  ]
 "93
-[; ;main.c: 93:                         PrintMB400();
-[e ( _PrintMB400 ..  ]
+[; ;main.c: 93:                 }
+}
 "94
-[; ;main.c: 94:                     }
-}
-[e :U 1519 ]
+[; ;main.c: 94:             case 0x10:
+[e :U 1533 ]
 "95
-[; ;main.c: 95:                     break;
-[e $U 1514  ]
+[; ;main.c: 95:                 {
+{
 "96
-[; ;main.c: 96:                 }
-}
-"97
-[; ;main.c: 97:             case 0x04:
-[e :U 1520 ]
+[; ;main.c: 96:                     printf("Function Code 0x10 - Write to Output Holding Registers \r\n");
+[e ( _printf :s 3C ]
 "98
-[; ;main.c: 98:                 {
+[; ;main.c: 98:                     if(Debug == 1){
+[e $ ! == -> _Debug `i -> 1 `i 1534  ]
 {
 "99
-[; ;main.c: 99:                     printf("Function Code 0x04 - Read Input Registers\r\n");
-[e ( _printf :s 6C ]
+[; ;main.c: 99:                         printf("Modbus Register Before Update: \r\n");
+[e ( _printf :s 4C ]
+"100
+[; ;main.c: 100:                         PrintMB400();
+[e ( _PrintMB400 ..  ]
 "101
-[; ;main.c: 101:                     ModbusFC04();
-[e ( _ModbusFC04 ..  ]
+[; ;main.c: 101:                     }
+}
+[e :U 1534 ]
 "102
-[; ;main.c: 102:                     break;
-[e $U 1514  ]
+[; ;main.c: 102:                     ModbusFC10();
+[e ( _ModbusFC10 ..  ]
 "103
-[; ;main.c: 103:                 }
-}
+[; ;main.c: 103:                     SIPO_ShiftWrite();
+[e ( _SIPO_ShiftWrite ..  ]
 "104
-[; ;main.c: 104:             default:
-[e :U 1521 ]
+[; ;main.c: 104:                     if(Debug ==1){
+[e $ ! == -> _Debug `i -> 1 `i 1535  ]
+{
 "105
-[; ;main.c: 105:                 {
-{
+[; ;main.c: 105:                         printf("Modbus Register After Update: \r\n");
+[e ( _printf :s 5C ]
 "106
-[; ;main.c: 106:                     printf("Unsupported Function Code\r\n");
-[e ( _printf :s 7C ]
+[; ;main.c: 106:                         PrintMB400();
+[e ( _PrintMB400 ..  ]
+"107
+[; ;main.c: 107:                     }
+}
+[e :U 1535 ]
 "108
-[; ;main.c: 108:                     ModbusError(0x01);
-[e ( _ModbusError (1 -> 1 `i ]
+[; ;main.c: 108:                     break;
+[e $U 1530  ]
 "109
-[; ;main.c: 109:                     break;
-[e $U 1514  ]
+[; ;main.c: 109:                 }
+}
 "110
-[; ;main.c: 110:                 }
-}
+[; ;main.c: 110:             case 0x04:
+[e :U 1536 ]
 "111
-[; ;main.c: 111:             }
-}
-[e $U 1514  ]
-[e :U 1515 ]
-[e [\ -> *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i , $ -> 3 `i 1516
- , $ -> 16 `i 1517
- , $ -> 4 `i 1520
- 1521 ]
-[e :U 1514 ]
-"113
-[; ;main.c: 113:             if(Debug==1){
-[e $ ! == -> _Debug `i -> 1 `i 1522  ]
+[; ;main.c: 111:                 {
 {
+"112
+[; ;main.c: 112:                     printf("Function Code 0x04 - Read Input Registers\r\n");
+[e ( _printf :s 6C ]
 "114
-[; ;main.c: 114:                 PrintModbus();
-[e ( _PrintModbus ..  ]
+[; ;main.c: 114:                     ModbusFC04();
+[e ( _ModbusFC04 ..  ]
 "115
-[; ;main.c: 115:                 PrintModRespon();
-[e ( _PrintModRespon ..  ]
+[; ;main.c: 115:                     break;
+[e $U 1530  ]
 "116
-[; ;main.c: 116:             }
+[; ;main.c: 116:                 }
 }
-[e :U 1522 ]
+"117
+[; ;main.c: 117:             default:
+[e :U 1537 ]
+"118
+[; ;main.c: 118:                 {
+{
 "119
-[; ;main.c: 119:             ClearModbusData();
-[e ( _ClearModbusData ..  ]
-"120
-[; ;main.c: 120:             ClearModbusRespon();
-[e ( _ClearModbusRespon ..  ]
+[; ;main.c: 119:                     printf("Unsupported Function Code\r\n");
+[e ( _printf :s 7C ]
 "121
-[; ;main.c: 121:             printf("Enter Command: ");
-[e ( _printf :s 8C ]
+[; ;main.c: 121:                     ModbusError(0x01);
+[e ( _ModbusError (1 -> 1 `i ]
+"122
+[; ;main.c: 122:                     do { LATAbits.LATA5 = 1; } while(0);
+[e :U 1540 ]
+{
+[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+}
+[e :U 1539 ]
 "123
-[; ;main.c: 123:         }else if(ReadRX232(16) != 0){
+[; ;main.c: 123:                     break;
+[e $U 1530  ]
+"124
+[; ;main.c: 124:                 }
 }
-[e $U 1523  ]
-[e :U 1513 ]
-[e $ ! != ( _ReadRX232 (1 -> 16 `i -> 0 `i 1524  ]
-{
 "125
-[; ;main.c: 125:             if(ValidateCmd() ==1){
-[e $ ! == -> ( _ValidateCmd ..  `i -> 1 `i 1525  ]
+[; ;main.c: 125:             }
+}
+[e $U 1530  ]
+[e :U 1531 ]
+[e [\ -> *U + &U _ModbusData * -> -> -> 1 `i `ui `ux -> -> # *U &U _ModbusData `ui `ux `i , $ -> 3 `i 1532
+ , $ -> 16 `i 1533
+ , $ -> 4 `i 1536
+ 1537 ]
+[e :U 1530 ]
+"127
+[; ;main.c: 127:             if(Debug==1){
+[e $ ! == -> _Debug `i -> 1 `i 1541  ]
 {
+"128
+[; ;main.c: 128:                 PrintModbus();
+[e ( _PrintModbus ..  ]
 "129
-[; ;main.c: 129:              }else{
+[; ;main.c: 129:                 PrintModRespon();
+[e ( _PrintModRespon ..  ]
+"130
+[; ;main.c: 130:             }
 }
-[e $U 1526  ]
-[e :U 1525 ]
-{
-"131
-[; ;main.c: 131:              }
-}
-[e :U 1526 ]
-"132
-[; ;main.c: 132:             printf("\r\nEnter Command : ");
-[e ( _printf :s 9C ]
+[e :U 1541 ]
 "133
-[; ;main.c: 133:             strcpy(Command, "");
-[e ( _strcpy (2 , &U _Command :s 10C ]
+[; ;main.c: 133:             ClearModbusData();
+[e ( _ClearModbusData ..  ]
+"134
+[; ;main.c: 134:             ClearModbusRespon();
+[e ( _ClearModbusRespon ..  ]
 "135
-[; ;main.c: 135:         }else{
-}
-[e $U 1527  ]
-[e :U 1524 ]
+[; ;main.c: 135:             do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1544 ]
 {
-"137
-[; ;main.c: 137:         }
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 }
-[e :U 1527 ]
+[e :U 1543 ]
+"136
+[; ;main.c: 136:             printf("Enter Command: ");
+[e ( _printf :s 8C ]
+"138
+[; ;main.c: 138:         }else if(ReadRX232(16) != 0){
+}
+[e $U 1545  ]
+[e :U 1526 ]
+[e $ ! != ( _ReadRX232 (1 -> 16 `i -> 0 `i 1546  ]
+{
+"141
+[; ;main.c: 141:             do { LATAbits.LATA6 = 1; } while(0);
+[e :U 1549 ]
+{
+[e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
+}
+[e :U 1548 ]
+"142
+[; ;main.c: 142:             do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1552 ]
+{
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 1551 ]
+"143
+[; ;main.c: 143:             do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1555 ]
+{
+[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 1554 ]
+"145
+[; ;main.c: 145:             if(ValidateCmd() ==1){
+[e $ ! == -> ( _ValidateCmd ..  `i -> 1 `i 1556  ]
+{
+"149
+[; ;main.c: 149:              }else{
+}
+[e $U 1557  ]
+[e :U 1556 ]
+{
+"151
+[; ;main.c: 151:              }
+}
+[e :U 1557 ]
+"152
+[; ;main.c: 152:             printf("\r\nEnter Command : ");
+[e ( _printf :s 9C ]
+"153
+[; ;main.c: 153:             strcpy(Command, "");
+[e ( _strcpy (2 , &U _Command :s 10C ]
+"155
+[; ;main.c: 155:         }else if(TMR0_HasOverflowOccured()){
+}
+[e $U 1558  ]
+[e :U 1546 ]
+[e $ ! != -> ( _TMR0_HasOverflowOccured ..  `i -> 0 `i 1559  ]
+{
+"158
+[; ;main.c: 158:             ConfGood = CheckConfig();
+[e = _ConfGood ( _CheckConfig ..  ]
+"160
+[; ;main.c: 160:             if(ConfGood == 1){
+[e $ ! == -> _ConfGood `i -> 1 `i 1560  ]
+{
+"161
+[; ;main.c: 161:                 do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
+[e :U 1563 ]
+{
+[e = . . _LATAbits 0 7 -> ~ -> . . _LATAbits 0 7 `i `uc ]
+}
+[e :U 1562 ]
+"162
+[; ;main.c: 162:                 do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1566 ]
+{
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+}
+[e :U 1565 ]
+"163
+[; ;main.c: 163:                 do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1569 ]
+{
+[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 1568 ]
+"164
+[; ;main.c: 164:                 do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1572 ]
+{
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 1571 ]
+"165
+[; ;main.c: 165:             }else{
+}
+[e $U 1573  ]
+[e :U 1560 ]
+{
+"166
+[; ;main.c: 166:                 do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1576 ]
+{
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 1575 ]
+"167
+[; ;main.c: 167:                 do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1579 ]
+{
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+}
+[e :U 1578 ]
+"168
+[; ;main.c: 168:                 do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1582 ]
+{
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 1581 ]
+"169
+[; ;main.c: 169:                 do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+[e :U 1585 ]
+{
+[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
+}
+[e :U 1584 ]
+"170
+[; ;main.c: 170:             }
+}
+[e :U 1573 ]
+"172
+[; ;main.c: 172:             TMR0_Initialize();
+[e ( _TMR0_Initialize ..  ]
+"176
+[; ;main.c: 176:         }
+}
+[e :U 1559 ]
+[e :U 1558 ]
+[e :U 1545 ]
+"178
+[; ;main.c: 178:     }
+}
 [e :U 1523 ]
-"139
-[; ;main.c: 139:     }
-}
-[e :U 1510 ]
-[e $U 1511  ]
-[e :U 1512 ]
-"140
-[; ;main.c: 140: }
-[e :UE 1497 ]
+[e $U 1524  ]
+[e :U 1525 ]
+"179
+[; ;main.c: 179: }
+[e :UE 1510 ]
 }
 [p f _printf 8388608 ]
 [a 8C 69 110 116 101 114 32 67 111 109 109 97 110 100 58 32 0 ]
