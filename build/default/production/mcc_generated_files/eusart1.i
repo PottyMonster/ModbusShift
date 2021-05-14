@@ -16967,7 +16967,7 @@ void EUSART1_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 505 "mcc_generated_files/eusart1.h"
 void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 51 "mcc_generated_files/eusart1.c" 2
+# 50 "mcc_generated_files/eusart1.c" 2
 # 62 "mcc_generated_files/eusart1.c"
 volatile uint8_t eusart1TxHead = 0;
 volatile uint8_t eusart1TxTail = 0;

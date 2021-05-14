@@ -16825,17 +16825,20 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 2 "main.c" 2
+# 1 "main.c" 2
+
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
 # 1 "./mcc_generated_files/device_config.h" 1
-# 51 "./mcc_generated_files/mcc.h" 2
+# 50 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/pin_manager.h" 1
 # 446 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 458 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
-# 52 "./mcc_generated_files/mcc.h" 2
+# 51 "./mcc_generated_files/mcc.h" 2
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -16919,9 +16922,11 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 53 "./mcc_generated_files/mcc.h" 2
+# 52 "./mcc_generated_files/mcc.h" 2
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
-# 54 "./mcc_generated_files/mcc.h" 2
+# 53 "./mcc_generated_files/mcc.h" 2
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\conio.h" 1 3
 
 
@@ -16953,11 +16958,13 @@ extern __bit kbhit(void);
 
 extern char * cgets(char *);
 extern void cputs(const char *);
-# 55 "./mcc_generated_files/mcc.h" 2
+# 54 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 110 "./mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
-# 56 "./mcc_generated_files/mcc.h" 2
+# 55 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/adcc.h" 1
 # 72 "./mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
@@ -17024,7 +17031,29 @@ _Bool ADCC_HasErrorCrossedUpperThreshold(void);
 _Bool ADCC_HasErrorCrossedLowerThreshold(void);
 # 824 "./mcc_generated_files/adcc.h"
 uint8_t ADCC_GetConversionStageStatus(void);
+# 56 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/tmr1.h" 1
+# 100 "./mcc_generated_files/tmr1.h"
+void TMR1_Initialize(void);
+# 129 "./mcc_generated_files/tmr1.h"
+void TMR1_StartTimer(void);
+# 161 "./mcc_generated_files/tmr1.h"
+void TMR1_StopTimer(void);
+# 196 "./mcc_generated_files/tmr1.h"
+uint16_t TMR1_ReadTimer(void);
+# 235 "./mcc_generated_files/tmr1.h"
+void TMR1_WriteTimer(uint16_t timerVal);
+# 271 "./mcc_generated_files/tmr1.h"
+void TMR1_Reload(void);
+# 310 "./mcc_generated_files/tmr1.h"
+void TMR1_StartSinglePulseAcquisition(void);
+# 349 "./mcc_generated_files/tmr1.h"
+uint8_t TMR1_CheckGateValueStatus(void);
+# 387 "./mcc_generated_files/tmr1.h"
+_Bool TMR1_HasOverflowOccured(void);
 # 57 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/memory.h" 1
 # 99 "./mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -17043,6 +17072,7 @@ uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
 # 58 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr0.h" 1
 # 100 "./mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -17059,6 +17089,7 @@ void TMR0_Reload(void);
 # 310 "./mcc_generated_files/tmr0.h"
 _Bool TMR0_HasOverflowOccured(void);
 # 59 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/eusart2.h" 1
 # 57 "./mcc_generated_files/eusart2.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
@@ -17253,6 +17284,7 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 506 "./mcc_generated_files/eusart2.h"
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 60 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/eusart1.h" 1
 # 75 "./mcc_generated_files/eusart1.h"
 typedef union {
@@ -17307,13 +17339,14 @@ void EUSART1_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 505 "./mcc_generated_files/eusart1.h"
 void EUSART1_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 61 "./mcc_generated_files/mcc.h" 2
-# 75 "./mcc_generated_files/mcc.h"
+# 76 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 88 "./mcc_generated_files/mcc.h"
+# 89 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 101 "./mcc_generated_files/mcc.h"
+# 102 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 3 "main.c" 2
+# 2 "main.c" 2
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 1 3
 # 25 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\string.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -17369,7 +17402,8 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 4 "main.c" 2
+# 3 "main.c" 2
+
 
 # 1 "./Modbus.h" 1
 # 12 "./Modbus.h"
@@ -17444,7 +17478,8 @@ void PrintHolding(void);
 void PrintInput(void);
 void ClearMBInputReg(void);
 _Bool CheckConfig(void);
-# 6 "main.c" 2
+# 5 "main.c" 2
+
 # 1 "./RS232.h" 1
 
 
@@ -17461,7 +17496,8 @@ void InitialiseString(_Bool Partial);
 
 
 _Bool ValidateCmd(void);
-# 7 "main.c" 2
+# 6 "main.c" 2
+
 # 1 "./main.h" 1
 
 
@@ -17476,7 +17512,8 @@ unsigned int Address = 0x05;
 
 
 void ToggleStatusLEDs();
-# 8 "main.c" 2
+# 7 "main.c" 2
+
 # 1 "./shift.h" 1
 
 
@@ -17489,7 +17526,8 @@ void SIPO_ShiftWrite(void);
 void SIPO_Reset(void);
 void PISO_ShiftRead(void);
 void PISO_Reset(void);
-# 9 "main.c" 2
+# 8 "main.c" 2
+
 
 
 

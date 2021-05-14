@@ -187,7 +187,13 @@ void PrintModbus(){
         printf("   Byte %02i: 0x%02x - CRC Hi\r\n",i, ModbusData[i]);
         printf("   Byte %02i: 0x%02x - CRC Lo\r\n",i + 1, ModbusData[i + 1]);        
 
-    }   
+    }else{
+        
+        for(int i = 0; i< 50; i++){
+            printf(   "Byte %02i: 0x%02x - Reg %i \r\n", i, ModbusData[i], i);
+        }
+        
+    }
 
     printf("\r\n");
 }
@@ -742,6 +748,9 @@ bool ModbusRx(){
         if(Debug ==1){
             printf("\r\n\nSomething in ESUART1 \r\n");
         }
+        
+        TMR1_Initialize();   // Start TMR1 50mS
+        
         do{
             if(EUSART1_is_rx_ready()){
 
@@ -765,13 +774,19 @@ bool ModbusRx(){
             }
             
             
-        }while(ModDataCnt != ExpectedBytes);
+        }while((ModDataCnt != ExpectedBytes) && (!TMR1_HasOverflowOccured()));    // ...and TMR1 has not overflown
 
-        // D3LED_Toggle();
         
-        // generateCRC(ModDataCnt);
-        if(checkCRC() == 1)
-        {            
+        if(ModDataCnt != ExpectedBytes){
+            printf("\r\nTimed Out Receiving Modbus Command (50ms)\r\n");
+            TMR1_Initialize();
+            LED_Bad_SetHigh();            
+            if( Debug == 1){
+                PrintModbus();
+            }
+            ClearModbusData();   // Needed when complete                
+            return 0;            
+        }else if(checkCRC() == 1){
             if(Address == ModbusData[0] || ModbusData[0] == 0x00){
                 printf("\r\nReceived Modbus CRC Good and Address IS for me.\r\n");
                 return 1;
@@ -783,6 +798,8 @@ bool ModbusRx(){
         }else{
             printf("\r\nReceived Modbus CRC is bad.\r\n\n");
             LED_Bad_SetHigh();
+            PrintModbus();
+            ClearModbusData();   // Needed when complete              
             return 0;
         }
         // Complete Modbus String ready to process.     
